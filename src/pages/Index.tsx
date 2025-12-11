@@ -138,9 +138,9 @@ const Index = () => {
           </div>
 
           {/* Sub-text */}
-          <p className="text-sm text-muted-foreground fade-in-up" style={{ animationDelay: "0.3s" }}>
-            No account needed • Free forever • Your progress stays private
-          </p>
+        <p className="text-sm text-muted-foreground fade-in-up" style={{ animationDelay: "0.3s" }}>
+          No account needed • Completely free • Your progress stays private
+        </p>
         </div>
       </main>
 
