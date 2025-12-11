@@ -6,7 +6,7 @@ const corsHeaders = {
 };
 
 interface PassageRequest {
-  type: "passage" | "questions" | "assessment" | "assessment_batch" | "evaluate" | "tutor";
+  type: "passage" | "questions" | "assessment" | "assessment_batch" | "evaluate" | "tutor" | "read_aloud" | "vocabulary_confirmation";
   gradeLevel?: number;
   skillFocus?: string;
   theme?: string;
@@ -209,6 +209,56 @@ Respond helpfully at their level (${gradeDesc}). Be encouraging and guide them t
 Return ONLY a JSON object:
 {
   "response": "Your friendly, helpful response here..."
+}`;
+    } else if (type === "read_aloud") {
+      const gradeDesc = getGradeDescription(level);
+      systemPrompt = `You are an expert reading teacher creating sentences for students to read aloud. Generate age-appropriate sentences that match the specified grade level.`;
+      
+      userPrompt = `Create 3 sentences for a Grade ${level} student to read aloud.
+
+Requirements:
+- Reading level: ${gradeDesc}
+- Grade 1-2: 5-8 words per sentence, simple CVC words, common sight words
+- Grade 3-4: 8-12 words per sentence, common vocabulary
+- Grade 5-6: 10-15 words per sentence, varied vocabulary
+- Grade 7+: 12-20 words per sentence, complex vocabulary
+
+Make sentences interesting and engaging. They should flow naturally when read aloud.
+
+Return ONLY a JSON object:
+{
+  "sentences": ["First sentence here.", "Second sentence here.", "Third sentence here."]
+}`;
+    } else if (type === "vocabulary_confirmation") {
+      const gradeDesc = getGradeDescription(level);
+      systemPrompt = `You are an expert reading comprehension teacher. Create a short passage with questions to confirm a reader's level.`;
+      
+      userPrompt = `Create a SHORT confirmation passage for Grade ${level} level.
+
+Requirements:
+- Reading level: ${gradeDesc}
+- Length: ${level <= 4 ? "60-80" : "80-120"} words only
+- Topic: Choose something engaging and relatable
+- Create 2 simple questions to confirm comprehension
+
+Return ONLY a JSON object:
+{
+  "title": "Short Title",
+  "text": "The passage text here...",
+  "questions": [
+    {
+      "text": "Question 1?",
+      "options": ["A", "B", "C", "D"],
+      "correctAnswer": "The correct option",
+      "explanation": "Brief explanation"
+    },
+    {
+      "text": "Question 2?",
+      "options": ["A", "B", "C", "D"],
+      "correctAnswer": "The correct option",
+      "explanation": "Brief explanation"
+    }
+  ]
 }`;
     }
 

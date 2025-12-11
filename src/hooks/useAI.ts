@@ -280,6 +280,60 @@ export const useAI = () => {
     }
   }, []);
 
+  // Generate sentences for read-aloud assessment
+  const generateReadAloudSentences = useCallback(async (
+    gradeLevel: number
+  ): Promise<{ sentences: string[] } | null> => {
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      const { data, error: fnError } = await supabase.functions.invoke("generate-reading", {
+        body: {
+          type: "read_aloud",
+          gradeLevel,
+        },
+      });
+
+      if (fnError) throw fnError;
+      return data as { sentences: string[] };
+    } catch (err) {
+      const message = err instanceof Error ? err.message : "Failed to generate sentences";
+      setError(message);
+      toast.error(message);
+      return null;
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
+
+  // Generate confirmation passage for vocabulary assessment
+  const generateVocabularyConfirmation = useCallback(async (
+    gradeLevel: number
+  ): Promise<{ title: string; text: string; questions: Question[] } | null> => {
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      const { data, error: fnError } = await supabase.functions.invoke("generate-reading", {
+        body: {
+          type: "vocabulary_confirmation",
+          gradeLevel,
+        },
+      });
+
+      if (fnError) throw fnError;
+      return data as { title: string; text: string; questions: Question[] };
+    } catch (err) {
+      const message = err instanceof Error ? err.message : "Failed to generate confirmation";
+      setError(message);
+      toast.error(message);
+      return null;
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
+
   return {
     isLoading,
     error,
@@ -287,7 +341,9 @@ export const useAI = () => {
     generateQuestions,
     generateAssessment,
     evaluateAnswer,
-    getCachedOrGeneratePassage, // Strategy 2: New cached version
-    generateBatchedAssessment, // Strategy 6: Batched assessment
+    getCachedOrGeneratePassage,
+    generateBatchedAssessment,
+    generateReadAloudSentences,
+    generateVocabularyConfirmation,
   };
 };
