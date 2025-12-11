@@ -1,9 +1,10 @@
-import { useState } from "react";
-import { Send, Bot, Sparkles, Loader2 } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Send, Bot, Sparkles, Loader2, Lightbulb, AlertCircle } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
+import { getHintForQuestionType, STATIC_HELP_TIPS } from "@/constants/readingHints";
 
 interface Message {
-  role: "user" | "assistant";
+  role: "user" | "assistant" | "hint";
   content: string;
 }
 
@@ -11,20 +12,46 @@ interface AITutorProps {
   passageText: string;
   gradeLevel: number;
   currentQuestion?: string;
+  currentQuestionType?: string;
+  passageId?: string; // Used to reset state when passage changes
+  maxMessages?: number; // Strategy 1: Rate limit
 }
 
-const AITutor = ({ passageText, gradeLevel, currentQuestion }: AITutorProps) => {
+const AITutor = ({ 
+  passageText, 
+  gradeLevel, 
+  currentQuestion, 
+  currentQuestionType,
+  passageId,
+  maxMessages = 5 // Strategy 1: Default limit of 5 AI messages
+}: AITutorProps) => {
   const [messages, setMessages] = useState<Message[]>([
     {
       role: "assistant",
-      content: "Hi there! 👋 I'm your reading buddy. Ask me anything about the passage, or if you need a hint on a question, just ask!",
+      content: "Hi there! 👋 I'm your reading buddy. Read through the passage first, then if you get stuck, I'm here to help!",
     },
   ]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [aiMessageCount, setAiMessageCount] = useState(0); // Strategy 1: Track AI calls
+  const [hintsUsed, setHintsUsed] = useState(0); // Strategy 7: Track client-side hints used
+
+  // Reset state when passage changes
+  useEffect(() => {
+    setMessages([
+      {
+        role: "assistant",
+        content: "Hi there! 👋 I'm your reading buddy. Read through the passage first, then if you get stuck, I'm here to help!",
+      },
+    ]);
+    setAiMessageCount(0);
+    setHintsUsed(0);
+  }, [passageId]);
+
+  const isLimitReached = aiMessageCount >= maxMessages;
 
   const handleSend = async () => {
-    if (!input.trim() || isLoading) return;
+    if (!input.trim() || isLoading || isLimitReached) return;
 
     const userMessage = input.trim();
     setInput("");
@@ -48,6 +75,7 @@ const AITutor = ({ passageText, gradeLevel, currentQuestion }: AITutorProps) => 
         ...prev,
         { role: "assistant", content: data.response || "I'm here to help! Could you rephrase that?" },
       ]);
+      setAiMessageCount((prev) => prev + 1); // Strategy 1: Increment counter
     } catch (err) {
       console.error("Tutor error:", err);
       setMessages((prev) => [
@@ -66,10 +94,26 @@ const AITutor = ({ passageText, gradeLevel, currentQuestion }: AITutorProps) => 
     }
   };
 
+  // Strategy 7: Show client-side hint first
+  const handleQuickHint = () => {
+    if (hintsUsed < 2) {
+      // Show client-side hint first
+      const hint = getHintForQuestionType(currentQuestionType, hintsUsed);
+      setMessages((prev) => [
+        ...prev,
+        { role: "hint", content: hint },
+      ]);
+      setHintsUsed((prev) => prev + 1);
+    } else if (!isLimitReached) {
+      // After 2 client hints, allow AI hint
+      setInput("Give me a hint");
+    }
+  };
+
   const quickPrompts = [
-    "Give me a hint",
-    "Explain in simpler words",
-    "What's the main idea?",
+    { label: hintsUsed < 2 ? "Give me a hint" : "AI Hint", action: handleQuickHint },
+    { label: "Explain in simpler words", action: () => setInput("Explain in simpler words") },
+    { label: "What's the main idea?", action: () => setInput("What's the main idea?") },
   ];
 
   return (
@@ -82,10 +126,24 @@ const AITutor = ({ passageText, gradeLevel, currentQuestion }: AITutorProps) => 
           </div>
           <div>
             <h3 className="font-display font-bold text-foreground">AI Reading Buddy</h3>
-            <p className="text-xs text-muted-foreground">Here to help you learn</p>
+            <p className="text-xs text-muted-foreground">
+              {isLimitReached 
+                ? "You're doing great on your own!" 
+                : `${maxMessages - aiMessageCount} AI helps remaining`}
+            </p>
           </div>
           <Sparkles className="w-4 h-4 text-accent ml-auto" />
         </div>
+      </div>
+
+      {/* Strategy 4: Static help tips */}
+      <div className="px-4 py-2 bg-muted/30 border-b border-border">
+        <p className="text-xs font-medium text-muted-foreground mb-1">💡 Try these first:</p>
+        <ul className="text-xs text-muted-foreground space-y-0.5">
+          {STATIC_HELP_TIPS.slice(0, 3).map((tip, i) => (
+            <li key={i}>• {tip}</li>
+          ))}
+        </ul>
       </div>
 
       {/* Messages */}
@@ -99,9 +157,17 @@ const AITutor = ({ passageText, gradeLevel, currentQuestion }: AITutorProps) => 
               className={`max-w-[85%] p-3 rounded-2xl text-sm ${
                 message.role === "user"
                   ? "bg-primary text-primary-foreground rounded-br-md"
+                  : message.role === "hint"
+                  ? "bg-accent/20 text-foreground rounded-bl-md border border-accent/30"
                   : "bg-muted text-foreground rounded-bl-md"
               }`}
             >
+              {message.role === "hint" && (
+                <div className="flex items-center gap-1 mb-1 text-accent">
+                  <Lightbulb className="w-3 h-3" />
+                  <span className="text-xs font-medium">Quick Tip</span>
+                </div>
+              )}
               {message.content}
             </div>
           </div>
@@ -115,18 +181,31 @@ const AITutor = ({ passageText, gradeLevel, currentQuestion }: AITutorProps) => 
         )}
       </div>
 
+      {/* Strategy 1: Limit reached message */}
+      {isLimitReached && (
+        <div className="px-4 py-3 bg-success/10 border-t border-success/20">
+          <div className="flex items-center gap-2 text-sm text-success">
+            <AlertCircle className="w-4 h-4" />
+            <span>You're doing great! Try answering on your own now. 💪</span>
+          </div>
+        </div>
+      )}
+
       {/* Quick Prompts */}
-      <div className="px-4 py-2 flex gap-2 overflow-x-auto">
-        {quickPrompts.map((prompt) => (
-          <button
-            key={prompt}
-            onClick={() => setInput(prompt)}
-            className="flex-shrink-0 text-xs px-3 py-1.5 rounded-full bg-muted hover:bg-muted/80 text-muted-foreground transition-colors"
-          >
-            {prompt}
-          </button>
-        ))}
-      </div>
+      {!isLimitReached && (
+        <div className="px-4 py-2 flex gap-2 overflow-x-auto">
+          {quickPrompts.map((prompt, i) => (
+            <button
+              key={i}
+              onClick={prompt.action}
+              disabled={isLoading}
+              className="flex-shrink-0 text-xs px-3 py-1.5 rounded-full bg-muted hover:bg-muted/80 text-muted-foreground transition-colors disabled:opacity-50"
+            >
+              {prompt.label}
+            </button>
+          ))}
+        </div>
+      )}
 
       {/* Input */}
       <div className="p-4 border-t border-border">
@@ -136,12 +215,13 @@ const AITutor = ({ passageText, gradeLevel, currentQuestion }: AITutorProps) => 
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyPress={handleKeyPress}
-            placeholder="Ask me anything..."
-            className="flex-1 px-4 py-3 rounded-xl bg-muted border-0 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 text-sm"
+            placeholder={isLimitReached ? "Keep going on your own!" : "Ask me anything..."}
+            disabled={isLimitReached}
+            className="flex-1 px-4 py-3 rounded-xl bg-muted border-0 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 text-sm disabled:opacity-50"
           />
           <button
             onClick={handleSend}
-            disabled={!input.trim() || isLoading}
+            disabled={!input.trim() || isLoading || isLimitReached}
             className="p-3 rounded-xl bg-primary text-primary-foreground hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
           >
             <Send className="w-4 h-4" />
