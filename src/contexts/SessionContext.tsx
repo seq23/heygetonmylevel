@@ -9,6 +9,8 @@ interface SessionData {
   questionsAnswered: number;
   correctAnswers: number;
   skillsAttempted: string[];
+  consecutiveCorrect: number;
+  consecutiveIncorrect: number;
 }
 
 interface SessionContextType {
@@ -19,6 +21,7 @@ interface SessionContextType {
   setAssessmentTaken: (taken: boolean) => Promise<void>;
   setCurrentPassage: (passageId: string) => void;
   recordAnswer: (correct: boolean, skill: string) => void;
+  checkLevelProgression: (correct: boolean) => { levelChanged: boolean; newLevel: number | null; direction: 'up' | 'down' | null };
   endSession: () => Promise<void>;
   resetSession: () => void;
 }
@@ -48,6 +51,8 @@ export const SessionProvider: React.FC<{ children: React.ReactNode }> = ({ child
         questionsAnswered: 0,
         correctAnswers: 0,
         skillsAttempted: [],
+        consecutiveCorrect: 0,
+        consecutiveIncorrect: 0,
       };
 
       setSession(newSession);
@@ -111,9 +116,39 @@ export const SessionProvider: React.FC<{ children: React.ReactNode }> = ({ child
         skillsAttempted: prev.skillsAttempted.includes(skill)
           ? prev.skillsAttempted
           : [...prev.skillsAttempted, skill],
+        consecutiveCorrect: correct ? prev.consecutiveCorrect + 1 : 0,
+        consecutiveIncorrect: correct ? 0 : prev.consecutiveIncorrect + 1,
       };
     });
   }, []);
+
+  const checkLevelProgression = useCallback((correct: boolean): { levelChanged: boolean; newLevel: number | null; direction: 'up' | 'down' | null } => {
+    if (!session) return { levelChanged: false, newLevel: null, direction: null };
+
+    const currentLevel = session.readingLevel || 1;
+    const newConsecutiveCorrect = correct ? session.consecutiveCorrect + 1 : 0;
+    const newConsecutiveIncorrect = correct ? 0 : session.consecutiveIncorrect + 1;
+
+    // Level UP: 5 consecutive correct answers
+    if (newConsecutiveCorrect >= 5 && currentLevel < 13) {
+      const newLevel = currentLevel + 1;
+      updateReadingLevel(newLevel);
+      // Reset consecutive counts after level change
+      setSession((prev) => prev ? { ...prev, consecutiveCorrect: 0, consecutiveIncorrect: 0 } : null);
+      return { levelChanged: true, newLevel, direction: 'up' };
+    }
+
+    // Level DOWN: 3 consecutive incorrect answers
+    if (newConsecutiveIncorrect >= 3 && currentLevel > 1) {
+      const newLevel = currentLevel - 1;
+      updateReadingLevel(newLevel);
+      // Reset consecutive counts after level change
+      setSession((prev) => prev ? { ...prev, consecutiveCorrect: 0, consecutiveIncorrect: 0 } : null);
+      return { levelChanged: true, newLevel, direction: 'down' };
+    }
+
+    return { levelChanged: false, newLevel: null, direction: null };
+  }, [session, updateReadingLevel]);
 
   const endSession = useCallback(async (): Promise<void> => {
     if (!session) return;
@@ -169,6 +204,7 @@ export const SessionProvider: React.FC<{ children: React.ReactNode }> = ({ child
         setAssessmentTaken,
         setCurrentPassage,
         recordAnswer,
+        checkLevelProgression,
         endSession,
         resetSession,
       }}
