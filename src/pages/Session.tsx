@@ -58,7 +58,7 @@ const Session = () => {
       return;
     }
     loadNewPassage();
-  }, [session]);
+  }, [session?.id, session?.readingLevel]);
 
   // Store pre-generated questions from cache
   const [cachedQuestions, setCachedQuestions] = useState<Question[] | null>(null);
