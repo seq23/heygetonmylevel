@@ -1,1 +1,4 @@
 project_id = "kiokmixifusessprnesk"
+
+[functions.generate-reading]
+verify_jwt = false

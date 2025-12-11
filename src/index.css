@@ -36,6 +36,10 @@
     --success: 145 65% 45%;
     --success-foreground: 0 0% 100%;
 
+    /* Warning orange */
+    --warning: 35 90% 55%;
+    --warning-foreground: 220 25% 15%;
+
     /* Error/destructive */
     --destructive: 0 75% 55%;
     --destructive-foreground: 0 0% 100%;
@@ -91,6 +95,9 @@
 
     --success: 145 60% 50%;
     --success-foreground: 220 25% 10%;
+
+    --warning: 35 85% 50%;
+    --warning-foreground: 220 25% 10%;
 
     --destructive: 0 70% 50%;
     --destructive-foreground: 0 0% 100%;
