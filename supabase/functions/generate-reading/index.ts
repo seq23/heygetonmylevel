@@ -75,13 +75,39 @@ Return ONLY a JSON object in this exact format:
       const gradeDesc = getGradeDescription(level);
       systemPrompt = `You are an expert reading comprehension teacher creating questions that test understanding at the appropriate reading level. Questions should be clear, fair, and directly related to the passage.`;
       
+      // Skill-focused question generation
+      let questionTypeInstruction = "";
+      let questionTypes = "recall|inference|vocabulary|cause_effect";
+      
+      if (skillFocus === "vocabulary") {
+        questionTypeInstruction = "ALL 4 questions MUST focus on vocabulary and word meanings from the passage. Ask about word definitions, context clues, synonyms, and word usage.";
+        questionTypes = "vocabulary";
+      } else if (skillFocus === "inference") {
+        questionTypeInstruction = "ALL 4 questions MUST require making inferences from the text. Ask about implied meanings, conclusions, predictions, and reading between the lines.";
+        questionTypes = "inference";
+      } else if (skillFocus === "cause_effect") {
+        questionTypeInstruction = "ALL 4 questions MUST focus on cause and effect relationships. Ask why things happen, what causes events, and what results from actions.";
+        questionTypes = "cause_effect";
+      } else if (skillFocus === "decoding") {
+        questionTypeInstruction = "ALL 4 questions MUST focus on word decoding, phonics patterns, and word structure. Ask about word parts, syllables, prefixes, suffixes, and sound patterns.";
+        questionTypes = "vocabulary";
+      } else if (skillFocus === "reasoning" || skillFocus === "critical") {
+        questionTypeInstruction = "ALL 4 questions MUST require critical thinking and multi-step reasoning. Ask about analysis, evaluation, comparing ideas, and drawing complex conclusions.";
+        questionTypes = "inference";
+      } else if (skillFocus === "comprehension" || skillFocus === "recall") {
+        questionTypeInstruction = "ALL 4 questions MUST focus on recall and basic comprehension. Ask about specific facts, events, characters, and directly stated information.";
+        questionTypes = "recall";
+      } else {
+        questionTypeInstruction = "Include a mix of different question types: recall, inference, vocabulary, and cause_effect.";
+      }
+      
       userPrompt = `Create 4 comprehension questions for this passage (Grade ${level} level):
 
 "${passageText}"
 
 Requirements:
 - Question complexity: ${gradeDesc}
-- Include different question types: recall, inference, vocabulary/context clues, and cause/effect
+- ${questionTypeInstruction}
 - Each question has 4 answer options
 - Questions should match the reading level
 
@@ -89,7 +115,7 @@ Return ONLY a JSON array in this exact format:
 [
   {
     "text": "Question text here?",
-    "type": "recall|inference|vocabulary|cause_effect",
+    "type": "${questionTypes}",
     "options": ["Option A", "Option B", "Option C", "Option D"],
     "correctAnswer": "The correct option text exactly as written",
     "explanation": "Brief explanation of why this is correct (${level <= 4 ? "1-2 simple sentences" : "2-3 sentences"})"

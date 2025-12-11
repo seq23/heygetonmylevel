@@ -168,7 +168,8 @@ export const useAI = () => {
 
   const generateQuestions = useCallback(async (
     passageText: string,
-    gradeLevel: number
+    gradeLevel: number,
+    skillFocus?: string
   ): Promise<Question[] | null> => {
     setIsLoading(true);
     setError(null);
@@ -179,6 +180,7 @@ export const useAI = () => {
           type: "questions",
           passageText,
           gradeLevel,
+          skillFocus,
         },
       });
 

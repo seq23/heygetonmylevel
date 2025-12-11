@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Check, X, Loader2 } from "lucide-react";
+import { Check, Loader2 } from "lucide-react";
 import { getAssessmentWordSet, calculateLevelFromVocabulary } from "@/constants/assessmentWords";
 
 interface VocabularyAssessmentProps {

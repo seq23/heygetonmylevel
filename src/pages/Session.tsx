@@ -1,10 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { ArrowLeft, BookOpen, CheckCircle2, XCircle, Loader2, HelpCircle, TrendingUp, TrendingDown, Bot, X, Home } from "lucide-react";
 import { useSession } from "@/contexts/SessionContext";
 import { useAI } from "@/hooks/useAI";
 import { supabase } from "@/integrations/supabase/client";
 import AITutor from "@/components/AITutor";
+import PhonicsWord from "@/components/PhonicsWord";
 
 interface Question {
   id?: string;
@@ -52,13 +53,23 @@ const Session = () => {
     showTutor: false,
   });
 
+  // Prevent double-loading with ref
+  const hasInitialized = useRef(false);
+  const currentSessionId = useRef<string | null>(null);
+
   useEffect(() => {
     if (!session || !session.readingLevel) {
       navigate("/");
       return;
     }
-    loadNewPassage();
-  }, [session?.id, session?.readingLevel]);
+    
+    // Only load passage once per session
+    if (!hasInitialized.current || currentSessionId.current !== session.id) {
+      hasInitialized.current = true;
+      currentSessionId.current = session.id;
+      loadNewPassage();
+    }
+  }, [session?.id, session?.readingLevel, navigate]);
 
   // Store pre-generated questions from cache
   const [cachedQuestions, setCachedQuestions] = useState<Question[] | null>(null);
@@ -118,8 +129,8 @@ const Session = () => {
 
     setState((prev) => ({ ...prev, phase: "loading" }));
 
-    // Use cached questions if available, otherwise generate new ones
-    const questionsData = cachedQuestions || await generateQuestions(state.passage.text, session.readingLevel);
+    // Use cached questions if available, otherwise generate new ones with skillFocus
+    const questionsData = cachedQuestions || await generateQuestions(state.passage.text, session.readingLevel, skillFocus);
 
     if (questionsData) {
       const questionsToInsert = questionsData.map((q) => ({
@@ -320,9 +331,11 @@ const Session = () => {
                     <BookOpen className="w-5 h-5 text-primary" />
                     <h2 className="text-xl font-display font-bold">{state.passage.title}</h2>
                   </div>
-                  <p className="reading-passage text-foreground whitespace-pre-wrap leading-relaxed">
-                    {state.passage.text}
-                  </p>
+                <div className="reading-passage text-foreground whitespace-pre-wrap leading-relaxed">
+                    {state.passage.text.split(/\s+/).map((word, index) => (
+                      <PhonicsWord key={index} word={word} gradeLevel={session.readingLevel} />
+                    ))}
+                  </div>
                 </div>
 
                 <div className="p-4 rounded-xl bg-muted/50 flex items-start gap-3">
