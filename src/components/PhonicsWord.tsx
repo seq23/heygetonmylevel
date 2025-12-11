@@ -54,7 +54,7 @@ const getPhoneticBreakdown = (word: string): string => {
 
 const PhonicsWord = ({ word, gradeLevel }: PhonicsWordProps) => {
   const [isOpen, setIsOpen] = useState(false);
-  const { speak, speakSlowly, isSupported } = useTextToSpeech();
+  const { speak, soundOut, isSupported } = useTextToSpeech();
   
   // Clean word for display (remove trailing punctuation for speech)
   const cleanWord = word.replace(/[.,!?;:'"]+$/, "");
@@ -97,11 +97,11 @@ const PhonicsWord = ({ word, gradeLevel }: PhonicsWordProps) => {
                   Say it
                 </button>
                 <button
-                  onClick={() => speakSlowly(cleanWord)}
+                  onClick={() => soundOut(cleanWord)}
                   className="flex items-center gap-2 px-3 py-2 rounded-lg bg-muted text-foreground hover:bg-muted/80 transition-colors text-sm"
                 >
                   <Volume2 className="w-4 h-4" />
-                  Slow
+                  Sound Out
                 </button>
               </div>
             ) : (
