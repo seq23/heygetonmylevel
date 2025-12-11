@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { ArrowLeft, BookOpen, CheckCircle2, XCircle, Loader2, HelpCircle, TrendingUp, TrendingDown, Bot } from "lucide-react";
+import { ArrowLeft, BookOpen, CheckCircle2, XCircle, Loader2, HelpCircle, TrendingUp, TrendingDown, Bot, X } from "lucide-react";
 import { useSession } from "@/contexts/SessionContext";
 import { useAI } from "@/hooks/useAI";
 import { supabase } from "@/integrations/supabase/client";
@@ -606,7 +606,17 @@ const Session = () => {
                     onClick={toggleTutor}
                   />
                   <div className="absolute bottom-0 left-0 right-0 h-[70vh] bg-background rounded-t-3xl shadow-2xl p-4 fade-in-up">
-                    <div className="w-12 h-1 bg-muted rounded-full mx-auto mb-4" />
+                    {/* Close button row */}
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="w-12 h-1 bg-muted rounded-full" />
+                      <button
+                        onClick={toggleTutor}
+                        className="p-2 rounded-xl hover:bg-muted transition-colors"
+                        aria-label="Close AI tutor"
+                      >
+                        <X className="w-5 h-5 text-muted-foreground" />
+                      </button>
+                    </div>
                     <AITutor
                       passageText={state.passage.text}
                       gradeLevel={session?.readingLevel || 5}
