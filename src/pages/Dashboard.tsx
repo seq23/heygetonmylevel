@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { 
   BookOpen, 
@@ -8,9 +9,11 @@ import {
   Sparkles, 
   MessageSquare,
   Play,
-  ArrowLeft
+  ArrowLeft,
+  Palette
 } from "lucide-react";
 import { useSession } from "@/contexts/SessionContext";
+import { Input } from "@/components/ui/input";
 
 const skills = [
   {
@@ -64,9 +67,20 @@ const skills = [
   },
 ];
 
+// Theme suggestions by grade level
+const getThemeSuggestions = (level: number): string[] => {
+  if (level <= 6) {
+    return ["Superheroes", "Dinosaurs", "Space", "Animals", "Pirates", "Sports"];
+  } else if (level <= 12) {
+    return ["Fantasy", "Mystery", "Sports", "Music", "Adventure", "Science"];
+  }
+  return ["Historical Fiction", "Romance", "Technology", "Business", "Travel", "Philosophy"];
+};
+
 const Dashboard = () => {
   const navigate = useNavigate();
   const { session } = useSession();
+  const [theme, setTheme] = useState("");
 
   if (!session || !session.readingLevel) {
     navigate("/");
@@ -74,8 +88,10 @@ const Dashboard = () => {
   }
 
   const handleStartSession = (skillFocus?: string) => {
-    navigate("/session", { state: { skillFocus } });
+    navigate("/session", { state: { skillFocus, theme: theme.trim() || undefined } });
   };
+
+  const themeSuggestions = getThemeSuggestions(session.readingLevel);
 
   const gradeLabel =
     session.readingLevel <= 12 ? `Grade ${session.readingLevel}` : "College";
@@ -121,6 +137,40 @@ const Dashboard = () => {
           >
             Change level
           </button>
+        </div>
+
+        {/* Theme Selection */}
+        <div className="card-elevated fade-in-up" style={{ animationDelay: "0.05s" }}>
+          <div className="flex items-center gap-3 mb-4">
+            <div className="p-2 rounded-xl bg-primary/10">
+              <Palette className="w-5 h-5 text-primary" />
+            </div>
+            <div>
+              <h3 className="font-display font-bold">What do you want to read about?</h3>
+              <p className="text-sm text-muted-foreground">Optional - leave blank for variety</p>
+            </div>
+          </div>
+          <Input
+            value={theme}
+            onChange={(e) => setTheme(e.target.value)}
+            placeholder="e.g., superheroes, space adventure, romance..."
+            className="mb-3"
+          />
+          <div className="flex flex-wrap gap-2">
+            {themeSuggestions.map((suggestion) => (
+              <button
+                key={suggestion}
+                onClick={() => setTheme(suggestion)}
+                className={`px-3 py-1.5 text-sm rounded-full transition-all ${
+                  theme === suggestion
+                    ? "bg-primary text-primary-foreground"
+                    : "bg-muted text-muted-foreground hover:bg-primary/10 hover:text-primary"
+                }`}
+              >
+                {suggestion}
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* Start Session CTA */}

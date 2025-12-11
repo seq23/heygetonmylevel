@@ -38,6 +38,7 @@ const Session = () => {
   const { session, recordAnswer, setCurrentPassage } = useSession();
   const { getCachedOrGeneratePassage, generateQuestions, isLoading } = useAI();
   const skillFocus = location.state?.skillFocus;
+  const theme = location.state?.theme;
 
   const [state, setState] = useState<SessionState>({
     phase: "loading",
@@ -68,7 +69,7 @@ const Session = () => {
     setState((prev) => ({ ...prev, phase: "loading" }));
     setCachedQuestions(null);
 
-    const result = await getCachedOrGeneratePassage(session.readingLevel, skillFocus);
+    const result = await getCachedOrGeneratePassage(session.readingLevel, skillFocus, theme);
     
     if (result) {
       const { passage: passageData, questions: preGeneratedQuestions, fromCache } = result;

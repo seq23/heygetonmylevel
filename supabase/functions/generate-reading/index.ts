@@ -9,6 +9,7 @@ interface PassageRequest {
   type: "passage" | "questions" | "assessment" | "assessment_batch" | "evaluate" | "tutor";
   gradeLevel?: number;
   skillFocus?: string;
+  theme?: string;
   passageText?: string;
   question?: string;
   userAnswer?: string;
@@ -33,7 +34,7 @@ serve(async (req) => {
   }
 
   try {
-    const { type, gradeLevel, skillFocus, passageText, question, userAnswer, correctAnswer, userQuestion, currentQuestion } = await req.json() as PassageRequest;
+    const { type, gradeLevel, skillFocus, theme, passageText, question, userAnswer, correctAnswer, userQuestion, currentQuestion } = await req.json() as PassageRequest;
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
     
     if (!LOVABLE_API_KEY) {
@@ -50,13 +51,19 @@ serve(async (req) => {
       const gradeDesc = getGradeDescription(level);
       systemPrompt = `You are an expert reading comprehension teacher. Generate engaging, age-appropriate reading passages that precisely match Flesch-Kincaid grade levels. Your passages should be interesting, educational, and suitable for readers of all ages who are practicing at this level.`;
       
+      // Build topic instruction based on whether theme is provided
+      const topicInstruction = theme 
+        ? `- Topic/Theme: "${theme}" - Create content around this theme while keeping it age-appropriate and educational`
+        : "- Topic: Choose an interesting, universally relatable topic (nature, daily life, simple science, stories)";
+      
       userPrompt = `Generate a reading passage for Grade ${level} level (Flesch-Kincaid).
 
 Requirements:
 - Reading level: ${gradeDesc}
 - Length: ${level <= 4 ? "100-150" : level <= 8 ? "150-200" : "200-300"} words
-- Topic: Choose an interesting, universally relatable topic (nature, daily life, simple science, stories)
+${topicInstruction}
 - Skill focus: ${skillFocus || "general comprehension"}
+${theme ? `- IMPORTANT: Incorporate the "${theme}" theme naturally into an engaging story or informational passage` : ""}
 
 Return ONLY a JSON object in this exact format:
 {
