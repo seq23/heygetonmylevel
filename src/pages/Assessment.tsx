@@ -10,7 +10,7 @@ interface AssessmentQuestion {
   options: string[];
   correctAnswer: string;
   explanation: string;
-  difficulty: string;
+  difficulty?: string;
 }
 
 interface AssessmentState {
