@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { ArrowLeft, BookOpen, CheckCircle2, XCircle, Loader2, HelpCircle, TrendingUp, TrendingDown, Bot, X } from "lucide-react";
+import { ArrowLeft, BookOpen, CheckCircle2, XCircle, Loader2, HelpCircle, TrendingUp, TrendingDown, Bot, X, Home } from "lucide-react";
 import { useSession } from "@/contexts/SessionContext";
 import { useAI } from "@/hooks/useAI";
 import { supabase } from "@/integrations/supabase/client";
@@ -256,13 +256,24 @@ const Session = () => {
       {/* Header */}
       <header className="sticky top-0 bg-background/80 backdrop-blur-sm border-b border-border z-10">
         <div className="container max-w-7xl py-4 flex items-center gap-4 px-4">
-          <button
-            onClick={() => navigate("/dashboard")}
-            className="p-2 rounded-xl hover:bg-muted transition-colors"
-            aria-label="Go back"
-          >
-            <ArrowLeft className="w-5 h-5 text-muted-foreground" />
-          </button>
+          <div className="flex items-center gap-1">
+            <button
+              onClick={() => navigate("/")}
+              className="p-2 rounded-xl hover:bg-muted transition-colors"
+              aria-label="Go home"
+              title="Home"
+            >
+              <Home className="w-5 h-5 text-muted-foreground" />
+            </button>
+            <button
+              onClick={() => navigate("/dashboard")}
+              className="p-2 rounded-xl hover:bg-muted transition-colors"
+              aria-label="Go to dashboard"
+              title="Back to Dashboard"
+            >
+              <ArrowLeft className="w-5 h-5 text-muted-foreground" />
+            </button>
+          </div>
           <div className="flex-1">
             <h1 className="text-xl font-display font-bold">Reading Session</h1>
             <p className="text-sm text-muted-foreground">{gradeLabel} Level</p>
