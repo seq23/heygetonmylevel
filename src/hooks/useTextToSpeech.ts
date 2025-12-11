@@ -3,7 +3,7 @@ import { useCallback, useRef } from "react";
 export const useTextToSpeech = () => {
   const utteranceRef = useRef<SpeechSynthesisUtterance | null>(null);
 
-  const speak = useCallback((text: string, rate: number = 0.8) => {
+  const speak = useCallback((text: string, rate: number = 1.0) => {
     // Cancel any ongoing speech
     window.speechSynthesis.cancel();
 
@@ -27,7 +27,7 @@ export const useTextToSpeech = () => {
   }, []);
 
   const speakSlowly = useCallback((text: string) => {
-    speak(text, 0.6);
+    speak(text, 0.5);
   }, [speak]);
 
   const stop = useCallback(() => {
