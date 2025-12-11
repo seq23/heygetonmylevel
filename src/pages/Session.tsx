@@ -36,7 +36,7 @@ const Session = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { session, recordAnswer, setCurrentPassage } = useSession();
-  const { generatePassage, generateQuestions, isLoading } = useAI();
+  const { getCachedOrGeneratePassage, generateQuestions, isLoading } = useAI();
   const skillFocus = location.state?.skillFocus;
 
   const [state, setState] = useState<SessionState>({
@@ -59,14 +59,21 @@ const Session = () => {
     loadNewPassage();
   }, [session]);
 
+  // Store pre-generated questions from cache
+  const [cachedQuestions, setCachedQuestions] = useState<Question[] | null>(null);
+
   const loadNewPassage = async () => {
     if (!session?.readingLevel) return;
 
     setState((prev) => ({ ...prev, phase: "loading" }));
+    setCachedQuestions(null);
 
-    const passageData = await generatePassage(session.readingLevel, skillFocus);
+    const result = await getCachedOrGeneratePassage(session.readingLevel, skillFocus);
     
-    if (passageData) {
+    if (result) {
+      const { passage: passageData, questions: preGeneratedQuestions, fromCache } = result;
+      
+      // Store passage in database
       const { data: storedPassage, error } = await supabase
         .from("passages")
         .insert({
@@ -80,6 +87,11 @@ const Session = () => {
 
       if (!error && storedPassage) {
         setCurrentPassage(storedPassage.id);
+      }
+
+      // If questions came from cache, store them for later use
+      if (fromCache && preGeneratedQuestions.length > 0) {
+        setCachedQuestions(preGeneratedQuestions);
       }
 
       setState((prev) => ({
@@ -105,7 +117,8 @@ const Session = () => {
 
     setState((prev) => ({ ...prev, phase: "loading" }));
 
-    const questionsData = await generateQuestions(state.passage.text, session.readingLevel);
+    // Use cached questions if available, otherwise generate new ones
+    const questionsData = cachedQuestions || await generateQuestions(state.passage.text, session.readingLevel);
 
     if (questionsData) {
       const questionsToInsert = questionsData.map((q) => ({
@@ -578,6 +591,8 @@ const Session = () => {
                     passageText={state.passage.text}
                     gradeLevel={session?.readingLevel || 5}
                     currentQuestion={currentQuestion?.text}
+                    currentQuestionType={currentQuestion?.type}
+                    passageId={state.passage.id}
                   />
                 </div>
               </aside>
@@ -595,6 +610,8 @@ const Session = () => {
                       passageText={state.passage.text}
                       gradeLevel={session?.readingLevel || 5}
                       currentQuestion={currentQuestion?.text}
+                      currentQuestionType={currentQuestion?.type}
+                      passageId={state.passage.id}
                     />
                   </div>
                 </div>
