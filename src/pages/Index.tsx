@@ -37,7 +37,15 @@ const Index = () => {
       {/* Problem Statement Banner */}
       <section className="bg-destructive/10 border-b border-destructive/20 py-4 px-6">
         <p className="text-center text-sm md:text-base text-foreground">
-          <span className="font-semibold">54% of U.S. adults</span> read below a 6th-grade level.
+          <a 
+            href="https://www.nu.edu/blog/49-adult-literacy-statistics-and-facts/" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="font-semibold underline decoration-dotted underline-offset-2 hover:decoration-solid transition-all"
+          >
+            54% of U.S. adults
+          </a>{" "}
+          read below a 6th-grade level.
           <span className="hidden sm:inline"> Reading struggles don't have to be permanent.</span>
         </p>
       </section>
