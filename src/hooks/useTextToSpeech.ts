@@ -27,7 +27,7 @@ export const useTextToSpeech = () => {
   }, []);
 
   const speakSlowly = useCallback((text: string) => {
-    speak(text, 0.5);
+    speak(text, 0.35);
   }, [speak]);
 
   const stop = useCallback(() => {
