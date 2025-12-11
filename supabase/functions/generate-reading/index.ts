@@ -6,7 +6,7 @@ const corsHeaders = {
 };
 
 interface PassageRequest {
-  type: "passage" | "questions" | "assessment" | "evaluate" | "tutor";
+  type: "passage" | "questions" | "assessment" | "assessment_batch" | "evaluate" | "tutor";
   gradeLevel?: number;
   skillFocus?: string;
   passageText?: string;
@@ -42,6 +42,7 @@ serve(async (req) => {
 
     let systemPrompt = "";
     let userPrompt = "";
+    let maxTokens: number | undefined = undefined; // Strategy 5: Conditionally set max_tokens
 
     const level = gradeLevel || 5;
 
@@ -115,6 +116,46 @@ Return ONLY a JSON object:
     }
   ]
 }`;
+    } else if (type === "assessment_batch") {
+      // Strategy 6: Generate all 3 difficulty levels in ONE call
+      systemPrompt = `You are an expert reading diagnostician. Create assessment passages at multiple difficulty levels to efficiently gauge a reader's ability. Generate content for three levels in a single response.`;
+      
+      const easyLevel = Math.max(1, level - 2);
+      const mediumLevel = level;
+      const hardLevel = Math.min(13, level + 2);
+      
+      userPrompt = `Create assessment content at THREE difficulty levels based on starting Grade ${level}.
+
+Generate passages and questions for:
+1. EASY: Grade ${easyLevel} level
+2. MEDIUM: Grade ${mediumLevel} level  
+3. HARD: Grade ${hardLevel} level
+
+Each level needs:
+- A passage of about 120-150 words appropriate for that grade
+- 2 questions testing recall and inference
+
+Return ONLY a JSON object:
+{
+  "easy": {
+    "passage": { "title": "Title", "text": "Passage text...", "gradeLevel": ${easyLevel} },
+    "questions": [
+      { "text": "Question?", "type": "recall|inference", "options": ["A", "B", "C", "D"], "correctAnswer": "Correct option", "explanation": "Brief explanation", "difficulty": "easy" }
+    ]
+  },
+  "medium": {
+    "passage": { "title": "Title", "text": "Passage text...", "gradeLevel": ${mediumLevel} },
+    "questions": [
+      { "text": "Question?", "type": "recall|inference", "options": ["A", "B", "C", "D"], "correctAnswer": "Correct option", "explanation": "Brief explanation", "difficulty": "medium" }
+    ]
+  },
+  "hard": {
+    "passage": { "title": "Title", "text": "Passage text...", "gradeLevel": ${hardLevel} },
+    "questions": [
+      { "text": "Question?", "type": "recall|inference", "options": ["A", "B", "C", "D"], "correctAnswer": "Correct option", "explanation": "Brief explanation", "difficulty": "hard" }
+    ]
+  }
+}`;
     } else if (type === "evaluate") {
       const gradeDesc = getGradeDescription(level);
       systemPrompt = `You are a supportive reading tutor. Provide encouraging, educational feedback that helps readers understand and improve. Adapt your explanation to the reader's level.`;
@@ -138,12 +179,15 @@ Return ONLY a JSON object:
 }`;
     } else if (type === "tutor") {
       const gradeDesc = getGradeDescription(level);
+      // Strategy 5: Limit tutor response tokens
+      maxTokens = 100;
+      
       systemPrompt = `You are a friendly, encouraging reading buddy for a student at Grade ${level} level. Your job is to:
 - Help them understand the passage without giving away answers
 - Give hints when asked, but encourage them to think
 - Explain difficult words or concepts in simpler terms
 - Be warm, supportive, and age-appropriate
-- Keep responses short (2-4 sentences max for younger readers, up to 5 for older)
+- Keep responses SHORT (1-3 sentences only!)
 - Never directly reveal answers to comprehension questions`;
       
       userPrompt = `The student is reading this passage:
@@ -153,12 +197,26 @@ ${currentQuestion ? `They are currently working on this question: "${currentQues
 
 The student asks: "${userQuestion}"
 
-Respond helpfully at their level (${gradeDesc}). Be encouraging and guide them to think, but don't give away answers directly.
+Respond helpfully at their level (${gradeDesc}). Be encouraging and guide them to think, but don't give away answers directly. Keep it to 1-3 sentences MAX.
 
 Return ONLY a JSON object:
 {
   "response": "Your friendly, helpful response here..."
 }`;
+    }
+
+    // Build request body
+    const requestBody: Record<string, unknown> = {
+      model: "google/gemini-2.5-flash",
+      messages: [
+        { role: "system", content: systemPrompt },
+        { role: "user", content: userPrompt },
+      ],
+    };
+
+    // Strategy 5: Add max_tokens for tutor requests only
+    if (maxTokens) {
+      requestBody.max_tokens = maxTokens;
     }
 
     const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
@@ -167,13 +225,7 @@ Return ONLY a JSON object:
         Authorization: `Bearer ${LOVABLE_API_KEY}`,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        model: "google/gemini-2.5-flash",
-        messages: [
-          { role: "system", content: systemPrompt },
-          { role: "user", content: userPrompt },
-        ],
-      }),
+      body: JSON.stringify(requestBody),
     });
 
     if (!response.ok) {

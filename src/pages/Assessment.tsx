@@ -13,12 +13,31 @@ interface AssessmentQuestion {
   difficulty?: string;
 }
 
+interface AssessmentPassage {
+  title: string;
+  text: string;
+  gradeLevel: number;
+}
+
+interface AssessmentLevel {
+  passage: AssessmentPassage;
+  questions: AssessmentQuestion[];
+}
+
+// Strategy 6: Store all 3 difficulty levels
+interface AssessmentBank {
+  easy: AssessmentLevel | null;
+  medium: AssessmentLevel | null;
+  hard: AssessmentLevel | null;
+}
+
 interface AssessmentState {
   currentLevel: number;
-  passage: { title: string; text: string; gradeLevel: number } | null;
+  currentDifficulty: "easy" | "medium" | "hard";
+  passage: AssessmentPassage | null;
   questions: AssessmentQuestion[];
   currentQuestionIndex: number;
-  answers: { correct: boolean; level: number }[];
+  answers: { correct: boolean; level: number; difficulty: string }[];
   phase: "loading" | "reading" | "questions" | "result";
   selectedAnswer: string | null;
   showFeedback: boolean;
@@ -28,10 +47,18 @@ interface AssessmentState {
 const Assessment = () => {
   const navigate = useNavigate();
   const { session, updateReadingLevel, setAssessmentTaken } = useSession();
-  const { generateAssessment, isLoading } = useAI();
+  const { generateBatchedAssessment, isLoading } = useAI();
+
+  // Strategy 6: Pre-loaded assessment bank
+  const [assessmentBank, setAssessmentBank] = useState<AssessmentBank>({
+    easy: null,
+    medium: null,
+    hard: null,
+  });
 
   const [state, setState] = useState<AssessmentState>({
-    currentLevel: 5, // Start at grade 5
+    currentLevel: 5,
+    currentDifficulty: "medium",
     passage: null,
     questions: [],
     currentQuestionIndex: 0,
@@ -44,26 +71,35 @@ const Assessment = () => {
 
   const [determinedLevel, setDeterminedLevel] = useState<number | null>(null);
 
-  // Load initial assessment
+  // Strategy 6: Load all 3 levels in ONE API call
   useEffect(() => {
     if (!session) {
       navigate("/");
       return;
     }
-    loadAssessment(5);
+    loadBatchedAssessment(5);
   }, [session]);
 
-  const loadAssessment = async (level: number) => {
+  const loadBatchedAssessment = async (baseLevel: number) => {
     setState((prev) => ({ ...prev, phase: "loading" }));
     
-    const data = await generateAssessment(level);
+    const data = await generateBatchedAssessment(baseLevel);
     
     if (data) {
+      // Store all 3 levels in the bank
+      setAssessmentBank({
+        easy: data.easy,
+        medium: data.medium,
+        hard: data.hard,
+      });
+
+      // Start with medium difficulty
       setState((prev) => ({
         ...prev,
-        currentLevel: level,
-        passage: data.passage,
-        questions: data.questions,
+        currentLevel: data.medium.passage.gradeLevel,
+        currentDifficulty: "medium",
+        passage: data.medium.passage,
+        questions: data.medium.questions,
         currentQuestionIndex: 0,
         phase: "reading",
         selectedAnswer: null,
@@ -71,6 +107,25 @@ const Assessment = () => {
         isCorrect: null,
       }));
     }
+  };
+
+  // Switch to a different difficulty level (no API call needed!)
+  const switchToDifficulty = (difficulty: "easy" | "medium" | "hard") => {
+    const levelData = assessmentBank[difficulty];
+    if (!levelData) return;
+
+    setState((prev) => ({
+      ...prev,
+      currentLevel: levelData.passage.gradeLevel,
+      currentDifficulty: difficulty,
+      passage: levelData.passage,
+      questions: levelData.questions,
+      currentQuestionIndex: 0,
+      phase: "reading",
+      selectedAnswer: null,
+      showFeedback: false,
+      isCorrect: null,
+    }));
   };
 
   const handleReadyForQuestions = () => {
@@ -92,7 +147,11 @@ const Assessment = () => {
       ...prev,
       showFeedback: true,
       isCorrect,
-      answers: [...prev.answers, { correct: isCorrect, level: prev.currentLevel }],
+      answers: [...prev.answers, { 
+        correct: isCorrect, 
+        level: prev.currentLevel,
+        difficulty: prev.currentDifficulty
+      }],
     }));
   };
 
@@ -101,9 +160,8 @@ const Assessment = () => {
     const correctCount = state.answers.filter((a) => a.correct).length;
     const currentIndex = state.currentQuestionIndex;
 
-    // Check if we should determine a level
+    // Check if we should determine a level (after answering questions from multiple levels)
     if (totalAnswers >= 6) {
-      // Calculate final level based on performance
       const accuracy = correctCount / totalAnswers;
       let finalLevel: number;
 
@@ -120,7 +178,7 @@ const Assessment = () => {
       return;
     }
 
-    // Move to next question or load new assessment
+    // Move to next question in current level
     if (currentIndex < state.questions.length - 1) {
       setState((prev) => ({
         ...prev,
@@ -130,18 +188,29 @@ const Assessment = () => {
         isCorrect: null,
       }));
     } else {
-      // Adjust level based on recent performance
-      const recentAnswers = state.answers.slice(-3);
+      // Strategy 6: Switch difficulty based on performance (no API call!)
+      const recentAnswers = state.answers.slice(-2);
       const recentCorrect = recentAnswers.filter((a) => a.correct).length;
 
-      let newLevel = state.currentLevel;
-      if (recentCorrect >= 2) {
-        newLevel = Math.min(13, state.currentLevel + 1);
-      } else if (recentCorrect === 0) {
-        newLevel = Math.max(1, state.currentLevel - 1);
+      if (recentCorrect === 2 && state.currentDifficulty !== "hard") {
+        // Doing well, try harder
+        const nextDifficulty = state.currentDifficulty === "easy" ? "medium" : "hard";
+        if (assessmentBank[nextDifficulty]) {
+          switchToDifficulty(nextDifficulty);
+          return;
+        }
+      } else if (recentCorrect === 0 && state.currentDifficulty !== "easy") {
+        // Struggling, try easier
+        const nextDifficulty = state.currentDifficulty === "hard" ? "medium" : "easy";
+        if (assessmentBank[nextDifficulty]) {
+          switchToDifficulty(nextDifficulty);
+          return;
+        }
       }
 
-      await loadAssessment(newLevel);
+      // If we've exhausted the bank or staying at same level, load new batch
+      // This should rarely happen with the batched approach
+      await loadBatchedAssessment(state.currentLevel);
     }
   };
 
@@ -172,7 +241,7 @@ const Assessment = () => {
             <p className="text-sm text-muted-foreground">
               {state.phase === "result"
                 ? "Assessment Complete"
-                : `Testing Grade ${state.currentLevel} level`}
+                : `Testing Grade ${state.currentLevel} level (${state.currentDifficulty})`}
             </p>
           </div>
           {state.phase !== "loading" && state.phase !== "result" && (
@@ -191,7 +260,7 @@ const Assessment = () => {
         {state.phase === "loading" && (
           <div className="flex flex-col items-center justify-center py-20 gap-4">
             <Loader2 className="w-12 h-12 text-primary animate-spin" />
-            <p className="text-muted-foreground">Generating assessment passage...</p>
+            <p className="text-muted-foreground">Generating assessment passages...</p>
           </div>
         )}
 

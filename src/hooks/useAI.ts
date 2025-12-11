@@ -26,15 +26,114 @@ interface AssessmentData {
   questions: Question[];
 }
 
+// Strategy 6: Batched assessment for all 3 levels
+interface BatchedAssessmentData {
+  easy: AssessmentData;
+  medium: AssessmentData;
+  hard: AssessmentData;
+}
+
+interface CachedPassageRow {
+  id: string;
+  grade_level: number;
+  title: string;
+  passage_text: string;
+  questions: unknown; // JSONB from Supabase
+  skill_focus: string | null;
+  created_at: string;
+}
+
 interface EvaluationResult {
   isCorrect: boolean;
   feedback: string;
 }
 
+const CACHE_USE_PROBABILITY = 0.7; // 70% chance to use cache
+
 export const useAI = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  // Strategy 2: Check cache first, then generate
+  const getCachedOrGeneratePassage = useCallback(async (
+    gradeLevel: number,
+    skillFocus?: string
+  ): Promise<{ passage: Passage; questions: Question[]; fromCache: boolean } | null> => {
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      // Check if we should use cache (70% chance)
+      const useCache = Math.random() < CACHE_USE_PROBABILITY;
+      
+      if (useCache) {
+        // Try to get from cache
+        const { data: cached, error: cacheError } = await supabase
+          .from("cached_passages")
+          .select("*")
+          .eq("grade_level", gradeLevel)
+          .limit(20);
+
+        if (!cacheError && cached && cached.length > 0) {
+          // Randomly select one from cache
+          const randomIndex = Math.floor(Math.random() * cached.length);
+          const cachedPassage = cached[randomIndex] as CachedPassageRow;
+          
+          return {
+            passage: {
+              title: cachedPassage.title,
+              text: cachedPassage.passage_text,
+              topic: "cached"
+            },
+            questions: cachedPassage.questions as Question[],
+            fromCache: true
+          };
+        }
+      }
+
+      // Generate new passage
+      const { data: passageData, error: passageError } = await supabase.functions.invoke("generate-reading", {
+        body: { type: "passage", gradeLevel, skillFocus },
+      });
+      if (passageError) throw passageError;
+
+      // Generate questions for the passage
+      const { data: questionsData, error: questionsError } = await supabase.functions.invoke("generate-reading", {
+        body: { type: "questions", passageText: passageData.text, gradeLevel },
+      });
+      if (questionsError) throw questionsError;
+
+      // Save to cache for future use (fire and forget)
+      supabase.from("cached_passages").insert({
+        grade_level: gradeLevel,
+        skill_focus: skillFocus || null,
+        title: passageData.title,
+        passage_text: passageData.text,
+        questions: questionsData
+      }).then((result) => {
+        if (result.error) {
+          console.warn("Failed to cache passage:", result.error);
+        } else {
+          console.log("Passage cached for future use");
+        }
+      });
+
+      return {
+        passage: passageData as Passage,
+        questions: questionsData as Question[],
+        fromCache: false
+      };
+    } catch (err) {
+      const message = err instanceof Error ? err.message : "Failed to get passage";
+      setError(message);
+      toast.error(message);
+      return null;
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
+
+  // Original generatePassage (kept for backward compatibility)
   const generatePassage = useCallback(async (
     gradeLevel: number,
     skillFocus?: string
@@ -91,6 +190,34 @@ export const useAI = () => {
     }
   }, []);
 
+  // Strategy 6: Batched assessment - generate all 3 difficulty levels in ONE call
+  const generateBatchedAssessment = useCallback(async (
+    baseLevel: number
+  ): Promise<BatchedAssessmentData | null> => {
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      const { data, error: fnError } = await supabase.functions.invoke("generate-reading", {
+        body: {
+          type: "assessment_batch",
+          gradeLevel: baseLevel,
+        },
+      });
+
+      if (fnError) throw fnError;
+      return data as BatchedAssessmentData;
+    } catch (err) {
+      const message = err instanceof Error ? err.message : "Failed to generate assessment";
+      setError(message);
+      toast.error(message);
+      return null;
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
+
+  // Original assessment (kept for fallback)
   const generateAssessment = useCallback(async (
     gradeLevel: number
   ): Promise<AssessmentData | null> => {
@@ -156,5 +283,7 @@ export const useAI = () => {
     generateQuestions,
     generateAssessment,
     evaluateAnswer,
+    getCachedOrGeneratePassage, // Strategy 2: New cached version
+    generateBatchedAssessment, // Strategy 6: Batched assessment
   };
 };

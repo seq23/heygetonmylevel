@@ -14,6 +14,36 @@ export type Database = {
   }
   public: {
     Tables: {
+      cached_passages: {
+        Row: {
+          created_at: string | null
+          grade_level: number
+          id: string
+          passage_text: string
+          questions: Json
+          skill_focus: string | null
+          title: string
+        }
+        Insert: {
+          created_at?: string | null
+          grade_level: number
+          id?: string
+          passage_text: string
+          questions: Json
+          skill_focus?: string | null
+          title: string
+        }
+        Update: {
+          created_at?: string | null
+          grade_level?: number
+          id?: string
+          passage_text?: string
+          questions?: Json
+          skill_focus?: string | null
+          title?: string
+        }
+        Relationships: []
+      }
       passages: {
         Row: {
           created_at: string
