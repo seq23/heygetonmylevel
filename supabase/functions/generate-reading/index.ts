@@ -6,13 +6,15 @@ const corsHeaders = {
 };
 
 interface PassageRequest {
-  type: "passage" | "questions" | "assessment" | "evaluate";
+  type: "passage" | "questions" | "assessment" | "evaluate" | "tutor";
   gradeLevel?: number;
   skillFocus?: string;
   passageText?: string;
   question?: string;
   userAnswer?: string;
   correctAnswer?: string;
+  userQuestion?: string;
+  currentQuestion?: string;
 }
 
 const getGradeDescription = (level: number): string => {
@@ -31,7 +33,7 @@ serve(async (req) => {
   }
 
   try {
-    const { type, gradeLevel, skillFocus, passageText, question, userAnswer, correctAnswer } = await req.json() as PassageRequest;
+    const { type, gradeLevel, skillFocus, passageText, question, userAnswer, correctAnswer, userQuestion, currentQuestion } = await req.json() as PassageRequest;
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
     
     if (!LOVABLE_API_KEY) {
@@ -133,6 +135,29 @@ Return ONLY a JSON object:
 {
   "isCorrect": true/false,
   "feedback": "Your encouraging feedback here..."
+}`;
+    } else if (type === "tutor") {
+      const gradeDesc = getGradeDescription(level);
+      systemPrompt = `You are a friendly, encouraging reading buddy for a student at Grade ${level} level. Your job is to:
+- Help them understand the passage without giving away answers
+- Give hints when asked, but encourage them to think
+- Explain difficult words or concepts in simpler terms
+- Be warm, supportive, and age-appropriate
+- Keep responses short (2-4 sentences max for younger readers, up to 5 for older)
+- Never directly reveal answers to comprehension questions`;
+      
+      userPrompt = `The student is reading this passage:
+"${passageText}"
+
+${currentQuestion ? `They are currently working on this question: "${currentQuestion}"` : ""}
+
+The student asks: "${userQuestion}"
+
+Respond helpfully at their level (${gradeDesc}). Be encouraging and guide them to think, but don't give away answers directly.
+
+Return ONLY a JSON object:
+{
+  "response": "Your friendly, helpful response here..."
 }`;
     }
 
