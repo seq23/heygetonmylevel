@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { BookOpen, Target, Sparkles, ArrowRight } from "lucide-react";
+import { BookOpen, Target, Sparkles, ArrowRight, CheckCircle, TrendingUp } from "lucide-react";
 import { useSession } from "@/contexts/SessionContext";
 import { useState } from "react";
 
@@ -34,6 +34,14 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
+      {/* Problem Statement Banner */}
+      <section className="bg-destructive/10 border-b border-destructive/20 py-4 px-6">
+        <p className="text-center text-sm md:text-base text-foreground">
+          <span className="font-semibold">54% of U.S. adults</span> read below a 6th-grade level.
+          <span className="hidden sm:inline"> Reading struggles don't have to be permanent.</span>
+        </p>
+      </section>
+
       {/* Hero Section */}
       <main className="flex-1 flex flex-col items-center justify-center px-6 py-12">
         <div className="max-w-2xl w-full text-center space-y-8">
@@ -45,18 +53,20 @@ const Index = () => {
             <h1 className="text-4xl md:text-5xl font-display font-bold text-foreground tracking-tight">
               HeyGet<span className="text-primary">on</span>MyLevel
             </h1>
-            <p className="text-xl text-muted-foreground font-body max-w-md mx-auto">
-              Improve your reading skills with AI-powered practice tailored just for you
+            <p className="text-xl text-muted-foreground font-body max-w-lg mx-auto">
+              Whether you're 8 or 80, it's never too late to reach your reading potential. 
+              Build the skills you need — at your own pace, on your own terms.
             </p>
           </div>
 
           {/* Feature Pills */}
           <div className="flex flex-wrap justify-center gap-3 fade-in-up" style={{ animationDelay: "0.1s" }}>
             {[
-              { icon: Sparkles, label: "AI-Powered" },
-              { icon: Target, label: "Adaptive Learning" },
-              { icon: BookOpen, label: "All Levels" },
-            ].map((feature, index) => (
+              { icon: Sparkles, label: "No Judgment" },
+              { icon: Target, label: "Finds Your Level" },
+              { icon: BookOpen, label: "Ages 5 to 85" },
+              { icon: TrendingUp, label: "Track Progress" },
+            ].map((feature) => (
               <div
                 key={feature.label}
                 className="skill-chip bg-muted text-muted-foreground"
@@ -65,6 +75,25 @@ const Index = () => {
                 <span>{feature.label}</span>
               </div>
             ))}
+          </div>
+
+          {/* Why This Matters */}
+          <div className="bg-muted/50 rounded-2xl p-6 text-left space-y-3 fade-in-up max-w-md mx-auto" style={{ animationDelay: "0.15s" }}>
+            <h2 className="text-lg font-semibold text-foreground">Reading opens doors</h2>
+            <ul className="space-y-2 text-muted-foreground text-sm">
+              <li className="flex items-start gap-2">
+                <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                <span><strong className="text-foreground">For adults:</strong> Improve job applications, health literacy, and daily confidence</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                <span><strong className="text-foreground">For students:</strong> Catch up to grade level with adaptive, judgment-free practice</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                <span><strong className="text-foreground">For parents:</strong> Help your child build foundational reading skills at home</span>
+              </li>
+            </ul>
           </div>
 
           {/* CTA Buttons */}
@@ -110,7 +139,7 @@ const Index = () => {
       {/* Footer */}
       <footer className="py-6 px-6 text-center">
         <p className="text-sm text-muted-foreground">
-          Helping readers reach their potential, one passage at a time
+          54 million American adults struggle with literacy. You don't have to be one of them.
         </p>
       </footer>
     </div>
