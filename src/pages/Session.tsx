@@ -6,6 +6,7 @@ import { useAI } from "@/hooks/useAI";
 import { supabase } from "@/integrations/supabase/client";
 import AITutor from "@/components/AITutor";
 import PhonicsWord from "@/components/PhonicsWord";
+import { toast } from "sonner";
 
 interface Question {
   id?: string;
@@ -36,7 +37,8 @@ interface SessionState {
 const Session = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { session, recordAnswer, setCurrentPassage } = useSession();
+  const { session, recordAnswer, setCurrentPassage, checkLevelProgression } = useSession();
+  const [levelChangeQueued, setLevelChangeQueued] = useState<{ newLevel: number; direction: 'up' | 'down' } | null>(null);
   const { getCachedOrGeneratePassage, generateQuestions, isLoading } = useAI();
   const skillFocus = location.state?.skillFocus;
   const theme = location.state?.theme;
@@ -173,6 +175,24 @@ const Session = () => {
 
     recordAnswer(isCorrect, currentQuestion.type);
 
+    // Check for level progression
+    const progression = checkLevelProgression(isCorrect);
+    if (progression.levelChanged && progression.newLevel !== null) {
+      const gradeText = progression.newLevel <= 12 ? `Grade ${progression.newLevel}` : "College";
+      if (progression.direction === 'up') {
+        toast.success(`🚀 Level Up! Now at ${gradeText}!`, {
+          description: "Great job! You're ready for harder passages.",
+          duration: 5000,
+        });
+      } else {
+        toast.info(`📚 Let's practice more at ${gradeText}`, {
+          description: "Keep going! Practice makes perfect.",
+          duration: 5000,
+        });
+      }
+      setLevelChangeQueued({ newLevel: progression.newLevel, direction: progression.direction });
+    }
+
     if (currentQuestion.id) {
       await supabase.from("responses").insert({
         question_id: currentQuestion.id,
@@ -224,6 +244,7 @@ const Session = () => {
   };
 
   const handleContinueLearning = () => {
+    setLevelChangeQueued(null);
     loadNewPassage();
   };
 
