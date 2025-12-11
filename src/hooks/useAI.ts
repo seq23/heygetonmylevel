@@ -55,16 +55,18 @@ export const useAI = () => {
   const [error, setError] = useState<string | null>(null);
 
   // Strategy 2: Check cache first, then generate
+  // NOTE: When theme is specified, we skip the cache to generate fresh themed content
   const getCachedOrGeneratePassage = useCallback(async (
     gradeLevel: number,
-    skillFocus?: string
+    skillFocus?: string,
+    theme?: string
   ): Promise<{ passage: Passage; questions: Question[]; fromCache: boolean } | null> => {
     setIsLoading(true);
     setError(null);
 
     try {
-      // Check if we should use cache (70% chance)
-      const useCache = Math.random() < CACHE_USE_PROBABILITY;
+      // Skip cache entirely if theme is specified (custom content needed)
+      const useCache = !theme && Math.random() < CACHE_USE_PROBABILITY;
       
       if (useCache) {
         // Try to get from cache
@@ -91,9 +93,9 @@ export const useAI = () => {
         }
       }
 
-      // Generate new passage
+      // Generate new passage (with optional theme)
       const { data: passageData, error: passageError } = await supabase.functions.invoke("generate-reading", {
-        body: { type: "passage", gradeLevel, skillFocus },
+        body: { type: "passage", gradeLevel, skillFocus, theme },
       });
       if (passageError) throw passageError;
 
@@ -103,20 +105,22 @@ export const useAI = () => {
       });
       if (questionsError) throw questionsError;
 
-      // Save to cache for future use (fire and forget)
-      supabase.from("cached_passages").insert({
-        grade_level: gradeLevel,
-        skill_focus: skillFocus || null,
-        title: passageData.title,
-        passage_text: passageData.text,
-        questions: questionsData
-      }).then((result) => {
-        if (result.error) {
-          console.warn("Failed to cache passage:", result.error);
-        } else {
-          console.log("Passage cached for future use");
-        }
-      });
+      // Only save to cache if no custom theme (themed passages are one-offs)
+      if (!theme) {
+        supabase.from("cached_passages").insert({
+          grade_level: gradeLevel,
+          skill_focus: skillFocus || null,
+          title: passageData.title,
+          passage_text: passageData.text,
+          questions: questionsData
+        }).then((result) => {
+          if (result.error) {
+            console.warn("Failed to cache passage:", result.error);
+          } else {
+            console.log("Passage cached for future use");
+          }
+        });
+      }
 
       return {
         passage: passageData as Passage,
