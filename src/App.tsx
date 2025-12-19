@@ -11,6 +11,7 @@ import Dashboard from "./pages/Dashboard";
 import Session from "./pages/Session";
 import Summary from "./pages/Summary";
 import NotFound from "./pages/NotFound";
+import FeedbackBubble from "./components/FeedbackBubble";
 
 const queryClient = new QueryClient();
 
@@ -31,6 +32,7 @@ const App = () => (
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
+        <FeedbackBubble />
       </SessionProvider>
     </TooltipProvider>
   </QueryClientProvider>

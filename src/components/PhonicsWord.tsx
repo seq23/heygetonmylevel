@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Volume2, VolumeX } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Volume2, VolumeX, BookOpen, Loader2 } from "lucide-react";
 import { useTextToSpeech } from "@/hooks/useTextToSpeech";
 import {
   Popover,
@@ -12,12 +12,16 @@ interface PhonicsWordProps {
   gradeLevel: number;
 }
 
+interface DictionaryDefinition {
+  partOfSpeech: string;
+  definition: string;
+  example?: string;
+}
+
 // Simple phonetic breakdown helper
 const getPhoneticBreakdown = (word: string): string => {
-  // Remove punctuation for phonetic analysis
   const cleanWord = word.replace(/[^a-zA-Z]/g, "").toLowerCase();
   
-  // Simple syllable detection (basic heuristic)
   const vowels = "aeiouy";
   let syllables: string[] = [];
   let currentSyllable = "";
@@ -30,7 +34,6 @@ const getPhoneticBreakdown = (word: string): string => {
     currentSyllable += char;
     
     if (isVowel && !prevWasVowel && currentSyllable.length > 1 && i < cleanWord.length - 1) {
-      // End syllable after vowel if next is consonant
       const nextIsVowel = vowels.includes(cleanWord[i + 1]);
       if (!nextIsVowel && i < cleanWord.length - 2) {
         syllables.push(currentSyllable);
@@ -44,7 +47,6 @@ const getPhoneticBreakdown = (word: string): string => {
     syllables.push(currentSyllable);
   }
   
-  // If only one syllable or detection failed, return the word
   if (syllables.length <= 1) {
     return cleanWord;
   }
@@ -54,18 +56,42 @@ const getPhoneticBreakdown = (word: string): string => {
 
 const PhonicsWord = ({ word, gradeLevel }: PhonicsWordProps) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [definition, setDefinition] = useState<DictionaryDefinition | null>(null);
+  const [isLoadingDefinition, setIsLoadingDefinition] = useState(false);
   const { speak, soundOut, isSupported } = useTextToSpeech();
   
-  // Clean word for display (remove trailing punctuation for speech)
   const cleanWord = word.replace(/[.,!?;:'"]+$/, "");
   const punctuation = word.slice(cleanWord.length);
   
-  // Skip very short words or punctuation-only
   if (cleanWord.length < 2) {
     return <span>{word} </span>;
   }
 
   const phoneticBreakdown = getPhoneticBreakdown(cleanWord);
+
+  // Fetch dictionary definition when popover opens
+  useEffect(() => {
+    if (isOpen && !definition && cleanWord.length >= 3) {
+      setIsLoadingDefinition(true);
+      fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${cleanWord.toLowerCase()}`)
+        .then(res => res.json())
+        .then(data => {
+          if (Array.isArray(data) && data[0]?.meanings?.[0]) {
+            const meaning = data[0].meanings[0];
+            const def = meaning.definitions[0];
+            setDefinition({
+              partOfSpeech: meaning.partOfSpeech,
+              definition: def.definition,
+              example: def.example,
+            });
+          }
+        })
+        .catch(() => {
+          // Silently fail - definition is optional
+        })
+        .finally(() => setIsLoadingDefinition(false));
+    }
+  }, [isOpen, cleanWord, definition]);
 
   return (
     <>
@@ -78,13 +104,42 @@ const PhonicsWord = ({ word, gradeLevel }: PhonicsWordProps) => {
             {cleanWord}
           </button>
         </PopoverTrigger>
-        <PopoverContent className="w-64 p-4" align="center">
+        <PopoverContent className="w-72 p-4" align="center">
           <div className="space-y-3">
             <div className="text-center">
               <p className="text-lg font-bold text-foreground">{cleanWord}</p>
               <p className="text-sm text-muted-foreground font-mono">
                 {phoneticBreakdown}
               </p>
+            </div>
+
+            {/* Dictionary Definition */}
+            <div className="border-t pt-3">
+              {isLoadingDefinition ? (
+                <div className="flex items-center justify-center gap-2 text-muted-foreground text-sm py-2">
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                  <span>Loading definition...</span>
+                </div>
+              ) : definition ? (
+                <div className="space-y-1">
+                  <div className="flex items-center gap-2">
+                    <BookOpen className="w-4 h-4 text-primary" />
+                    <span className="text-xs font-medium text-primary uppercase">
+                      {definition.partOfSpeech}
+                    </span>
+                  </div>
+                  <p className="text-sm text-foreground">{definition.definition}</p>
+                  {definition.example && (
+                    <p className="text-xs text-muted-foreground italic">
+                      "{definition.example}"
+                    </p>
+                  )}
+                </div>
+              ) : cleanWord.length >= 3 ? (
+                <p className="text-xs text-muted-foreground text-center">
+                  No definition available
+                </p>
+              ) : null}
             </div>
             
             {isSupported ? (
