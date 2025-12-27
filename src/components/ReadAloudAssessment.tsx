@@ -68,6 +68,9 @@ const ReadAloudAssessment = ({ currentLevel, onComplete, onSkip }: ReadAloudAsse
 
   // Load sentences for effective level
   useEffect(() => {
+    // Skip loading if speech recognition is not supported
+    if (!isSupported) return;
+    
     const loadSentences = async () => {
       setPhase("loading");
       const data = await generateReadAloudSentences(effectiveLevel);
@@ -77,10 +80,13 @@ const ReadAloudAssessment = ({ currentLevel, onComplete, onSkip }: ReadAloudAsse
       }
     };
     loadSentences();
-  }, [effectiveLevel]);
+  }, [effectiveLevel, isSupported, generateReadAloudSentences]);
 
   // Handle countdown
   useEffect(() => {
+    // Skip countdown if speech recognition is not supported
+    if (!isSupported) return;
+    
     if (phase === "countdown" && countdown > 0) {
       const timer = setTimeout(() => setCountdown(countdown - 1), 1000);
       return () => clearTimeout(timer);
@@ -88,7 +94,7 @@ const ReadAloudAssessment = ({ currentLevel, onComplete, onSkip }: ReadAloudAsse
       setPhase("recording");
       startListening();
     }
-  }, [phase, countdown, startListening]);
+  }, [phase, countdown, startListening, isSupported]);
 
   const handleStartRecording = () => {
     setCountdown(3);
