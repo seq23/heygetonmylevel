@@ -260,6 +260,44 @@ const ReadAloudAssessment = ({ currentLevel, onComplete, onSkip }: ReadAloudAsse
               <p className="text-sm text-muted-foreground">Words/Min</p>
             </div>
           </div>
+
+          {/* WPM Progress Indicator */}
+          <div className="card-elevated space-y-3">
+            <div className="flex items-center justify-between text-sm">
+              <span className="text-muted-foreground">Reading Speed</span>
+              <span className="font-medium">
+                {result.wordsPerMinute} / {targetWPM} WPM target
+              </span>
+            </div>
+            <div className="relative h-3 bg-muted rounded-full overflow-hidden">
+              {/* Target marker */}
+              <div 
+                className="absolute top-0 bottom-0 w-0.5 bg-foreground/60 z-10"
+                style={{ left: `${Math.min(100, (targetWPM / (targetWPM * 1.5)) * 100)}%` }}
+              />
+              {/* Progress bar */}
+              <div 
+                className={`h-full rounded-full transition-all duration-500 ${
+                  result.wordsPerMinute >= targetWPM 
+                    ? "bg-success" 
+                    : result.wordsPerMinute >= targetWPM * 0.8 
+                    ? "bg-amber-500" 
+                    : "bg-destructive"
+                }`}
+                style={{ 
+                  width: `${Math.min(100, (result.wordsPerMinute / (targetWPM * 1.5)) * 100)}%` 
+                }}
+              />
+            </div>
+            <div className="flex justify-between text-xs text-muted-foreground">
+              <span>0</span>
+              <span className="flex items-center gap-1">
+                <span className="w-2 h-2 bg-foreground/60 rounded-full" />
+                Target: {targetWPM}
+              </span>
+              <span>{Math.round(targetWPM * 1.5)}</span>
+            </div>
+          </div>
           
           {/* Feedback */}
           <div className={`p-4 rounded-xl ${
