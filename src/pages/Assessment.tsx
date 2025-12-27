@@ -175,6 +175,16 @@ const Assessment = () => {
         </div>
       </header>
 
+      {/* Reassurance Banner */}
+      {phase === "select_type" && (
+        <div className="bg-primary/5 border-b border-primary/10 py-3 px-4">
+          <p className="text-center text-sm text-muted-foreground max-w-2xl mx-auto">
+            <span className="text-primary font-medium">✨ Don't worry!</span> Assessment passages are pre-selected to measure your level accurately. 
+            Once complete, you'll choose topics that interest <em>you</em> for reading practice.
+          </p>
+        </div>
+      )}
+
       <main className="container max-w-4xl py-8 px-6">
         {/* Assessment Type Selection */}
         {phase === "select_type" && (
