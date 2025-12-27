@@ -56,6 +56,7 @@ export const useSpeechRecognition = (): UseSpeechRecognitionResult => {
   const recognitionRef = useRef<SpeechRecognitionInstance | null>(null);
   const startTimeRef = useRef<number | null>(null);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const committedTranscriptRef = useRef<string>("");
 
   useEffect(() => {
     // Check browser support
@@ -100,13 +101,13 @@ export const useSpeechRecognition = (): UseSpeechRecognitionResult => {
         }
       }
 
-      setTranscript(prev => {
-        // Append final transcript, show interim
-        if (finalTranscript) {
-          return prev + finalTranscript;
-        }
-        return prev + interimTranscript;
-      });
+      // Accumulate ONLY final results
+      if (finalTranscript) {
+        committedTranscriptRef.current += finalTranscript;
+      }
+
+      // Display = committed text + current interim (interim replaces, not appends)
+      setTranscript(committedTranscriptRef.current + interimTranscript);
     };
 
     recognition.onerror = (event) => {
@@ -154,6 +155,7 @@ export const useSpeechRecognition = (): UseSpeechRecognitionResult => {
   const startListening = useCallback(() => {
     if (recognitionRef.current && !isListening) {
       setTranscript("");
+      committedTranscriptRef.current = "";
       setError(null);
       setElapsedTime(0);
       
@@ -174,6 +176,7 @@ export const useSpeechRecognition = (): UseSpeechRecognitionResult => {
 
   const resetTranscript = useCallback(() => {
     setTranscript("");
+    committedTranscriptRef.current = "";
     setElapsedTime(0);
   }, []);
 
