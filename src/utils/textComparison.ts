@@ -130,18 +130,19 @@ const levenshteinDistance = (a: string, b: string): number => {
 // Target WPM by grade level (research-based reading fluency norms)
 export const getTargetWPM = (gradeLevel: number): number => {
   const targets: Record<number, number> = {
-    1: 60,
-    2: 80,
-    3: 100,
-    4: 115,
-    5: 130,
-    6: 145,
-    7: 155,
-    8: 165,
-    9: 175,
-    10: 185,
-    11: 190,
-    12: 195,
+    1: 60,   // 50th percentile: 53-60
+    2: 90,   // 50th percentile: 89-100
+    3: 110,  // 50th percentile: 107-121
+    4: 125,  // 50th percentile: 123-133
+    5: 140,  // 50th percentile: 139-151
+    6: 150,  // 50th percentile: 150-160
+    7: 155,  // 50th percentile: 156-165
+    8: 165,  // 50th percentile: 160-170
+    9: 175,  // Extrapolated
+    10: 185, // Extrapolated
+    11: 190, // Extrapolated
+    12: 195, // Extrapolated
+    13: 200, // College level
   };
   return targets[gradeLevel] || 150;
 };
