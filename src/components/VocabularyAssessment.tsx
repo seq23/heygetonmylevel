@@ -17,8 +17,8 @@ const VocabularyAssessment = ({ onComplete }: VocabularyAssessmentProps) => {
   const [isAnalyzing, setIsAnalyzing] = useState(false);
 
   useEffect(() => {
-    // Get 20 random words from different grade levels
-    const wordSet = getAssessmentWordSet(20);
+    // Get 24 words with guaranteed coverage of all grade levels
+    const wordSet = getAssessmentWordSet(24);
     setWords(wordSet.map(w => ({ ...w, selected: false })));
   }, []);
 
