@@ -257,14 +257,51 @@ Return ONLY a JSON object:
 }`;
     } else if (type === "vocabulary_confirmation") {
       const gradeDesc = getGradeDescription(level);
-      systemPrompt = `You are an expert reading comprehension teacher. Create a short passage with questions to confirm a reader's level.`;
+      
+      // Diverse topic pool for variety on each generation
+      const confirmationTopics = [
+        "a curious inventor and their workshop",
+        "deep ocean exploration and sea creatures",
+        "a hidden garden behind an old house",
+        "astronauts on a space station",
+        "an ancient library with mysterious books",
+        "mountain climbers reaching a summit",
+        "an unlikely friendship between animals",
+        "a mysterious island discovery",
+        "time capsules from the past",
+        "urban wildlife in a busy city",
+        "music bringing people together",
+        "unusual weather phenomena",
+        "underground caves and crystals",
+        "forest ecosystems and their inhabitants",
+        "cultural traditions from around the world",
+        "a scientific breakthrough",
+        "helpful robots in everyday life",
+        "an artist's creative journey",
+        "conservation efforts saving animals",
+        "historical mysteries solved",
+        "a baker's secret recipe",
+        "migrating birds and their journey",
+        "a young detective solving puzzles",
+        "renewable energy and the future",
+        "ancient civilizations and artifacts"
+      ];
+      
+      // Randomly select a topic for this request
+      const randomTopic = confirmationTopics[Math.floor(Math.random() * confirmationTopics.length)];
+      const variationSeed = Date.now() % 10000;
+      
+      systemPrompt = `You are an expert reading comprehension teacher. Create a short, UNIQUE passage with questions to confirm a reader's level. Generate fresh, original content each time.`;
       
       userPrompt = `Create a SHORT confirmation passage for Grade ${level} level.
 
+IMPORTANT: Generate UNIQUE content about "${randomTopic}" (variation seed: ${variationSeed})
+
 Requirements:
 - Reading level: ${gradeDesc}
+- Topic: Create an engaging passage specifically about "${randomTopic}"
+- Make it fresh, creative, and different from typical educational content
 - Length: ${level <= 4 ? "60-80" : "80-120"} words only
-- Topic: Choose something engaging and relatable
 - Create 2 simple questions to confirm comprehension
 
 Return ONLY a JSON object:
