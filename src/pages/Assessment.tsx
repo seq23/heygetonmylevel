@@ -130,7 +130,7 @@ const Assessment = () => {
     if (confirmationPassage) {
       const accuracy = confirmationCorrect / confirmationPassage.questions.length;
       if (accuracy >= 0.8) {
-        baseLevel = Math.min(12, baseLevel + 1);
+        baseLevel = Math.min(13, baseLevel + 1);
       } else if (accuracy < 0.5) {
         baseLevel = Math.max(1, baseLevel - 1);
       }
