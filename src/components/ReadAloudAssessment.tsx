@@ -1,5 +1,10 @@
 import { useState, useEffect } from "react";
-import { Mic, MicOff, Loader2, AlertCircle, CheckCircle2, RotateCcw } from "lucide-react";
+import { Mic, MicOff, Loader2, AlertCircle, CheckCircle2, RotateCcw, BookOpen, ChevronDown } from "lucide-react";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible";
 import { useSpeechRecognition } from "@/hooks/useSpeechRecognition";
 import { compareTexts, getTargetWPM, getFluencyFeedback, ComparisonResult } from "@/utils/textComparison";
 import { useAI } from "@/hooks/useAI";
@@ -291,6 +296,37 @@ const ReadAloudAssessment = ({ currentLevel, onComplete, onSkip }: ReadAloudAsse
             </button>
           </div>
         </div>
+      )}
+
+      {/* Research Methodology Section - shown on all phases except loading */}
+      {phase !== "loading" && (
+        <Collapsible className="mt-8 border-t border-border pt-6">
+          <CollapsibleTrigger className="flex items-center gap-2 text-xs text-muted-foreground hover:text-foreground transition-colors w-full justify-center group">
+            <BookOpen className="w-3.5 h-3.5" />
+            <span>Research-Based Methodology</span>
+            <ChevronDown className="w-3.5 h-3.5 transition-transform group-data-[state=open]:rotate-180" />
+          </CollapsibleTrigger>
+          <CollapsibleContent className="mt-4 space-y-4 text-xs text-muted-foreground">
+            <div className="bg-muted/30 rounded-lg p-4 space-y-3">
+              <div>
+                <h4 className="font-medium text-foreground/80 mb-1.5">Key Research Sources</h4>
+                <ul className="space-y-1 list-disc list-inside">
+                  <li><span className="font-medium">Hasbrouck & Tindal (2017)</span> — Most widely cited oral reading fluency norms</li>
+                  <li><span className="font-medium">DIBELS Next</span> — Dynamic Indicators of Basic Early Literacy Skills</li>
+                  <li><span className="font-medium">National Reading Panel</span> — Fluency as critical component of reading instruction</li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="font-medium text-foreground/80 mb-1.5">Important Considerations</h4>
+                <ul className="space-y-1 list-disc list-inside">
+                  <li>Oral reading fluency (measured via speech recognition) typically plateaus around 200 WPM for fluent adult readers</li>
+                  <li>Silent reading is faster (250–300+ WPM for adults), but we measure oral reading</li>
+                  <li>College-level (Grade 13) at 200 WPM represents mature, fluent oral reading</li>
+                </ul>
+              </div>
+            </div>
+          </CollapsibleContent>
+        </Collapsible>
       )}
     </div>
   );
