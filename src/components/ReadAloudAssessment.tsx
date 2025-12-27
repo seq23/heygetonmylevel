@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { Mic, MicOff, Loader2, AlertCircle, CheckCircle2, RotateCcw, BookOpen, ChevronDown } from "lucide-react";
+import { useState, useEffect, useCallback } from "react";
+import { Mic, MicOff, Loader2, AlertCircle, CheckCircle2, RotateCcw, BookOpen, ChevronDown, ArrowDown, ArrowUp } from "lucide-react";
 import {
   Collapsible,
   CollapsibleContent,
@@ -8,6 +8,7 @@ import {
 import { useSpeechRecognition } from "@/hooks/useSpeechRecognition";
 import { compareTexts, getTargetWPM, getFluencyFeedback, ComparisonResult } from "@/utils/textComparison";
 import { useAI } from "@/hooks/useAI";
+import { toast } from "sonner";
 
 interface ReadAloudAssessmentProps {
   currentLevel: number;
@@ -15,7 +16,7 @@ interface ReadAloudAssessmentProps {
   onSkip: () => void;
 }
 
-type Phase = "loading" | "ready" | "countdown" | "recording" | "results";
+type Phase = "loading" | "ready" | "countdown" | "recording" | "results" | "adjusting";
 
 const ReadAloudAssessment = ({ currentLevel, onComplete, onSkip }: ReadAloudAssessmentProps) => {
   const [phase, setPhase] = useState<Phase>("loading");
@@ -23,6 +24,11 @@ const ReadAloudAssessment = ({ currentLevel, onComplete, onSkip }: ReadAloudAsse
   const [currentSentenceIndex, setCurrentSentenceIndex] = useState(0);
   const [countdown, setCountdown] = useState(3);
   const [result, setResult] = useState<ComparisonResult | null>(null);
+  
+  // Adaptive level state
+  const [effectiveLevel, setEffectiveLevel] = useState(currentLevel);
+  const [hasAdjusted, setHasAdjusted] = useState(false);
+  const [adjustmentDirection, setAdjustmentDirection] = useState<"up" | "down" | null>(null);
   
   const { generateReadAloudSentences, isLoading } = useAI();
   const {
@@ -36,18 +42,42 @@ const ReadAloudAssessment = ({ currentLevel, onComplete, onSkip }: ReadAloudAsse
     elapsedTime,
   } = useSpeechRecognition();
 
-  // Load sentences for current level
+  // Determine if level adjustment is needed based on first attempt
+  const determineAdjustment = useCallback((accuracy: number, wpm: number, level: number): number => {
+    const targetWPM = getTargetWPM(level);
+    const wpmRatio = wpm / targetWPM;
+    
+    // Way too hard - drop 2 grades
+    if (accuracy < 60 || wpmRatio < 0.5) {
+      return Math.max(1, level - 2) - level; // Returns negative adjustment
+    }
+    // Slightly too hard - drop 1 grade
+    if (accuracy < 75 || wpmRatio < 0.65) {
+      return Math.max(1, level - 1) - level;
+    }
+    // Too easy - go up 1-2 grades
+    if (accuracy > 95 && wpmRatio > 1.2 && level < 12) {
+      return Math.min(13, level + 2) - level; // Returns positive adjustment
+    }
+    if (accuracy > 92 && wpmRatio > 1.1 && level < 13) {
+      return Math.min(13, level + 1) - level;
+    }
+    
+    return 0; // Level is appropriate
+  }, []);
+
+  // Load sentences for effective level
   useEffect(() => {
     const loadSentences = async () => {
       setPhase("loading");
-      const data = await generateReadAloudSentences(currentLevel);
+      const data = await generateReadAloudSentences(effectiveLevel);
       if (data?.sentences) {
         setSentences(data.sentences);
         setPhase("ready");
       }
     };
     loadSentences();
-  }, [currentLevel]);
+  }, [effectiveLevel]);
 
   // Handle countdown
   useEffect(() => {
@@ -73,6 +103,36 @@ const ReadAloudAssessment = ({ currentLevel, onComplete, onSkip }: ReadAloudAsse
     const currentSentence = sentences[currentSentenceIndex];
     const comparison = compareTexts(currentSentence, transcript, elapsedTime);
     setResult(comparison);
+    
+    // Check for level adjustment on first sentence only
+    if (currentSentenceIndex === 0 && !hasAdjusted) {
+      const adjustment = determineAdjustment(comparison.accuracy, comparison.wordsPerMinute, effectiveLevel);
+      
+      if (adjustment !== 0) {
+        const newLevel = effectiveLevel + adjustment;
+        setAdjustmentDirection(adjustment > 0 ? "up" : "down");
+        setHasAdjusted(true);
+        setPhase("adjusting");
+        
+        // Show toast and adjust after a brief delay
+        const direction = adjustment > 0 ? "up" : "down";
+        const message = adjustment > 0 
+          ? `Great job! Moving up to Grade ${newLevel} for more challenge! 🌟`
+          : `Adjusting to Grade ${newLevel} for a better fit! 📚`;
+        
+        toast.info(message, { duration: 3000 });
+        
+        setTimeout(() => {
+          setEffectiveLevel(newLevel);
+          setCurrentSentenceIndex(0);
+          setResult(null);
+          resetTranscript();
+        }, 1500);
+        
+        return;
+      }
+    }
+    
     setPhase("results");
   };
 
@@ -83,9 +143,9 @@ const ReadAloudAssessment = ({ currentLevel, onComplete, onSkip }: ReadAloudAsse
       setResult(null);
       setPhase("ready");
     } else {
-      // Assessment complete - use last result
+      // Assessment complete - use last result and effective level
       if (result) {
-        onComplete(result.accuracy, result.wordsPerMinute, currentLevel);
+        onComplete(result.accuracy, result.wordsPerMinute, effectiveLevel);
       }
     }
   };
@@ -116,7 +176,7 @@ const ReadAloudAssessment = ({ currentLevel, onComplete, onSkip }: ReadAloudAsse
   }
 
   const currentSentence = sentences[currentSentenceIndex];
-  const targetWPM = getTargetWPM(currentLevel);
+  const targetWPM = getTargetWPM(effectiveLevel);
   const feedback = result ? getFluencyFeedback(result.accuracy, result.wordsPerMinute, targetWPM) : null;
 
   return (
@@ -127,9 +187,38 @@ const ReadAloudAssessment = ({ currentLevel, onComplete, onSkip }: ReadAloudAsse
           Read Aloud
         </h2>
         <p className="text-muted-foreground">
-          Grade {currentLevel} • Sentence {currentSentenceIndex + 1} of {sentences.length}
+          Grade {effectiveLevel} • Sentence {currentSentenceIndex + 1} of {sentences.length}
+          {hasAdjusted && (
+            <span className="ml-2 inline-flex items-center gap-1 text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full">
+              {adjustmentDirection === "up" ? <ArrowUp className="w-3 h-3" /> : <ArrowDown className="w-3 h-3" />}
+              Adjusted
+            </span>
+          )}
         </p>
       </div>
+
+      {/* Adjusting State */}
+      {phase === "adjusting" && (
+        <div className="flex flex-col items-center justify-center py-12 gap-4">
+          <div className={`w-20 h-20 rounded-full flex items-center justify-center ${
+            adjustmentDirection === "up" ? "bg-success/20" : "bg-primary/20"
+          }`}>
+            {adjustmentDirection === "up" ? (
+              <ArrowUp className="w-10 h-10 text-success animate-bounce" />
+            ) : (
+              <ArrowDown className="w-10 h-10 text-primary animate-bounce" />
+            )}
+          </div>
+          <p className="text-lg font-medium">
+            {adjustmentDirection === "up" 
+              ? "Moving to a higher level..." 
+              : "Adjusting to a better fit..."}
+          </p>
+          <p className="text-muted-foreground">
+            Loading Grade {effectiveLevel + (adjustmentDirection === "up" ? 1 : -1)} sentences
+          </p>
+        </div>
+      )}
 
       {/* Loading State */}
       {phase === "loading" && (
