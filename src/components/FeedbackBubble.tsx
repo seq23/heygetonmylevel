@@ -85,13 +85,23 @@ const FeedbackBubble = () => {
               </SelectContent>
             </Select>
 
-            <Textarea
-              placeholder="Tell us what you think..."
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-              rows={4}
-              className="resize-none"
-            />
+            <div className="space-y-1.5">
+              <p className="text-xs text-destructive/80 flex items-center gap-1.5">
+                <span>⚠️</span>
+                <span>Please don't include personal info (name, email, location)</span>
+              </p>
+              <Textarea
+                placeholder="Tell us what you think..."
+                value={message}
+                onChange={(e) => setMessage(e.target.value.slice(0, 500))}
+                rows={4}
+                className="resize-none"
+                maxLength={500}
+              />
+              <p className="text-xs text-muted-foreground text-right">
+                {message.length}/500 characters
+              </p>
+            </div>
 
             <Button
               onClick={handleSubmit}
