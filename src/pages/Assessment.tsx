@@ -5,6 +5,7 @@ import { useSession } from "@/contexts/SessionContext";
 import { useAI } from "@/hooks/useAI";
 import VocabularyAssessment from "@/components/VocabularyAssessment";
 import ReadAloudAssessment from "@/components/ReadAloudAssessment";
+import Footer from "@/components/Footer";
 
 type AssessmentType = "vocabulary" | "read_aloud" | "both";
 type Phase = "select_type" | "vocabulary" | "read_aloud" | "confirmation" | "result";
@@ -151,7 +152,7 @@ const Assessment = () => {
   if (!session) return null;
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background flex flex-col">
       {/* Header */}
       <header className="sticky top-0 bg-background/80 backdrop-blur-sm border-b border-border z-10">
         <div className="container max-w-4xl py-4 flex items-center gap-4 px-4">
@@ -471,6 +472,7 @@ const Assessment = () => {
           </div>
         )}
       </main>
+      <Footer />
     </div>
   );
 };

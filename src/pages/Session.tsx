@@ -7,6 +7,7 @@ import { supabase } from "@/integrations/supabase/client";
 import AITutor from "@/components/AITutor";
 import PhonicsWord from "@/components/PhonicsWord";
 import { toast } from "sonner";
+import Footer from "@/components/Footer";
 
 interface Question {
   id?: string;
@@ -284,7 +285,7 @@ const Session = () => {
   const { strengths, weaknesses } = getStrengthsAndWeaknesses();
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background flex flex-col">
       {/* Header */}
       <header className="sticky top-0 bg-background/80 backdrop-blur-sm border-b border-border z-10">
         <div className="container max-w-7xl py-4 flex items-center gap-4 px-4">
@@ -676,6 +677,7 @@ const Session = () => {
           )}
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

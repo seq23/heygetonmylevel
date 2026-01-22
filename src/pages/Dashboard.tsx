@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { useSession } from "@/contexts/SessionContext";
 import { Input } from "@/components/ui/input";
+import Footer from "@/components/Footer";
 
 const skills = [
   {
@@ -97,7 +98,7 @@ const Dashboard = () => {
     session.readingLevel <= 12 ? `Grade ${session.readingLevel}` : "College";
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background flex flex-col">
       {/* Header */}
       <header className="sticky top-0 bg-background/80 backdrop-blur-sm border-b border-border z-10">
         <div className="container max-w-4xl py-4 flex items-center gap-4">
@@ -228,6 +229,7 @@ const Dashboard = () => {
           </div>
         )}
       </main>
+      <Footer />
     </div>
   );
 };

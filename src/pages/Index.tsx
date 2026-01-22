@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { BookOpen, Target, Sparkles, ArrowRight, CheckCircle, TrendingUp } from "lucide-react";
 import { useSession } from "@/contexts/SessionContext";
 import { useState } from "react";
+import Footer from "@/components/Footer";
 
 const Index = () => {
   const navigate = useNavigate();
@@ -147,12 +148,7 @@ const Index = () => {
         </div>
       </main>
 
-      {/* Footer */}
-      <footer className="py-6 px-6 text-center">
-        <p className="text-sm text-muted-foreground">
-          54 million American adults struggle with literacy. You don't have to be one of them.
-        </p>
-      </footer>
+      <Footer />
     </div>
   );
 };

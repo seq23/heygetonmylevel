@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { ArrowLeft, GraduationCap } from "lucide-react";
 import { useSession } from "@/contexts/SessionContext";
 import { useState } from "react";
+import Footer from "@/components/Footer";
 
 const levels = [
   { grade: 1, label: "Grade 1", description: "Basic words & short sentences" },
@@ -45,7 +46,7 @@ const SelectLevel = () => {
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background flex flex-col">
       {/* Header */}
       <header className="sticky top-0 bg-background/80 backdrop-blur-sm border-b border-border z-10">
         <div className="container max-w-4xl py-4 flex items-center gap-4">
@@ -114,6 +115,7 @@ const SelectLevel = () => {
           </p>
         </div>
       </main>
+      <Footer />
     </div>
   );
 };

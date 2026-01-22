@@ -10,6 +10,8 @@ import Assessment from "./pages/Assessment";
 import Dashboard from "./pages/Dashboard";
 import Session from "./pages/Session";
 import Summary from "./pages/Summary";
+import Privacy from "./pages/Privacy";
+import Terms from "./pages/Terms";
 import NotFound from "./pages/NotFound";
 import FeedbackBubble from "./components/FeedbackBubble";
 
@@ -29,6 +31,8 @@ const App = () => (
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/session" element={<Session />} />
             <Route path="/summary" element={<Summary />} />
+            <Route path="/privacy" element={<Privacy />} />
+            <Route path="/terms" element={<Terms />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>

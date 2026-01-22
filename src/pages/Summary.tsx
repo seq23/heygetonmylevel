@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Trophy, BookOpen, Target, Star, ArrowRight } from "lucide-react";
 import { useSession } from "@/contexts/SessionContext";
+import Footer from "@/components/Footer";
 
 const Summary = () => {
   const navigate = useNavigate();
@@ -42,7 +43,8 @@ const Summary = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background flex flex-col items-center justify-center px-6 py-12">
+    <div className="min-h-screen bg-background flex flex-col">
+      <main className="flex-1 flex flex-col items-center justify-center px-6 py-12">
       <div className="max-w-md w-full text-center space-y-8 fade-in-up">
         {/* Celebration Icon */}
         <div className="celebration-bounce">
@@ -130,6 +132,8 @@ const Summary = () => {
           Your session data has been cleared. We don't store any personal information.
         </p>
       </div>
+      </main>
+      <Footer />
     </div>
   );
 };
