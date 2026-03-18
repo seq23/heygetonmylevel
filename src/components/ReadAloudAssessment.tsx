@@ -50,7 +50,9 @@ const ReadAloudAssessment = ({ currentLevel, isESL = false, onComplete, onSkip }
   // IMPORTANT: Accuracy (word recognition) matters more than raw WPM.
   // Someone reading slowly but accurately should NOT be downgraded.
   const determineAdjustment = useCallback((accuracy: number, wpm: number, level: number): number => {
-    const targetWPM = getTargetWPM(level);
+    const rawTargetWPM = getTargetWPM(level);
+    // ESL speakers get 30% grace on WPM targets
+    const targetWPM = isESL ? rawTargetWPM * 0.7 : rawTargetWPM;
     const wpmRatio = wpm / targetWPM;
     
     // Only downgrade if ACCURACY is poor (not just slow reading)
