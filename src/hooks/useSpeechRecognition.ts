@@ -55,7 +55,7 @@ export const useSpeechRecognition = (): UseSpeechRecognitionResult => {
   
   const recognitionRef = useRef<SpeechRecognitionInstance | null>(null);
   const startTimeRef = useRef<number | null>(null);
-  const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const committedTranscriptRef = useRef<string>("");
 
   useEffect(() => {
