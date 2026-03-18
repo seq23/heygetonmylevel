@@ -120,6 +120,7 @@ const ReadAloudAssessment = ({ currentLevel, onComplete, onSkip }: ReadAloudAsse
     const currentSentence = sentences[currentSentenceIndex];
     const comparison = compareTexts(currentSentence, transcript, elapsedTime);
     setResult(comparison);
+    setAllResults(prev => [...prev, comparison]);
     
     // Check for level adjustment on first sentence only
     if (currentSentenceIndex === 0 && !hasAdjusted) {
@@ -131,8 +132,6 @@ const ReadAloudAssessment = ({ currentLevel, onComplete, onSkip }: ReadAloudAsse
         setHasAdjusted(true);
         setPhase("adjusting");
         
-        // Show toast and adjust after a brief delay
-        const direction = adjustment > 0 ? "up" : "down";
         const message = adjustment > 0 
           ? `Great job! Moving up to Grade ${newLevel} for more challenge! 🌟`
           : `Adjusting to Grade ${newLevel} for a better fit! 📚`;
@@ -143,6 +142,7 @@ const ReadAloudAssessment = ({ currentLevel, onComplete, onSkip }: ReadAloudAsse
           setEffectiveLevel(newLevel);
           setCurrentSentenceIndex(0);
           setResult(null);
+          setAllResults([]); // Reset results since level changed
           resetTranscript();
         }, 1500);
         
@@ -160,9 +160,11 @@ const ReadAloudAssessment = ({ currentLevel, onComplete, onSkip }: ReadAloudAsse
       setResult(null);
       setPhase("ready");
     } else {
-      // Assessment complete - use last result and effective level
-      if (result) {
-        onComplete(result.accuracy, result.wordsPerMinute, effectiveLevel);
+      // Assessment complete - average ALL sentence results
+      if (allResults.length > 0) {
+        const avgAccuracy = allResults.reduce((sum, r) => sum + r.accuracy, 0) / allResults.length;
+        const avgWpm = Math.round(allResults.reduce((sum, r) => sum + r.wordsPerMinute, 0) / allResults.length);
+        onComplete(avgAccuracy, avgWpm, effectiveLevel);
       }
     }
   };
