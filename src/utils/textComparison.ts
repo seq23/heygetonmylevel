@@ -151,6 +151,7 @@ export const getTargetWPM = (gradeLevel: number): number => {
 };
 
 // Get fluency feedback based on WPM and accuracy
+// Prioritizes accuracy (word recognition) over speed
 export const getFluencyFeedback = (
   accuracy: number,
   wpm: number,
@@ -158,17 +159,24 @@ export const getFluencyFeedback = (
 ): { rating: "excellent" | "good" | "developing" | "needs_practice"; message: string } => {
   const wpmRatio = wpm / targetWPM;
   
+  // Accuracy-first approach: accurate reading at any speed is positive
   if (accuracy >= 95 && wpmRatio >= 0.9) {
     return {
       rating: "excellent",
       message: "Excellent reading! Great accuracy and fluency.",
     };
-  } else if (accuracy >= 90 && wpmRatio >= 0.75) {
+  } else if (accuracy >= 95 && wpmRatio >= 0.5) {
+    // High accuracy but slower — still good! Speed comes with practice
+    return {
+      rating: "good",
+      message: "Great accuracy! Your reading is solid — speed will come with practice.",
+    };
+  } else if (accuracy >= 90 && wpmRatio >= 0.6) {
     return {
       rating: "good",
       message: "Good job! You're reading well at this level.",
     };
-  } else if (accuracy >= 80 && wpmRatio >= 0.5) {
+  } else if (accuracy >= 75) {
     return {
       rating: "developing",
       message: "Keep practicing! You're making good progress.",
