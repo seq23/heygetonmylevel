@@ -53,24 +53,28 @@ const ReadAloudAssessment = ({ currentLevel, onComplete, onSkip }: ReadAloudAsse
     const wpmRatio = wpm / targetWPM;
     
     // Only downgrade if ACCURACY is poor (not just slow reading)
-    // Way too hard - can't read the words
     if (accuracy < 50) {
       return Math.max(1, level - 2) - level;
     }
-    // Struggling with words
     if (accuracy < 70) {
       return Math.max(1, level - 1) - level;
     }
-    // Slow AND inaccurate — slight downgrade
     if (accuracy < 80 && wpmRatio < 0.5) {
       return Math.max(1, level - 1) - level;
     }
     
-    // Too easy - high accuracy AND fast — go up
-    if (accuracy > 95 && wpmRatio > 1.2 && level < 12) {
+    // UPGRADE: If accuracy is near-perfect, the text is too easy regardless of speed.
+    // A slow but accurate reader should be challenged with harder content.
+    if (accuracy >= 98 && level < 12) {
+      // Perfect accuracy — jump up 2
       return Math.min(13, level + 2) - level;
     }
-    if (accuracy > 92 && wpmRatio > 1.0 && level < 13) {
+    if (accuracy >= 93 && level < 13) {
+      // Very high accuracy — go up 1
+      return Math.min(13, level + 1) - level;
+    }
+    // Fast AND accurate — also go up
+    if (accuracy > 90 && wpmRatio > 1.1 && level < 13) {
       return Math.min(13, level + 1) - level;
     }
     
