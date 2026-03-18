@@ -28,9 +28,9 @@ const ReadAloudAssessment = ({ currentLevel, onComplete, onSkip }: ReadAloudAsse
   // Track all sentence results for averaging
   const [allResults, setAllResults] = useState<ComparisonResult[]>([]);
   
-  // Adaptive level state
+  // Adaptive level state — adjusts after EVERY sentence until level stabilizes
   const [effectiveLevel, setEffectiveLevel] = useState(currentLevel);
-  const [hasAdjusted, setHasAdjusted] = useState(false);
+  const [adjustmentCount, setAdjustmentCount] = useState(0);
   const [adjustmentDirection, setAdjustmentDirection] = useState<"up" | "down" | null>(null);
   
   const { generateReadAloudSentences, isLoading } = useAI();
