@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { ArrowLeft, BookOpen, Mic, CheckCircle2, XCircle, Loader2, Sparkles } from "lucide-react";
+import { ArrowLeft, BookOpen, Mic, CheckCircle2, XCircle, Loader2, Sparkles, Globe } from "lucide-react";
 import { useSession } from "@/contexts/SessionContext";
 import { useAI } from "@/hooks/useAI";
 import VocabularyAssessment from "@/components/VocabularyAssessment";
