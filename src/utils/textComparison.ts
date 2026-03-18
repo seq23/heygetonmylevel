@@ -38,17 +38,19 @@ export const compareTexts = (
   const normalizedOriginal = originalWords.map(normalizeWord);
   const normalizedTranscribed = transcribedWords.map(normalizeWord);
   
-  // Simple word-by-word comparison with fuzzy matching
+  // Word-by-word comparison with fuzzy matching using index tracking
   const wordResults: { word: string; isCorrect: boolean; transcribed: string | null }[] = [];
   let correctCount = 0;
+  const usedTranscribedIndices = new Set<number>();
   
   normalizedOriginal.forEach((original, index) => {
     // Check if this word exists in transcribed text (allowing for order variations)
     const matchIndex = normalizedTranscribed.findIndex(
-      (t, i) => t === original && !wordResults.some(r => r.transcribed === transcribedWords[i])
+      (t, i) => t === original && !usedTranscribedIndices.has(i)
     );
     
     if (matchIndex !== -1) {
+      usedTranscribedIndices.add(matchIndex);
       wordResults.push({
         word: originalWords[index],
         isCorrect: true,
@@ -59,12 +61,13 @@ export const compareTexts = (
       // Check for similar words (within edit distance of 1-2)
       const similarIndex = normalizedTranscribed.findIndex(
         (t, i) => 
-          !wordResults.some(r => r.transcribed === transcribedWords[i]) &&
+          !usedTranscribedIndices.has(i) &&
           levenshteinDistance(t, original) <= 2 &&
           t.length > 2
       );
       
       if (similarIndex !== -1) {
+        usedTranscribedIndices.add(similarIndex);
         wordResults.push({
           word: originalWords[index],
           isCorrect: true, // Accept close matches
