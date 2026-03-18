@@ -13,7 +13,7 @@ export const assessmentWords: GradeWords[] = [
   },
   {
     grade: 2,
-    words: ["friend", "beautiful", "important", "outside", "different", "special", "together", "always"]
+    words: ["friend", "because", "around", "before", "different", "together", "thought", "brought"]
   },
   {
     grade: 3,
@@ -41,7 +41,7 @@ export const assessmentWords: GradeWords[] = [
   },
   {
     grade: 9,
-    words: ["ubiquitous", "dichotomy", "pragmatic", "idiosyncratic", "superfluous", "articulate", "analogous", "substantiate"]
+    words: ["ubiquitous", "dichotomy", "corroborate", "idiosyncratic", "superfluous", "articulate", "analogous", "substantiate"]
   },
   {
     grade: 10,
@@ -53,11 +53,11 @@ export const assessmentWords: GradeWords[] = [
   },
   {
     grade: 12,
-    words: ["antediluvian", "sesquipedalian", "ineffable", "recalcitrant", "pulchritudinous", "solipsistic", "pusillanimous", "tergiversation"]
+    words: ["antediluvian", "sesquipedalian", "ineffable", "recalcitrant", "magnanimous", "solipsistic", "pusillanimous", "sophistry"]
   },
   {
     grade: 13,
-    words: ["epistemological", "hermeneutics", "dialectical", "ontological", "phenomenological", "axiom", "heuristic", "syllogism"]
+    words: ["hermeneutics", "dialectical", "ontological", "phenomenological", "axiom", "heuristic", "syllogism", "teleological"]
   }
 ];
 
