@@ -12,6 +12,7 @@ import { toast } from "sonner";
 
 interface ReadAloudAssessmentProps {
   currentLevel: number;
+  isESL?: boolean;
   onComplete: (accuracy: number, wpm: number, level: number) => void;
   onSkip: () => void;
 }
