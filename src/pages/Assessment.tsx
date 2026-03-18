@@ -37,6 +37,7 @@ const Assessment = () => {
     level: number;
   } | null>(null);
   const [finalLevel, setFinalLevel] = useState<number | null>(null);
+  const [isESL, setIsESL] = useState(false);
   
   // Confirmation passage state
   const [confirmationPassage, setConfirmationPassage] = useState<ConfirmationPassage | null>(null);
