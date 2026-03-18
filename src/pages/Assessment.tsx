@@ -76,8 +76,10 @@ const Assessment = () => {
     setReadAloudResults({ accuracy, wpm, level });
     
     // Calculate combined level if both assessments done
+    // Vocabulary (comprehension) weighted 60%, read-aloud (fluency) weighted 40%
+    // because comprehension is a stronger indicator of reading level than speed
     if (assessmentType === "both" && estimatedLevel) {
-      const combinedLevel = Math.round((estimatedLevel + level) / 2);
+      const combinedLevel = Math.round(estimatedLevel * 0.6 + level * 0.4);
       await loadConfirmationPassage(combinedLevel);
     } else {
       await loadConfirmationPassage(level);
