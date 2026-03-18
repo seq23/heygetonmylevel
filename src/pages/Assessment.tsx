@@ -293,6 +293,7 @@ const Assessment = () => {
         {phase === "read_aloud" && (
           <ReadAloudAssessment
             currentLevel={estimatedLevel || 5}
+            isESL={isESL}
             onComplete={handleReadAloudComplete}
             onSkip={() => {
               if (estimatedLevel) {
