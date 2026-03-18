@@ -130,22 +130,26 @@ const levenshteinDistance = (a: string, b: string): number => {
   return matrix[b.length][a.length];
 };
 
-// Target WPM by grade level (research-based reading fluency norms)
+// Target WPM by grade level — research-based oral reading fluency norms
+// Grades 1-6: Hasbrouck & Tindal (2017) 50th percentile, Spring WCPM
+// Grades 7-8: Hasbrouck & Tindal (2006) 50th percentile, Spring WCPM
+// Grades 9-13: Extrapolated from research (ORF plateaus ~150-160 in middle school;
+//   silent reading fluency continues to grow but oral reading stabilizes)
 export const getTargetWPM = (gradeLevel: number): number => {
   const targets: Record<number, number> = {
-    1: 60,   // 50th percentile: 53-60
-    2: 90,   // 50th percentile: 89-100
-    3: 110,  // 50th percentile: 107-121
-    4: 125,  // 50th percentile: 123-133
-    5: 140,  // 50th percentile: 139-151
-    6: 150,  // 50th percentile: 150-160
-    7: 155,  // 50th percentile: 156-165
-    8: 165,  // 50th percentile: 160-170
-    9: 175,  // Extrapolated
-    10: 185, // Extrapolated
-    11: 190, // Extrapolated
-    12: 195, // Extrapolated
-    13: 200, // College level
+    1: 60,   // Hasbrouck & Tindal 2017, 50th percentile Spring
+    2: 100,  // Hasbrouck & Tindal 2017, 50th percentile Spring
+    3: 112,  // Hasbrouck & Tindal 2017, 50th percentile Spring
+    4: 133,  // Hasbrouck & Tindal 2017, 50th percentile Spring
+    5: 146,  // Hasbrouck & Tindal 2017, 50th percentile Spring
+    6: 150,  // Hasbrouck & Tindal 2006, 50th percentile Spring
+    7: 150,  // Hasbrouck & Tindal 2006, 50th percentile Spring
+    8: 151,  // Hasbrouck & Tindal 2006, 50th percentile Spring
+    9: 155,  // Extrapolated — ORF plateau zone
+    10: 158, // Extrapolated
+    11: 160, // Extrapolated
+    12: 160, // Extrapolated — oral fluency plateau
+    13: 165, // College level estimate
   };
   return targets[gradeLevel] || 150;
 };
