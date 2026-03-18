@@ -211,10 +211,10 @@ const ReadAloudAssessment = ({ currentLevel, onComplete, onSkip }: ReadAloudAsse
         </h2>
         <p className="text-muted-foreground">
           Grade {effectiveLevel} • Sentence {currentSentenceIndex + 1} of {sentences.length}
-          {hasAdjusted && (
+          {adjustmentCount > 0 && (
             <span className="ml-2 inline-flex items-center gap-1 text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full">
               {adjustmentDirection === "up" ? <ArrowUp className="w-3 h-3" /> : <ArrowDown className="w-3 h-3" />}
-              Adjusted
+              Adjusted {adjustmentCount}x
             </span>
           )}
         </p>
