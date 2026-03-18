@@ -25,6 +25,9 @@ const ReadAloudAssessment = ({ currentLevel, onComplete, onSkip }: ReadAloudAsse
   const [countdown, setCountdown] = useState(3);
   const [result, setResult] = useState<ComparisonResult | null>(null);
   
+  // Track all sentence results for averaging
+  const [allResults, setAllResults] = useState<ComparisonResult[]>([]);
+  
   // Adaptive level state
   const [effectiveLevel, setEffectiveLevel] = useState(currentLevel);
   const [hasAdjusted, setHasAdjusted] = useState(false);
