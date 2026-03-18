@@ -28,9 +28,9 @@ const ReadAloudAssessment = ({ currentLevel, onComplete, onSkip }: ReadAloudAsse
   // Track all sentence results for averaging
   const [allResults, setAllResults] = useState<ComparisonResult[]>([]);
   
-  // Adaptive level state
+  // Adaptive level state — adjusts after EVERY sentence until level stabilizes
   const [effectiveLevel, setEffectiveLevel] = useState(currentLevel);
-  const [hasAdjusted, setHasAdjusted] = useState(false);
+  const [adjustmentCount, setAdjustmentCount] = useState(0);
   const [adjustmentDirection, setAdjustmentDirection] = useState<"up" | "down" | null>(null);
   
   const { generateReadAloudSentences, isLoading } = useAI();
@@ -126,14 +126,14 @@ const ReadAloudAssessment = ({ currentLevel, onComplete, onSkip }: ReadAloudAsse
     setResult(comparison);
     setAllResults(prev => [...prev, comparison]);
     
-    // Check for level adjustment on first sentence only
-    if (currentSentenceIndex === 0 && !hasAdjusted) {
+    // Adjust level after EVERY sentence (up to 5 times to prevent loops)
+    if (adjustmentCount < 5) {
       const adjustment = determineAdjustment(comparison.accuracy, comparison.wordsPerMinute, effectiveLevel);
       
       if (adjustment !== 0) {
         const newLevel = effectiveLevel + adjustment;
         setAdjustmentDirection(adjustment > 0 ? "up" : "down");
-        setHasAdjusted(true);
+        setAdjustmentCount(prev => prev + 1);
         setPhase("adjusting");
         
         const message = adjustment > 0 
@@ -211,10 +211,10 @@ const ReadAloudAssessment = ({ currentLevel, onComplete, onSkip }: ReadAloudAsse
         </h2>
         <p className="text-muted-foreground">
           Grade {effectiveLevel} • Sentence {currentSentenceIndex + 1} of {sentences.length}
-          {hasAdjusted && (
+          {adjustmentCount > 0 && (
             <span className="ml-2 inline-flex items-center gap-1 text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full">
               {adjustmentDirection === "up" ? <ArrowUp className="w-3 h-3" /> : <ArrowDown className="w-3 h-3" />}
-              Adjusted
+              Adjusted {adjustmentCount}x
             </span>
           )}
         </p>
