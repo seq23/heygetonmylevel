@@ -126,14 +126,14 @@ const ReadAloudAssessment = ({ currentLevel, onComplete, onSkip }: ReadAloudAsse
     setResult(comparison);
     setAllResults(prev => [...prev, comparison]);
     
-    // Check for level adjustment on first sentence only
-    if (currentSentenceIndex === 0 && !hasAdjusted) {
+    // Adjust level after EVERY sentence (up to 5 times to prevent loops)
+    if (adjustmentCount < 5) {
       const adjustment = determineAdjustment(comparison.accuracy, comparison.wordsPerMinute, effectiveLevel);
       
       if (adjustment !== 0) {
         const newLevel = effectiveLevel + adjustment;
         setAdjustmentDirection(adjustment > 0 ? "up" : "down");
-        setHasAdjusted(true);
+        setAdjustmentCount(prev => prev + 1);
         setPhase("adjusting");
         
         const message = adjustment > 0 
