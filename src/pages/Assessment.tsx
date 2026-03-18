@@ -280,6 +280,28 @@ const Assessment = () => {
                   </div>
                 </div>
               </button>
+
+              {/* ESL Toggle */}
+              <label
+                className="flex items-center gap-3 p-4 rounded-xl border-2 border-border bg-card hover:border-primary/30 transition-all cursor-pointer"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <div className="w-10 h-10 rounded-lg bg-muted flex items-center justify-center flex-shrink-0">
+                  <Globe className="w-5 h-5 text-muted-foreground" />
+                </div>
+                <div className="flex-1">
+                  <p className="text-sm font-medium">English is not my first language</p>
+                  <p className="text-xs text-muted-foreground">
+                    We'll adjust speed expectations to be more fair
+                  </p>
+                </div>
+                <input
+                  type="checkbox"
+                  checked={isESL}
+                  onChange={(e) => setIsESL(e.target.checked)}
+                  className="w-5 h-5 rounded border-border text-primary accent-primary cursor-pointer"
+                />
+              </label>
             </div>
           </div>
         )}
