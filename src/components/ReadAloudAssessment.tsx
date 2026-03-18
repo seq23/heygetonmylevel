@@ -202,7 +202,8 @@ const ReadAloudAssessment = ({ currentLevel, isESL = false, onComplete, onSkip }
   }
 
   const currentSentence = sentences[currentSentenceIndex];
-  const targetWPM = getTargetWPM(effectiveLevel);
+  const rawTargetWPM = getTargetWPM(effectiveLevel);
+  const targetWPM = isESL ? Math.round(rawTargetWPM * 0.7) : rawTargetWPM;
   const feedback = result ? getFluencyFeedback(result.accuracy, result.wordsPerMinute, targetWPM) : null;
 
   return (
