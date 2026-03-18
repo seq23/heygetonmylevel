@@ -43,23 +43,31 @@ const ReadAloudAssessment = ({ currentLevel, onComplete, onSkip }: ReadAloudAsse
   } = useSpeechRecognition();
 
   // Determine if level adjustment is needed based on first attempt
+  // IMPORTANT: Accuracy (word recognition) matters more than raw WPM.
+  // Someone reading slowly but accurately should NOT be downgraded.
   const determineAdjustment = useCallback((accuracy: number, wpm: number, level: number): number => {
     const targetWPM = getTargetWPM(level);
     const wpmRatio = wpm / targetWPM;
     
-    // Way too hard - drop 2 grades
-    if (accuracy < 60 || wpmRatio < 0.5) {
-      return Math.max(1, level - 2) - level; // Returns negative adjustment
+    // Only downgrade if ACCURACY is poor (not just slow reading)
+    // Way too hard - can't read the words
+    if (accuracy < 50) {
+      return Math.max(1, level - 2) - level;
     }
-    // Slightly too hard - drop 1 grade
-    if (accuracy < 75 || wpmRatio < 0.65) {
+    // Struggling with words
+    if (accuracy < 70) {
       return Math.max(1, level - 1) - level;
     }
-    // Too easy - go up 1-2 grades
-    if (accuracy > 95 && wpmRatio > 1.2 && level < 12) {
-      return Math.min(13, level + 2) - level; // Returns positive adjustment
+    // Slow AND inaccurate — slight downgrade
+    if (accuracy < 80 && wpmRatio < 0.5) {
+      return Math.max(1, level - 1) - level;
     }
-    if (accuracy > 92 && wpmRatio > 1.1 && level < 13) {
+    
+    // Too easy - high accuracy AND fast — go up
+    if (accuracy > 95 && wpmRatio > 1.2 && level < 12) {
+      return Math.min(13, level + 2) - level;
+    }
+    if (accuracy > 92 && wpmRatio > 1.0 && level < 13) {
       return Math.min(13, level + 1) - level;
     }
     

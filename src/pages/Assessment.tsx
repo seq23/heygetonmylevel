@@ -128,11 +128,16 @@ const Assessment = () => {
     let baseLevel = estimatedLevel || readAloudResults?.level || 5;
     
     // Adjust based on confirmation passage performance
+    // Comprehension is the strongest signal — if you understand what you read,
+    // that matters more than how fast you read it.
     if (confirmationPassage) {
       const accuracy = confirmationCorrect / confirmationPassage.questions.length;
-      if (accuracy >= 0.8) {
+      if (accuracy >= 1.0) {
+        // Perfect comprehension — bump up 2 levels
+        baseLevel = Math.min(13, baseLevel + 2);
+      } else if (accuracy >= 0.8) {
         baseLevel = Math.min(13, baseLevel + 1);
-      } else if (accuracy < 0.5) {
+      } else if (accuracy < 0.4) {
         baseLevel = Math.max(1, baseLevel - 1);
       }
     }
