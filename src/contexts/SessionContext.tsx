@@ -11,6 +11,7 @@ interface SessionData {
   skillsAttempted: string[];
   consecutiveCorrect: number;
   consecutiveIncorrect: number;
+  userName: string | null;
 }
 
 interface SessionContextType {
