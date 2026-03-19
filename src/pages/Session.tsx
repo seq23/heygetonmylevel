@@ -125,7 +125,7 @@ const Session = () => {
         selectedAnswer: null,
         showFeedback: false,
         isCorrect: null,
-        showTutor: true,
+        showTutor: !isMobile, // Don't auto-open on mobile/tablet
       }));
     }
   };
