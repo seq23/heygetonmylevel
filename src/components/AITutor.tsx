@@ -50,9 +50,36 @@ const AITutor = ({
     ]);
     setAiMessageCount(0);
     setHintsUsed(0);
-  }, [passageId]);
+    setSpeakingIndex(null);
+    stop();
+  }, [passageId, stop]);
 
-  const isLimitReached = aiMessageCount >= maxMessages;
+  // Auto-read new assistant/hint messages aloud
+  useEffect(() => {
+    if (!isSupported || messages.length === 0) return;
+    const lastMsg = messages[messages.length - 1];
+    if (lastMsg.role === "assistant" || lastMsg.role === "hint") {
+      const cleanText = lastMsg.content.replace(/[\u{1F600}-\u{1F9FF}]/gu, "").trim();
+      if (cleanText) {
+        setSpeakingIndex(messages.length - 1);
+        stop();
+        // Small delay so UI updates first
+        setTimeout(() => speak(cleanText, 0.9), 150);
+      }
+    }
+  }, [messages.length]);
+
+  const handleSpeak = (text: string, index: number) => {
+    if (speakingIndex === index) {
+      stop();
+      setSpeakingIndex(null);
+    } else {
+      stop();
+      const cleanText = text.replace(/[\u{1F600}-\u{1F9FF}]/gu, "").trim();
+      setSpeakingIndex(index);
+      speak(cleanText, 0.9);
+    }
+  };
 
   const handleSend = async () => {
     if (!input.trim() || isLoading || isLimitReached) return;
