@@ -10,19 +10,49 @@ import {
   MessageSquare,
   Play,
   ArrowLeft,
-  Palette
+  Palette,
+  Volume2
 } from "lucide-react";
 import { useSession } from "@/contexts/SessionContext";
 import { Input } from "@/components/ui/input";
 import Footer from "@/components/Footer";
 
-const skills = [
+import skillPhonics from "@/assets/skill-phonics.png";
+import skillDecoding from "@/assets/skill-decoding.png";
+import skillVocabulary from "@/assets/skill-vocabulary.png";
+import skillInference from "@/assets/skill-inference.png";
+import skillCauseEffect from "@/assets/skill-cause-effect.png";
+import skillReasoning from "@/assets/skill-reasoning.png";
+import skillCritical from "@/assets/skill-critical.png";
+import skillComprehension from "@/assets/skill-comprehension.png";
+
+interface Skill {
+  id: string;
+  name: string;
+  description: string;
+  icon: React.ComponentType<{ className?: string }>;
+  color: string;
+  image: string;
+  featured?: boolean;
+}
+
+const skills: Skill[] = [
+  {
+    id: "phonics",
+    name: "Phonics",
+    description: "Learn letter sounds & blend them into words",
+    icon: Volume2,
+    color: "bg-secondary/10 text-secondary",
+    image: skillPhonics,
+    featured: true,
+  },
   {
     id: "decoding",
     name: "Decoding",
     description: "Breaking down words into parts",
     icon: Search,
     color: "bg-primary/10 text-primary",
+    image: skillDecoding,
   },
   {
     id: "vocabulary",
@@ -30,6 +60,7 @@ const skills = [
     description: "Understanding word meanings",
     icon: BookOpen,
     color: "bg-secondary/10 text-secondary",
+    image: skillVocabulary,
   },
   {
     id: "inference",
@@ -37,6 +68,7 @@ const skills = [
     description: "Reading between the lines",
     icon: Lightbulb,
     color: "bg-accent/20 text-accent-foreground",
+    image: skillInference,
   },
   {
     id: "cause_effect",
@@ -44,6 +76,7 @@ const skills = [
     description: "Understanding why things happen",
     icon: Link2,
     color: "bg-success/10 text-success",
+    image: skillCauseEffect,
   },
   {
     id: "reasoning",
@@ -51,6 +84,7 @@ const skills = [
     description: "Following complex arguments",
     icon: Brain,
     color: "bg-primary/10 text-primary",
+    image: skillReasoning,
   },
   {
     id: "critical",
@@ -58,6 +92,7 @@ const skills = [
     description: "Analyzing and evaluating",
     icon: Sparkles,
     color: "bg-secondary/10 text-secondary",
+    image: skillCritical,
   },
   {
     id: "comprehension",
@@ -65,6 +100,7 @@ const skills = [
     description: "Understanding full passages",
     icon: MessageSquare,
     color: "bg-accent/20 text-accent-foreground",
+    image: skillComprehension,
   },
 ];
 
