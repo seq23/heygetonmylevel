@@ -12,6 +12,7 @@ import Session from "./pages/Session";
 import Summary from "./pages/Summary";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
+import Phonics from "./pages/Phonics";
 import NotFound from "./pages/NotFound";
 import FeedbackBubble from "./components/FeedbackBubble";
 
