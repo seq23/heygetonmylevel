@@ -129,5 +129,5 @@ export const useTextToSpeech = () => {
 
   const isSupported = typeof window !== "undefined" && "speechSynthesis" in window;
 
-  return { speak, soundOut, stop, isSupported };
+  return { speak, speakAsync, soundOut, stop, isSupported };
 };

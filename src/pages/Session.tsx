@@ -666,7 +666,7 @@ const Session = () => {
                     className="absolute inset-0 bg-background/80 backdrop-blur-sm"
                     onClick={toggleTutor}
                   />
-                  <div className="absolute bottom-0 left-0 right-0 h-[82vh] bg-background rounded-t-3xl shadow-2xl p-4 pb-[env(safe-area-inset-bottom)] fade-in-up flex flex-col">
+                  <div className="absolute inset-x-0 bottom-0 h-[100dvh] max-h-[100dvh] bg-background rounded-t-3xl shadow-2xl px-3 pt-3 pb-[calc(env(safe-area-inset-bottom)+0.75rem)] fade-in-up flex flex-col overflow-hidden">
                      {/* Close button row */}
                      <div className="flex items-center justify-between mb-2 flex-shrink-0">
                        <div className="w-12 h-1 bg-muted rounded-full" />

@@ -197,9 +197,9 @@ const AITutor = ({
       .trim();
   };
 
-  // Auto-read new assistant/hint messages aloud (only when visible)
+  // Auto-read new assistant/hint messages aloud (only when visible, not during welcome sequence)
   useEffect(() => {
-    if (!isSupported || messages.length === 0 || !isVisible) return;
+    if (!isSupported || messages.length === 0 || !isVisible || isWelcoming) return;
     const lastMsg = messages[messages.length - 1];
     if (lastMsg.role === "assistant" || lastMsg.role === "hint") {
       const cleanText = cleanForTTS(lastMsg.content);
@@ -209,7 +209,7 @@ const AITutor = ({
         setTimeout(() => speak(cleanText, 0.7), 150);
       }
     }
-  }, [messages.length, isVisible]);
+  }, [messages.length, isVisible, isWelcoming]);
 
   const handleSpeak = (text: string, index: number) => {
     if (speakingIndex === index) {
