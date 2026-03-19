@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Send, Bot, Sparkles, Loader2, Lightbulb, AlertCircle, Volume2, VolumeX } from "lucide-react";
+import { Send, Bot, Sparkles, Loader2, Lightbulb, AlertCircle, Volume2, VolumeX, RotateCcw } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { getHintForQuestionType, STATIC_HELP_TIPS } from "@/constants/readingHints";
 import { useTextToSpeech } from "@/hooks/useTextToSpeech";
@@ -307,6 +307,20 @@ const AITutor = ({
     }
   };
 
+  const handleResetTutorial = () => {
+    stop();
+    if (welcomeTimerRef.current) clearTimeout(welcomeTimerRef.current);
+    localStorage.removeItem(STORAGE_KEY_NAME);
+    localStorage.removeItem(STORAGE_KEY_WELCOMED);
+    setUserName(null);
+    setMessages([]);
+    setWelcomeStep(0);
+    setIsWelcoming(true);
+    setAiMessageCount(0);
+    setHintsUsed(0);
+    setSpeakingIndex(null);
+  };
+
   const quickPrompts = [
     { label: hintsUsed < 2 ? "Give me a hint" : "AI Hint", action: handleQuickHint },
     { label: "Explain in simpler words", action: () => setInput("Explain in simpler words") },
@@ -339,7 +353,17 @@ const AITutor = ({
                 : `${maxMessages - aiMessageCount} AI helps remaining`}
             </p>
           </div>
-          <Sparkles className="w-4 h-4 text-accent ml-auto" />
+          {!isWelcoming && (
+            <button
+              onClick={handleResetTutorial}
+              className="p-2 rounded-lg hover:bg-muted transition-colors ml-auto"
+              aria-label="Replay welcome tutorial"
+              title="Replay tutorial"
+            >
+              <RotateCcw className="w-4 h-4 text-muted-foreground" />
+            </button>
+          )}
+          {isWelcoming && <Sparkles className="w-4 h-4 text-accent ml-auto" />}
         </div>
       </div>
 
