@@ -74,8 +74,11 @@ const AITutor = ({
     };
   }, [welcomeStep, isWelcoming]);
 
-  // Reset state when passage changes
+  // Reset state only when passage actually changes (not on first mount)
   useEffect(() => {
+    if (previousPassageIdRef.current === passageId) return;
+
+    previousPassageIdRef.current = passageId;
     setMessages([]);
     setAiMessageCount(0);
     setHintsUsed(0);
