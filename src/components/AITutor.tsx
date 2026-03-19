@@ -106,7 +106,7 @@ const AITutor = ({
       setSpeakingIndex(null);
     } else {
       stop();
-      const cleanText = text.replace(/[\u{1F600}-\u{1F9FF}]/gu, "").replace(/[🤖📱💻📚👋]/gu, "").trim();
+      const cleanText = cleanForTTS(text);
       setSpeakingIndex(index);
       speak(cleanText, 0.7);
     }
