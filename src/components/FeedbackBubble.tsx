@@ -19,6 +19,7 @@ const FeedbackBubble = () => {
   const [message, setMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
+  const location = useLocation();
 
   const handleSubmit = async () => {
     if (!message.trim()) {
