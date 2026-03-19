@@ -91,31 +91,8 @@ const PhonicsWord = ({ word, gradeLevel, fontSize }: PhonicsWordProps) => {
     return <span>{word} </span>;
   }
 
-  const phoneticBreakdown = getPhoneticBreakdown(cleanWord);
 
-  // Fetch dictionary definition when popover opens
-  useEffect(() => {
-    if (isOpen && !definition && cleanWord.length >= 3) {
-      setIsLoadingDefinition(true);
-      fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${cleanWord.toLowerCase()}`)
-        .then(res => res.json())
-        .then(data => {
-          if (Array.isArray(data) && data[0]?.meanings?.[0]) {
-            const meaning = data[0].meanings[0];
-            const def = meaning.definitions[0];
-            setDefinition({
-              partOfSpeech: meaning.partOfSpeech,
-              definition: def.definition,
-              example: def.example,
-            });
-          }
-        })
-        .catch(() => {
-          // Silently fail - definition is optional
-        })
-        .finally(() => setIsLoadingDefinition(false));
-    }
-  }, [isOpen, cleanWord, definition]);
+
 
   return (
     <>
