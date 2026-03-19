@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
-import { Send, Bot, Sparkles, Loader2, Lightbulb, AlertCircle } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
+import { Send, Bot, Sparkles, Loader2, Lightbulb, AlertCircle, Volume2, VolumeX } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { getHintForQuestionType, STATIC_HELP_TIPS } from "@/constants/readingHints";
+import { useTextToSpeech } from "@/hooks/useTextToSpeech";
 
 interface Message {
   role: "user" | "assistant" | "hint";
