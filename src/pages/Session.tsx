@@ -322,13 +322,22 @@ const Session = () => {
           )}
           {(state.phase === "reading" || state.phase === "questions") && (
             <button
-              onClick={toggleTutor}
-              className={`p-2 rounded-xl transition-colors lg:hidden ${
+              onClick={() => {
+                toggleTutor();
+                setHasPendingBuddyMessage(false);
+              }}
+              className={`p-2 rounded-xl transition-colors lg:hidden relative ${
                 state.showTutor ? "bg-primary text-primary-foreground" : "hover:bg-muted"
               }`}
               aria-label="Toggle AI tutor"
             >
               <Bot className="w-5 h-5" />
+              {hasPendingBuddyMessage && !state.showTutor && (
+                <span className="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-accent animate-ping" />
+              )}
+              {hasPendingBuddyMessage && !state.showTutor && (
+                <span className="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-accent" />
+              )}
             </button>
           )}
         </div>
