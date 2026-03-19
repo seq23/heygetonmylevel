@@ -202,6 +202,19 @@ const AITutor = ({
                 </div>
               )}
               {message.content}
+              {message.role !== "user" && isSupported && (
+                <button
+                  onClick={() => handleSpeak(message.content, index)}
+                  className="mt-2 flex items-center gap-1 text-xs text-muted-foreground hover:text-primary transition-colors"
+                  aria-label={speakingIndex === index ? "Stop reading" : "Read aloud"}
+                >
+                  {speakingIndex === index ? (
+                    <><VolumeX className="w-3.5 h-3.5" /> Stop</>
+                  ) : (
+                    <><Volume2 className="w-3.5 h-3.5" /> Read aloud</>
+                  )}
+                </button>
+              )}
             </div>
           </div>
         ))}
