@@ -57,7 +57,7 @@ const phonicsData: PhonicsCategory[] = [
       {
         letters: "Ending Sounds",
         soundsLike: "What sound does the word END with?",
-        pronunciation: "t",
+        pronunciation: "tuh, as in cat",
         examples: [
           { word: "cat", highlight: "t", emoji: "🐱" },
           { word: "hat", highlight: "t", emoji: "🎩" },
