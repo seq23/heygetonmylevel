@@ -212,11 +212,11 @@ const phonicsData: PhonicsCategory[] = [
     description: "When R comes after a vowel, it changes the sound!",
     emoji: "💪",
     patterns: [
-      { letters: "AR", soundsLike: "ar (like a pirate: arrr!)", pronunciation: "ar", examples: [{ word: "car", highlight: "ar", emoji: "🚗" }, { word: "star", highlight: "ar", emoji: "⭐" }, { word: "farm", highlight: "ar", emoji: "🌾" }], tip: "Open wide and growl like a pirate! Arrr!" },
-      { letters: "ER", soundsLike: "er (like 'her')", pronunciation: "er", examples: [{ word: "her", highlight: "er", emoji: "👩" }, { word: "water", highlight: "er", emoji: "💧" }, { word: "flower", highlight: "er", emoji: "🌸" }], tip: "ER, IR, and UR all sound the same!" },
-      { letters: "IR", soundsLike: "er (like 'bird')", pronunciation: "er", examples: [{ word: "bird", highlight: "ir", emoji: "🐦" }, { word: "girl", highlight: "ir", emoji: "👧" }, { word: "shirt", highlight: "ir", emoji: "👕" }], tip: "Same sound as ER — just spelled differently." },
-      { letters: "OR", soundsLike: "or (like 'more')", pronunciation: "or", examples: [{ word: "corn", highlight: "or", emoji: "🌽" }, { word: "horse", highlight: "or", emoji: "🐴" }, { word: "fork", highlight: "or", emoji: "🍴" }], tip: "Round your lips and add a growl." },
-      { letters: "UR", soundsLike: "er (like 'fur')", pronunciation: "er", examples: [{ word: "fur", highlight: "ur", emoji: "🧸" }, { word: "turn", highlight: "ur", emoji: "↩️" }, { word: "burn", highlight: "ur", emoji: "🔥" }], tip: "Same as ER and IR — English is tricky!" },
+      { letters: "AR", soundsLike: "ar (like a pirate: arrr!)", pronunciation: "ar, as in car", examples: [{ word: "car", highlight: "ar", emoji: "🚗" }, { word: "star", highlight: "ar", emoji: "⭐" }, { word: "farm", highlight: "ar", emoji: "🌾" }], tip: "Open wide and growl like a pirate! Arrr!" },
+      { letters: "ER", soundsLike: "er (like 'her')", pronunciation: "er, as in her", examples: [{ word: "her", highlight: "er", emoji: "👩" }, { word: "water", highlight: "er", emoji: "💧" }, { word: "flower", highlight: "er", emoji: "🌸" }], tip: "ER, IR, and UR all sound the same!" },
+      { letters: "IR", soundsLike: "er (like 'bird')", pronunciation: "ir, as in bird", examples: [{ word: "bird", highlight: "ir", emoji: "🐦" }, { word: "girl", highlight: "ir", emoji: "👧" }, { word: "shirt", highlight: "ir", emoji: "👕" }], tip: "Same sound as ER — just spelled differently." },
+      { letters: "OR", soundsLike: "or (like 'more')", pronunciation: "or, as in corn", examples: [{ word: "corn", highlight: "or", emoji: "🌽" }, { word: "horse", highlight: "or", emoji: "🐴" }, { word: "fork", highlight: "or", emoji: "🍴" }], tip: "Round your lips and add a growl." },
+      { letters: "UR", soundsLike: "er (like 'fur')", pronunciation: "ur, as in fur", examples: [{ word: "fur", highlight: "ur", emoji: "🧸" }, { word: "turn", highlight: "ur", emoji: "↩️" }, { word: "burn", highlight: "ur", emoji: "🔥" }], tip: "Same as ER and IR — English is tricky!" },
     ],
   },
 
