@@ -35,8 +35,8 @@ const App = () => (
             <Route path="/terms" element={<Terms />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
+          <FeedbackBubble />
         </BrowserRouter>
-        <FeedbackBubble />
       </SessionProvider>
     </TooltipProvider>
   </QueryClientProvider>
