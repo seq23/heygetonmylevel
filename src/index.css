@@ -176,7 +176,7 @@
   }
 
   .reading-passage {
-    @apply text-lg leading-relaxed font-body;
+    @apply leading-relaxed font-body;
   }
 
   .question-card {

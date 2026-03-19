@@ -99,7 +99,10 @@ const PhonicsWord = ({ word, gradeLevel, fontSize }: PhonicsWordProps) => {
       <Popover open={isOpen} onOpenChange={setIsOpen}>
         <PopoverTrigger asChild>
           <button
-            className="hover:bg-primary/10 hover:text-primary rounded px-0.5 -mx-0.5 transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50"
+            className={`hover:bg-primary/10 hover:text-primary rounded transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50 min-h-[44px] min-w-[44px] inline-flex items-center justify-center ${
+              gradeLevel <= 2 ? "px-1.5 -mx-1" : gradeLevel <= 4 ? "px-1 -mx-0.5" : "px-0.5 -mx-0.5"
+            }`}
+            style={fontSize ? { fontSize } : undefined}
             onClick={() => setIsOpen(true)}
           >
             {cleanWord}

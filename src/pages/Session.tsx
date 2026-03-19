@@ -366,7 +366,17 @@ const Session = () => {
                     <BookOpen className="w-5 h-5 text-primary" />
                     <h2 className="text-xl font-display font-bold">{state.passage.title}</h2>
                   </div>
-                <div className="reading-passage text-foreground whitespace-pre-wrap leading-relaxed">
+                <div className={`reading-passage text-foreground whitespace-pre-wrap ${
+                    session.readingLevel <= 2 
+                      ? "text-3xl leading-loose" 
+                      : session.readingLevel <= 4 
+                        ? "text-2xl leading-relaxed" 
+                        : session.readingLevel <= 6 
+                          ? "text-xl leading-relaxed" 
+                          : session.readingLevel <= 8
+                            ? "text-lg leading-relaxed"
+                            : "text-base leading-relaxed"
+                  }`}>
                     {state.passage.text.split(/\s+/).map((word, index) => (
                       <PhonicsWord key={index} word={word} gradeLevel={session.readingLevel} />
                     ))}
