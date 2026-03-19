@@ -53,7 +53,7 @@ export const useTextToSpeech = () => {
     ) || voices.find((v) => v.lang.startsWith("en-US"));
   }, []);
 
-  const speak = useCallback((text: string, rate: number = 0.75, pitch: number = 0.8) => {
+  const speak = useCallback((text: string, rate: number = 0.7, pitch: number = 0.8) => {
     window.speechSynthesis.cancel();
 
     const utterance = new SpeechSynthesisUtterance(text);
