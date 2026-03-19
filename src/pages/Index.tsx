@@ -1,18 +1,20 @@
 import { useNavigate } from "react-router-dom";
-import { BookOpen, Target, Sparkles, ArrowRight, CheckCircle, TrendingUp } from "lucide-react";
+import { BookOpen, Target, Sparkles, ArrowRight, CheckCircle, TrendingUp, User } from "lucide-react";
 import { useSession } from "@/contexts/SessionContext";
 import { useState } from "react";
 import Footer from "@/components/Footer";
 
 const Index = () => {
   const navigate = useNavigate();
-  const { createSession, isLoading } = useSession();
+  const { createSession, setUserName, isLoading } = useSession();
   const [loadingAction, setLoadingAction] = useState<string | null>(null);
+  const [name, setName] = useState("");
 
   const handleStartReading = async () => {
     setLoadingAction("start");
     try {
       await createSession();
+      if (name.trim()) setUserName(name.trim());
       navigate("/select-level");
     } catch (error) {
       console.error("Failed to create session:", error);
@@ -25,6 +27,7 @@ const Index = () => {
     setLoadingAction("assess");
     try {
       await createSession();
+      if (name.trim()) setUserName(name.trim());
       navigate("/assessment");
     } catch (error) {
       console.error("Failed to create session:", error);
@@ -103,6 +106,21 @@ const Index = () => {
                 <span><strong className="text-foreground">For parents:</strong> Help your child build foundational reading skills at home</span>
               </li>
             </ul>
+          </div>
+
+          {/* Name Input */}
+          <div className="fade-in-up max-w-sm mx-auto w-full" style={{ animationDelay: "0.18s" }}>
+            <div className="relative">
+              <User className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+              <input
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value.slice(0, 50))}
+                placeholder="What's your first name? (optional)"
+                className="w-full pl-10 pr-4 py-3 rounded-xl bg-muted border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 text-sm"
+                aria-label="Your first name"
+              />
+            </div>
           </div>
 
           {/* CTA Buttons */}

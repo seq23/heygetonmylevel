@@ -11,6 +11,7 @@ interface SessionData {
   skillsAttempted: string[];
   consecutiveCorrect: number;
   consecutiveIncorrect: number;
+  userName: string | null;
 }
 
 interface SessionContextType {
@@ -24,6 +25,7 @@ interface SessionContextType {
   checkLevelProgression: (correct: boolean) => { levelChanged: boolean; newLevel: number | null; direction: 'up' | 'down' | null };
   endSession: () => Promise<void>;
   resetSession: () => void;
+  setUserName: (name: string) => void;
 }
 
 const SessionContext = createContext<SessionContextType | undefined>(undefined);
@@ -53,6 +55,7 @@ export const SessionProvider: React.FC<{ children: React.ReactNode }> = ({ child
         skillsAttempted: [],
         consecutiveCorrect: 0,
         consecutiveIncorrect: 0,
+        userName: null,
       };
 
       setSession(newSession);
@@ -178,6 +181,10 @@ export const SessionProvider: React.FC<{ children: React.ReactNode }> = ({ child
     setSession(null);
   }, []);
 
+  const setUserName = useCallback((name: string): void => {
+    setSession((prev) => prev ? { ...prev, userName: name } : null);
+  }, []);
+
   // Cleanup on unmount or page leave
   useEffect(() => {
     const handleBeforeUnload = () => {
@@ -207,6 +214,7 @@ export const SessionProvider: React.FC<{ children: React.ReactNode }> = ({ child
         checkLevelProgression,
         endSession,
         resetSession,
+        setUserName,
       }}
     >
       {children}
