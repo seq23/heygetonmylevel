@@ -12,13 +12,14 @@ import { toast } from "sonner";
 
 interface ReadAloudAssessmentProps {
   currentLevel: number;
+  isESL?: boolean;
   onComplete: (accuracy: number, wpm: number, level: number) => void;
   onSkip: () => void;
 }
 
 type Phase = "loading" | "ready" | "countdown" | "recording" | "results" | "adjusting";
 
-const ReadAloudAssessment = ({ currentLevel, onComplete, onSkip }: ReadAloudAssessmentProps) => {
+const ReadAloudAssessment = ({ currentLevel, isESL = false, onComplete, onSkip }: ReadAloudAssessmentProps) => {
   const [phase, setPhase] = useState<Phase>("loading");
   const [sentences, setSentences] = useState<string[]>([]);
   const [currentSentenceIndex, setCurrentSentenceIndex] = useState(0);
@@ -49,7 +50,9 @@ const ReadAloudAssessment = ({ currentLevel, onComplete, onSkip }: ReadAloudAsse
   // IMPORTANT: Accuracy (word recognition) matters more than raw WPM.
   // Someone reading slowly but accurately should NOT be downgraded.
   const determineAdjustment = useCallback((accuracy: number, wpm: number, level: number): number => {
-    const targetWPM = getTargetWPM(level);
+    const rawTargetWPM = getTargetWPM(level);
+    // ESL speakers get 30% grace on WPM targets
+    const targetWPM = isESL ? rawTargetWPM * 0.7 : rawTargetWPM;
     const wpmRatio = wpm / targetWPM;
     
     // Only downgrade if ACCURACY is poor (not just slow reading)
@@ -79,7 +82,7 @@ const ReadAloudAssessment = ({ currentLevel, onComplete, onSkip }: ReadAloudAsse
     }
     
     return 0; // Level is appropriate
-  }, []);
+  }, [isESL]);
 
   // Load sentences for effective level
   useEffect(() => {
@@ -199,7 +202,8 @@ const ReadAloudAssessment = ({ currentLevel, onComplete, onSkip }: ReadAloudAsse
   }
 
   const currentSentence = sentences[currentSentenceIndex];
-  const targetWPM = getTargetWPM(effectiveLevel);
+  const rawTargetWPM = getTargetWPM(effectiveLevel);
+  const targetWPM = isESL ? Math.round(rawTargetWPM * 0.7) : rawTargetWPM;
   const feedback = result ? getFluencyFeedback(result.accuracy, result.wordsPerMinute, targetWPM) : null;
 
   return (
