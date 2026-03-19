@@ -25,6 +25,7 @@ interface SessionContextType {
   checkLevelProgression: (correct: boolean) => { levelChanged: boolean; newLevel: number | null; direction: 'up' | 'down' | null };
   endSession: () => Promise<void>;
   resetSession: () => void;
+  setUserName: (name: string) => void;
 }
 
 const SessionContext = createContext<SessionContextType | undefined>(undefined);
