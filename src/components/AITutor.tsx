@@ -53,7 +53,7 @@ const AITutor = ({
     setMessages([
       {
         role: "assistant",
-        content: "Hi there! 👋 I'm your reading buddy. Read through the passage first, then if you get stuck, I'm here to help!",
+        content: welcomeMessage,
       },
     ]);
     setAiMessageCount(0);
