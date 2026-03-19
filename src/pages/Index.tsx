@@ -108,6 +108,21 @@ const Index = () => {
             </ul>
           </div>
 
+          {/* Name Input */}
+          <div className="fade-in-up max-w-sm mx-auto w-full" style={{ animationDelay: "0.18s" }}>
+            <div className="relative">
+              <User className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+              <input
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value.slice(0, 50))}
+                placeholder="What's your first name? (optional)"
+                className="w-full pl-10 pr-4 py-3 rounded-xl bg-muted border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 text-sm"
+                aria-label="Your first name"
+              />
+            </div>
+          </div>
+
           {/* CTA Buttons */}
           <div className="space-y-4 pt-4 fade-in-up" style={{ animationDelay: "0.2s" }}>
             <button
