@@ -1,13 +1,14 @@
 import { useNavigate } from "react-router-dom";
-import { BookOpen, Target, Sparkles, ArrowRight, CheckCircle, TrendingUp } from "lucide-react";
+import { BookOpen, Target, Sparkles, ArrowRight, CheckCircle, TrendingUp, User } from "lucide-react";
 import { useSession } from "@/contexts/SessionContext";
 import { useState } from "react";
 import Footer from "@/components/Footer";
 
 const Index = () => {
   const navigate = useNavigate();
-  const { createSession, isLoading } = useSession();
+  const { createSession, setUserName, isLoading } = useSession();
   const [loadingAction, setLoadingAction] = useState<string | null>(null);
+  const [name, setName] = useState("");
 
   const handleStartReading = async () => {
     setLoadingAction("start");
