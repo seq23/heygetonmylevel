@@ -64,10 +64,11 @@ const PhonicsWord = ({ word, gradeLevel, fontSize }: PhonicsWordProps) => {
   const cleanWord = word.replace(/[.,!?;:'"]+$/, "");
   const punctuation = word.slice(cleanWord.length);
   const phoneticBreakdown = getPhoneticBreakdown(cleanWord);
-  
-  // Fetch dictionary definition when popover opens
+  const showDefinition = gradeLevel >= 4;
+
+  // Fetch dictionary definition when popover opens (only for grade 4+)
   useEffect(() => {
-    if (isOpen && !definition && cleanWord.length >= 3) {
+    if (isOpen && showDefinition && !definition && cleanWord.length >= 3) {
       setIsLoadingDefinition(true);
       fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${cleanWord.toLowerCase()}`)
         .then(res => res.json())
@@ -85,7 +86,7 @@ const PhonicsWord = ({ word, gradeLevel, fontSize }: PhonicsWordProps) => {
         .catch(() => {})
         .finally(() => setIsLoadingDefinition(false));
     }
-  }, [isOpen, cleanWord, definition]);
+  }, [isOpen, cleanWord, definition, showDefinition]);
 
   if (cleanWord.length < 2) {
     return <span>{word} </span>;
@@ -117,34 +118,36 @@ const PhonicsWord = ({ word, gradeLevel, fontSize }: PhonicsWordProps) => {
               </p>
             </div>
 
-            {/* Dictionary Definition */}
-            <div className="border-t pt-3">
-              {isLoadingDefinition ? (
-                <div className="flex items-center justify-center gap-2 text-muted-foreground text-sm py-2">
-                  <Loader2 className="w-4 h-4 animate-spin" />
-                  <span>Loading definition...</span>
-                </div>
-              ) : definition ? (
-                <div className="space-y-1">
-                  <div className="flex items-center gap-2">
-                    <BookOpen className="w-4 h-4 text-primary" />
-                    <span className="text-xs font-medium text-primary uppercase">
-                      {definition.partOfSpeech}
-                    </span>
+            {/* Dictionary Definition - only for Grade 4+ */}
+            {showDefinition && (
+              <div className="border-t pt-3">
+                {isLoadingDefinition ? (
+                  <div className="flex items-center justify-center gap-2 text-muted-foreground text-sm py-2">
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                    <span>Loading definition...</span>
                   </div>
-                  <p className="text-sm text-foreground">{definition.definition}</p>
-                  {definition.example && (
-                    <p className="text-xs text-muted-foreground italic">
-                      "{definition.example}"
-                    </p>
-                  )}
-                </div>
-              ) : cleanWord.length >= 3 ? (
-                <p className="text-xs text-muted-foreground text-center">
-                  No definition available
-                </p>
-              ) : null}
-            </div>
+                ) : definition ? (
+                  <div className="space-y-1">
+                    <div className="flex items-center gap-2">
+                      <BookOpen className="w-4 h-4 text-primary" />
+                      <span className="text-xs font-medium text-primary uppercase">
+                        {definition.partOfSpeech}
+                      </span>
+                    </div>
+                    <p className="text-sm text-foreground">{definition.definition}</p>
+                    {definition.example && (
+                      <p className="text-xs text-muted-foreground italic">
+                        "{definition.example}"
+                      </p>
+                    )}
+                  </div>
+                ) : cleanWord.length >= 3 ? (
+                  <p className="text-xs text-muted-foreground text-center">
+                    No definition available
+                  </p>
+                ) : null}
+              </div>
+            )}
             
             {isSupported ? (
               <div className="flex gap-2 justify-center">
