@@ -197,11 +197,11 @@ const phonicsData: PhonicsCategory[] = [
     description: "When two vowels walk, the first one talks!",
     emoji: "🗣️",
     patterns: [
-      { letters: "AI / AY", soundsLike: "long A (says its name!)", pronunciation: "ay", examples: [{ word: "rain", highlight: "ai", emoji: "🌧️" }, { word: "play", highlight: "ay", emoji: "🎮" }, { word: "train", highlight: "ai", emoji: "🚂" }], tip: "AI in the middle, AY at the end of a word." },
-      { letters: "EA / EE", soundsLike: "long E (says its name!)", pronunciation: "ee", examples: [{ word: "read", highlight: "ea", emoji: "📖" }, { word: "tree", highlight: "ee", emoji: "🌳" }, { word: "beach", highlight: "ea", emoji: "🏖️" }], tip: "Both make the same 'ee' sound — smile wide!" },
-      { letters: "OA / OW", soundsLike: "long O (says its name!)", pronunciation: "oh", examples: [{ word: "boat", highlight: "oa", emoji: "⛵" }, { word: "snow", highlight: "ow", emoji: "❄️" }, { word: "road", highlight: "oa", emoji: "🛤️" }], tip: "OA in the middle, OW at the end." },
-      { letters: "OO", soundsLike: "oo (like in moon)", pronunciation: "oo", examples: [{ word: "moon", highlight: "oo", emoji: "🌙" }, { word: "food", highlight: "oo", emoji: "🍔" }, { word: "boot", highlight: "oo", emoji: "🥾" }], tip: "Round your lips into a tiny O shape." },
-      { letters: "OU / OW", soundsLike: "ow (like 'ouch!')", pronunciation: "ow", examples: [{ word: "house", highlight: "ou", emoji: "🏠" }, { word: "cow", highlight: "ow", emoji: "🐄" }, { word: "loud", highlight: "ou", emoji: "📢" }], tip: "Start with 'ah' and slide to 'oo'." },
+      { letters: "AI / AY", soundsLike: "long A (says its name!)", pronunciation: "ay, as in rain", examples: [{ word: "rain", highlight: "ai", emoji: "🌧️" }, { word: "play", highlight: "ay", emoji: "🎮" }, { word: "train", highlight: "ai", emoji: "🚂" }], tip: "AI in the middle, AY at the end of a word." },
+      { letters: "EA / EE", soundsLike: "long E (says its name!)", pronunciation: "ee, as in tree", examples: [{ word: "read", highlight: "ea", emoji: "📖" }, { word: "tree", highlight: "ee", emoji: "🌳" }, { word: "beach", highlight: "ea", emoji: "🏖️" }], tip: "Both make the same 'ee' sound — smile wide!" },
+      { letters: "OA / OW", soundsLike: "long O (says its name!)", pronunciation: "oh, as in boat", examples: [{ word: "boat", highlight: "oa", emoji: "⛵" }, { word: "snow", highlight: "ow", emoji: "❄️" }, { word: "road", highlight: "oa", emoji: "🛤️" }], tip: "OA in the middle, OW at the end." },
+      { letters: "OO", soundsLike: "oo (like in moon)", pronunciation: "oo, as in moon", examples: [{ word: "moon", highlight: "oo", emoji: "🌙" }, { word: "food", highlight: "oo", emoji: "🍔" }, { word: "boot", highlight: "oo", emoji: "🥾" }], tip: "Round your lips into a tiny O shape." },
+      { letters: "OU / OW", soundsLike: "ow (like 'ouch!')", pronunciation: "ow, as in house", examples: [{ word: "house", highlight: "ou", emoji: "🏠" }, { word: "cow", highlight: "ow", emoji: "🐄" }, { word: "loud", highlight: "ou", emoji: "📢" }], tip: "Start with 'ah' and slide to 'oo'." },
     ],
   },
 
