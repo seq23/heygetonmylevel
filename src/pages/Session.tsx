@@ -654,6 +654,7 @@ const Session = () => {
                     currentQuestion={currentQuestion?.text}
                     currentQuestionType={currentQuestion?.type}
                     passageId={state.passage.id}
+                    isVisible={true}
                   />
                 </div>
               </aside>
