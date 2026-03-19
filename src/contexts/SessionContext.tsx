@@ -214,6 +214,7 @@ export const SessionProvider: React.FC<{ children: React.ReactNode }> = ({ child
         checkLevelProgression,
         endSession,
         resetSession,
+        setUserName,
       }}
     >
       {children}
