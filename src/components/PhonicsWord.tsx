@@ -63,6 +63,7 @@ const PhonicsWord = ({ word, gradeLevel, fontSize }: PhonicsWordProps) => {
   
   const cleanWord = word.replace(/[.,!?;:'"]+$/, "");
   const punctuation = word.slice(cleanWord.length);
+  const phoneticBreakdown = getPhoneticBreakdown(cleanWord);
   const showDefinition = gradeLevel >= 4;
 
   // Fetch dictionary definition when popover opens (only for grade 4+)
