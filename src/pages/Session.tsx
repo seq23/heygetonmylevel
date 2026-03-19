@@ -646,50 +646,52 @@ const Session = () => {
           {(state.phase === "reading" || state.phase === "questions") && state.passage && (
             <>
               {/* Desktop Sidebar */}
-              <aside className="hidden lg:block w-80 xl:w-96 flex-shrink-0">
-                <div className="sticky top-24 h-[calc(100vh-8rem)]">
-                  <AITutor
-                    passageText={state.passage.text}
-                    gradeLevel={session?.readingLevel || 5}
-                    currentQuestion={currentQuestion?.text}
-                    currentQuestionType={currentQuestion?.type}
-                    passageId={state.passage.id}
-                    isVisible={true}
-                  />
-                </div>
-              </aside>
+              {!isMobile && (
+                <aside className="hidden lg:block w-80 xl:w-96 flex-shrink-0">
+                  <div className="sticky top-24 h-[calc(100vh-8rem)]">
+                    <AITutor
+                      passageText={state.passage.text}
+                      gradeLevel={session?.readingLevel || 5}
+                      currentQuestion={currentQuestion?.text}
+                      currentQuestionType={currentQuestion?.type}
+                      passageId={state.passage.id}
+                      isVisible={true}
+                    />
+                  </div>
+                </aside>
+              )}
 
               {/* Mobile Drawer */}
-              {state.showTutor && (
+              {isMobile && state.showTutor && (
                 <div className="fixed inset-0 z-50 lg:hidden">
                   <div
                     className="absolute inset-0 bg-background/80 backdrop-blur-sm"
                     onClick={toggleTutor}
                   />
                   <div className="absolute inset-x-0 bottom-0 h-[100dvh] max-h-[100dvh] bg-background rounded-t-3xl shadow-2xl px-3 pt-3 pb-[calc(env(safe-area-inset-bottom)+0.75rem)] fade-in-up flex flex-col overflow-hidden">
-                     {/* Close button row */}
-                     <div className="flex items-center justify-between mb-2 flex-shrink-0">
-                       <div className="w-12 h-1 bg-muted rounded-full" />
-                       <button
-                         onClick={toggleTutor}
-                         className="p-2 rounded-xl hover:bg-muted transition-colors"
-                         aria-label="Close AI tutor"
-                       >
-                         <X className="w-5 h-5 text-muted-foreground" />
-                       </button>
-                     </div>
-                     <div className="flex-1 min-h-0">
-                       <AITutor
-                          passageText={state.passage.text}
-                          gradeLevel={session?.readingLevel || 5}
-                          currentQuestion={currentQuestion?.text}
-                          currentQuestionType={currentQuestion?.type}
-                          passageId={state.passage.id}
-                          isVisible={state.showTutor}
-                          onPendingMessage={setHasPendingBuddyMessage}
-                        />
-                     </div>
-                   </div>
+                    {/* Close button row */}
+                    <div className="flex items-center justify-between mb-2 flex-shrink-0">
+                      <div className="w-12 h-1 bg-muted rounded-full" />
+                      <button
+                        onClick={toggleTutor}
+                        className="p-2 rounded-xl hover:bg-muted transition-colors"
+                        aria-label="Close AI tutor"
+                      >
+                        <X className="w-5 h-5 text-muted-foreground" />
+                      </button>
+                    </div>
+                    <div className="flex-1 min-h-0">
+                      <AITutor
+                        passageText={state.passage.text}
+                        gradeLevel={session?.readingLevel || 5}
+                        currentQuestion={currentQuestion?.text}
+                        currentQuestionType={currentQuestion?.type}
+                        passageId={state.passage.id}
+                        isVisible={state.showTutor}
+                        onPendingMessage={setHasPendingBuddyMessage}
+                      />
+                    </div>
+                  </div>
                 </div>
               )}
             </>
