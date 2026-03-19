@@ -46,7 +46,7 @@ const phonicsData: PhonicsCategory[] = [
       {
         letters: "Beginning Sounds",
         soundsLike: "What sound does the word START with?",
-        pronunciation: "b",
+        pronunciation: "buh, as in ball",
         examples: [
           { word: "ball", highlight: "b", emoji: "⚽" },
           { word: "bat", highlight: "b", emoji: "🦇" },
