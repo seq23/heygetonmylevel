@@ -63,11 +63,11 @@ const PhonicsWord = ({ word, gradeLevel, fontSize }: PhonicsWordProps) => {
   
   const cleanWord = word.replace(/[.,!?;:'"]+$/, "");
   const punctuation = word.slice(cleanWord.length);
-  const phoneticBreakdown = getPhoneticBreakdown(cleanWord);
-  
-  // Fetch dictionary definition when popover opens
+  const showDefinition = gradeLevel >= 4;
+
+  // Fetch dictionary definition when popover opens (only for grade 4+)
   useEffect(() => {
-    if (isOpen && !definition && cleanWord.length >= 3) {
+    if (isOpen && showDefinition && !definition && cleanWord.length >= 3) {
       setIsLoadingDefinition(true);
       fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${cleanWord.toLowerCase()}`)
         .then(res => res.json())
@@ -85,7 +85,7 @@ const PhonicsWord = ({ word, gradeLevel, fontSize }: PhonicsWordProps) => {
         .catch(() => {})
         .finally(() => setIsLoadingDefinition(false));
     }
-  }, [isOpen, cleanWord, definition]);
+  }, [isOpen, cleanWord, definition, showDefinition]);
 
   if (cleanWord.length < 2) {
     return <span>{word} </span>;
