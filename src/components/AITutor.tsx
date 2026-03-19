@@ -26,10 +26,18 @@ const AITutor = ({
   passageId,
   maxMessages = 5 // Strategy 1: Default limit of 5 AI messages
 }: AITutorProps) => {
+  const welcomeMessage = `Hi there! 👋 I'm your Reading Buddy!\n\n` +
+    `Here's how I work:\n` +
+    `• You can tap any word in the passage to hear how it sounds and get help sounding it out.\n` +
+    `• On a phone or tablet, tap the little robot icon 🤖 at the top of the screen to find me. Tap the ✕ to close me and go back to reading.\n` +
+    `• On a computer, I'll be right here beside your passage.\n` +
+    `• You can type questions to me or use the quick buttons below.\n\n` +
+    `Take your time reading — I'm here whenever you need me!`;
+
   const [messages, setMessages] = useState<Message[]>([
     {
       role: "assistant",
-      content: "Hi there! 👋 I'm your reading buddy. Read through the passage first, then if you get stuck, I'm here to help!",
+      content: welcomeMessage,
     },
   ]);
   const [input, setInput] = useState("");
