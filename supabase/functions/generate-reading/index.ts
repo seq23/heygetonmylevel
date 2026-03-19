@@ -63,6 +63,7 @@ Requirements:
 - Length: ${level <= 1 ? "30-50" : level <= 2 ? "50-80" : level <= 3 ? "80-120" : level <= 4 ? "100-150" : level <= 6 ? "150-200" : level <= 8 ? "200-250" : "200-300"} words
 ${topicInstruction}
 - Skill focus: ${skillFocus || "general comprehension"}
+${skillFocus === "phonics" ? `- PHONICS FOCUS: Use words with clear, consistent sound patterns (e.g., rhyming words, word families like -at, -ig, -op). Include repetition of key sounds. Make the passage fun to read aloud.` : ""}
 ${theme ? `- IMPORTANT: Incorporate the "${theme}" theme naturally into an engaging story or informational passage` : ""}
 
 Return ONLY a JSON object in this exact format:
@@ -88,6 +89,9 @@ Return ONLY a JSON object in this exact format:
       } else if (skillFocus === "cause_effect") {
         questionTypeInstruction = "ALL 4 questions MUST focus on cause and effect relationships. Ask why things happen, what causes events, and what results from actions.";
         questionTypes = "cause_effect";
+      } else if (skillFocus === "phonics") {
+        questionTypeInstruction = "ALL 4 questions MUST focus on phonics: letter sounds, blending sounds together, rhyming words, beginning/ending sounds, vowel sounds, and sound patterns. Make questions accessible for all ages and ability levels.";
+        questionTypes = "vocabulary";
       } else if (skillFocus === "decoding") {
         questionTypeInstruction = "ALL 4 questions MUST focus on word decoding, phonics patterns, and word structure. Ask about word parts, syllables, prefixes, suffixes, and sound patterns.";
         questionTypes = "vocabulary";

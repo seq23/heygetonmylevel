@@ -10,19 +10,49 @@ import {
   MessageSquare,
   Play,
   ArrowLeft,
-  Palette
+  Palette,
+  Volume2
 } from "lucide-react";
 import { useSession } from "@/contexts/SessionContext";
 import { Input } from "@/components/ui/input";
 import Footer from "@/components/Footer";
 
-const skills = [
+import skillPhonics from "@/assets/skill-phonics.png";
+import skillDecoding from "@/assets/skill-decoding.png";
+import skillVocabulary from "@/assets/skill-vocabulary.png";
+import skillInference from "@/assets/skill-inference.png";
+import skillCauseEffect from "@/assets/skill-cause-effect.png";
+import skillReasoning from "@/assets/skill-reasoning.png";
+import skillCritical from "@/assets/skill-critical.png";
+import skillComprehension from "@/assets/skill-comprehension.png";
+
+interface Skill {
+  id: string;
+  name: string;
+  description: string;
+  icon: React.ComponentType<{ className?: string }>;
+  color: string;
+  image: string;
+  featured?: boolean;
+}
+
+const skills: Skill[] = [
+  {
+    id: "phonics",
+    name: "Phonics",
+    description: "Learn letter sounds & blend them into words",
+    icon: Volume2,
+    color: "bg-secondary/10 text-secondary",
+    image: skillPhonics,
+    featured: true,
+  },
   {
     id: "decoding",
     name: "Decoding",
     description: "Breaking down words into parts",
     icon: Search,
     color: "bg-primary/10 text-primary",
+    image: skillDecoding,
   },
   {
     id: "vocabulary",
@@ -30,6 +60,7 @@ const skills = [
     description: "Understanding word meanings",
     icon: BookOpen,
     color: "bg-secondary/10 text-secondary",
+    image: skillVocabulary,
   },
   {
     id: "inference",
@@ -37,6 +68,7 @@ const skills = [
     description: "Reading between the lines",
     icon: Lightbulb,
     color: "bg-accent/20 text-accent-foreground",
+    image: skillInference,
   },
   {
     id: "cause_effect",
@@ -44,6 +76,7 @@ const skills = [
     description: "Understanding why things happen",
     icon: Link2,
     color: "bg-success/10 text-success",
+    image: skillCauseEffect,
   },
   {
     id: "reasoning",
@@ -51,6 +84,7 @@ const skills = [
     description: "Following complex arguments",
     icon: Brain,
     color: "bg-primary/10 text-primary",
+    image: skillReasoning,
   },
   {
     id: "critical",
@@ -58,6 +92,7 @@ const skills = [
     description: "Analyzing and evaluating",
     icon: Sparkles,
     color: "bg-secondary/10 text-secondary",
+    image: skillCritical,
   },
   {
     id: "comprehension",
@@ -65,6 +100,7 @@ const skills = [
     description: "Understanding full passages",
     icon: MessageSquare,
     color: "bg-accent/20 text-accent-foreground",
+    image: skillComprehension,
   },
 ];
 
@@ -187,17 +223,47 @@ const Dashboard = () => {
         {/* Skills Section */}
         <div className="fade-in-up" style={{ animationDelay: "0.2s" }}>
           <h3 className="text-lg font-display font-bold mb-4">Practice a Specific Skill</h3>
+          
+          {/* Featured Phonics Card */}
+          {skills.filter(s => s.featured).map((skill) => (
+            <button
+              key={skill.id}
+              onClick={() => handleStartSession(skill.id)}
+              className="w-full card-elevated text-left hover:ring-2 hover:ring-secondary/50 transition-all mb-6 overflow-hidden"
+            >
+              <div className="flex items-center gap-4">
+                <img 
+                  src={skill.image} 
+                  alt={skill.name} 
+                  className="w-20 h-20 object-contain flex-shrink-0" 
+                  loading="lazy"
+                />
+                <div className="flex-1">
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="text-xs font-semibold uppercase tracking-wide text-secondary">⭐ Recommended</span>
+                  </div>
+                  <p className="font-display font-bold text-lg text-foreground">{skill.name}</p>
+                  <p className="text-sm text-muted-foreground">{skill.description}</p>
+                </div>
+              </div>
+            </button>
+          ))}
+
+          {/* Other Skills Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {skills.map((skill) => (
+            {skills.filter(s => !s.featured).map((skill) => (
               <button
                 key={skill.id}
                 onClick={() => handleStartSession(skill.id)}
                 className="card-elevated text-left hover:ring-2 hover:ring-primary/50 transition-all"
               >
-                <div className="flex items-start gap-4">
-                  <div className={`p-3 rounded-xl ${skill.color}`}>
-                    <skill.icon className="w-5 h-5" />
-                  </div>
+                <div className="flex items-center gap-4">
+                  <img 
+                    src={skill.image} 
+                    alt={skill.name} 
+                    className="w-14 h-14 object-contain flex-shrink-0" 
+                    loading="lazy"
+                  />
                   <div>
                     <p className="font-semibold text-foreground">{skill.name}</p>
                     <p className="text-sm text-muted-foreground">{skill.description}</p>
