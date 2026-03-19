@@ -82,7 +82,7 @@ const ReadAloudAssessment = ({ currentLevel, isESL = false, onComplete, onSkip }
     }
     
     return 0; // Level is appropriate
-  }, []);
+  }, [isESL]);
 
   // Load sentences for effective level
   useEffect(() => {
