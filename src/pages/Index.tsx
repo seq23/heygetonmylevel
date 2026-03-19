@@ -14,6 +14,7 @@ const Index = () => {
     setLoadingAction("start");
     try {
       await createSession();
+      if (name.trim()) setUserName(name.trim());
       navigate("/select-level");
     } catch (error) {
       console.error("Failed to create session:", error);
