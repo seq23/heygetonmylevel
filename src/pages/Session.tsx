@@ -42,6 +42,7 @@ const Session = () => {
   const isMobile = useIsMobile();
   const { session, recordAnswer, setCurrentPassage, checkLevelProgression } = useSession();
   const [levelChangeQueued, setLevelChangeQueued] = useState<{ newLevel: number; direction: 'up' | 'down' } | null>(null);
+  const [hasPendingBuddyMessage, setHasPendingBuddyMessage] = useState(false);
   const { getCachedOrGeneratePassage, generateQuestions, isLoading } = useAI();
   const skillFocus = location.state?.skillFocus;
   const theme = location.state?.theme;
@@ -321,13 +322,22 @@ const Session = () => {
           )}
           {(state.phase === "reading" || state.phase === "questions") && (
             <button
-              onClick={toggleTutor}
-              className={`p-2 rounded-xl transition-colors lg:hidden ${
+              onClick={() => {
+                toggleTutor();
+                setHasPendingBuddyMessage(false);
+              }}
+              className={`p-2 rounded-xl transition-colors lg:hidden relative ${
                 state.showTutor ? "bg-primary text-primary-foreground" : "hover:bg-muted"
               }`}
               aria-label="Toggle AI tutor"
             >
               <Bot className="w-5 h-5" />
+              {hasPendingBuddyMessage && !state.showTutor && (
+                <span className="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-accent animate-ping" />
+              )}
+              {hasPendingBuddyMessage && !state.showTutor && (
+                <span className="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-accent" />
+              )}
             </button>
           )}
         </div>
@@ -644,6 +654,7 @@ const Session = () => {
                     currentQuestion={currentQuestion?.text}
                     currentQuestionType={currentQuestion?.type}
                     passageId={state.passage.id}
+                    isVisible={true}
                   />
                 </div>
               </aside>
@@ -669,12 +680,14 @@ const Session = () => {
                      </div>
                      <div className="flex-1 min-h-0">
                        <AITutor
-                         passageText={state.passage.text}
-                         gradeLevel={session?.readingLevel || 5}
-                         currentQuestion={currentQuestion?.text}
-                         currentQuestionType={currentQuestion?.type}
-                         passageId={state.passage.id}
-                       />
+                          passageText={state.passage.text}
+                          gradeLevel={session?.readingLevel || 5}
+                          currentQuestion={currentQuestion?.text}
+                          currentQuestionType={currentQuestion?.type}
+                          passageId={state.passage.id}
+                          isVisible={state.showTutor}
+                          onPendingMessage={setHasPendingBuddyMessage}
+                        />
                      </div>
                    </div>
                 </div>
