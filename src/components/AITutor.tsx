@@ -353,7 +353,17 @@ const AITutor = ({
                 : `${maxMessages - aiMessageCount} AI helps remaining`}
             </p>
           </div>
-          <Sparkles className="w-4 h-4 text-accent ml-auto" />
+          {!isWelcoming && (
+            <button
+              onClick={handleResetTutorial}
+              className="p-2 rounded-lg hover:bg-muted transition-colors ml-auto"
+              aria-label="Replay welcome tutorial"
+              title="Replay tutorial"
+            >
+              <RotateCcw className="w-4 h-4 text-muted-foreground" />
+            </button>
+          )}
+          {isWelcoming && <Sparkles className="w-4 h-4 text-accent ml-auto" />}
         </div>
       </div>
 
