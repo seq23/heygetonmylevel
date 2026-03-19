@@ -181,6 +181,10 @@ export const SessionProvider: React.FC<{ children: React.ReactNode }> = ({ child
     setSession(null);
   }, []);
 
+  const setUserName = useCallback((name: string): void => {
+    setSession((prev) => prev ? { ...prev, userName: name } : null);
+  }, []);
+
   // Cleanup on unmount or page leave
   useEffect(() => {
     const handleBeforeUnload = () => {
