@@ -81,6 +81,8 @@ const AITutor = ({
     }
   };
 
+  const isLimitReached = aiMessageCount >= maxMessages;
+
   const handleSend = async () => {
     if (!input.trim() || isLoading || isLimitReached) return;
 
