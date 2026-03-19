@@ -68,7 +68,7 @@ const phonicsData: PhonicsCategory[] = [
       {
         letters: "Rhyming Words",
         soundsLike: "Words that sound alike at the end",
-        pronunciation: "at",
+        pronunciation: "at, as in cat, hat, mat",
         examples: [
           { word: "cat", highlight: "at", emoji: "🐱" },
           { word: "hat", highlight: "at", emoji: "🎩" },
