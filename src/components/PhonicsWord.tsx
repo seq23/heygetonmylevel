@@ -10,6 +10,7 @@ import {
 interface PhonicsWordProps {
   word: string;
   gradeLevel: number;
+  fontSize?: string;
 }
 
 interface DictionaryDefinition {
