@@ -42,6 +42,7 @@ const Session = () => {
   const isMobile = useIsMobile();
   const { session, recordAnswer, setCurrentPassage, checkLevelProgression } = useSession();
   const [levelChangeQueued, setLevelChangeQueued] = useState<{ newLevel: number; direction: 'up' | 'down' } | null>(null);
+  const [hasPendingBuddyMessage, setHasPendingBuddyMessage] = useState(false);
   const { getCachedOrGeneratePassage, generateQuestions, isLoading } = useAI();
   const skillFocus = location.state?.skillFocus;
   const theme = location.state?.theme;
