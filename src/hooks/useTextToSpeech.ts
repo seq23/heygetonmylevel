@@ -53,9 +53,7 @@ export const useTextToSpeech = () => {
     ) || voices.find((v) => v.lang.startsWith("en-US"));
   }, []);
 
-  const speak = useCallback((text: string, rate: number = 0.7, pitch: number = 0.8) => {
-    window.speechSynthesis.cancel();
-
+  const buildUtterance = useCallback((text: string, rate: number, pitch: number) => {
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.rate = rate;
     utterance.pitch = pitch;
@@ -67,8 +65,31 @@ export const useTextToSpeech = () => {
     }
 
     utteranceRef.current = utterance;
-    window.speechSynthesis.speak(utterance);
+    return utterance;
   }, [getPreferredVoice]);
+
+  const speak = useCallback((text: string, rate: number = 0.7, pitch: number = 0.8) => {
+    if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
+
+    window.speechSynthesis.cancel();
+    const utterance = buildUtterance(text, rate, pitch);
+    window.speechSynthesis.speak(utterance);
+  }, [buildUtterance]);
+
+  const speakAsync = useCallback((text: string, rate: number = 0.7, pitch: number = 0.8) => {
+    return new Promise<void>((resolve) => {
+      if (typeof window === "undefined" || !("speechSynthesis" in window)) {
+        resolve();
+        return;
+      }
+
+      window.speechSynthesis.cancel();
+      const utterance = buildUtterance(text, rate, pitch);
+      utterance.onend = () => resolve();
+      utterance.onerror = () => resolve();
+      window.speechSynthesis.speak(utterance);
+    });
+  }, [buildUtterance]);
 
   const soundOut = useCallback((text: string) => {
     window.speechSynthesis.cancel();
@@ -108,5 +129,5 @@ export const useTextToSpeech = () => {
 
   const isSupported = typeof window !== "undefined" && "speechSynthesis" in window;
 
-  return { speak, soundOut, stop, isSupported };
+  return { speak, speakAsync, soundOut, stop, isSupported };
 };

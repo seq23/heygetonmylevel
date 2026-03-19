@@ -55,7 +55,7 @@ const AITutor = ({
   const [welcomeStep, setWelcomeStep] = useState(0);
   const [isWelcoming, setIsWelcoming] = useState(!hasBeenWelcomed);
   const [pendingMessages, setPendingMessages] = useState(0);
-  const { speak, stop, isSupported } = useTextToSpeech();
+  const { speak, speakAsync, stop, isSupported } = useTextToSpeech();
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const welcomeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const previousPassageIdRef = useRef<string | undefined>(passageId);
@@ -89,27 +89,45 @@ const AITutor = ({
     // else: first time — welcome sequence kicks in via the other effect
   }, []);
 
-  // Welcome sequence: deliver messages one at a time with pauses
+  // Welcome sequence: wait for each spoken message to finish, then pause before next
   useEffect(() => {
     if (!isWelcoming) return;
+
     if (welcomeStep >= WELCOME_SEQUENCE.length) {
       setIsWelcoming(false);
       localStorage.setItem(STORAGE_KEY_WELCOMED, "true");
       return;
     }
 
-    const delay = welcomeStep === 0 ? 500 : 3500;
+    let cancelled = false;
 
-    welcomeTimerRef.current = setTimeout(() => {
+    const playWelcomeStep = async () => {
       const msg = WELCOME_SEQUENCE[welcomeStep];
       setMessages((prev) => [...prev, { role: "assistant", content: msg }]);
-      setWelcomeStep((prev) => prev + 1);
-    }, delay);
+
+      const spokenText = cleanForTTS(msg);
+      if (isVisible && isSupported && spokenText) {
+        await speakAsync(spokenText, 0.7);
+      } else {
+        await new Promise((resolve) => setTimeout(resolve, 2500));
+      }
+
+      if (cancelled) return;
+
+      // Longer pause between messages so pacing feels calm and complete
+      welcomeTimerRef.current = setTimeout(() => {
+        setWelcomeStep((prev) => prev + 1);
+      }, 1800);
+    };
+
+    playWelcomeStep();
 
     return () => {
+      cancelled = true;
       if (welcomeTimerRef.current) clearTimeout(welcomeTimerRef.current);
+      stop();
     };
-  }, [welcomeStep, isWelcoming]);
+  }, [welcomeStep, isWelcoming, isVisible, isSupported, speakAsync, stop]);
 
   // Reset per-passage state when passage changes (not on first mount)
   useEffect(() => {
@@ -179,9 +197,9 @@ const AITutor = ({
       .trim();
   };
 
-  // Auto-read new assistant/hint messages aloud (only when visible)
+  // Auto-read new assistant/hint messages aloud (only when visible, not during welcome sequence)
   useEffect(() => {
-    if (!isSupported || messages.length === 0 || !isVisible) return;
+    if (!isSupported || messages.length === 0 || !isVisible || isWelcoming) return;
     const lastMsg = messages[messages.length - 1];
     if (lastMsg.role === "assistant" || lastMsg.role === "hint") {
       const cleanText = cleanForTTS(lastMsg.content);
@@ -191,7 +209,7 @@ const AITutor = ({
         setTimeout(() => speak(cleanText, 0.7), 150);
       }
     }
-  }, [messages.length, isVisible]);
+  }, [messages.length, isVisible, isWelcoming]);
 
   const handleSpeak = (text: string, index: number) => {
     if (speakingIndex === index) {
