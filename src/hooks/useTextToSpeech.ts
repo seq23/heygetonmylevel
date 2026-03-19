@@ -41,8 +41,15 @@ export const useTextToSpeech = () => {
 
   const getPreferredVoice = useCallback(() => {
     const voices = window.speechSynthesis.getVoices();
+    // Prefer softer, natural-sounding voices (Samantha on macOS/iOS, Karen on some systems)
     return voices.find(
+      (v) => v.lang.startsWith("en") && v.name.includes("Samantha")
+    ) || voices.find(
+      (v) => v.lang.startsWith("en") && v.name.includes("Karen")
+    ) || voices.find(
       (v) => v.lang.startsWith("en") && v.name.includes("Natural")
+    ) || voices.find(
+      (v) => v.lang.startsWith("en-US") && v.name.toLowerCase().includes("female")
     ) || voices.find((v) => v.lang.startsWith("en-US"));
   }, []);
 
