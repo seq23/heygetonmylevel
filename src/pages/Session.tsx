@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { ArrowLeft, BookOpen, CheckCircle2, XCircle, Loader2, HelpCircle, TrendingUp, TrendingDown, Bot, X, Home } from "lucide-react";
+import { ArrowLeft, BookOpen, CheckCircle2, XCircle, Loader2, HelpCircle, TrendingUp, TrendingDown, Bot, X, Home, MessageCircle } from "lucide-react";
+import { useIsMobile } from "@/hooks/use-mobile";
 import { useSession } from "@/contexts/SessionContext";
 import { useAI } from "@/hooks/useAI";
 import { supabase } from "@/integrations/supabase/client";
@@ -38,11 +39,13 @@ interface SessionState {
 const Session = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const isMobile = useIsMobile();
   const { session, recordAnswer, setCurrentPassage, checkLevelProgression } = useSession();
   const [levelChangeQueued, setLevelChangeQueued] = useState<{ newLevel: number; direction: 'up' | 'down' } | null>(null);
   const { getCachedOrGeneratePassage, generateQuestions, isLoading } = useAI();
   const skillFocus = location.state?.skillFocus;
   const theme = location.state?.theme;
+  const [showBuddyHint, setShowBuddyHint] = useState(true);
 
   const [state, setState] = useState<SessionState>({
     phase: "loading",
@@ -122,7 +125,7 @@ const Session = () => {
         selectedAnswer: null,
         showFeedback: false,
         isCorrect: null,
-        showTutor: true,
+        showTutor: !isMobile, // Don't auto-open on mobile/tablet
       }));
     }
   };
@@ -367,6 +370,26 @@ const Session = () => {
                     tap the button below to answer questions.
                   </p>
                 </div>
+
+                {/* Mobile buddy hint */}
+                {showBuddyHint && !state.showTutor && (
+                  <div className="lg:hidden p-4 rounded-xl bg-primary/10 border border-primary/20 flex items-center gap-3 fade-in-up">
+                    <MessageCircle className="w-5 h-5 text-primary flex-shrink-0" />
+                    <div className="flex-1">
+                      <p className="text-sm font-medium text-foreground">Need help reading?</p>
+                      <p className="text-xs text-muted-foreground">
+                        Tap the <Bot className="w-3.5 h-3.5 inline-block mx-0.5 -mt-0.5" /> icon in the top-right corner to open your Reading Buddy. Press <X className="w-3 h-3 inline-block mx-0.5 -mt-0.5" /> to close it.
+                      </p>
+                    </div>
+                    <button
+                      onClick={() => setShowBuddyHint(false)}
+                      className="p-1 rounded-lg hover:bg-muted transition-colors flex-shrink-0"
+                      aria-label="Dismiss hint"
+                    >
+                      <X className="w-4 h-4 text-muted-foreground" />
+                    </button>
+                  </div>
+                )}
 
                 <button
                   onClick={handleReadyForQuestions}
