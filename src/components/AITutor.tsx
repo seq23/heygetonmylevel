@@ -307,6 +307,20 @@ const AITutor = ({
     }
   };
 
+  const handleResetTutorial = () => {
+    stop();
+    if (welcomeTimerRef.current) clearTimeout(welcomeTimerRef.current);
+    localStorage.removeItem(STORAGE_KEY_NAME);
+    localStorage.removeItem(STORAGE_KEY_WELCOMED);
+    setUserName(null);
+    setMessages([]);
+    setWelcomeStep(0);
+    setIsWelcoming(true);
+    setAiMessageCount(0);
+    setHintsUsed(0);
+    setSpeakingIndex(null);
+  };
+
   const quickPrompts = [
     { label: hintsUsed < 2 ? "Give me a hint" : "AI Hint", action: handleQuickHint },
     { label: "Explain in simpler words", action: () => setInput("Explain in simpler words") },
