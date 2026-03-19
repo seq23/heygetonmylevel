@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Send, Bot, Sparkles, Loader2, Lightbulb, AlertCircle, Volume2, VolumeX } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { getHintForQuestionType, STATIC_HELP_TIPS } from "@/constants/readingHints";
@@ -16,6 +16,8 @@ interface AITutorProps {
   currentQuestionType?: string;
   passageId?: string;
   maxMessages?: number;
+  onPendingMessage?: (hasPending: boolean) => void;
+  isVisible?: boolean;
 }
 
 const WELCOME_SEQUENCE = [
@@ -26,6 +28,9 @@ const WELCOME_SEQUENCE = [
   `Take your time reading — there's no rush! I'm here whenever you need me. 📚\n\nBefore we start, what's your name? (Or what would you like me to call you?)`,
 ];
 
+const STORAGE_KEY_NAME = "reading_buddy_name";
+const STORAGE_KEY_WELCOMED = "reading_buddy_welcomed";
+
 const AITutor = ({
   passageText,
   gradeLevel,
@@ -33,35 +38,67 @@ const AITutor = ({
   currentQuestionType,
   passageId,
   maxMessages = 5,
+  onPendingMessage,
+  isVisible = true,
 }: AITutorProps) => {
+  // Load persisted name from localStorage
+  const storedName = localStorage.getItem(STORAGE_KEY_NAME);
+  const hasBeenWelcomed = localStorage.getItem(STORAGE_KEY_WELCOMED) === "true";
+
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [aiMessageCount, setAiMessageCount] = useState(0);
   const [hintsUsed, setHintsUsed] = useState(0);
   const [speakingIndex, setSpeakingIndex] = useState<number | null>(null);
-  const [userName, setUserName] = useState<string | null>(null);
+  const [userName, setUserName] = useState<string | null>(storedName);
   const [welcomeStep, setWelcomeStep] = useState(0);
-  const [isWelcoming, setIsWelcoming] = useState(true);
+  const [isWelcoming, setIsWelcoming] = useState(!hasBeenWelcomed);
+  const [pendingMessages, setPendingMessages] = useState(0);
   const { speak, stop, isSupported } = useTextToSpeech();
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const welcomeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const previousPassageIdRef = useRef<string | undefined>(passageId);
+  const isInitialMount = useRef(true);
 
   // Scroll to bottom when messages change
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages.length]);
 
+  // Initialize: either welcome sequence or returning greeting
+  useEffect(() => {
+    if (!isInitialMount.current) return;
+    isInitialMount.current = false;
+
+    if (hasBeenWelcomed && storedName) {
+      // Returning user — short greeting
+      setMessages([{
+        role: "assistant",
+        content: `Hi ${storedName}! 👋 How can I help you today?`,
+      }]);
+      setIsWelcoming(false);
+    } else if (hasBeenWelcomed && !storedName) {
+      // Welcomed but no name stored (edge case)
+      setMessages([{
+        role: "assistant",
+        content: `Hi there! 👋 How can I help you today?`,
+      }]);
+      setIsWelcoming(false);
+    }
+    // else: first time — welcome sequence kicks in via the other effect
+  }, []);
+
   // Welcome sequence: deliver messages one at a time with pauses
   useEffect(() => {
     if (!isWelcoming) return;
     if (welcomeStep >= WELCOME_SEQUENCE.length) {
       setIsWelcoming(false);
+      localStorage.setItem(STORAGE_KEY_WELCOMED, "true");
       return;
     }
 
-    const delay = welcomeStep === 0 ? 500 : 3500; // first message quick, then 3.5s pauses
+    const delay = welcomeStep === 0 ? 500 : 3500;
 
     welcomeTimerRef.current = setTimeout(() => {
       const msg = WELCOME_SEQUENCE[welcomeStep];
@@ -74,26 +111,59 @@ const AITutor = ({
     };
   }, [welcomeStep, isWelcoming]);
 
-  // Reset state only when passage actually changes (not on first mount)
+  // Reset per-passage state when passage changes (not on first mount)
   useEffect(() => {
     if (previousPassageIdRef.current === passageId) return;
 
     previousPassageIdRef.current = passageId;
-    setMessages([]);
     setAiMessageCount(0);
     setHintsUsed(0);
     setSpeakingIndex(null);
-    setWelcomeStep(0);
-    setIsWelcoming(true);
-    setUserName(null);
+    setPendingMessages(0);
     stop();
     if (welcomeTimerRef.current) clearTimeout(welcomeTimerRef.current);
+
+    // On new passage, give returning greeting (don't re-run full welcome)
+    const name = localStorage.getItem(STORAGE_KEY_NAME);
+    if (name) {
+      setUserName(name);
+      setMessages([{
+        role: "assistant",
+        content: `Hi ${name}! 👋 Here's a new passage for you. How can I help?`,
+      }]);
+      setIsWelcoming(false);
+    } else {
+      setMessages([{
+        role: "assistant",
+        content: `Hi there! 👋 New passage ready. How can I help?`,
+      }]);
+      setIsWelcoming(false);
+    }
   }, [passageId, stop]);
 
-  // Clean text for TTS: remove all emojis, replace special chars with spoken equivalents
+  // Track pending messages when buddy is not visible
+  useEffect(() => {
+    if (!isVisible && messages.length > 0) {
+      const lastMsg = messages[messages.length - 1];
+      if (lastMsg.role === "assistant" || lastMsg.role === "hint") {
+        setPendingMessages((prev) => prev + 1);
+        onPendingMessage?.(true);
+      }
+    }
+  }, [messages.length, isVisible]);
+
+  // Clear pending when buddy becomes visible
+  useEffect(() => {
+    if (isVisible && pendingMessages > 0) {
+      setPendingMessages(0);
+      onPendingMessage?.(false);
+    }
+  }, [isVisible, pendingMessages, onPendingMessage]);
+
+  // Clean text for TTS
   const cleanForTTS = (text: string): string => {
     return text
-      .replace(/[""]✕[""]/g, "ex")
+      .replace(/[""\u201C\u201D]✕[""\u201C\u201D]/g, "ex")
       .replace(/✕/g, "ex")
       .replace(/[\u{1F600}-\u{1F9FF}]/gu, "")
       .replace(/[\u{1F300}-\u{1F5FF}]/gu, "")
@@ -109,9 +179,9 @@ const AITutor = ({
       .trim();
   };
 
-  // Auto-read new assistant/hint messages aloud
+  // Auto-read new assistant/hint messages aloud (only when visible)
   useEffect(() => {
-    if (!isSupported || messages.length === 0) return;
+    if (!isSupported || messages.length === 0 || !isVisible) return;
     const lastMsg = messages[messages.length - 1];
     if (lastMsg.role === "assistant" || lastMsg.role === "hint") {
       const cleanText = cleanForTTS(lastMsg.content);
@@ -121,7 +191,7 @@ const AITutor = ({
         setTimeout(() => speak(cleanText, 0.7), 150);
       }
     }
-  }, [messages.length]);
+  }, [messages.length, isVisible]);
 
   const handleSpeak = (text: string, index: number) => {
     if (speakingIndex === index) {
@@ -147,10 +217,11 @@ const AITutor = ({
     // If we're still waiting for the user's name
     if (!userName) {
       const name = userMessage.replace(/^(my name is |i'm |im |call me |it's |its )/i, "").trim();
-      const cleanName = name.split(/\s/)[0]; // Take first word
+      const cleanName = name.split(/\s/)[0];
       const capitalizedName = cleanName.charAt(0).toUpperCase() + cleanName.slice(1).toLowerCase();
       setUserName(capitalizedName);
-      
+      localStorage.setItem(STORAGE_KEY_NAME, capitalizedName);
+
       setTimeout(() => {
         setMessages((prev) => [
           ...prev,
@@ -181,7 +252,6 @@ const AITutor = ({
       if (error) throw error;
 
       const response = data.response || "I'm here to help! Could you rephrase that?";
-      // Personalize with name if we have it
       const personalizedResponse = userName
         ? response.replace(/^(Great question|Good question|Nice question)/i, `$1, ${userName}`)
         : response;
