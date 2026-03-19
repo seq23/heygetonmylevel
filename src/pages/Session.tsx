@@ -45,7 +45,7 @@ const Session = () => {
   const { getCachedOrGeneratePassage, generateQuestions, isLoading } = useAI();
   const skillFocus = location.state?.skillFocus;
   const theme = location.state?.theme;
-  const [showBuddyHint, setShowBuddyHint] = useState(true);
+  
 
   const [state, setState] = useState<SessionState>({
     phase: "loading",
