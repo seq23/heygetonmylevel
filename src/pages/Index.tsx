@@ -27,6 +27,7 @@ const Index = () => {
     setLoadingAction("assess");
     try {
       await createSession();
+      if (name.trim()) setUserName(name.trim());
       navigate("/assessment");
     } catch (error) {
       console.error("Failed to create session:", error);
