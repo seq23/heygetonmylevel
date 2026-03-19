@@ -227,10 +227,10 @@ const phonicsData: PhonicsCategory[] = [
     description: "These letters are there but you DON'T say them!",
     emoji: "🤫",
     patterns: [
-      { letters: "KN", soundsLike: "n (the K is silent!)", pronunciation: "n", examples: [{ word: "know", highlight: "kn", emoji: "🧠" }, { word: "knee", highlight: "kn", emoji: "🦵" }, { word: "knife", highlight: "kn", emoji: "🔪" }], tip: "Ignore the K completely — just say N." },
-      { letters: "WR", soundsLike: "r (the W is silent!)", pronunciation: "r", examples: [{ word: "write", highlight: "wr", emoji: "✍️" }, { word: "wrong", highlight: "wr", emoji: "❌" }, { word: "wrap", highlight: "wr", emoji: "🎁" }], tip: "The W is just decoration — say R." },
-      { letters: "GN", soundsLike: "n (the G is silent!)", pronunciation: "n", examples: [{ word: "gnaw", highlight: "gn", emoji: "🦷" }, { word: "gnat", highlight: "gn", emoji: "🦟" }, { word: "sign", highlight: "gn", emoji: "🪧" }], tip: "Skip the G — it's hiding!" },
-      { letters: "MB", soundsLike: "m (the B is silent!)", pronunciation: "m", examples: [{ word: "lamb", highlight: "mb", emoji: "🐑" }, { word: "climb", highlight: "mb", emoji: "🧗" }, { word: "thumb", highlight: "mb", emoji: "👍" }], tip: "The B at the end is completely silent." },
+      { letters: "KN", soundsLike: "n (the K is silent!)", pronunciation: "nuh, as in know", examples: [{ word: "know", highlight: "kn", emoji: "🧠" }, { word: "knee", highlight: "kn", emoji: "🦵" }, { word: "knife", highlight: "kn", emoji: "🔪" }], tip: "Ignore the K completely — just say N." },
+      { letters: "WR", soundsLike: "r (the W is silent!)", pronunciation: "ruh, as in write", examples: [{ word: "write", highlight: "wr", emoji: "✍️" }, { word: "wrong", highlight: "wr", emoji: "❌" }, { word: "wrap", highlight: "wr", emoji: "🎁" }], tip: "The W is just decoration — say R." },
+      { letters: "GN", soundsLike: "n (the G is silent!)", pronunciation: "nuh, as in sign", examples: [{ word: "gnaw", highlight: "gn", emoji: "🦷" }, { word: "gnat", highlight: "gn", emoji: "🦟" }, { word: "sign", highlight: "gn", emoji: "🪧" }], tip: "Skip the G — it's hiding!" },
+      { letters: "MB", soundsLike: "m (the B is silent!)", pronunciation: "muh, as in lamb", examples: [{ word: "lamb", highlight: "mb", emoji: "🐑" }, { word: "climb", highlight: "mb", emoji: "🧗" }, { word: "thumb", highlight: "mb", emoji: "👍" }], tip: "The B at the end is completely silent." },
     ],
   },
 ];
