@@ -53,13 +53,13 @@ export const useTextToSpeech = () => {
     ) || voices.find((v) => v.lang.startsWith("en-US"));
   }, []);
 
-  const speak = useCallback((text: string, rate: number = 1.0) => {
+  const speak = useCallback((text: string, rate: number = 0.9, pitch: number = 0.95) => {
     window.speechSynthesis.cancel();
 
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.rate = rate;
-    utterance.pitch = 1;
-    utterance.volume = 1;
+    utterance.pitch = pitch;
+    utterance.volume = 0.9;
 
     const preferredVoice = getPreferredVoice();
     if (preferredVoice) {
