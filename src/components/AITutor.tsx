@@ -4,7 +4,6 @@ import { supabase } from "@/integrations/supabase/client";
 import { getHintForQuestionType, STATIC_HELP_TIPS } from "@/constants/readingHints";
 import { useTextToSpeech } from "@/hooks/useTextToSpeech";
 import { useSession } from "@/contexts/SessionContext";
-import { useTextToSpeech } from "@/hooks/useTextToSpeech";
 
 interface Message {
   role: "user" | "assistant" | "hint";
