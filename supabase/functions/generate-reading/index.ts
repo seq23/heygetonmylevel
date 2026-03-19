@@ -63,6 +63,7 @@ Requirements:
 - Length: ${level <= 1 ? "30-50" : level <= 2 ? "50-80" : level <= 3 ? "80-120" : level <= 4 ? "100-150" : level <= 6 ? "150-200" : level <= 8 ? "200-250" : "200-300"} words
 ${topicInstruction}
 - Skill focus: ${skillFocus || "general comprehension"}
+${skillFocus === "phonics" ? `- PHONICS FOCUS: Use words with clear, consistent sound patterns (e.g., rhyming words, word families like -at, -ig, -op). Include repetition of key sounds. Make the passage fun to read aloud.` : ""}
 ${theme ? `- IMPORTANT: Incorporate the "${theme}" theme naturally into an engaging story or informational passage` : ""}
 
 Return ONLY a JSON object in this exact format:
