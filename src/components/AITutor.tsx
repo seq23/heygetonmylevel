@@ -46,6 +46,7 @@ const AITutor = ({
   const { speak, stop, isSupported } = useTextToSpeech();
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const welcomeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const previousPassageIdRef = useRef<string | undefined>(passageId);
 
   // Scroll to bottom when messages change
   useEffect(() => {
