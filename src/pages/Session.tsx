@@ -680,12 +680,14 @@ const Session = () => {
                      </div>
                      <div className="flex-1 min-h-0">
                        <AITutor
-                         passageText={state.passage.text}
-                         gradeLevel={session?.readingLevel || 5}
-                         currentQuestion={currentQuestion?.text}
-                         currentQuestionType={currentQuestion?.type}
-                         passageId={state.passage.id}
-                       />
+                          passageText={state.passage.text}
+                          gradeLevel={session?.readingLevel || 5}
+                          currentQuestion={currentQuestion?.text}
+                          currentQuestionType={currentQuestion?.type}
+                          passageId={state.passage.id}
+                          isVisible={state.showTutor}
+                          onPendingMessage={setHasPendingBuddyMessage}
+                        />
                      </div>
                    </div>
                 </div>
