@@ -125,6 +125,10 @@ const Dashboard = () => {
   }
 
   const handleStartSession = (skillFocus?: string) => {
+    if (skillFocus === "phonics") {
+      navigate("/phonics");
+      return;
+    }
     navigate("/session", { state: { skillFocus, theme: theme.trim() || undefined } });
   };
 
