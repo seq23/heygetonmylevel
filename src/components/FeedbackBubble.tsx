@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 import { MessageCircle, X, Send, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
@@ -18,6 +19,7 @@ const FeedbackBubble = () => {
   const [message, setMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
+  const location = useLocation();
 
   const handleSubmit = async () => {
     if (!message.trim()) {
@@ -58,6 +60,8 @@ const FeedbackBubble = () => {
       setIsSubmitting(false);
     }
   };
+
+  if (location.pathname.startsWith("/session")) return null;
 
   return (
     <div className="fixed bottom-4 right-4 z-50">

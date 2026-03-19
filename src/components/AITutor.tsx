@@ -46,6 +46,7 @@ const AITutor = ({
   const { speak, stop, isSupported } = useTextToSpeech();
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const welcomeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const previousPassageIdRef = useRef<string | undefined>(passageId);
 
   // Scroll to bottom when messages change
   useEffect(() => {
@@ -73,8 +74,11 @@ const AITutor = ({
     };
   }, [welcomeStep, isWelcoming]);
 
-  // Reset state when passage changes
+  // Reset state only when passage actually changes (not on first mount)
   useEffect(() => {
+    if (previousPassageIdRef.current === passageId) return;
+
+    previousPassageIdRef.current = passageId;
     setMessages([]);
     setAiMessageCount(0);
     setHintsUsed(0);
