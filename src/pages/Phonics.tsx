@@ -46,7 +46,7 @@ const phonicsData: PhonicsCategory[] = [
       {
         letters: "Beginning Sounds",
         soundsLike: "What sound does the word START with?",
-        pronunciation: "b",
+        pronunciation: "buh, as in ball",
         examples: [
           { word: "ball", highlight: "b", emoji: "⚽" },
           { word: "bat", highlight: "b", emoji: "🦇" },
@@ -57,7 +57,7 @@ const phonicsData: PhonicsCategory[] = [
       {
         letters: "Ending Sounds",
         soundsLike: "What sound does the word END with?",
-        pronunciation: "t",
+        pronunciation: "tuh, as in cat",
         examples: [
           { word: "cat", highlight: "t", emoji: "🐱" },
           { word: "hat", highlight: "t", emoji: "🎩" },
@@ -68,7 +68,7 @@ const phonicsData: PhonicsCategory[] = [
       {
         letters: "Rhyming Words",
         soundsLike: "Words that sound alike at the end",
-        pronunciation: "at",
+        pronunciation: "at, as in cat, hat, mat",
         examples: [
           { word: "cat", highlight: "at", emoji: "🐱" },
           { word: "hat", highlight: "at", emoji: "🎩" },
@@ -86,26 +86,26 @@ const phonicsData: PhonicsCategory[] = [
     description: "Learn the sound each consonant letter makes",
     emoji: "🔤",
     patterns: [
-      { letters: "B", soundsLike: "buh", pronunciation: "buh", examples: [{ word: "ball", highlight: "b", emoji: "⚽" }, { word: "bed", highlight: "b", emoji: "🛏️" }, { word: "bus", highlight: "b", emoji: "🚌" }], tip: "Press your lips together, then pop them open!" },
-      { letters: "C", soundsLike: "kuh", pronunciation: "kuh", examples: [{ word: "cat", highlight: "c", emoji: "🐱" }, { word: "cup", highlight: "c", emoji: "☕" }, { word: "car", highlight: "c", emoji: "🚗" }], tip: "Hard C sounds like K. Say it in the back of your throat." },
-      { letters: "D", soundsLike: "duh", pronunciation: "duh", examples: [{ word: "dog", highlight: "d", emoji: "🐕" }, { word: "door", highlight: "d", emoji: "🚪" }, { word: "duck", highlight: "d", emoji: "🦆" }], tip: "Touch your tongue behind your top teeth!" },
-      { letters: "F", soundsLike: "fff", pronunciation: "fff", examples: [{ word: "fish", highlight: "f", emoji: "🐟" }, { word: "fan", highlight: "f", emoji: "🌀" }, { word: "frog", highlight: "f", emoji: "🐸" }], tip: "Bite your bottom lip gently and blow air." },
-      { letters: "G", soundsLike: "guh", pronunciation: "guh", examples: [{ word: "go", highlight: "g", emoji: "🏃" }, { word: "game", highlight: "g", emoji: "🎮" }, { word: "goat", highlight: "g", emoji: "🐐" }], tip: "Feel the sound in the back of your throat." },
-      { letters: "H", soundsLike: "huh", pronunciation: "huh", examples: [{ word: "hat", highlight: "h", emoji: "🎩" }, { word: "hot", highlight: "h", emoji: "🔥" }, { word: "house", highlight: "h", emoji: "🏠" }], tip: "Like you're breathing on a window to fog it up!" },
-      { letters: "J", soundsLike: "juh", pronunciation: "juh", examples: [{ word: "jump", highlight: "j", emoji: "🤸" }, { word: "jam", highlight: "j", emoji: "🍯" }, { word: "jet", highlight: "j", emoji: "✈️" }], tip: "Your tongue touches the roof of your mouth, then drops." },
-      { letters: "K", soundsLike: "kuh", pronunciation: "kuh", examples: [{ word: "kite", highlight: "k", emoji: "🪁" }, { word: "king", highlight: "k", emoji: "👑" }, { word: "key", highlight: "k", emoji: "🔑" }], tip: "Same sound as hard C — from the back of your throat." },
-      { letters: "L", soundsLike: "lll", pronunciation: "lll", examples: [{ word: "lion", highlight: "l", emoji: "🦁" }, { word: "lamp", highlight: "l", emoji: "💡" }, { word: "leaf", highlight: "l", emoji: "🍃" }], tip: "Tongue tip touches behind your top teeth and stays." },
-      { letters: "M", soundsLike: "mmm", pronunciation: "mmm", examples: [{ word: "moon", highlight: "m", emoji: "🌙" }, { word: "map", highlight: "m", emoji: "🗺️" }, { word: "milk", highlight: "m", emoji: "🥛" }], tip: "Close your lips and hum — mmmmm!" },
-      { letters: "N", soundsLike: "nnn", pronunciation: "nnn", examples: [{ word: "nest", highlight: "n", emoji: "🪺" }, { word: "nut", highlight: "n", emoji: "🥜" }, { word: "nose", highlight: "n", emoji: "👃" }], tip: "Tongue behind top teeth, air through your nose." },
-      { letters: "P", soundsLike: "puh", pronunciation: "puh", examples: [{ word: "pig", highlight: "p", emoji: "🐷" }, { word: "pen", highlight: "p", emoji: "🖊️" }, { word: "pizza", highlight: "p", emoji: "🍕" }], tip: "Like B but with a puff of air — no vibration!" },
-      { letters: "R", soundsLike: "rrr", pronunciation: "rrr", examples: [{ word: "rain", highlight: "r", emoji: "🌧️" }, { word: "red", highlight: "r", emoji: "🔴" }, { word: "robot", highlight: "r", emoji: "🤖" }], tip: "Curl your tongue back — don't let it touch anything!" },
-      { letters: "S", soundsLike: "sss", pronunciation: "sss", examples: [{ word: "sun", highlight: "s", emoji: "☀️" }, { word: "star", highlight: "s", emoji: "⭐" }, { word: "snake", highlight: "s", emoji: "🐍" }], tip: "Like a snake hissing — sssssss!" },
-      { letters: "T", soundsLike: "tuh", pronunciation: "tuh", examples: [{ word: "tree", highlight: "t", emoji: "🌳" }, { word: "top", highlight: "t", emoji: "🔝" }, { word: "tiger", highlight: "t", emoji: "🐯" }], tip: "Quick tap of your tongue behind your top teeth." },
-      { letters: "V", soundsLike: "vvv", pronunciation: "vvv", examples: [{ word: "van", highlight: "v", emoji: "🚐" }, { word: "violin", highlight: "v", emoji: "🎻" }, { word: "vest", highlight: "v", emoji: "🦺" }], tip: "Like F but with a buzzy vibration!" },
-      { letters: "W", soundsLike: "wuh", pronunciation: "wuh", examples: [{ word: "water", highlight: "w", emoji: "💧" }, { word: "wind", highlight: "w", emoji: "💨" }, { word: "worm", highlight: "w", emoji: "🪱" }], tip: "Round your lips like you're about to whistle." },
-      { letters: "X", soundsLike: "ks", pronunciation: "ks", examples: [{ word: "fox", highlight: "x", emoji: "🦊" }, { word: "box", highlight: "x", emoji: "📦" }, { word: "six", highlight: "x", emoji: "6️⃣" }], tip: "Two sounds mashed together — K then S!" },
-      { letters: "Y", soundsLike: "yuh", pronunciation: "yuh", examples: [{ word: "yes", highlight: "y", emoji: "✅" }, { word: "yo-yo", highlight: "y", emoji: "🪀" }, { word: "yak", highlight: "y", emoji: "🐂" }], tip: "Tongue rises to the roof of your mouth." },
-      { letters: "Z", soundsLike: "zzz", pronunciation: "zzz", examples: [{ word: "zoo", highlight: "z", emoji: "🦓" }, { word: "zip", highlight: "z", emoji: "🤐" }, { word: "zero", highlight: "z", emoji: "0️⃣" }], tip: "Like S but buzzy — feel your throat vibrate!" },
+      { letters: "B", soundsLike: "buh", pronunciation: "buh, as in ball", examples: [{ word: "ball", highlight: "b", emoji: "⚽" }, { word: "bed", highlight: "b", emoji: "🛏️" }, { word: "bus", highlight: "b", emoji: "🚌" }], tip: "Press your lips together, then pop them open!" },
+      { letters: "C", soundsLike: "kuh", pronunciation: "kuh, as in cat", examples: [{ word: "cat", highlight: "c", emoji: "🐱" }, { word: "cup", highlight: "c", emoji: "☕" }, { word: "car", highlight: "c", emoji: "🚗" }], tip: "Hard C sounds like K. Say it in the back of your throat." },
+      { letters: "D", soundsLike: "duh", pronunciation: "duh, as in dog", examples: [{ word: "dog", highlight: "d", emoji: "🐕" }, { word: "door", highlight: "d", emoji: "🚪" }, { word: "duck", highlight: "d", emoji: "🦆" }], tip: "Touch your tongue behind your top teeth!" },
+      { letters: "F", soundsLike: "fff", pronunciation: "fuh, as in fish", examples: [{ word: "fish", highlight: "f", emoji: "🐟" }, { word: "fan", highlight: "f", emoji: "🌀" }, { word: "frog", highlight: "f", emoji: "🐸" }], tip: "Bite your bottom lip gently and blow air." },
+      { letters: "G", soundsLike: "guh", pronunciation: "guh, as in go", examples: [{ word: "go", highlight: "g", emoji: "🏃" }, { word: "game", highlight: "g", emoji: "🎮" }, { word: "goat", highlight: "g", emoji: "🐐" }], tip: "Feel the sound in the back of your throat." },
+      { letters: "H", soundsLike: "huh", pronunciation: "huh, as in hat", examples: [{ word: "hat", highlight: "h", emoji: "🎩" }, { word: "hot", highlight: "h", emoji: "🔥" }, { word: "house", highlight: "h", emoji: "🏠" }], tip: "Like you're breathing on a window to fog it up!" },
+      { letters: "J", soundsLike: "juh", pronunciation: "juh, as in jump", examples: [{ word: "jump", highlight: "j", emoji: "🤸" }, { word: "jam", highlight: "j", emoji: "🍯" }, { word: "jet", highlight: "j", emoji: "✈️" }], tip: "Your tongue touches the roof of your mouth, then drops." },
+      { letters: "K", soundsLike: "kuh", pronunciation: "kuh, as in kite", examples: [{ word: "kite", highlight: "k", emoji: "🪁" }, { word: "king", highlight: "k", emoji: "👑" }, { word: "key", highlight: "k", emoji: "🔑" }], tip: "Same sound as hard C — from the back of your throat." },
+      { letters: "L", soundsLike: "lll", pronunciation: "luh, as in lion", examples: [{ word: "lion", highlight: "l", emoji: "🦁" }, { word: "lamp", highlight: "l", emoji: "💡" }, { word: "leaf", highlight: "l", emoji: "🍃" }], tip: "Tongue tip touches behind your top teeth and stays." },
+      { letters: "M", soundsLike: "mmm", pronunciation: "muh, as in moon", examples: [{ word: "moon", highlight: "m", emoji: "🌙" }, { word: "map", highlight: "m", emoji: "🗺️" }, { word: "milk", highlight: "m", emoji: "🥛" }], tip: "Close your lips and hum — mmmmm!" },
+      { letters: "N", soundsLike: "nnn", pronunciation: "nuh, as in nest", examples: [{ word: "nest", highlight: "n", emoji: "🪺" }, { word: "nut", highlight: "n", emoji: "🥜" }, { word: "nose", highlight: "n", emoji: "👃" }], tip: "Tongue behind top teeth, air through your nose." },
+      { letters: "P", soundsLike: "puh", pronunciation: "puh, as in pig", examples: [{ word: "pig", highlight: "p", emoji: "🐷" }, { word: "pen", highlight: "p", emoji: "🖊️" }, { word: "pizza", highlight: "p", emoji: "🍕" }], tip: "Like B but with a puff of air — no vibration!" },
+      { letters: "R", soundsLike: "rrr", pronunciation: "ruh, as in rain", examples: [{ word: "rain", highlight: "r", emoji: "🌧️" }, { word: "red", highlight: "r", emoji: "🔴" }, { word: "robot", highlight: "r", emoji: "🤖" }], tip: "Curl your tongue back — don't let it touch anything!" },
+      { letters: "S", soundsLike: "sss", pronunciation: "suh, as in sun", examples: [{ word: "sun", highlight: "s", emoji: "☀️" }, { word: "star", highlight: "s", emoji: "⭐" }, { word: "snake", highlight: "s", emoji: "🐍" }], tip: "Like a snake hissing — sssssss!" },
+      { letters: "T", soundsLike: "tuh", pronunciation: "tuh, as in tree", examples: [{ word: "tree", highlight: "t", emoji: "🌳" }, { word: "top", highlight: "t", emoji: "🔝" }, { word: "tiger", highlight: "t", emoji: "🐯" }], tip: "Quick tap of your tongue behind your top teeth." },
+      { letters: "V", soundsLike: "vvv", pronunciation: "vuh, as in van", examples: [{ word: "van", highlight: "v", emoji: "🚐" }, { word: "violin", highlight: "v", emoji: "🎻" }, { word: "vest", highlight: "v", emoji: "🦺" }], tip: "Like F but with a buzzy vibration!" },
+      { letters: "W", soundsLike: "wuh", pronunciation: "wuh, as in water", examples: [{ word: "water", highlight: "w", emoji: "💧" }, { word: "wind", highlight: "w", emoji: "💨" }, { word: "worm", highlight: "w", emoji: "🪱" }], tip: "Round your lips like you're about to whistle." },
+      { letters: "X", soundsLike: "ks", pronunciation: "ks, as in fox", examples: [{ word: "fox", highlight: "x", emoji: "🦊" }, { word: "box", highlight: "x", emoji: "📦" }, { word: "six", highlight: "x", emoji: "6️⃣" }], tip: "Two sounds mashed together — K then S!" },
+      { letters: "Y", soundsLike: "yuh", pronunciation: "yuh, as in yes", examples: [{ word: "yes", highlight: "y", emoji: "✅" }, { word: "yo-yo", highlight: "y", emoji: "🪀" }, { word: "yak", highlight: "y", emoji: "🐂" }], tip: "Tongue rises to the roof of your mouth." },
+      { letters: "Z", soundsLike: "zzz", pronunciation: "zuh, as in zoo", examples: [{ word: "zoo", highlight: "z", emoji: "🦓" }, { word: "zip", highlight: "z", emoji: "🤐" }, { word: "zero", highlight: "z", emoji: "0️⃣" }], tip: "Like S but buzzy — feel your throat vibrate!" },
     ],
   },
 
@@ -162,13 +162,13 @@ const phonicsData: PhonicsCategory[] = [
     description: "Two letters that make ONE new sound",
     emoji: "🤝",
     patterns: [
-      { letters: "SH", soundsLike: "shh (like 'be quiet!')", pronunciation: "shh", examples: [{ word: "ship", highlight: "sh", emoji: "🚢" }, { word: "fish", highlight: "sh", emoji: "🐟" }, { word: "shell", highlight: "sh", emoji: "🐚" }], tip: "Put your finger to your lips — shhhh!" },
-      { letters: "CH", soundsLike: "ch (like a train!)", pronunciation: "ch", examples: [{ word: "chip", highlight: "ch", emoji: "🍟" }, { word: "lunch", highlight: "ch", emoji: "🍱" }, { word: "chair", highlight: "ch", emoji: "🪑" }], tip: "Starts with your tongue on the roof of your mouth." },
-      { letters: "TH", soundsLike: "th (tongue between teeth)", pronunciation: "th", examples: [{ word: "this", highlight: "th", emoji: "👉" }, { word: "bath", highlight: "th", emoji: "🛁" }, { word: "think", highlight: "th", emoji: "🤔" }], tip: "Stick your tongue out slightly between your teeth!" },
-      { letters: "WH", soundsLike: "wh (like blowing air)", pronunciation: "wh", examples: [{ word: "what", highlight: "wh", emoji: "❓" }, { word: "whale", highlight: "wh", emoji: "🐋" }, { word: "wheel", highlight: "wh", emoji: "🎡" }], tip: "Round your lips and blow gently, then add a sound." },
-      { letters: "PH", soundsLike: "f (sounds just like F!)", pronunciation: "fff", examples: [{ word: "phone", highlight: "ph", emoji: "📱" }, { word: "photo", highlight: "ph", emoji: "📸" }, { word: "elephant", highlight: "ph", emoji: "🐘" }], tip: "Surprise! PH makes the same sound as F." },
-      { letters: "CK", soundsLike: "k (quick, sharp)", pronunciation: "k", examples: [{ word: "duck", highlight: "ck", emoji: "🦆" }, { word: "sock", highlight: "ck", emoji: "🧦" }, { word: "kick", highlight: "ck", emoji: "🦶" }], tip: "CK always comes after a short vowel sound." },
-      { letters: "NG", soundsLike: "ng (like in sing)", pronunciation: "ng", examples: [{ word: "ring", highlight: "ng", emoji: "💍" }, { word: "song", highlight: "ng", emoji: "🎵" }, { word: "king", highlight: "ng", emoji: "👑" }], tip: "Feel the buzz in the back of your throat!" },
+      { letters: "SH", soundsLike: "shh (like 'be quiet!')", pronunciation: "shuh, as in ship", examples: [{ word: "ship", highlight: "sh", emoji: "🚢" }, { word: "fish", highlight: "sh", emoji: "🐟" }, { word: "shell", highlight: "sh", emoji: "🐚" }], tip: "Put your finger to your lips — shhhh!" },
+      { letters: "CH", soundsLike: "ch (like a train!)", pronunciation: "chuh, as in chip", examples: [{ word: "chip", highlight: "ch", emoji: "🍟" }, { word: "lunch", highlight: "ch", emoji: "🍱" }, { word: "chair", highlight: "ch", emoji: "🪑" }], tip: "Starts with your tongue on the roof of your mouth." },
+      { letters: "TH", soundsLike: "th (tongue between teeth)", pronunciation: "thuh, as in this", examples: [{ word: "this", highlight: "th", emoji: "👉" }, { word: "bath", highlight: "th", emoji: "🛁" }, { word: "think", highlight: "th", emoji: "🤔" }], tip: "Stick your tongue out slightly between your teeth!" },
+      { letters: "WH", soundsLike: "wh (like blowing air)", pronunciation: "wuh, as in what", examples: [{ word: "what", highlight: "wh", emoji: "❓" }, { word: "whale", highlight: "wh", emoji: "🐋" }, { word: "wheel", highlight: "wh", emoji: "🎡" }], tip: "Round your lips and blow gently, then add a sound." },
+      { letters: "PH", soundsLike: "f (sounds just like F!)", pronunciation: "fuh, as in phone", examples: [{ word: "phone", highlight: "ph", emoji: "📱" }, { word: "photo", highlight: "ph", emoji: "📸" }, { word: "elephant", highlight: "ph", emoji: "🐘" }], tip: "Surprise! PH makes the same sound as F." },
+      { letters: "CK", soundsLike: "k (quick, sharp)", pronunciation: "kuh, as in duck", examples: [{ word: "duck", highlight: "ck", emoji: "🦆" }, { word: "sock", highlight: "ck", emoji: "🧦" }, { word: "kick", highlight: "ck", emoji: "🦶" }], tip: "CK always comes after a short vowel sound." },
+      { letters: "NG", soundsLike: "ng (like in sing)", pronunciation: "ng, as in ring", examples: [{ word: "ring", highlight: "ng", emoji: "💍" }, { word: "song", highlight: "ng", emoji: "🎵" }, { word: "king", highlight: "ng", emoji: "👑" }], tip: "Feel the buzz in the back of your throat!" },
     ],
   },
 
@@ -179,14 +179,14 @@ const phonicsData: PhonicsCategory[] = [
     description: "Two letters that BLEND — you hear both sounds",
     emoji: "🎵",
     patterns: [
-      { letters: "BL", soundsLike: "bl (b + l together)", pronunciation: "bl", examples: [{ word: "blue", highlight: "bl", emoji: "🔵" }, { word: "block", highlight: "bl", emoji: "🧱" }, { word: "blanket", highlight: "bl", emoji: "🛏️" }], tip: "Say B then L quickly — they overlap!" },
-      { letters: "BR", soundsLike: "br (b + r together)", pronunciation: "br", examples: [{ word: "brown", highlight: "br", emoji: "🟤" }, { word: "bread", highlight: "br", emoji: "🍞" }, { word: "brush", highlight: "br", emoji: "🖌️" }], tip: "Feel both the B pop and the R rumble." },
-      { letters: "CL", soundsLike: "cl (c + l together)", pronunciation: "cl", examples: [{ word: "clap", highlight: "cl", emoji: "👏" }, { word: "cloud", highlight: "cl", emoji: "☁️" }, { word: "clock", highlight: "cl", emoji: "🕐" }], tip: "The C sound slides right into the L." },
-      { letters: "CR", soundsLike: "cr (c + r together)", pronunciation: "cr", examples: [{ word: "crab", highlight: "cr", emoji: "🦀" }, { word: "cry", highlight: "cr", emoji: "😢" }, { word: "crown", highlight: "cr", emoji: "👑" }], tip: "Quick K sound then roll into R." },
-      { letters: "FL", soundsLike: "fl (f + l together)", pronunciation: "fl", examples: [{ word: "flag", highlight: "fl", emoji: "🏳️" }, { word: "fly", highlight: "fl", emoji: "🪰" }, { word: "flower", highlight: "fl", emoji: "🌸" }], tip: "Blow air for F, then glide to L." },
-      { letters: "ST", soundsLike: "st (s + t together)", pronunciation: "st", examples: [{ word: "star", highlight: "st", emoji: "⭐" }, { word: "stop", highlight: "st", emoji: "🛑" }, { word: "stone", highlight: "st", emoji: "🪨" }], tip: "Hiss the S then tap the T." },
-      { letters: "TR", soundsLike: "tr (t + r together)", pronunciation: "tr", examples: [{ word: "tree", highlight: "tr", emoji: "🌳" }, { word: "train", highlight: "tr", emoji: "🚂" }, { word: "truck", highlight: "tr", emoji: "🚛" }], tip: "Quick T then flow into R." },
-      { letters: "SN", soundsLike: "sn (s + n together)", pronunciation: "sn", examples: [{ word: "snake", highlight: "sn", emoji: "🐍" }, { word: "snow", highlight: "sn", emoji: "❄️" }, { word: "snail", highlight: "sn", emoji: "🐌" }], tip: "Hiss the S, then nose-hum the N." },
+      { letters: "BL", soundsLike: "bl (b + l together)", pronunciation: "bluh, as in blue", examples: [{ word: "blue", highlight: "bl", emoji: "🔵" }, { word: "block", highlight: "bl", emoji: "🧱" }, { word: "blanket", highlight: "bl", emoji: "🛏️" }], tip: "Say B then L quickly — they overlap!" },
+      { letters: "BR", soundsLike: "br (b + r together)", pronunciation: "bruh, as in brown", examples: [{ word: "brown", highlight: "br", emoji: "🟤" }, { word: "bread", highlight: "br", emoji: "🍞" }, { word: "brush", highlight: "br", emoji: "🖌️" }], tip: "Feel both the B pop and the R rumble." },
+      { letters: "CL", soundsLike: "cl (c + l together)", pronunciation: "cluh, as in clap", examples: [{ word: "clap", highlight: "cl", emoji: "👏" }, { word: "cloud", highlight: "cl", emoji: "☁️" }, { word: "clock", highlight: "cl", emoji: "🕐" }], tip: "The C sound slides right into the L." },
+      { letters: "CR", soundsLike: "cr (c + r together)", pronunciation: "cruh, as in crab", examples: [{ word: "crab", highlight: "cr", emoji: "🦀" }, { word: "cry", highlight: "cr", emoji: "😢" }, { word: "crown", highlight: "cr", emoji: "👑" }], tip: "Quick K sound then roll into R." },
+      { letters: "FL", soundsLike: "fl (f + l together)", pronunciation: "fluh, as in flag", examples: [{ word: "flag", highlight: "fl", emoji: "🏳️" }, { word: "fly", highlight: "fl", emoji: "🪰" }, { word: "flower", highlight: "fl", emoji: "🌸" }], tip: "Blow air for F, then glide to L." },
+      { letters: "ST", soundsLike: "st (s + t together)", pronunciation: "stuh, as in star", examples: [{ word: "star", highlight: "st", emoji: "⭐" }, { word: "stop", highlight: "st", emoji: "🛑" }, { word: "stone", highlight: "st", emoji: "🪨" }], tip: "Hiss the S then tap the T." },
+      { letters: "TR", soundsLike: "tr (t + r together)", pronunciation: "truh, as in tree", examples: [{ word: "tree", highlight: "tr", emoji: "🌳" }, { word: "train", highlight: "tr", emoji: "🚂" }, { word: "truck", highlight: "tr", emoji: "🚛" }], tip: "Quick T then flow into R." },
+      { letters: "SN", soundsLike: "sn (s + n together)", pronunciation: "snuh, as in snake", examples: [{ word: "snake", highlight: "sn", emoji: "🐍" }, { word: "snow", highlight: "sn", emoji: "❄️" }, { word: "snail", highlight: "sn", emoji: "🐌" }], tip: "Hiss the S, then nose-hum the N." },
     ],
   },
 
@@ -197,11 +197,11 @@ const phonicsData: PhonicsCategory[] = [
     description: "When two vowels walk, the first one talks!",
     emoji: "🗣️",
     patterns: [
-      { letters: "AI / AY", soundsLike: "long A (says its name!)", pronunciation: "ay", examples: [{ word: "rain", highlight: "ai", emoji: "🌧️" }, { word: "play", highlight: "ay", emoji: "🎮" }, { word: "train", highlight: "ai", emoji: "🚂" }], tip: "AI in the middle, AY at the end of a word." },
-      { letters: "EA / EE", soundsLike: "long E (says its name!)", pronunciation: "ee", examples: [{ word: "read", highlight: "ea", emoji: "📖" }, { word: "tree", highlight: "ee", emoji: "🌳" }, { word: "beach", highlight: "ea", emoji: "🏖️" }], tip: "Both make the same 'ee' sound — smile wide!" },
-      { letters: "OA / OW", soundsLike: "long O (says its name!)", pronunciation: "oh", examples: [{ word: "boat", highlight: "oa", emoji: "⛵" }, { word: "snow", highlight: "ow", emoji: "❄️" }, { word: "road", highlight: "oa", emoji: "🛤️" }], tip: "OA in the middle, OW at the end." },
-      { letters: "OO", soundsLike: "oo (like in moon)", pronunciation: "oo", examples: [{ word: "moon", highlight: "oo", emoji: "🌙" }, { word: "food", highlight: "oo", emoji: "🍔" }, { word: "boot", highlight: "oo", emoji: "🥾" }], tip: "Round your lips into a tiny O shape." },
-      { letters: "OU / OW", soundsLike: "ow (like 'ouch!')", pronunciation: "ow", examples: [{ word: "house", highlight: "ou", emoji: "🏠" }, { word: "cow", highlight: "ow", emoji: "🐄" }, { word: "loud", highlight: "ou", emoji: "📢" }], tip: "Start with 'ah' and slide to 'oo'." },
+      { letters: "AI / AY", soundsLike: "long A (says its name!)", pronunciation: "ay, as in rain", examples: [{ word: "rain", highlight: "ai", emoji: "🌧️" }, { word: "play", highlight: "ay", emoji: "🎮" }, { word: "train", highlight: "ai", emoji: "🚂" }], tip: "AI in the middle, AY at the end of a word." },
+      { letters: "EA / EE", soundsLike: "long E (says its name!)", pronunciation: "ee, as in tree", examples: [{ word: "read", highlight: "ea", emoji: "📖" }, { word: "tree", highlight: "ee", emoji: "🌳" }, { word: "beach", highlight: "ea", emoji: "🏖️" }], tip: "Both make the same 'ee' sound — smile wide!" },
+      { letters: "OA / OW", soundsLike: "long O (says its name!)", pronunciation: "oh, as in boat", examples: [{ word: "boat", highlight: "oa", emoji: "⛵" }, { word: "snow", highlight: "ow", emoji: "❄️" }, { word: "road", highlight: "oa", emoji: "🛤️" }], tip: "OA in the middle, OW at the end." },
+      { letters: "OO", soundsLike: "oo (like in moon)", pronunciation: "oo, as in moon", examples: [{ word: "moon", highlight: "oo", emoji: "🌙" }, { word: "food", highlight: "oo", emoji: "🍔" }, { word: "boot", highlight: "oo", emoji: "🥾" }], tip: "Round your lips into a tiny O shape." },
+      { letters: "OU / OW", soundsLike: "ow (like 'ouch!')", pronunciation: "ow, as in house", examples: [{ word: "house", highlight: "ou", emoji: "🏠" }, { word: "cow", highlight: "ow", emoji: "🐄" }, { word: "loud", highlight: "ou", emoji: "📢" }], tip: "Start with 'ah' and slide to 'oo'." },
     ],
   },
 
@@ -212,11 +212,11 @@ const phonicsData: PhonicsCategory[] = [
     description: "When R comes after a vowel, it changes the sound!",
     emoji: "💪",
     patterns: [
-      { letters: "AR", soundsLike: "ar (like a pirate: arrr!)", pronunciation: "ar", examples: [{ word: "car", highlight: "ar", emoji: "🚗" }, { word: "star", highlight: "ar", emoji: "⭐" }, { word: "farm", highlight: "ar", emoji: "🌾" }], tip: "Open wide and growl like a pirate! Arrr!" },
-      { letters: "ER", soundsLike: "er (like 'her')", pronunciation: "er", examples: [{ word: "her", highlight: "er", emoji: "👩" }, { word: "water", highlight: "er", emoji: "💧" }, { word: "flower", highlight: "er", emoji: "🌸" }], tip: "ER, IR, and UR all sound the same!" },
-      { letters: "IR", soundsLike: "er (like 'bird')", pronunciation: "er", examples: [{ word: "bird", highlight: "ir", emoji: "🐦" }, { word: "girl", highlight: "ir", emoji: "👧" }, { word: "shirt", highlight: "ir", emoji: "👕" }], tip: "Same sound as ER — just spelled differently." },
-      { letters: "OR", soundsLike: "or (like 'more')", pronunciation: "or", examples: [{ word: "corn", highlight: "or", emoji: "🌽" }, { word: "horse", highlight: "or", emoji: "🐴" }, { word: "fork", highlight: "or", emoji: "🍴" }], tip: "Round your lips and add a growl." },
-      { letters: "UR", soundsLike: "er (like 'fur')", pronunciation: "er", examples: [{ word: "fur", highlight: "ur", emoji: "🧸" }, { word: "turn", highlight: "ur", emoji: "↩️" }, { word: "burn", highlight: "ur", emoji: "🔥" }], tip: "Same as ER and IR — English is tricky!" },
+      { letters: "AR", soundsLike: "ar (like a pirate: arrr!)", pronunciation: "ar, as in car", examples: [{ word: "car", highlight: "ar", emoji: "🚗" }, { word: "star", highlight: "ar", emoji: "⭐" }, { word: "farm", highlight: "ar", emoji: "🌾" }], tip: "Open wide and growl like a pirate! Arrr!" },
+      { letters: "ER", soundsLike: "er (like 'her')", pronunciation: "er, as in her", examples: [{ word: "her", highlight: "er", emoji: "👩" }, { word: "water", highlight: "er", emoji: "💧" }, { word: "flower", highlight: "er", emoji: "🌸" }], tip: "ER, IR, and UR all sound the same!" },
+      { letters: "IR", soundsLike: "er (like 'bird')", pronunciation: "ir, as in bird", examples: [{ word: "bird", highlight: "ir", emoji: "🐦" }, { word: "girl", highlight: "ir", emoji: "👧" }, { word: "shirt", highlight: "ir", emoji: "👕" }], tip: "Same sound as ER — just spelled differently." },
+      { letters: "OR", soundsLike: "or (like 'more')", pronunciation: "or, as in corn", examples: [{ word: "corn", highlight: "or", emoji: "🌽" }, { word: "horse", highlight: "or", emoji: "🐴" }, { word: "fork", highlight: "or", emoji: "🍴" }], tip: "Round your lips and add a growl." },
+      { letters: "UR", soundsLike: "er (like 'fur')", pronunciation: "ur, as in fur", examples: [{ word: "fur", highlight: "ur", emoji: "🧸" }, { word: "turn", highlight: "ur", emoji: "↩️" }, { word: "burn", highlight: "ur", emoji: "🔥" }], tip: "Same as ER and IR — English is tricky!" },
     ],
   },
 
@@ -227,10 +227,10 @@ const phonicsData: PhonicsCategory[] = [
     description: "These letters are there but you DON'T say them!",
     emoji: "🤫",
     patterns: [
-      { letters: "KN", soundsLike: "n (the K is silent!)", pronunciation: "n", examples: [{ word: "know", highlight: "kn", emoji: "🧠" }, { word: "knee", highlight: "kn", emoji: "🦵" }, { word: "knife", highlight: "kn", emoji: "🔪" }], tip: "Ignore the K completely — just say N." },
-      { letters: "WR", soundsLike: "r (the W is silent!)", pronunciation: "r", examples: [{ word: "write", highlight: "wr", emoji: "✍️" }, { word: "wrong", highlight: "wr", emoji: "❌" }, { word: "wrap", highlight: "wr", emoji: "🎁" }], tip: "The W is just decoration — say R." },
-      { letters: "GN", soundsLike: "n (the G is silent!)", pronunciation: "n", examples: [{ word: "gnaw", highlight: "gn", emoji: "🦷" }, { word: "gnat", highlight: "gn", emoji: "🦟" }, { word: "sign", highlight: "gn", emoji: "🪧" }], tip: "Skip the G — it's hiding!" },
-      { letters: "MB", soundsLike: "m (the B is silent!)", pronunciation: "m", examples: [{ word: "lamb", highlight: "mb", emoji: "🐑" }, { word: "climb", highlight: "mb", emoji: "🧗" }, { word: "thumb", highlight: "mb", emoji: "👍" }], tip: "The B at the end is completely silent." },
+      { letters: "KN", soundsLike: "n (the K is silent!)", pronunciation: "nuh, as in know", examples: [{ word: "know", highlight: "kn", emoji: "🧠" }, { word: "knee", highlight: "kn", emoji: "🦵" }, { word: "knife", highlight: "kn", emoji: "🔪" }], tip: "Ignore the K completely — just say N." },
+      { letters: "WR", soundsLike: "r (the W is silent!)", pronunciation: "ruh, as in write", examples: [{ word: "write", highlight: "wr", emoji: "✍️" }, { word: "wrong", highlight: "wr", emoji: "❌" }, { word: "wrap", highlight: "wr", emoji: "🎁" }], tip: "The W is just decoration — say R." },
+      { letters: "GN", soundsLike: "n (the G is silent!)", pronunciation: "nuh, as in sign", examples: [{ word: "gnaw", highlight: "gn", emoji: "🦷" }, { word: "gnat", highlight: "gn", emoji: "🦟" }, { word: "sign", highlight: "gn", emoji: "🪧" }], tip: "Skip the G — it's hiding!" },
+      { letters: "MB", soundsLike: "m (the B is silent!)", pronunciation: "muh, as in lamb", examples: [{ word: "lamb", highlight: "mb", emoji: "🐑" }, { word: "climb", highlight: "mb", emoji: "🧗" }, { word: "thumb", highlight: "mb", emoji: "👍" }], tip: "The B at the end is completely silent." },
     ],
   },
 ];
@@ -511,6 +511,11 @@ const Phonics = () => {
         ) : (
           /* Pattern Learning View */
           <div className="space-y-6 fade-in-up">
+            {/* Contextual instruction — minimal, one line */}
+            <p className="text-sm text-muted-foreground text-center">
+              🔊 Tap any <span className="font-semibold text-primary">letter box</span> or <span className="font-semibold text-primary">word</span> to hear it
+            </p>
+
             {activeCategory.patterns?.map((pattern, index) => (
               <div
                 key={pattern.letters}
@@ -521,7 +526,9 @@ const Phonics = () => {
                 <div className="flex items-center gap-4 mb-4">
                   <button
                     onClick={() => handlePlaySound(pattern.pronunciation, pattern.letters)}
-                    className="relative flex items-center justify-center w-20 h-20 rounded-2xl bg-primary/10 hover:bg-primary/20 transition-colors group flex-shrink-0"
+                    className={`relative flex items-center justify-center w-20 h-20 rounded-2xl bg-primary/10 hover:bg-primary/20 transition-colors group flex-shrink-0 ${
+                      index === 0 && !practicedPatterns.has(pattern.letters) ? "animate-[pulse_2s_ease-in-out_3] ring-2 ring-primary/30" : ""
+                    }`}
                     aria-label={`Play sound for ${pattern.letters}`}
                   >
                     <span className="text-2xl font-display font-bold text-primary">
