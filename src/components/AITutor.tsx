@@ -3,7 +3,6 @@ import { Send, Bot, Sparkles, Loader2, Lightbulb, AlertCircle, Volume2, VolumeX 
 import { supabase } from "@/integrations/supabase/client";
 import { getHintForQuestionType, STATIC_HELP_TIPS } from "@/constants/readingHints";
 import { useTextToSpeech } from "@/hooks/useTextToSpeech";
-import { useSession } from "@/contexts/SessionContext";
 
 interface Message {
   role: "user" | "assistant" | "hint";
@@ -27,18 +26,14 @@ const AITutor = ({
   passageId,
   maxMessages = 5 // Strategy 1: Default limit of 5 AI messages
 }: AITutorProps) => {
-  const { session } = useSession();
-  const userName = session?.userName;
-  const greeting = userName ? `Hi ${userName}! 👋` : `Hi there! 👋`;
-
-  const welcomeMessage = `${greeting} I'm your Reading Buddy!\n\n` +
+  const welcomeMessage = `Hi there! 👋 I'm your Reading Buddy!\n\n` +
     `Here's how I work:\n\n` +
-    `I'm here to help ${userName ? 'you' : 'you'} on your reading journey!\n\n` +
+    `I'm here to help you on your reading journey!\n\n` +
     `Start by reading the passage on the screen. Take your time — there's no rush! When you're finished reading, press the big green "I'm Ready for Questions" button to answer questions about what you just read.\n\n` +
     `On a phone or tablet, tap the "✕" button to close me and start reading. Tap the little robot icon 🤖 at the top of the screen to find me again. You can stop me anytime by pressing the small stop icon while I'm speaking.\n\n` +
     `On a computer, I'll be right here beside your passage. You can type questions to me or use the quick buttons below.\n\n` +
     `You can also tap any word in the passage to hear how it sounds!\n\n` +
-    `Take your time reading${userName ? `, ${userName}` : ''} — I'm here whenever you need me! 📚`;
+    `Take your time reading — I'm here whenever you need me! 📚`;
 
   const [messages, setMessages] = useState<Message[]>([
     {
