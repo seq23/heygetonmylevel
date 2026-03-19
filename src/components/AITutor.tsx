@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { Send, Bot, Sparkles, Loader2, Lightbulb, AlertCircle, Volume2, VolumeX } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { getHintForQuestionType, STATIC_HELP_TIPS } from "@/constants/readingHints";
@@ -14,53 +14,76 @@ interface AITutorProps {
   gradeLevel: number;
   currentQuestion?: string;
   currentQuestionType?: string;
-  passageId?: string; // Used to reset state when passage changes
-  maxMessages?: number; // Strategy 1: Rate limit
+  passageId?: string;
+  maxMessages?: number;
 }
 
-const AITutor = ({ 
-  passageText, 
-  gradeLevel, 
-  currentQuestion, 
+const WELCOME_SEQUENCE = [
+  `Hi there! 👋 I'm your Reading Buddy!`,
+  `Here's how I work:\n\nI'm here to help you on your reading journey! You will read the passage on the screen first, and then press the big green "I'm Ready for Questions" button when you're done reading.`,
+  `📱 On a phone or tablet, tap the "✕" button to close me and start reading. Tap the little robot icon 🤖 at the top of the screen to find me again.\n\nYou can stop me talking anytime by pressing the small stop icon while I'm speaking.`,
+  `💻 On a computer, I'll be right here beside your passage. You can type questions to me or use the quick buttons below.\n\nYou can also tap any word in the passage to hear how it sounds!`,
+  `Take your time reading — there's no rush! I'm here whenever you need me. 📚\n\nBefore we start, what's your name? (Or what would you like me to call you?)`,
+];
+
+const AITutor = ({
+  passageText,
+  gradeLevel,
+  currentQuestion,
   currentQuestionType,
   passageId,
-  maxMessages = 5 // Strategy 1: Default limit of 5 AI messages
+  maxMessages = 5,
 }: AITutorProps) => {
-  const welcomeMessage = `Hi there! 👋 I'm your Reading Buddy!\n\n` +
-    `Here's how I work:\n\n` +
-    `I'm here to help you on your reading journey!\n\n` +
-    `Start by reading the passage on the screen. Take your time — there's no rush! When you're finished reading, press the big green "I'm Ready for Questions" button to answer questions about what you just read.\n\n` +
-    `On a phone or tablet, tap the "✕" button to close me and start reading. Tap the little robot icon 🤖 at the top of the screen to find me again. You can stop me anytime by pressing the small stop icon while I'm speaking.\n\n` +
-    `On a computer, I'll be right here beside your passage. You can type questions to me or use the quick buttons below.\n\n` +
-    `You can also tap any word in the passage to hear how it sounds!\n\n` +
-    `Take your time reading — I'm here whenever you need me! 📚`;
-
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      role: "assistant",
-      content: welcomeMessage,
-    },
-  ]);
+  const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [aiMessageCount, setAiMessageCount] = useState(0);
   const [hintsUsed, setHintsUsed] = useState(0);
   const [speakingIndex, setSpeakingIndex] = useState<number | null>(null);
+  const [userName, setUserName] = useState<string | null>(null);
+  const [welcomeStep, setWelcomeStep] = useState(0);
+  const [isWelcoming, setIsWelcoming] = useState(true);
   const { speak, stop, isSupported } = useTextToSpeech();
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const welcomeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Scroll to bottom when messages change
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages.length]);
+
+  // Welcome sequence: deliver messages one at a time with pauses
+  useEffect(() => {
+    if (!isWelcoming) return;
+    if (welcomeStep >= WELCOME_SEQUENCE.length) {
+      setIsWelcoming(false);
+      return;
+    }
+
+    const delay = welcomeStep === 0 ? 500 : 3500; // first message quick, then 3.5s pauses
+
+    welcomeTimerRef.current = setTimeout(() => {
+      const msg = WELCOME_SEQUENCE[welcomeStep];
+      setMessages((prev) => [...prev, { role: "assistant", content: msg }]);
+      setWelcomeStep((prev) => prev + 1);
+    }, delay);
+
+    return () => {
+      if (welcomeTimerRef.current) clearTimeout(welcomeTimerRef.current);
+    };
+  }, [welcomeStep, isWelcoming]);
 
   // Reset state when passage changes
   useEffect(() => {
-    setMessages([
-      {
-        role: "assistant",
-        content: welcomeMessage,
-      },
-    ]);
+    setMessages([]);
     setAiMessageCount(0);
     setHintsUsed(0);
     setSpeakingIndex(null);
+    setWelcomeStep(0);
+    setIsWelcoming(true);
+    setUserName(null);
     stop();
+    if (welcomeTimerRef.current) clearTimeout(welcomeTimerRef.current);
   }, [passageId, stop]);
 
   // Auto-read new assistant/hint messages aloud
@@ -68,12 +91,11 @@ const AITutor = ({
     if (!isSupported || messages.length === 0) return;
     const lastMsg = messages[messages.length - 1];
     if (lastMsg.role === "assistant" || lastMsg.role === "hint") {
-      const cleanText = lastMsg.content.replace(/[\u{1F600}-\u{1F9FF}]/gu, "").trim();
+      const cleanText = lastMsg.content.replace(/[\u{1F600}-\u{1F9FF}]/gu, "").replace(/[🤖📱💻📚👋]/gu, "").trim();
       if (cleanText) {
         setSpeakingIndex(messages.length - 1);
         stop();
-        // Small delay so UI updates first
-        setTimeout(() => speak(cleanText, 0.9), 150);
+        setTimeout(() => speak(cleanText, 0.7), 150);
       }
     }
   }, [messages.length]);
@@ -84,20 +106,42 @@ const AITutor = ({
       setSpeakingIndex(null);
     } else {
       stop();
-      const cleanText = text.replace(/[\u{1F600}-\u{1F9FF}]/gu, "").trim();
+      const cleanText = text.replace(/[\u{1F600}-\u{1F9FF}]/gu, "").replace(/[🤖📱💻📚👋]/gu, "").trim();
       setSpeakingIndex(index);
-      speak(cleanText, 0.9);
+      speak(cleanText, 0.7);
     }
   };
 
   const isLimitReached = aiMessageCount >= maxMessages;
 
   const handleSend = async () => {
-    if (!input.trim() || isLoading || isLimitReached) return;
+    if (!input.trim() || isLoading) return;
 
     const userMessage = input.trim();
     setInput("");
     setMessages((prev) => [...prev, { role: "user", content: userMessage }]);
+
+    // If we're still waiting for the user's name
+    if (!userName) {
+      const name = userMessage.replace(/^(my name is |i'm |im |call me |it's |its )/i, "").trim();
+      const cleanName = name.split(/\s/)[0]; // Take first word
+      const capitalizedName = cleanName.charAt(0).toUpperCase() + cleanName.slice(1).toLowerCase();
+      setUserName(capitalizedName);
+      
+      setTimeout(() => {
+        setMessages((prev) => [
+          ...prev,
+          {
+            role: "assistant",
+            content: `Nice to meet you, ${capitalizedName}! 🎉\n\nI'll be right here if you need help. Go ahead and start reading your passage — you've got this!`,
+          },
+        ]);
+      }, 800);
+      return;
+    }
+
+    if (isLimitReached) return;
+
     setIsLoading(true);
 
     try {
@@ -113,11 +157,17 @@ const AITutor = ({
 
       if (error) throw error;
 
+      const response = data.response || "I'm here to help! Could you rephrase that?";
+      // Personalize with name if we have it
+      const personalizedResponse = userName
+        ? response.replace(/^(Great question|Good question|Nice question)/i, `$1, ${userName}`)
+        : response;
+
       setMessages((prev) => [
         ...prev,
-        { role: "assistant", content: data.response || "I'm here to help! Could you rephrase that?" },
+        { role: "assistant", content: personalizedResponse },
       ]);
-      setAiMessageCount((prev) => prev + 1); // Strategy 1: Increment counter
+      setAiMessageCount((prev) => prev + 1);
     } catch (err) {
       console.error("Tutor error:", err);
       setMessages((prev) => [
@@ -136,18 +186,12 @@ const AITutor = ({
     }
   };
 
-  // Strategy 7: Show client-side hint first
   const handleQuickHint = () => {
     if (hintsUsed < 2) {
-      // Show client-side hint first
       const hint = getHintForQuestionType(currentQuestionType, hintsUsed);
-      setMessages((prev) => [
-        ...prev,
-        { role: "hint", content: hint },
-      ]);
+      setMessages((prev) => [...prev, { role: "hint", content: hint }]);
       setHintsUsed((prev) => prev + 1);
     } else if (!isLimitReached) {
-      // After 2 client hints, allow AI hint
       setInput("Give me a hint");
     }
   };
@@ -158,6 +202,12 @@ const AITutor = ({
     { label: "What's the main idea?", action: () => setInput("What's the main idea?") },
   ];
 
+  const getPlaceholder = () => {
+    if (!userName && !isWelcoming) return "Type your name here...";
+    if (isLimitReached) return "Keep going on your own!";
+    return userName ? `Ask me anything, ${userName}...` : "Ask me anything...";
+  };
+
   return (
     <div className="flex flex-col h-full bg-card rounded-2xl border border-border overflow-hidden">
       {/* Header */}
@@ -167,10 +217,14 @@ const AITutor = ({
             <Bot className="w-5 h-5 text-primary" />
           </div>
           <div>
-            <h3 className="font-display font-bold text-foreground">AI Reading Buddy</h3>
+            <h3 className="font-display font-bold text-foreground">
+              AI Reading Buddy
+            </h3>
             <p className="text-xs text-muted-foreground">
-              {isLimitReached 
-                ? "You're doing great on your own!" 
+              {isWelcoming
+                ? "Getting ready..."
+                : isLimitReached
+                ? "You're doing great on your own!"
                 : `${maxMessages - aiMessageCount} AI helps remaining`}
             </p>
           </div>
@@ -178,7 +232,7 @@ const AITutor = ({
         </div>
       </div>
 
-      {/* Strategy 4: Static help tips */}
+      {/* Static help tips */}
       <div className="px-4 py-2 bg-muted/30 border-b border-border">
         <p className="text-xs font-medium text-muted-foreground mb-1">💡 Try these first:</p>
         <ul className="text-xs text-muted-foreground space-y-0.5">
@@ -193,7 +247,7 @@ const AITutor = ({
         {messages.map((message, index) => (
           <div
             key={index}
-            className={`flex ${message.role === "user" ? "justify-end" : "justify-start"}`}
+            className={`flex ${message.role === "user" ? "justify-end" : "justify-start"} fade-in-up`}
           >
             <div
               className={`max-w-[85%] p-3 rounded-2xl text-sm ${
@@ -210,7 +264,7 @@ const AITutor = ({
                   <span className="text-xs font-medium">Quick Tip</span>
                 </div>
               )}
-              {message.content}
+              <span className="whitespace-pre-wrap">{message.content}</span>
               {message.role !== "user" && isSupported && (
                 <button
                   onClick={() => handleSpeak(message.content, index)}
@@ -227,6 +281,17 @@ const AITutor = ({
             </div>
           </div>
         ))}
+        {isWelcoming && welcomeStep > 0 && welcomeStep < WELCOME_SEQUENCE.length && (
+          <div className="flex justify-start">
+            <div className="bg-muted p-3 rounded-2xl rounded-bl-md">
+              <div className="flex gap-1">
+                <span className="w-2 h-2 bg-muted-foreground/40 rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
+                <span className="w-2 h-2 bg-muted-foreground/40 rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
+                <span className="w-2 h-2 bg-muted-foreground/40 rounded-full animate-bounce" style={{ animationDelay: "300ms" }} />
+              </div>
+            </div>
+          </div>
+        )}
         {isLoading && (
           <div className="flex justify-start">
             <div className="bg-muted p-3 rounded-2xl rounded-bl-md">
@@ -234,9 +299,10 @@ const AITutor = ({
             </div>
           </div>
         )}
+        <div ref={messagesEndRef} />
       </div>
 
-      {/* Strategy 1: Limit reached message */}
+      {/* Limit reached message */}
       {isLimitReached && (
         <div className="px-4 py-3 bg-success/10 border-t border-success/20">
           <div className="flex items-center gap-2 text-sm text-success">
@@ -247,7 +313,7 @@ const AITutor = ({
       )}
 
       {/* Quick Prompts */}
-      {!isLimitReached && (
+      {!isLimitReached && !isWelcoming && userName && (
         <div className="px-4 py-2 flex gap-2 overflow-x-auto">
           {quickPrompts.map((prompt, i) => (
             <button
@@ -270,13 +336,13 @@ const AITutor = ({
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyPress={handleKeyPress}
-            placeholder={isLimitReached ? "Keep going on your own!" : "Ask me anything..."}
-            disabled={isLimitReached}
+            placeholder={getPlaceholder()}
+            disabled={isLimitReached || isWelcoming}
             className="flex-1 px-4 py-3 rounded-xl bg-muted border-0 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 text-sm disabled:opacity-50"
           />
           <button
             onClick={handleSend}
-            disabled={!input.trim() || isLoading || isLimitReached}
+            disabled={!input.trim() || isLoading || isLimitReached || isWelcoming}
             className="p-3 rounded-xl bg-primary text-primary-foreground hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
           >
             <Send className="w-4 h-4" />
