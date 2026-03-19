@@ -118,34 +118,36 @@ const PhonicsWord = ({ word, gradeLevel, fontSize }: PhonicsWordProps) => {
               </p>
             </div>
 
-            {/* Dictionary Definition */}
-            <div className="border-t pt-3">
-              {isLoadingDefinition ? (
-                <div className="flex items-center justify-center gap-2 text-muted-foreground text-sm py-2">
-                  <Loader2 className="w-4 h-4 animate-spin" />
-                  <span>Loading definition...</span>
-                </div>
-              ) : definition ? (
-                <div className="space-y-1">
-                  <div className="flex items-center gap-2">
-                    <BookOpen className="w-4 h-4 text-primary" />
-                    <span className="text-xs font-medium text-primary uppercase">
-                      {definition.partOfSpeech}
-                    </span>
+            {/* Dictionary Definition - only for Grade 4+ */}
+            {showDefinition && (
+              <div className="border-t pt-3">
+                {isLoadingDefinition ? (
+                  <div className="flex items-center justify-center gap-2 text-muted-foreground text-sm py-2">
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                    <span>Loading definition...</span>
                   </div>
-                  <p className="text-sm text-foreground">{definition.definition}</p>
-                  {definition.example && (
-                    <p className="text-xs text-muted-foreground italic">
-                      "{definition.example}"
-                    </p>
-                  )}
-                </div>
-              ) : cleanWord.length >= 3 ? (
-                <p className="text-xs text-muted-foreground text-center">
-                  No definition available
-                </p>
-              ) : null}
-            </div>
+                ) : definition ? (
+                  <div className="space-y-1">
+                    <div className="flex items-center gap-2">
+                      <BookOpen className="w-4 h-4 text-primary" />
+                      <span className="text-xs font-medium text-primary uppercase">
+                        {definition.partOfSpeech}
+                      </span>
+                    </div>
+                    <p className="text-sm text-foreground">{definition.definition}</p>
+                    {definition.example && (
+                      <p className="text-xs text-muted-foreground italic">
+                        "{definition.example}"
+                      </p>
+                    )}
+                  </div>
+                ) : cleanWord.length >= 3 ? (
+                  <p className="text-xs text-muted-foreground text-center">
+                    No definition available
+                  </p>
+                ) : null}
+              </div>
+            )}
             
             {isSupported ? (
               <div className="flex gap-2 justify-center">
