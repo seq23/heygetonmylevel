@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
-import { Send, Bot, Sparkles, Loader2, Lightbulb, AlertCircle } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
+import { Send, Bot, Sparkles, Loader2, Lightbulb, AlertCircle, Volume2, VolumeX } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { getHintForQuestionType, STATIC_HELP_TIPS } from "@/constants/readingHints";
+import { useTextToSpeech } from "@/hooks/useTextToSpeech";
 
 interface Message {
   role: "user" | "assistant" | "hint";
@@ -33,8 +34,11 @@ const AITutor = ({
   ]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [aiMessageCount, setAiMessageCount] = useState(0); // Strategy 1: Track AI calls
-  const [hintsUsed, setHintsUsed] = useState(0); // Strategy 7: Track client-side hints used
+  const [aiMessageCount, setAiMessageCount] = useState(0);
+  const [hintsUsed, setHintsUsed] = useState(0);
+  const [speakingIndex, setSpeakingIndex] = useState<number | null>(null);
+  const { speak, stop, isSupported } = useTextToSpeech();
+  const messagesEndRef = useRef<HTMLDivElement>(null);
 
   // Reset state when passage changes
   useEffect(() => {
@@ -46,7 +50,36 @@ const AITutor = ({
     ]);
     setAiMessageCount(0);
     setHintsUsed(0);
-  }, [passageId]);
+    setSpeakingIndex(null);
+    stop();
+  }, [passageId, stop]);
+
+  // Auto-read new assistant/hint messages aloud
+  useEffect(() => {
+    if (!isSupported || messages.length === 0) return;
+    const lastMsg = messages[messages.length - 1];
+    if (lastMsg.role === "assistant" || lastMsg.role === "hint") {
+      const cleanText = lastMsg.content.replace(/[\u{1F600}-\u{1F9FF}]/gu, "").trim();
+      if (cleanText) {
+        setSpeakingIndex(messages.length - 1);
+        stop();
+        // Small delay so UI updates first
+        setTimeout(() => speak(cleanText, 0.9), 150);
+      }
+    }
+  }, [messages.length]);
+
+  const handleSpeak = (text: string, index: number) => {
+    if (speakingIndex === index) {
+      stop();
+      setSpeakingIndex(null);
+    } else {
+      stop();
+      const cleanText = text.replace(/[\u{1F600}-\u{1F9FF}]/gu, "").trim();
+      setSpeakingIndex(index);
+      speak(cleanText, 0.9);
+    }
+  };
 
   const isLimitReached = aiMessageCount >= maxMessages;
 
@@ -169,6 +202,19 @@ const AITutor = ({
                 </div>
               )}
               {message.content}
+              {message.role !== "user" && isSupported && (
+                <button
+                  onClick={() => handleSpeak(message.content, index)}
+                  className="mt-2 flex items-center gap-1 text-xs text-muted-foreground hover:text-primary transition-colors"
+                  aria-label={speakingIndex === index ? "Stop reading" : "Read aloud"}
+                >
+                  {speakingIndex === index ? (
+                    <><VolumeX className="w-3.5 h-3.5" /> Stop</>
+                  ) : (
+                    <><Volume2 className="w-3.5 h-3.5" /> Read aloud</>
+                  )}
+                </button>
+              )}
             </div>
           </div>
         ))}
