@@ -86,12 +86,31 @@ const AITutor = ({
     if (welcomeTimerRef.current) clearTimeout(welcomeTimerRef.current);
   }, [passageId, stop]);
 
+  // Clean text for TTS: remove all emojis, replace special chars with spoken equivalents
+  const cleanForTTS = (text: string): string => {
+    return text
+      .replace(/[""]✕[""]/g, "ex")
+      .replace(/✕/g, "ex")
+      .replace(/[\u{1F600}-\u{1F9FF}]/gu, "")
+      .replace(/[\u{1F300}-\u{1F5FF}]/gu, "")
+      .replace(/[\u{1F680}-\u{1F6FF}]/gu, "")
+      .replace(/[\u{1FA00}-\u{1FA6F}]/gu, "")
+      .replace(/[\u{1FA70}-\u{1FAFF}]/gu, "")
+      .replace(/[\u{2600}-\u{26FF}]/gu, "")
+      .replace(/[\u{2700}-\u{27BF}]/gu, "")
+      .replace(/[\u{FE00}-\u{FE0F}]/gu, "")
+      .replace(/[\u{200D}]/gu, "")
+      .replace(/[\u{1F1E0}-\u{1F1FF}]/gu, "")
+      .replace(/\s+/g, " ")
+      .trim();
+  };
+
   // Auto-read new assistant/hint messages aloud
   useEffect(() => {
     if (!isSupported || messages.length === 0) return;
     const lastMsg = messages[messages.length - 1];
     if (lastMsg.role === "assistant" || lastMsg.role === "hint") {
-      const cleanText = lastMsg.content.replace(/[\u{1F600}-\u{1F9FF}]/gu, "").replace(/[🤖📱💻📚👋]/gu, "").trim();
+      const cleanText = cleanForTTS(lastMsg.content);
       if (cleanText) {
         setSpeakingIndex(messages.length - 1);
         stop();
@@ -106,7 +125,7 @@ const AITutor = ({
       setSpeakingIndex(null);
     } else {
       stop();
-      const cleanText = text.replace(/[\u{1F600}-\u{1F9FF}]/gu, "").replace(/[🤖📱💻📚👋]/gu, "").trim();
+      const cleanText = cleanForTTS(text);
       setSpeakingIndex(index);
       speak(cleanText, 0.7);
     }
