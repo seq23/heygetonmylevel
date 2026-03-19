@@ -55,7 +55,7 @@ const getPhoneticBreakdown = (word: string): string => {
   return syllables.join(" · ");
 };
 
-const PhonicsWord = ({ word, gradeLevel }: PhonicsWordProps) => {
+const PhonicsWord = ({ word, gradeLevel, fontSize }: PhonicsWordProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [definition, setDefinition] = useState<DictionaryDefinition | null>(null);
   const [isLoadingDefinition, setIsLoadingDefinition] = useState(false);
