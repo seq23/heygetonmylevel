@@ -511,6 +511,11 @@ const Phonics = () => {
         ) : (
           /* Pattern Learning View */
           <div className="space-y-6 fade-in-up">
+            {/* Contextual instruction — minimal, one line */}
+            <p className="text-sm text-muted-foreground text-center">
+              🔊 Tap any <span className="font-semibold text-primary">letter box</span> or <span className="font-semibold text-primary">word</span> to hear it
+            </p>
+
             {activeCategory.patterns?.map((pattern, index) => (
               <div
                 key={pattern.letters}
@@ -521,7 +526,9 @@ const Phonics = () => {
                 <div className="flex items-center gap-4 mb-4">
                   <button
                     onClick={() => handlePlaySound(pattern.pronunciation, pattern.letters)}
-                    className="relative flex items-center justify-center w-20 h-20 rounded-2xl bg-primary/10 hover:bg-primary/20 transition-colors group flex-shrink-0"
+                    className={`relative flex items-center justify-center w-20 h-20 rounded-2xl bg-primary/10 hover:bg-primary/20 transition-colors group flex-shrink-0 ${
+                      index === 0 && !practicedPatterns.has(pattern.letters) ? "animate-[pulse_2s_ease-in-out_3] ring-2 ring-primary/30" : ""
+                    }`}
                     aria-label={`Play sound for ${pattern.letters}`}
                   >
                     <span className="text-2xl font-display font-bold text-primary">
