@@ -10,6 +10,7 @@ import {
 interface PhonicsWordProps {
   word: string;
   gradeLevel: number;
+  fontSize?: string;
 }
 
 interface DictionaryDefinition {
@@ -54,7 +55,7 @@ const getPhoneticBreakdown = (word: string): string => {
   return syllables.join(" · ");
 };
 
-const PhonicsWord = ({ word, gradeLevel }: PhonicsWordProps) => {
+const PhonicsWord = ({ word, gradeLevel, fontSize }: PhonicsWordProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [definition, setDefinition] = useState<DictionaryDefinition | null>(null);
   const [isLoadingDefinition, setIsLoadingDefinition] = useState(false);
@@ -62,13 +63,8 @@ const PhonicsWord = ({ word, gradeLevel }: PhonicsWordProps) => {
   
   const cleanWord = word.replace(/[.,!?;:'"]+$/, "");
   const punctuation = word.slice(cleanWord.length);
-  
-  if (cleanWord.length < 2) {
-    return <span>{word} </span>;
-  }
-
   const phoneticBreakdown = getPhoneticBreakdown(cleanWord);
-
+  
   // Fetch dictionary definition when popover opens
   useEffect(() => {
     if (isOpen && !definition && cleanWord.length >= 3) {
@@ -86,19 +82,27 @@ const PhonicsWord = ({ word, gradeLevel }: PhonicsWordProps) => {
             });
           }
         })
-        .catch(() => {
-          // Silently fail - definition is optional
-        })
+        .catch(() => {})
         .finally(() => setIsLoadingDefinition(false));
     }
   }, [isOpen, cleanWord, definition]);
+
+  if (cleanWord.length < 2) {
+    return <span>{word} </span>;
+  }
+
+
+
 
   return (
     <>
       <Popover open={isOpen} onOpenChange={setIsOpen}>
         <PopoverTrigger asChild>
           <button
-            className="hover:bg-primary/10 hover:text-primary rounded px-0.5 -mx-0.5 transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50"
+            className={`hover:bg-primary/10 hover:text-primary rounded transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50 min-h-[44px] min-w-[44px] inline-flex items-center justify-center ${
+              gradeLevel <= 2 ? "px-1.5 -mx-1" : gradeLevel <= 4 ? "px-1 -mx-0.5" : "px-0.5 -mx-0.5"
+            }`}
+            style={fontSize ? { fontSize } : undefined}
             onClick={() => setIsOpen(true)}
           >
             {cleanWord}
