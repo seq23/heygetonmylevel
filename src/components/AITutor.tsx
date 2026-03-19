@@ -34,8 +34,11 @@ const AITutor = ({
   ]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [aiMessageCount, setAiMessageCount] = useState(0); // Strategy 1: Track AI calls
-  const [hintsUsed, setHintsUsed] = useState(0); // Strategy 7: Track client-side hints used
+  const [aiMessageCount, setAiMessageCount] = useState(0);
+  const [hintsUsed, setHintsUsed] = useState(0);
+  const [speakingIndex, setSpeakingIndex] = useState<number | null>(null);
+  const { speak, stop, isSupported } = useTextToSpeech();
+  const messagesEndRef = useRef<HTMLDivElement>(null);
 
   // Reset state when passage changes
   useEffect(() => {
