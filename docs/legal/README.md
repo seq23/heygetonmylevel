@@ -38,9 +38,9 @@ This directory contains all legal documentation for HeyGetOnMyLevel, a free read
 - **Age Restrictions**: None (designed for all ages)
 - **Monetization**: None (free service)
 
-## For Legal Review
+## Getting Started
 
-Start with `LEGAL_SUMMARY.md` for an executive overview of the application's architecture, data practices, and compliance posture. The remaining documents provide detailed policies and records.
+Start with `LEGAL_SUMMARY.md` for an executive overview of the application's architecture, data practices, and compliance posture. For customer-facing use, see `CUSTOMER_TRUST_SUMMARY.md`. The remaining documents provide detailed policies and records.
 
 ## Version Control
 

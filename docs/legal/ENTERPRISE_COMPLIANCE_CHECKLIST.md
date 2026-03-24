@@ -295,7 +295,7 @@ There is no user profile, no account, no history, and no persistent record of an
 - Audit rights for the controller
 - Term, termination, and data return/deletion procedures
 
-The DPA template should be reviewed by your legal counsel. We're open to reviewing customer-provided DPA templates as well. While the practical scope of data processing obligations is minimal (given our zero-PII architecture), we provide this document to satisfy procurement and compliance requirements.
+The DPA template is ready for execution. We also accept customer-provided DPA templates for review. While the practical scope of data processing obligations is minimal (given our zero-PII architecture), we provide this document to satisfy procurement and compliance requirements.
 
 ---
 
