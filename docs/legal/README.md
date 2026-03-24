@@ -46,4 +46,4 @@ git log --oneline docs/legal/DOCUMENT_NAME.md
 
 ## Contact
 
-For questions about this documentation, please use the feedback feature within the application.
+For questions about this documentation, email **privacy@time-2-read.com**.

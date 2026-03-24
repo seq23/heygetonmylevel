@@ -98,7 +98,7 @@ We reserve the right to take action without prior notice for severe violations t
 
 ## 7. Reporting Violations
 
-If you become aware of a violation of this policy, please report it using the in-app feedback button. Do not include personal information in your report.
+If you become aware of a violation of this policy, please report it via the in-app feedback button or email **privacy@time-2-read.com**. Do not include personal information in your report.
 
 ---
 

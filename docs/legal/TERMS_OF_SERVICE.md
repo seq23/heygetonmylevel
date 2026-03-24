@@ -247,7 +247,7 @@ These Terms, together with our Privacy Policy, constitute the entire agreement b
 
 ## 16. Contact
 
-For questions about these Terms, please use the feedback button in the app.
+For questions about these Terms, please email us at **privacy@time-2-read.com**.
 
 **Important:** Please do not include personal information in your message.
 

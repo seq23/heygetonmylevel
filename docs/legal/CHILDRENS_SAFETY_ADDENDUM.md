@@ -211,9 +211,9 @@ For parents and guardians, we recommend:
 ### 7.2 Reporting Concerns
 
 If parents have concerns about:
-- Inappropriate content: Use feedback button to report
-- Technical issues: Use feedback button to report
-- Privacy questions: Review Privacy Policy or submit feedback
+- Inappropriate content: Email privacy@time-2-read.com or use feedback button
+- Technical issues: Email privacy@time-2-read.com or use feedback button
+- Privacy questions: Review Privacy Policy or email privacy@time-2-read.com
 
 ---
 
