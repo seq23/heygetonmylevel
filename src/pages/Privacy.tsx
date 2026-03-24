@@ -61,6 +61,9 @@ const Privacy = () => {
               <li>Browsing history or behavior across other sites</li>
               <li>Any information that could identify you personally</li>
             </ul>
+            <p className="text-muted-foreground mt-4 font-medium">
+              We do not sell, share, or rent any information to third parties.
+            </p>
           </section>
 
           <section className="card-elevated mb-6">
@@ -115,6 +118,11 @@ const Privacy = () => {
               <li>Use the app without providing any personal information</li>
               <li>Contact us with any privacy questions or concerns</li>
             </ul>
+            <p className="text-muted-foreground mt-4 text-sm">
+              <strong>For all jurisdictions</strong> (EU/GDPR, California/CCPA, Virginia/VCDPA, Colorado/CPA, 
+              Brazil/LGPD, Canada/PIPEDA, and others): Because we collect no personal data, your data rights 
+              are satisfied by default. We do not sell, share, or rent any information.
+            </p>
           </section>
 
           <section className="card-elevated mb-6">

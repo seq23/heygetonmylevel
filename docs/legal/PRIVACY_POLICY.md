@@ -47,6 +47,8 @@ We intentionally do not collect:
 - Any information that could identify you personally
 - Voice recordings (speech recognition, when used, runs entirely in your browser)
 
+**We do not sell, share, or rent any information to third parties.** This applies to all users, regardless of location.
+
 ---
 
 ## How Long We Keep Data
@@ -136,13 +138,30 @@ Under GDPR, you have rights regarding personal data. Because we don't collect pe
 - Right to erasure: No personal data is stored
 - Right to data portability: No personal data to transfer
 
-### For California Residents
+### For California Residents (CCPA/CPRA)
 
-Under CCPA, you have specific rights. Our practices satisfy these:
+Under CCPA/CPRA, you have specific rights. Our practices satisfy these:
 - Right to know: This policy discloses all data practices
 - Right to delete: No personal information is stored
-- Right to opt-out of sale: We do not sell any information
+- Right to opt-out of sale: **We do not sell or share any information**
 - Right to non-discrimination: Service is free for everyone
+- Right to limit use of sensitive information: No sensitive information collected
+
+### For Residents of Virginia, Colorado, Connecticut, and Other U.S. States
+
+State privacy laws (VCDPA, CPA, CTDPA, and others) provide similar rights to CCPA. Because we do not collect personal information, these rights are satisfied by default:
+- Right to access, correct, and delete: No personal data exists
+- Right to opt out of targeted advertising: No advertising conducted
+- Right to opt out of sale: No data sold or shared
+- Right to appeal: Contact us via in-app feedback
+
+### For Brazilian Residents (LGPD)
+
+Under the Lei Geral de Proteção de Dados, our practices comply because no personal data is collected. The same privacy-by-design principles that satisfy GDPR also satisfy LGPD requirements.
+
+### For Canadian Residents (PIPEDA)
+
+Our transparency and consent practices meet PIPEDA requirements. Since no personal information is collected, consent obligations are satisfied by design.
 
 ---
 
