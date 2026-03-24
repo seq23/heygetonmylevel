@@ -10,8 +10,8 @@
 
 | Field | Value |
 |-------|-------|
-| **Organization Name** | [TO BE COMPLETED] |
-| **Contact Person** | [TO BE COMPLETED] |
+| **Organization Name** | Time-2-Read |
+| **Contact Person** | Privacy Team |
 | **Contact Email** | privacy@time-2-read.com |
 | **Data Protection Officer** | Not required (see Section 8) |
 
