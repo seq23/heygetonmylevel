@@ -201,17 +201,101 @@
 
 ---
 
-## 10. 🧠 ENTERPRISE BUYER FAQ
+## 10. 🧠 ENTERPRISE BUYER FAQ — FULL ANSWERS
 
-| Question | Answer |
-|----------|--------|
-| "Do you have SOC 2?" | Not yet. Our architecture collects zero PII, minimizing risk surface. SOC 2 planned for Phase 3. See SECURITY_OVERVIEW.md. |
-| "Where is data stored?" | Lovable Cloud infrastructure. Session data is ephemeral and auto-deleted. |
-| "Do you sell data?" | No. We do not sell, share, or monetize any data. See Privacy Policy. |
-| "Who are your subprocessors?" | See VENDOR_SUBPROCESSORS.md — Lovable Cloud, Lovable AI, Resend. |
-| "How do you handle deletion requests?" | No personal data exists to delete. Sessions auto-delete on browser close. |
-| "What happens in a breach?" | See INCIDENT_RESPONSE_PLAN.md. 72-hour notification commitment. |
-| "Do you support DPAs?" | Yes. See DPA_TEMPLATE.md. |
+Below are the questions enterprise buyers, procurement teams, and security reviewers will ask during diligence — with complete, ready-to-send answers.
+
+---
+
+### "Do you have SOC 2?"
+
+**Short answer:** Not yet — planned for Phase 3.
+
+**Full answer:** We do not currently hold a SOC 2 Type I or Type II certification. However, our architecture fundamentally reduces the scope of what SOC 2 would evaluate. We collect zero personal information, maintain no user accounts, and store no persistent data. All session data is ephemeral and auto-deleted when the browser closes. Our security controls — including Row Level Security on all database tables, TLS encryption on all connections, platform-managed secrets, and a formal incident response plan — align with SOC 2 Trust Service Criteria. We plan to pursue SOC 2 certification via Vanta or Drata when enterprise deal volume warrants the investment. In the meantime, our [Security Overview](./SECURITY_OVERVIEW.md) provides a comprehensive view of our security posture.
+
+---
+
+### "Where is data stored?"
+
+**Short answer:** Lovable Cloud infrastructure. All data is ephemeral.
+
+**Full answer:** Application data is stored on Lovable Cloud, which provides enterprise-grade PostgreSQL database infrastructure with encryption at rest and in transit. However, the critical distinction is that **all user session data is ephemeral** — it exists only while the user is actively using the application and is automatically deleted when the browser session ends via a dedicated database cleanup function (`delete_session_data()`). The only persistent data in the database is pre-generated reading passages (cached_passages table), which contain zero user information — only AI-generated educational content. No personal information is stored anywhere in our infrastructure. Browser-side, we store only a sidebar UI preference cookie and optional Reading Buddy personalization (a chosen name and tutorial completion flag) in localStorage.
+
+---
+
+### "Do you sell data?"
+
+**Short answer:** No. Absolutely not.
+
+**Full answer:** We do not sell, share, rent, license, or monetize any data — of any kind — to any third party. This is stated explicitly in our [Privacy Policy](/privacy). Furthermore, we have no data that would be valuable to sell: we collect no names, emails, demographics, behavioral patterns, browsing history, or any personally identifiable information. Our business model is a free educational tool. There is no advertising, no analytics tracking individuals, and no data broker relationships. This applies to all users in all jurisdictions, satisfying the "Do Not Sell/Share" requirements of CCPA/CPRA, VCDPA, CPA, CTDPA, and equivalent state and international regulations.
+
+---
+
+### "Who are your subprocessors?"
+
+**Short answer:** Three vendors — Lovable Cloud, Lovable AI, and Resend.
+
+**Full answer:** We maintain a complete, transparent [Subprocessor List](./VENDOR_SUBPROCESSORS.md) with risk tiering. Our vendors are:
+
+| Subprocessor | Purpose | Data They Access | Risk Tier |
+|-------------|---------|-----------------|-----------|
+| **Lovable Cloud** | Application hosting, database, edge functions | Anonymous session data (UUID, grade level, timestamps) — no PII | Tier 1 |
+| **Lovable AI** | Educational content generation | Only receives content requests (e.g., "generate a grade 3 passage about animals") — no user data | Tier 2 |
+| **Resend** | Feedback email delivery | User-submitted feedback text only (max 500 chars, with PII warnings displayed) — no sender identification | Tier 2 |
+
+All vendors are GDPR-compliant with platform terms or DPAs in place. We maintain a vendor change policy requiring assessment, compliance verification, and documentation before adding any new vendor.
+
+---
+
+### "How do you handle deletion requests?"
+
+**Short answer:** No personal data exists to delete. Everything auto-deletes.
+
+**Full answer:** Because we collect no personal information, there is no personal data to delete in response to a data subject request. Our architecture handles this proactively:
+
+1. **Session data** (UUID, reading level, passages, questions, responses) is automatically deleted when the browser session ends, via a PostgreSQL function with cascading deletes across all related tables.
+2. **Feedback messages** are delivered via email and never stored in any database. If a deletion request concerns a feedback message, we delete the email.
+3. **Browser-side data** (localStorage for Reading Buddy name/tutorial, sidebar cookie) is controlled by the user and can be cleared through standard browser settings.
+4. **Cached passages** contain only AI-generated educational content with zero user data — no deletion needed.
+
+There is no user profile, no account, no history, and no persistent record of any individual's usage. Data subject access requests under GDPR Article 15 would result in a response confirming that no personal data is held.
+
+---
+
+### "What happens in a breach?"
+
+**Short answer:** We follow our formal Incident Response Plan with 72-hour notification commitment.
+
+**Full answer:** We maintain a formal [Incident Response Plan](./INCIDENT_RESPONSE_PLAN.md) with:
+
+- **Severity classification:** Four levels (Critical, High, Medium, Low) with defined response times (< 1 hour for Critical)
+- **Six-phase response process:** Identify → Contain → Assess → Notify → Recover → Review
+- **GDPR compliance:** Supervisory authority notification within 72 hours if personal data is involved
+- **Specific playbooks** for: database credential exposure, inappropriate AI content, edge function compromise, and PII received in feedback
+- **Escalation procedures** defined per severity level
+- **Incident report template** for documentation
+
+**Critical context:** Because we collect no personal information, the impact of any potential breach is fundamentally limited. There are no credentials to steal, no identities to expose, no financial data to compromise. The most sensitive data in our system is the Resend API key and database credentials — both platform-managed and rotatable. Our incident history to date: zero incidents.
+
+---
+
+### "Do you support DPAs?"
+
+**Short answer:** Yes. We provide a DPA template.
+
+**Full answer:** We provide a [Data Processing Agreement template](./DPA_TEMPLATE.md) ready for enterprise counterparties. The DPA covers:
+
+- Scope and nature of processing (with explicit acknowledgment that no personal data is collected by design)
+- Processor obligations per GDPR Article 28
+- Technical and organizational security measures
+- Data breach notification procedures (72-hour commitment)
+- Complete sub-processor list with change notification procedures
+- International transfer safeguards
+- Data subject rights assistance
+- Audit rights for the controller
+- Term, termination, and data return/deletion procedures
+
+The DPA template should be reviewed by your legal counsel. We're open to reviewing customer-provided DPA templates as well. While the practical scope of data processing obligations is minimal (given our zero-PII architecture), we provide this document to satisfy procurement and compliance requirements.
 
 ---
 
