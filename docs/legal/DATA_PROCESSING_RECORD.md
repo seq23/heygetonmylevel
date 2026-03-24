@@ -253,7 +253,7 @@ For privacy inquiries, users may contact **privacy@time-2-read.com**.
 
 | Version | Date | Author | Changes |
 |---------|------|--------|---------|
-| 1.0 | January 2026 | [System] | Initial record |
+| 1.0 | January 2026 | Privacy Team | Initial record |
 
 ---
 
@@ -301,5 +301,5 @@ responses
 
 | Processor | Agreement Type | Date |
 |-----------|---------------|------|
-| Lovable Cloud | Platform Terms | [Date] |
-| Resend | Service Terms | [Date] |
+| Lovable Cloud | Platform Terms | January 2026 |
+| Resend | Service Terms | January 2026 |

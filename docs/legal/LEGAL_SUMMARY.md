@@ -1,7 +1,7 @@
 # HeyGetOnMyLevel — Legal Summary
 
 **Document Version:** 1.0  
-**Last Updated:** January 2026  
+**Last Updated:** March 2026  
 **Prepared For:** Internal Reference
 
 ---

@@ -19,7 +19,7 @@ This DPA template is provided for transparency and as a starting point for enter
 **Between:**
 
 **Data Controller:** [Customer Name] ("Controller")  
-**Data Processor:** HeyGetOnMyLevel / [Operator Legal Entity] ("Processor")
+**Data Processor:** HeyGetOnMyLevel, operated by Time-2-Read ("Processor")
 
 **Effective Date:** _______________
 
@@ -160,7 +160,7 @@ c) The Processor shall certify deletion in writing
 
 ### 11. Governing Law
 
-This DPA shall be governed by [Applicable Jurisdiction].
+This DPA shall be governed by the laws of the State of Delaware, United States.
 
 ---
 
