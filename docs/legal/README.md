@@ -13,6 +13,11 @@ This directory contains all legal documentation for HeyGetOnMyLevel, a free read
 | [DATA_PROCESSING_RECORD.md](./DATA_PROCESSING_RECORD.md) | GDPR Article 30 compliant record | January 2026 |
 | [CHILDRENS_SAFETY_ADDENDUM.md](./CHILDRENS_SAFETY_ADDENDUM.md) | COPPA compliance documentation | January 2026 |
 
+### Customer-Facing
+| Document | Purpose | Last Updated |
+|----------|---------|--------------|
+| [CUSTOMER_TRUST_SUMMARY.md](./CUSTOMER_TRUST_SUMMARY.md) | **Send this to prospects** — trust & security overview | March 2026 |
+
 ### Enterprise Compliance (Phase 1-2)
 | Document | Purpose | Last Updated |
 |----------|---------|--------------|
