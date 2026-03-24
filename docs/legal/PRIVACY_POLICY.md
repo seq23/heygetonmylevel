@@ -10,8 +10,8 @@
 
 This Privacy Policy describes how HeyGetOnMyLevel ("we," "us," or "our") handles information when you use our reading practice application (the "Service").
 
-**Operator Information:**  
-[TO BE COMPLETED BY LEGAL COUNSEL]
+**Operator:** HeyGetOnMyLevel (operated by Time-2-Read)  
+**Contact:** privacy@time-2-read.com
 
 ---
 

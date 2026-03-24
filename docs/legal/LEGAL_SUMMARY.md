@@ -2,7 +2,7 @@
 
 **Document Version:** 1.0  
 **Last Updated:** January 2026  
-**Prepared For:** Legal Review
+**Prepared For:** Internal Reference
 
 ---
 
@@ -226,21 +226,14 @@ The following legal documents are implemented in the application:
 
 ---
 
-## 10. Recommendations for Legal Counsel
+## 10. Future Considerations
 
-### Items Requiring Attorney Review
+### Low-Priority Items
 
-1. **Jurisdiction**: Terms of Service includes placeholder for governing law jurisdiction
-2. **Operator Information**: Consider adding operator/company name and contact
-3. **Dispute Resolution**: Consider adding arbitration or dispute resolution clause
-4. **Limitation of Liability**: Review liability limitations for your jurisdiction
-5. **DMCA**: Consider adding DMCA takedown procedure if user-generated content added in future
-
-### Low-Priority Considerations
-
-- Accessibility statement (ADA/WCAG compliance)
-- Cookie banner (not legally required for functional-only cookies)
-- Age verification (not required given no PII collection)
+- Accessibility statement (ADA/WCAG compliance) — recommended if pursuing public sector contracts
+- DMCA takedown procedure — only needed if user-generated content is added in future
+- Cookie banner — not legally required for functional-only cookies
+- Age verification — not required given no PII collection
 
 ---
 

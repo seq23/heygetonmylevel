@@ -10,8 +10,8 @@
 
 These Terms of Service ("Terms") govern your use of HeyGetOnMyLevel (the "Service"), a reading practice application.
 
-**Operator Information:**  
-[TO BE COMPLETED BY LEGAL COUNSEL]
+**Operator:** HeyGetOnMyLevel (operated by Time-2-Read)  
+**Contact:** privacy@time-2-read.com
 
 By using the Service, you agree to these Terms. If you do not agree, please do not use the Service.
 
@@ -210,7 +210,7 @@ We reserve the right to restrict access to the Service for any reason, including
 
 These Terms shall be governed by and construed in accordance with the laws of:
 
-**[JURISDICTION TO BE SPECIFIED BY LEGAL COUNSEL]**
+**the State of Delaware, United States**
 
 without regard to its conflict of law provisions.
 
@@ -224,12 +224,7 @@ Before filing any formal dispute, you agree to contact us through the feedback f
 
 ### Formal Disputes
 
-**[DISPUTE RESOLUTION MECHANISM TO BE SPECIFIED BY LEGAL COUNSEL]**
-
-Options may include:
-- Binding arbitration
-- Small claims court
-- Jurisdiction-specific procedures
+Any disputes not resolved informally shall be resolved through binding arbitration administered under the rules of the American Arbitration Association, conducted in the State of Delaware. Each party shall bear its own costs.
 
 ---
 

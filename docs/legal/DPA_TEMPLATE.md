@@ -10,7 +10,7 @@
 
 This DPA template is provided for transparency and as a starting point for enterprise engagements. Because HeyGetOnMyLevel **does not collect personal information**, the practical scope of this DPA is minimal. However, we provide this document to satisfy procurement requirements.
 
-**This template should be reviewed by legal counsel before execution.**
+**This template is ready for execution. We also accept customer-provided DPA templates for review.**
 
 ---
 
