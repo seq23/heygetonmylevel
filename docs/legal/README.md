@@ -17,6 +17,7 @@ This directory contains all legal documentation for HeyGetOnMyLevel, a free read
 | Document | Purpose | Last Updated |
 |----------|---------|--------------|
 | [ENTERPRISE_COMPLIANCE_CHECKLIST.md](./ENTERPRISE_COMPLIANCE_CHECKLIST.md) | Master audit checklist mapped to architecture | March 2026 |
+| [ZERO_PII_COMPLIANCE_IMPLICATIONS.md](./ZERO_PII_COMPLIANCE_IMPLICATIONS.md) | What our no-account, no-PII architecture excuses us from | March 2026 |
 | [SECURITY_OVERVIEW.md](./SECURITY_OVERVIEW.md) | Security whitepaper for enterprise buyers | March 2026 |
 | [VENDOR_SUBPROCESSORS.md](./VENDOR_SUBPROCESSORS.md) | Complete vendor inventory with risk tiering | March 2026 |
 | [INCIDENT_RESPONSE_PLAN.md](./INCIDENT_RESPONSE_PLAN.md) | Breach handling procedures | March 2026 |
