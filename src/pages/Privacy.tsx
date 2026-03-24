@@ -24,7 +24,7 @@ const Privacy = () => {
       <main className="container max-w-4xl py-8 px-6 flex-1">
         <div className="prose prose-slate dark:prose-invert max-w-none">
           <p className="text-muted-foreground text-sm mb-8">
-            Last updated: January 2026
+            Last updated: March 2026
           </p>
 
           <section className="card-elevated mb-6">
