@@ -24,7 +24,7 @@ const Privacy = () => {
       <main className="container max-w-4xl py-8 px-6 flex-1">
         <div className="prose prose-slate dark:prose-invert max-w-none">
           <p className="text-muted-foreground text-sm mb-8">
-            Last updated: March 2026
+            Last updated: {new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
           </p>
 
           <section className="card-elevated mb-6">
@@ -136,8 +136,11 @@ const Privacy = () => {
           <section className="card-elevated">
             <h2 className="text-lg font-semibold text-foreground mb-3">Contact Us</h2>
             <p className="text-muted-foreground">
-              If you have questions about this privacy policy or our practices, please use the feedback 
-              button in the app to reach us. Remember not to include personal information in your message.
+              If you have questions about this privacy policy or our practices, email us at{' '}
+              <a href="mailto:privacy@time-2-read.com" className="text-primary hover:underline">
+                privacy@time-2-read.com
+              </a>
+              . Please do not include personal information in your message.
             </p>
           </section>
         </div>

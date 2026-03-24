@@ -158,9 +158,9 @@ Understanding what we deliberately avoid is as important as what we implement:
 
 ## 10. Security Contact
 
-For security concerns or vulnerability reports, use the in-app feedback mechanism.
+For security concerns or vulnerability reports, email **privacy@time-2-read.com** with "SECURITY" in the subject line for priority handling.
 
-For urgent security matters, include "SECURITY" in your feedback message for priority handling.
+You may also use the in-app feedback mechanism for non-urgent matters.
 
 ---
 

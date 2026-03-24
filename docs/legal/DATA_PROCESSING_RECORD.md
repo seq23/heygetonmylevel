@@ -12,7 +12,7 @@
 |-------|-------|
 | **Organization Name** | [TO BE COMPLETED] |
 | **Contact Person** | [TO BE COMPLETED] |
-| **Contact Email** | [TO BE COMPLETED] |
+| **Contact Email** | privacy@time-2-read.com |
 | **Data Protection Officer** | Not required (see Section 8) |
 
 ---
@@ -220,7 +220,7 @@ A Data Protection Officer is **not required** because:
 
 ### 10.2 Privacy Contact
 
-For privacy inquiries, users may contact via the in-app feedback feature.
+For privacy inquiries, users may contact **privacy@time-2-read.com**.
 
 ---
 

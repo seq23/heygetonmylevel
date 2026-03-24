@@ -128,7 +128,7 @@ Since we don't collect personal information, traditional data rights (access, co
 
 - **Leave the app at any time** — your session data is automatically deleted
 - **Use the app without providing any personal information** — this is the only way to use the app
-- **Contact us with any privacy questions or concerns** — use the feedback button in the app
+- **Contact us with any privacy questions or concerns** — email privacy@time-2-read.com
 
 ### For EU/EEA Residents
 
@@ -153,7 +153,7 @@ State privacy laws (VCDPA, CPA, CTDPA, and others) provide similar rights to CCP
 - Right to access, correct, and delete: No personal data exists
 - Right to opt out of targeted advertising: No advertising conducted
 - Right to opt out of sale: No data sold or shared
-- Right to appeal: Contact us via in-app feedback
+- Right to appeal: Contact us at privacy@time-2-read.com
 
 ### For Brazilian Residents (LGPD)
 
@@ -192,9 +192,9 @@ For material changes, we may also provide notice through the application interfa
 
 ## Contact Us
 
-If you have questions about this privacy policy or our practices, please use the feedback button in the app to reach us.
+If you have questions about this privacy policy or our practices, please email us at **privacy@time-2-read.com**.
 
-**Important:** Please do not include personal information in your feedback message.
+**Important:** Please do not include personal information in your message.
 
 ---
 
