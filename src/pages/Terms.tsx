@@ -37,6 +37,37 @@ const Terms = () => {
           </section>
 
           <section className="card-elevated mb-6">
+            <h2 className="text-lg font-semibold text-foreground mb-3">Permitted Use &amp; Commercial Licensing</h2>
+            <p className="text-muted-foreground mb-4">
+              HeyGetOnMyLevel is provided free of charge for <strong>individual, personal, and educational use only</strong>. 
+              This includes personal reading practice, home use by families, and supplemental use by individual educators 
+              in their classrooms.
+            </p>
+            <p className="text-muted-foreground mb-4">
+              <strong>Commercial use, institutional deployment, white-labeling, embedding, redistribution, and integration 
+              into third-party platforms or products is strictly prohibited without a written license agreement from 
+              Spry Labs.</strong>
+            </p>
+            <p className="text-muted-foreground mb-4">
+              Examples of uses that require a commercial license include, but are not limited to:
+            </p>
+            <ul className="list-disc list-inside text-muted-foreground space-y-2 mb-4">
+              <li>Deploying the Service within a correctional, institutional, or government facility</li>
+              <li>Embedding or integrating the Service into another product, platform, or application</li>
+              <li>Offering access to the Service as part of a paid or bundled service</li>
+              <li>Using the Service or its content for commercial training, resale, or redistribution</li>
+              <li>White-labeling or rebranding any part of the Service</li>
+            </ul>
+            <p className="text-muted-foreground">
+              Unauthorized commercial deployment constitutes a violation of these Terms of Service and applicable 
+              copyright law, and may result in legal action. To inquire about commercial licensing, contact{' '}
+              <a href="mailto:privacy@time-2-read.com" className="text-primary hover:underline">
+                privacy@time-2-read.com
+              </a>.
+            </p>
+          </section>
+
+          <section className="card-elevated mb-6">
             <h2 className="text-lg font-semibold text-foreground mb-3">Service Description</h2>
             <p className="text-muted-foreground">
               HeyGetOnMyLevel is a free reading practice tool designed to help users improve their reading 
