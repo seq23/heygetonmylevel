@@ -145,6 +145,16 @@ const Index = () => {
         <p className="text-xs text-muted-foreground/70 fade-in-up" style={{ animationDelay: "0.35s" }}>
           📚 Assessment uses curated material • Reading sessions let you pick your topic
         </p>
+        <p className="text-xs text-muted-foreground/60 fade-in-up" style={{ animationDelay: "0.4s" }}>
+          Free for personal &amp; educational use. Commercial or institutional use requires a{" "}
+          <a
+            href="mailto:privacy@time-2-read.com?subject=Commercial%20Licensing%20Inquiry"
+            className="underline underline-offset-2 hover:text-foreground transition-colors"
+          >
+            license
+          </a>
+          .
+        </p>
         </div>
       </main>
 
