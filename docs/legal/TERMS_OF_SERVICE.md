@@ -23,6 +23,26 @@ By accessing or using HeyGetOnMyLevel, you agree to be bound by these Terms. If 
 
 ---
 
+## 1A. Permitted Use & Commercial Licensing
+
+HeyGetOnMyLevel is provided free of charge for **individual, personal, and educational use only**. This includes personal reading practice, home use by families, and supplemental use by individual educators in their classrooms.
+
+**Commercial use, institutional deployment, white-labeling, embedding, redistribution, and integration into third-party platforms or products is strictly prohibited without a written license agreement from Spry Labs.**
+
+Examples of uses that require a commercial license include, but are not limited to:
+
+- Deploying the Service within a correctional, institutional, or government facility
+- Embedding or integrating the Service into another product, platform, or application
+- Offering access to the Service as part of a paid or bundled service
+- Using the Service or its content for commercial training, resale, or redistribution
+- White-labeling or rebranding any part of the Service
+
+**Unauthorized commercial deployment constitutes a violation of these Terms of Service and applicable copyright law, and may result in legal action.**
+
+To inquire about commercial licensing, contact **privacy@time-2-read.com**.
+
+---
+
 ## 2. Service Description
 
 HeyGetOnMyLevel is a free, web-based educational tool designed to help users practice and improve their reading comprehension skills.
