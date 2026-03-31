@@ -8,7 +8,17 @@
 
 ## What Is HeyGetOnMyLevel?
 
-HeyGetOnMyLevel is a free, browser-based reading practice application that helps users of all ages (5–85+) improve reading comprehension, phonics, and vocabulary through AI-generated educational content. No account or login is required.
+HeyGetOnMyLevel is a browser-based reading practice application that helps users of all ages (5–85+) improve reading comprehension, phonics, and vocabulary through AI-generated educational content. No account or login is required.
+
+---
+
+## Licensing
+
+HeyGetOnMyLevel is **free for individual, personal, and educational use only**. This includes personal reading practice, home use by families, and supplemental use by individual educators in their classrooms.
+
+**Commercial use, institutional deployment, white-labeling, embedding, redistribution, and integration into third-party platforms or products requires a written license agreement from Spry Labs.** Unauthorized commercial deployment constitutes a violation of the Terms of Service and applicable copyright law.
+
+To inquire about commercial licensing, contact **privacy@time-2-read.com**.
 
 ---
 
