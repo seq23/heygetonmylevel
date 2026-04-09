@@ -373,7 +373,8 @@ const BlendingPractice = ({
 const Phonics = () => {
   const navigate = useNavigate();
   const { session } = useSession();
-  const { speak, speakAsync, isSupported } = useTextToSpeech();
+  const { language } = useLanguage();
+  const { speak, speakAsync, isSupported } = useTextToSpeech(language);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [practicedPatterns, setPracticedPatterns] = useState<Set<string>>(new Set());
 
