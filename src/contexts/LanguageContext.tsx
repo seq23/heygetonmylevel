@@ -277,6 +277,7 @@ const translations: Record<string, Record<Language, string>> = {
   // Footer
   "footer.curriculum": { en: "Curriculum", es: "Currículo" },
   "footer.downloadCurriculum": { en: "Download Curriculum Map", es: "Descargar Mapa Curricular" },
+  "footer.install": { en: "Install App", es: "Instalar App" },
 };
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
