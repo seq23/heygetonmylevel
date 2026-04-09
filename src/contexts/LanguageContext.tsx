@@ -251,6 +251,15 @@ const translations: Record<string, Record<Language, string>> = {
   "tutor.placeholder": { en: "Ask your Reading Buddy...", es: "Pregúntale a tu Compañero de Lectura..." },
   "tutor.limitReached": { en: "Message limit reached for this passage", es: "Límite de mensajes alcanzado para este pasaje" },
 
+  // Vocabulary Assessment
+  "vocab.title": { en: "Quick Vocabulary Check", es: "Verificación Rápida de Vocabulario" },
+  "vocab.subtitle": { en: "Tap all the words you know and understand. Be honest – this helps us find the right level for you!", es: "Toca todas las palabras que conoces y entiendes. Sé honesto — ¡esto nos ayuda a encontrar el nivel correcto para ti!" },
+  "vocab.selected": { en: "Words selected", es: "Palabras seleccionadas" },
+  "vocab.tip": { en: "Only select words you're confident you know. It's okay if you don't know all of them!", es: "Solo selecciona palabras que estés seguro de conocer. ¡Está bien si no las conoces todas!" },
+  "vocab.tip.label": { en: "Tip:", es: "Consejo:" },
+  "vocab.submit": { en: "Find My Reading Level", es: "Encontrar Mi Nivel de Lectura" },
+  "vocab.analyzing": { en: "Analyzing...", es: "Analizando..." },
+
   // Reading hints
   "hint.recall.1": { en: "Look for the answer stated directly in the passage.", es: "Busca la respuesta declarada directamente en el pasaje." },
   "hint.recall.2": { en: "Scan for names, dates, or specific details mentioned.", es: "Busca nombres, fechas o detalles específicos mencionados." },
