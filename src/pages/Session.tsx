@@ -318,7 +318,7 @@ const Session = () => {
             <p className="text-sm text-muted-foreground">{gradeLabel} {t("session.level")}</p>
           </div>
           {state.phase === "questions" && (
-            <div className="text-sm text-muted-foreground">
+            <div className="text-sm text-muted-foreground" aria-live="polite" aria-atomic="true">
               {state.currentQuestionIndex + 1} / {state.questions.length}
             </div>
           )}
@@ -436,6 +436,7 @@ const Session = () => {
                         key={index}
                         onClick={() => handleAnswerSelect(option)}
                         disabled={state.showFeedback}
+                        aria-pressed={state.selectedAnswer === option}
                         className={`answer-option ${
                           state.selectedAnswer === option ? "selected" : ""
                         } ${
@@ -470,6 +471,8 @@ const Session = () => {
                   {/* Feedback */}
                   {state.showFeedback && (
                     <div
+                      role="alert"
+                      aria-live="assertive"
                       className={`mt-6 p-4 rounded-2xl fade-in-up ${
                         state.isCorrect ? "bg-success/10" : "bg-destructive/10"
                       }`}
