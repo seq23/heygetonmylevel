@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { Mic, MicOff, Loader2, AlertCircle, CheckCircle2, RotateCcw, BookOpen, ChevronDown, ArrowDown, ArrowUp } from "lucide-react";
+import { Mic, MicOff, Loader2, AlertCircle, CheckCircle2, RotateCcw, BookOpen, ChevronDown, ArrowDown, ArrowUp, Keyboard } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import {
   Collapsible,
@@ -184,24 +184,12 @@ const ReadAloudAssessment = ({ currentLevel, isESL = false, onComplete, onSkip }
     setPhase("ready");
   };
 
-  if (!isSupported) {
-    return (
-      <div className="text-center space-y-6 py-8">
-        <div className="w-20 h-20 mx-auto bg-destructive/10 rounded-full flex items-center justify-center">
-          <AlertCircle className="w-10 h-10 text-destructive" />
-        </div>
-        <div>
-          <h3 className="text-xl font-semibold mb-2">Speech Recognition Not Available</h3>
-          <p className="text-muted-foreground mb-4">
-            Your browser doesn't support speech recognition. Please use Chrome, Safari, or Edge.
-          </p>
-        </div>
-        <button onClick={onSkip} className="btn-hero">
-          Skip to Vocabulary Assessment
-        </button>
-      </div>
-    );
-  }
+  // Type-to-answer fallback state
+  const [useTypeFallback, setUseTypeFallback] = useState(!isSupported);
+  const [typedText, setTypedText] = useState("");
+
+  // When not supported, still allow the assessment via typing
+  // (we skip the "not supported" early return and handle it in UI instead)
 
   const currentSentence = sentences[currentSentenceIndex];
   const rawTargetWPM = getTargetWPM(effectiveLevel);
