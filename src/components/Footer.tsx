@@ -1,20 +1,22 @@
 import { Link } from "react-router-dom";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const { t } = useLanguage();
 
   return (
     <footer className="border-t border-border bg-muted/30 py-4 px-6">
       <div className="container max-w-4xl flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-muted-foreground">
         <div className="text-center sm:text-left">
-          <p>© {currentYear} HeyGetOnMyLevel. All rights reserved.</p>
+          <p>© {currentYear} HeyGetOnMyLevel. {t("footer.rights")}</p>
           <p className="text-xs text-muted-foreground/60 mt-1">
-            Free for personal use. Commercial use requires a{" "}
+            {t("footer.personal")}{" "}
             <a
               href="mailto:privacy@time-2-read.com?subject=Commercial%20Licensing%20Inquiry"
               className="underline underline-offset-2 hover:text-foreground transition-colors"
             >
-              license
+              {t("footer.license")}
             </a>
             .
           </p>
@@ -24,14 +26,14 @@ const Footer = () => {
             to="/privacy" 
             className="hover:text-foreground transition-colors"
           >
-            Privacy Policy
+            {t("footer.privacy")}
           </Link>
           <span className="text-border">•</span>
           <Link 
             to="/terms" 
             className="hover:text-foreground transition-colors"
           >
-            Terms of Service
+            {t("footer.terms")}
           </Link>
         </nav>
       </div>
