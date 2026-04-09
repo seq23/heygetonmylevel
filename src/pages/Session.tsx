@@ -185,15 +185,15 @@ const Session = () => {
     // Check for level progression
     const progression = checkLevelProgression(isCorrect);
     if (progression.levelChanged && progression.newLevel !== null) {
-      const gradeText = progression.newLevel <= 12 ? `Grade ${progression.newLevel}` : "College";
+      const gradeText = progression.newLevel <= 12 ? `${t("level.grade")} ${progression.newLevel}` : t("level.college");
       if (progression.direction === 'up') {
-        toast.success(`🚀 Level Up! Now at ${gradeText}!`, {
-          description: "Great job! You're ready for harder passages.",
+        toast.success(`🚀 ${t("session.levelUp")} ${gradeText}!`, {
+          description: t("session.levelUpDesc"),
           duration: 5000,
         });
       } else {
-        toast.info(`📚 Let's practice more at ${gradeText}`, {
-          description: "Keep going! Practice makes perfect.",
+        toast.info(`📚 ${t("session.practiceMore")} ${gradeText}`, {
+          description: t("session.practiceMoreDesc"),
           duration: 5000,
         });
       }
@@ -284,8 +284,8 @@ const Session = () => {
 
   const gradeLabel =
     session.readingLevel && session.readingLevel <= 12
-      ? `Grade ${session.readingLevel}`
-      : "College";
+      ? `${t("level.grade")} ${session.readingLevel}`
+      : t("level.college");
 
   const currentQuestion = state.questions[state.currentQuestionIndex];
   const { strengths, weaknesses } = getStrengthsAndWeaknesses();
@@ -314,8 +314,8 @@ const Session = () => {
             </button>
           </div>
           <div className="flex-1">
-            <h1 className="text-xl font-display font-bold">Reading Session</h1>
-            <p className="text-sm text-muted-foreground">{gradeLabel} Level</p>
+            <h1 className="text-xl font-display font-bold">{t("session.title")}</h1>
+            <p className="text-sm text-muted-foreground">{gradeLabel} {t("session.level")}</p>
           </div>
           {state.phase === "questions" && (
             <div className="text-sm text-muted-foreground">
@@ -355,7 +355,7 @@ const Session = () => {
               <div className="flex flex-col items-center justify-center py-20 gap-4">
                 <Loader2 className="w-12 h-12 text-primary animate-spin" />
                 <p className="text-muted-foreground">
-                  {state.passage ? "Generating questions..." : "Creating your passage..."}
+                  {state.passage ? t("session.generating") : t("session.creating")}
                 </p>
               </div>
             )}
@@ -388,8 +388,7 @@ const Session = () => {
                 <div className="p-4 rounded-xl bg-muted/50 flex items-start gap-3">
                   <HelpCircle className="w-5 h-5 text-muted-foreground flex-shrink-0 mt-0.5" />
                   <p className="text-sm text-muted-foreground">
-                    Take your time reading. Need help? Ask your AI Reading Buddy! When you're ready,
-                    tap the button below to answer questions.
+                    {t("session.readingHelp")}
                   </p>
                 </div>
 
@@ -402,7 +401,7 @@ const Session = () => {
                   {isLoading ? (
                     <Loader2 className="w-5 h-5 animate-spin mx-auto" />
                   ) : (
-                    "I'm Ready for Questions"
+                    t("session.ready")
                   )}
                 </button>
               </div>
@@ -415,7 +414,7 @@ const Session = () => {
                 <details className="card-elevated cursor-pointer">
                   <summary className="font-semibold text-muted-foreground flex items-center gap-2">
                     <BookOpen className="w-4 h-4" />
-                    View passage again
+                    {t("session.viewPassage")}
                   </summary>
                   <p className="mt-4 text-sm text-muted-foreground whitespace-pre-wrap">
                     {state.passage?.text}
@@ -483,7 +482,7 @@ const Session = () => {
                         )}
                         <div>
                           <p className="font-semibold">
-                            {state.isCorrect ? "Great job!" : "Not quite right"}
+                            {state.isCorrect ? t("session.greatJob") : t("session.notQuite")}
                           </p>
                           <p className="text-sm text-muted-foreground mt-1">
                             {currentQuestion.explanation}
@@ -501,13 +500,13 @@ const Session = () => {
                         disabled={!state.selectedAnswer}
                         className="btn-hero w-full disabled:opacity-50 disabled:cursor-not-allowed"
                       >
-                        Submit Answer
+                        {t("session.submitAnswer")}
                       </button>
                     ) : (
                       <button onClick={handleNextQuestion} className="btn-hero w-full">
                         {state.currentQuestionIndex < state.questions.length - 1
-                          ? "Next Question"
-                          : "View Results"}
+                          ? t("session.nextQuestion")
+                          : t("session.viewResults")}
                       </button>
                     )}
                   </div>
@@ -524,19 +523,19 @@ const Session = () => {
                       <CheckCircle2 className="w-12 h-12 text-success" />
                     </div>
                   </div>
-                  <h2 className="text-2xl font-display font-bold">Passage Complete!</h2>
-                  <p className="text-muted-foreground mt-2">Great work on this reading exercise</p>
+                   <h2 className="text-2xl font-display font-bold">{t("session.passageComplete")}</h2>
+                   <p className="text-muted-foreground mt-2">{t("session.greatWork")}</p>
                 </div>
 
                 {/* Stats */}
                 <div className="card-elevated">
-                  <h3 className="font-display font-bold mb-4">Your Results</h3>
+                  <h3 className="font-display font-bold mb-4">{t("session.yourResults")}</h3>
                   <div className="grid grid-cols-2 gap-4">
                     <div className="text-center p-4 rounded-xl bg-muted">
                       <p className="text-3xl font-bold text-foreground">
                         {state.sessionStats.correct}/{state.sessionStats.total}
                       </p>
-                      <p className="text-sm text-muted-foreground">Correct</p>
+                      <p className="text-sm text-muted-foreground">{t("session.correct")}</p>
                     </div>
                     <div className="text-center p-4 rounded-xl bg-success/10">
                       <p className="text-3xl font-bold text-success">
@@ -545,7 +544,7 @@ const Session = () => {
                           : 0}
                         %
                       </p>
-                      <p className="text-sm text-muted-foreground">Accuracy</p>
+                      <p className="text-sm text-muted-foreground">{t("dashboard.accuracy")}</p>
                     </div>
                   </div>
                 </div>
@@ -553,13 +552,13 @@ const Session = () => {
                 {/* Strengths */}
                 {strengths.length > 0 && (
                   <div className="card-elevated border-success/30">
-                    <div className="flex items-center gap-2 mb-3">
-                      <TrendingUp className="w-5 h-5 text-success" />
-                      <h3 className="font-display font-bold text-success">Your Strengths</h3>
-                    </div>
-                    <p className="text-sm text-muted-foreground mb-3">
-                      Great job! You're doing well with these skills:
-                    </p>
+                     <div className="flex items-center gap-2 mb-3">
+                       <TrendingUp className="w-5 h-5 text-success" />
+                       <h3 className="font-display font-bold text-success">{t("session.strengths")}</h3>
+                     </div>
+                     <p className="text-sm text-muted-foreground mb-3">
+                       {t("session.strengthsDesc")}
+                     </p>
                     <div className="flex flex-wrap gap-2">
                       {strengths.map((skill) => {
                         const perf = state.sessionStats.skillPerformance[skill];
@@ -580,13 +579,13 @@ const Session = () => {
                 {/* Weaknesses */}
                 {weaknesses.length > 0 && (
                   <div className="card-elevated border-warning/30">
-                    <div className="flex items-center gap-2 mb-3">
-                      <TrendingDown className="w-5 h-5 text-warning" />
-                      <h3 className="font-display font-bold text-warning">Areas to Improve</h3>
-                    </div>
-                    <p className="text-sm text-muted-foreground mb-3">
-                      Keep practicing these skills:
-                    </p>
+                     <div className="flex items-center gap-2 mb-3">
+                       <TrendingDown className="w-5 h-5 text-warning" />
+                       <h3 className="font-display font-bold text-warning">{t("session.improve")}</h3>
+                     </div>
+                     <p className="text-sm text-muted-foreground mb-3">
+                       {t("session.improveDesc")}
+                     </p>
                     <div className="flex flex-wrap gap-2">
                       {weaknesses.map((skill) => {
                         const perf = state.sessionStats.skillPerformance[skill];
@@ -607,7 +606,7 @@ const Session = () => {
                 {/* Skill Breakdown */}
                 {Object.keys(state.sessionStats.skillPerformance).length > 0 && (
                   <div className="card-elevated">
-                    <h3 className="font-display font-bold mb-4">Skill Breakdown</h3>
+                    <h3 className="font-display font-bold mb-4">{t("session.skillBreakdown")}</h3>
                     <div className="space-y-3">
                       {Object.entries(state.sessionStats.skillPerformance).map(([skill, perf]) => {
                         const accuracy = perf.total > 0 ? (perf.correct / perf.total) * 100 : 0;
@@ -643,11 +642,12 @@ const Session = () => {
                   <button onClick={handleContinueLearning} className="btn-hero w-full">
                     Continue Learning
                   </button>
-                  <button
-                    onClick={handleEndSession}
-                    className="w-full py-4 px-8 rounded-2xl border-2 border-border text-foreground font-semibold hover:bg-muted transition-colors"
-                  >
-                    End Session
+                   <button
+                     onClick={handleEndSession}
+                     className="w-full py-4 px-8 rounded-2xl border-2 border-border text-foreground font-semibold hover:bg-muted transition-colors"
+                   >
+                     {t("session.endSession")}
+                   </button>
                   </button>
                 </div>
               </div>
