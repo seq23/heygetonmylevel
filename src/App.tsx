@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { SessionProvider } from "@/contexts/SessionContext";
 import { LanguageProvider } from "@/contexts/LanguageContext";
+import SkipNav from "@/components/SkipNav";
 import Index from "./pages/Index";
 import SelectLevel from "./pages/SelectLevel";
 import Assessment from "./pages/Assessment";
@@ -15,6 +16,7 @@ import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
 import Phonics from "./pages/Phonics";
 import Curriculum from "./pages/Curriculum";
+import Install from "./pages/Install";
 import NotFound from "./pages/NotFound";
 import FeedbackBubble from "./components/FeedbackBubble";
 
@@ -28,6 +30,7 @@ const App = () => (
           <Toaster />
           <Sonner />
           <BrowserRouter>
+            <SkipNav />
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/select-level" element={<SelectLevel />} />
@@ -36,6 +39,7 @@ const App = () => (
               <Route path="/session" element={<Session />} />
               <Route path="/phonics" element={<Phonics />} />
               <Route path="/curriculum" element={<Curriculum />} />
+              <Route path="/install" element={<Install />} />
               <Route path="/summary" element={<Summary />} />
               <Route path="/privacy" element={<Privacy />} />
               <Route path="/terms" element={<Terms />} />
