@@ -21,7 +21,22 @@ const Footer = () => {
             .
           </p>
         </div>
-        <nav className="flex items-center gap-4">
+        <nav className="flex items-center gap-4 flex-wrap justify-center">
+          <Link 
+            to="/curriculum" 
+            className="hover:text-foreground transition-colors"
+          >
+            {t("footer.curriculum")}
+          </Link>
+          <span className="text-border">•</span>
+          <a
+            href="/HeyGetOnMyLevel_Curriculum_Map.docx"
+            download
+            className="hover:text-foreground transition-colors"
+          >
+            📄 {t("footer.downloadCurriculum")}
+          </a>
+          <span className="text-border">•</span>
           <Link 
             to="/privacy" 
             className="hover:text-foreground transition-colors"

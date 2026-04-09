@@ -14,6 +14,7 @@ import Summary from "./pages/Summary";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
 import Phonics from "./pages/Phonics";
+import Curriculum from "./pages/Curriculum";
 import NotFound from "./pages/NotFound";
 import FeedbackBubble from "./components/FeedbackBubble";
 
@@ -34,6 +35,7 @@ const App = () => (
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/session" element={<Session />} />
               <Route path="/phonics" element={<Phonics />} />
+              <Route path="/curriculum" element={<Curriculum />} />
               <Route path="/summary" element={<Summary />} />
               <Route path="/privacy" element={<Privacy />} />
               <Route path="/terms" element={<Terms />} />
