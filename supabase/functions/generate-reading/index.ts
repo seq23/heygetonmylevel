@@ -16,6 +16,7 @@ interface PassageRequest {
   correctAnswer?: string;
   userQuestion?: string;
   currentQuestion?: string;
+  language?: string;
 }
 
 const getGradeDescription = (level: number): string => {
@@ -34,7 +35,7 @@ serve(async (req) => {
   }
 
   try {
-    const { type, gradeLevel, skillFocus, theme, passageText, question, userAnswer, correctAnswer, userQuestion, currentQuestion } = await req.json() as PassageRequest;
+    const { type, gradeLevel, skillFocus, theme, passageText, question, userAnswer, correctAnswer, userQuestion, currentQuestion, language } = await req.json() as PassageRequest;
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
     
     if (!LOVABLE_API_KEY) {
