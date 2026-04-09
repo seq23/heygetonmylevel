@@ -59,14 +59,15 @@ export const useAI = () => {
   const getCachedOrGeneratePassage = useCallback(async (
     gradeLevel: number,
     skillFocus?: string,
-    theme?: string
+    theme?: string,
+    language?: string
   ): Promise<{ passage: Passage; questions: Question[]; fromCache: boolean } | null> => {
     setIsLoading(true);
     setError(null);
 
     try {
-      // Skip cache entirely if theme is specified (custom content needed)
-      const useCache = !theme && Math.random() < CACHE_USE_PROBABILITY;
+      // Skip cache entirely if theme is specified or language is Spanish (custom content needed)
+      const useCache = !theme && language !== "es" && Math.random() < CACHE_USE_PROBABILITY;
       
       if (useCache) {
         // Try to get from cache
@@ -95,18 +96,17 @@ export const useAI = () => {
 
       // Generate new passage (with optional theme)
       const { data: passageData, error: passageError } = await supabase.functions.invoke("generate-reading", {
-        body: { type: "passage", gradeLevel, skillFocus, theme },
+        body: { type: "passage", gradeLevel, skillFocus, theme, language },
       });
       if (passageError) throw passageError;
 
-      // Generate questions for the passage
       const { data: questionsData, error: questionsError } = await supabase.functions.invoke("generate-reading", {
-        body: { type: "questions", passageText: passageData.text, gradeLevel },
+        body: { type: "questions", passageText: passageData.text, gradeLevel, language },
       });
       if (questionsError) throw questionsError;
 
-      // Only save to cache if no custom theme (themed passages are one-offs)
-      if (!theme) {
+      // Only save to cache if no custom theme and English (themed/Spanish passages are one-offs)
+      if (!theme && language !== "es") {
         supabase.from("cached_passages").insert({
           grade_level: gradeLevel,
           skill_focus: skillFocus || null,
@@ -169,7 +169,8 @@ export const useAI = () => {
   const generateQuestions = useCallback(async (
     passageText: string,
     gradeLevel: number,
-    skillFocus?: string
+    skillFocus?: string,
+    language?: string
   ): Promise<Question[] | null> => {
     setIsLoading(true);
     setError(null);
@@ -181,6 +182,7 @@ export const useAI = () => {
           passageText,
           gradeLevel,
           skillFocus,
+          language,
         },
       });
 
