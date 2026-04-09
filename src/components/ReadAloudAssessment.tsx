@@ -93,14 +93,14 @@ const ReadAloudAssessment = ({ currentLevel, isESL = false, onComplete, onSkip }
     
     const loadSentences = async () => {
       setPhase("loading");
-      const data = await generateReadAloudSentences(effectiveLevel);
+      const data = await generateReadAloudSentences(effectiveLevel, language);
       if (data?.sentences) {
         setSentences(data.sentences);
         setPhase("ready");
       }
     };
     loadSentences();
-  }, [effectiveLevel, isSupported, generateReadAloudSentences]);
+  }, [effectiveLevel, isSupported, generateReadAloudSentences, language]);
 
   // Handle countdown
   useEffect(() => {
