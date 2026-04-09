@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft, BookOpen, Mic, CheckCircle2, XCircle, Loader2, Sparkles, Globe } from "lucide-react";
 import { useSession } from "@/contexts/SessionContext";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { useAI } from "@/hooks/useAI";
 import VocabularyAssessment from "@/components/VocabularyAssessment";
 import ReadAloudAssessment from "@/components/ReadAloudAssessment";
@@ -26,6 +27,7 @@ interface ConfirmationPassage {
 const Assessment = () => {
   const navigate = useNavigate();
   const { session, updateReadingLevel, setAssessmentTaken } = useSession();
+  const { t } = useLanguage();
   const { generateVocabularyConfirmation, isLoading } = useAI();
 
   const [assessmentType, setAssessmentType] = useState<AssessmentType | null>(null);
@@ -39,7 +41,6 @@ const Assessment = () => {
   const [finalLevel, setFinalLevel] = useState<number | null>(null);
   const [isESL, setIsESL] = useState(false);
   
-  // Confirmation passage state
   const [confirmationPassage, setConfirmationPassage] = useState<ConfirmationPassage | null>(null);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
@@ -68,7 +69,6 @@ const Assessment = () => {
     if (assessmentType === "both") {
       setPhase("read_aloud");
     } else {
-      // Load confirmation passage
       await loadConfirmationPassage(level);
     }
   };
@@ -76,9 +76,6 @@ const Assessment = () => {
   const handleReadAloudComplete = async (accuracy: number, wpm: number, level: number) => {
     setReadAloudResults({ accuracy, wpm, level });
     
-    // Calculate combined level if both assessments done
-    // Vocabulary (comprehension) weighted 60%, read-aloud (fluency) weighted 40%
-    // because comprehension is a stronger indicator of reading level than speed
     if (assessmentType === "both" && estimatedLevel) {
       const combinedLevel = Math.round(estimatedLevel * 0.6 + level * 0.4);
       await loadConfirmationPassage(combinedLevel);
@@ -122,7 +119,6 @@ const Assessment = () => {
       setShowFeedback(false);
       setIsCorrect(null);
     } else {
-      // Calculate final level
       calculateFinalLevel();
     }
   };
@@ -130,13 +126,9 @@ const Assessment = () => {
   const calculateFinalLevel = () => {
     let baseLevel = estimatedLevel || readAloudResults?.level || 5;
     
-    // Adjust based on confirmation passage performance
-    // Comprehension is the strongest signal — if you understand what you read,
-    // that matters more than how fast you read it.
     if (confirmationPassage) {
       const accuracy = confirmationCorrect / confirmationPassage.questions.length;
       if (accuracy >= 1.0) {
-        // Perfect comprehension — bump up 2 levels
         baseLevel = Math.min(13, baseLevel + 2);
       } else if (accuracy >= 0.8) {
         baseLevel = Math.min(13, baseLevel + 1);
@@ -159,9 +151,11 @@ const Assessment = () => {
 
   if (!session) return null;
 
+  const gradeLabel = (level: number) =>
+    level <= 12 ? `${t("level.grade")} ${level}` : t("level.college");
+
   return (
     <div className="min-h-screen bg-background flex flex-col">
-      {/* Header */}
       <header className="sticky top-0 bg-background/80 backdrop-blur-sm border-b border-border z-10">
         <div className="container max-w-4xl py-4 flex items-center gap-4 px-4">
           <button
@@ -172,43 +166,40 @@ const Assessment = () => {
             <ArrowLeft className="w-5 h-5 text-muted-foreground" />
           </button>
           <div className="flex-1">
-            <h1 className="text-xl font-display font-bold">Reading Assessment</h1>
+            <h1 className="text-xl font-display font-bold">{t("assessment.title")}</h1>
             <p className="text-sm text-muted-foreground">
-              {phase === "select_type" && "Choose assessment type"}
-              {phase === "vocabulary" && "Vocabulary Check"}
-              {phase === "read_aloud" && "Read Aloud"}
-              {phase === "confirmation" && "Confirm Your Level"}
-              {phase === "result" && "Assessment Complete"}
+              {phase === "select_type" && t("assessment.chooseType")}
+              {phase === "vocabulary" && t("assessment.vocabCheck")}
+              {phase === "read_aloud" && t("assessment.readAloud")}
+              {phase === "confirmation" && t("assessment.confirmLevel")}
+              {phase === "result" && t("assessment.complete")}
             </p>
           </div>
         </div>
       </header>
 
-      {/* Reassurance Banner */}
       {phase === "select_type" && (
         <div className="bg-primary/5 border-b border-primary/10 py-3 px-4">
           <p className="text-center text-sm text-muted-foreground max-w-2xl mx-auto">
-            <span className="text-primary font-medium">✨ Don't worry!</span> Assessment passages are pre-selected to measure your level accurately. 
-            Once complete, you'll choose topics that interest <em>you</em> for reading practice.
+            <span className="text-primary font-medium">✨ </span>
+            {t("assessment.reassurance")}
           </p>
         </div>
       )}
 
       <main className="container max-w-4xl py-8 px-6">
-        {/* Assessment Type Selection */}
         {phase === "select_type" && (
           <div className="space-y-6 fade-in-up">
             <div className="text-center mb-8">
               <h2 className="text-2xl font-display font-bold mb-2">
-                How would you like to assess your reading?
+                {t("assessment.howAssess")}
               </h2>
               <p className="text-muted-foreground">
-                Choose the assessment method that works best for you
+                {t("assessment.chooseMethod")}
               </p>
             </div>
 
             <div className="grid gap-4">
-              {/* Vocabulary Option */}
               <button
                 onClick={() => handleTypeSelect("vocabulary")}
                 className="card-elevated text-left hover:border-primary/50 transition-all group"
@@ -218,19 +209,18 @@ const Assessment = () => {
                     <BookOpen className="w-7 h-7 text-primary" />
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-lg font-semibold mb-1">Vocabulary Check</h3>
+                    <h3 className="text-lg font-semibold mb-1">{t("assessment.vocabCheck")}</h3>
                     <p className="text-sm text-muted-foreground mb-2">
-                      Quick 30-second assessment – tap words you know
+                      {t("assessment.quick30")}
                     </p>
                     <div className="flex items-center gap-2 text-xs text-primary">
                       <Sparkles className="w-4 h-4" />
-                      <span>Fastest option</span>
+                      <span>{t("assessment.fastest")}</span>
                     </div>
                   </div>
                 </div>
               </button>
 
-              {/* Read Aloud Option */}
               <button
                 onClick={() => handleTypeSelect("read_aloud")}
                 className="card-elevated text-left hover:border-primary/50 transition-all group"
@@ -240,18 +230,17 @@ const Assessment = () => {
                     <Mic className="w-7 h-7 text-primary" />
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-lg font-semibold mb-1">Read Aloud</h3>
+                    <h3 className="text-lg font-semibold mb-1">{t("assessment.readAloud")}</h3>
                     <p className="text-sm text-muted-foreground mb-2">
-                      Read sentences out loud to test fluency & speed
+                      {t("assessment.readSentences")}
                     </p>
                     <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                      <span>Requires microphone</span>
+                      <span>{t("assessment.requiresMic")}</span>
                     </div>
                   </div>
                 </div>
               </button>
 
-              {/* Both Option */}
               <button
                 onClick={() => handleTypeSelect("both")}
                 className="card-elevated text-left hover:border-primary/50 transition-all group border-primary/30"
@@ -265,23 +254,22 @@ const Assessment = () => {
                   </div>
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-1">
-                      <h3 className="text-lg font-semibold">Both</h3>
+                      <h3 className="text-lg font-semibold">{t("assessment.both")}</h3>
                       <span className="px-2 py-0.5 bg-primary/10 text-primary text-xs rounded-full">
-                        Recommended
+                        {t("assessment.recommended")}
                       </span>
                     </div>
                     <p className="text-sm text-muted-foreground mb-2">
-                      Comprehensive assessment for the most accurate level
+                      {t("assessment.comprehensive")}
                     </p>
                     <div className="flex items-center gap-2 text-xs text-primary">
                       <Sparkles className="w-4 h-4" />
-                      <span>Most accurate results</span>
+                      <span>{t("assessment.mostAccurate")}</span>
                     </div>
                   </div>
                 </div>
               </button>
 
-              {/* ESL Toggle */}
               <label
                 className="flex items-center gap-3 p-4 rounded-xl border-2 border-border bg-card hover:border-primary/30 transition-all cursor-pointer"
                 onClick={(e) => e.stopPropagation()}
@@ -290,9 +278,9 @@ const Assessment = () => {
                   <Globe className="w-5 h-5 text-muted-foreground" />
                 </div>
                 <div className="flex-1">
-                  <p className="text-sm font-medium">English is not my first language</p>
+                  <p className="text-sm font-medium">{t("assessment.eslToggle")}</p>
                   <p className="text-xs text-muted-foreground">
-                    We'll adjust speed expectations to be more fair
+                    {t("assessment.eslDesc")}
                   </p>
                 </div>
                 <input
@@ -306,12 +294,10 @@ const Assessment = () => {
           </div>
         )}
 
-        {/* Vocabulary Assessment */}
         {phase === "vocabulary" && (
           <VocabularyAssessment onComplete={handleVocabularyComplete} />
         )}
 
-        {/* Read Aloud Assessment */}
         {phase === "read_aloud" && (
           <ReadAloudAssessment
             currentLevel={estimatedLevel || 5}
@@ -327,26 +313,24 @@ const Assessment = () => {
           />
         )}
 
-        {/* Confirmation Passage */}
         {phase === "confirmation" && (
           <div className="space-y-6 fade-in-up">
             {isLoading || !confirmationPassage ? (
               <div className="flex flex-col items-center justify-center py-20 gap-4">
                 <Loader2 className="w-12 h-12 text-primary animate-spin" />
-                <p className="text-muted-foreground">Preparing confirmation passage...</p>
+                <p className="text-muted-foreground">{t("assessment.preparing")}</p>
               </div>
             ) : (
               <>
                 <div className="text-center mb-4">
                   <h2 className="text-xl font-display font-bold">
-                    Let's confirm your level
+                    {t("assessment.confirmTitle")}
                   </h2>
                   <p className="text-sm text-muted-foreground">
-                    Read this short passage and answer the questions
+                    {t("assessment.confirmDesc")}
                   </p>
                 </div>
 
-                {/* Passage */}
                 <div className="card-elevated">
                   <h3 className="text-lg font-semibold mb-3">{confirmationPassage.title}</h3>
                   <p className="reading-passage text-foreground whitespace-pre-wrap">
@@ -354,10 +338,9 @@ const Assessment = () => {
                   </p>
                 </div>
 
-                {/* Question */}
                 <div className="question-card">
                   <div className="mb-2 text-sm text-muted-foreground">
-                    Question {currentQuestionIndex + 1} of {confirmationPassage.questions.length}
+                    {t("assessment.questionOf")} {currentQuestionIndex + 1} {t("assessment.of")} {confirmationPassage.questions.length}
                   </div>
                   <h3 className="text-lg font-semibold mb-6">
                     {confirmationPassage.questions[currentQuestionIndex].text}
@@ -391,7 +374,6 @@ const Assessment = () => {
                     ))}
                   </div>
 
-                  {/* Feedback */}
                   {showFeedback && (
                     <div
                       className={`mt-6 p-4 rounded-2xl fade-in-up ${
@@ -406,7 +388,7 @@ const Assessment = () => {
                         )}
                         <div>
                           <p className="font-semibold">
-                            {isCorrect ? "Correct!" : "Not quite right"}
+                            {isCorrect ? t("assessment.correct") : t("assessment.notQuiteRight")}
                           </p>
                           <p className="text-sm text-muted-foreground mt-1">
                             {confirmationPassage.questions[currentQuestionIndex].explanation}
@@ -416,7 +398,6 @@ const Assessment = () => {
                     </div>
                   )}
 
-                  {/* Actions */}
                   <div className="mt-6">
                     {!showFeedback ? (
                       <button
@@ -424,13 +405,13 @@ const Assessment = () => {
                         disabled={!selectedAnswer}
                         className="btn-hero w-full disabled:opacity-50 disabled:cursor-not-allowed"
                       >
-                        Submit Answer
+                        {t("session.submitAnswer")}
                       </button>
                     ) : (
                       <button onClick={handleNextQuestion} className="btn-hero w-full">
                         {currentQuestionIndex < confirmationPassage.questions.length - 1
-                          ? "Next Question"
-                          : "See Results"}
+                          ? t("session.nextQuestion")
+                          : t("assessment.seeResults")}
                       </button>
                     )}
                   </div>
@@ -440,7 +421,6 @@ const Assessment = () => {
           </div>
         )}
 
-        {/* Result Phase */}
         {phase === "result" && finalLevel && (
           <div className="text-center space-y-8 py-8 fade-in-up">
             <div className="celebration-bounce">
@@ -453,35 +433,34 @@ const Assessment = () => {
 
             <div>
               <h2 className="text-3xl font-display font-bold">
-                Your reading level is{" "}
+                {t("assessment.yourLevel")}{" "}
                 <span className="text-primary">
-                  {finalLevel <= 12 ? `Grade ${finalLevel}` : "College"}
+                  {gradeLabel(finalLevel)}
                 </span>
               </h2>
               <p className="text-muted-foreground mt-2">
-                Based on your assessment, we've found the perfect level for you to practice.
+                {t("assessment.foundLevel")}
               </p>
             </div>
 
-            {/* Summary */}
             <div className="card-elevated max-w-sm mx-auto text-left">
-              <div className="text-sm text-muted-foreground mb-3">Assessment Summary</div>
+              <div className="text-sm text-muted-foreground mb-3">{t("assessment.summary")}</div>
               
               {estimatedLevel && (
                 <div className="flex justify-between items-center py-2 border-b border-border">
-                  <span>Vocabulary Level</span>
-                  <span className="font-semibold">Grade {estimatedLevel}</span>
+                  <span>{t("assessment.vocabLevel")}</span>
+                  <span className="font-semibold">{gradeLabel(estimatedLevel)}</span>
                 </div>
               )}
               
               {readAloudResults && (
                 <>
                   <div className="flex justify-between items-center py-2 border-b border-border">
-                    <span>Reading Accuracy</span>
+                    <span>{t("assessment.readingAccuracy")}</span>
                     <span className="font-semibold text-success">{Math.round(readAloudResults.accuracy)}%</span>
                   </div>
                   <div className="flex justify-between items-center py-2 border-b border-border">
-                    <span>Reading Speed</span>
+                    <span>{t("assessment.readingSpeed")}</span>
                     <span className="font-semibold">{readAloudResults.wpm} WPM</span>
                   </div>
                 </>
@@ -489,7 +468,7 @@ const Assessment = () => {
               
               {confirmationPassage && (
                 <div className="flex justify-between items-center py-2">
-                  <span>Confirmation Score</span>
+                  <span>{t("assessment.confirmScore")}</span>
                   <span className="font-semibold">
                     {confirmationCorrect}/{confirmationPassage.questions.length}
                   </span>
@@ -498,7 +477,7 @@ const Assessment = () => {
             </div>
 
             <button onClick={handleStartLearning} className="btn-hero">
-              Start Learning at Grade {finalLevel <= 12 ? finalLevel : "College"}
+              {t("assessment.startLearning")} {finalLevel <= 12 ? finalLevel : t("level.college")}
             </button>
           </div>
         )}
