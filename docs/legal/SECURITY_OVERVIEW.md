@@ -113,7 +113,7 @@ Our risk profile is inherently low because:
 | CCPA/CPRA | ✅ Compliant | No data sold; consumer rights satisfied by design |
 | COPPA | ✅ Compliant | No children's PII collected |
 | FERPA | ✅ N/A | No student records handled |
-| Section 508 | ✅ Implemented | Skip nav, landmarks, ARIA labels, focus-visible, semantic HTML |
+| Section 508 | ✅ Implemented | Skip nav, landmarks, ARIA labels, focus-visible, aria-live regions, aria-pressed states, type-to-answer fallback, semantic HTML |
 | FISMA | 🔴 Not Yet | Formal certification deferred |
 | SOC 2 | 🟡 Readiness | Controls in place; formal audit Phase 3 |
 | ISO 27001 | 🔴 Not Yet | Planned at enterprise scale |

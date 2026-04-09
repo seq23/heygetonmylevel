@@ -88,7 +88,16 @@ The application has been designed with compatibility for restricted tablet envir
 
 ### Section 508 Accessibility
 
-Accessibility features include semantic HTML, ARIA labels, keyboard navigation support, and responsive design. Full Section 508 / WCAG 2.1 AA audit is planned as part of institutional deployment readiness.
+Accessibility features include:
+- **Skip navigation** link for keyboard users
+- **Landmark roles** and semantic HTML throughout
+- **Persistent focus indicators** (`:focus-visible`) on all interactive elements
+- **ARIA-live regions** for progress counters, feedback messages, and AI tutor responses (screen reader announcements)
+- **ARIA-pressed states** on assessment answer buttons and vocabulary word toggles
+- **Type-to-answer fallback** for read-aloud assessments (for users without microphone access or on restricted hardware)
+- **ARIA labels** on all buttons, navigation, and interactive controls
+
+Full Section 508 / WCAG 2.1 AA formal audit is planned as part of institutional deployment readiness.
 
 ---
 
@@ -118,7 +127,7 @@ Accessibility features include semantic HTML, ARIA labels, keyboard navigation s
 | **U.S. State Laws** (VA, CO, CT, etc.) | ✅ Compliant | Covered by GDPR + CCPA compliance |
 | **LGPD** (Brazil) / **PIPEDA** (Canada) | ✅ Compliant | No personal data processed |
 | **PCI DSS** | ✅ N/A | No payment processing |
-| **Section 508** | ✅ Implemented | Skip navigation, landmarks, ARIA labels, focus management, semantic HTML |
+| **Section 508** | ✅ Implemented | Skip nav, landmarks, ARIA labels, focus-visible, aria-live regions, aria-pressed, type-to-answer fallback |
 | **FISMA** | 🔴 Not Yet | Would require formal certification for federal deployment |
 | **SOC 2** | 🟡 Controls in place | Formal audit planned at scale (Phase 3) |
 
