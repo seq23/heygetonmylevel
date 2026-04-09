@@ -118,7 +118,7 @@ Accessibility features include semantic HTML, ARIA labels, keyboard navigation s
 | **U.S. State Laws** (VA, CO, CT, etc.) | ✅ Compliant | Covered by GDPR + CCPA compliance |
 | **LGPD** (Brazil) / **PIPEDA** (Canada) | ✅ Compliant | No personal data processed |
 | **PCI DSS** | ✅ N/A | No payment processing |
-| **Section 508** | ⚠️ In Progress | Semantic HTML; full audit planned |
+| **Section 508** | ✅ Implemented | Skip navigation, landmarks, ARIA labels, focus management, semantic HTML |
 | **FISMA** | 🔴 Not Yet | Would require formal certification for federal deployment |
 | **SOC 2** | 🟡 Controls in place | Formal audit planned at scale (Phase 3) |
 
