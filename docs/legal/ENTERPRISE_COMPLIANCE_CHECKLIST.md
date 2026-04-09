@@ -211,7 +211,7 @@
 | Spanish support | ✅ | Full application coverage (UI, AI, assessments, phonics) |
 | Curriculum map (structured) | ✅ | 200-hour map: 5 grade bands × 4 modules × 10 hrs; downloadable .docx |
 | AI content guardrails | ✅ | Topic-restricted system prompt; rejects non-reading queries |
-| Section 508 accessibility | ✅ | Skip nav, landmark roles, aria-labels, focus-visible, page titles, semantic HTML |
+| Section 508 accessibility | ✅ | Skip nav, landmarks, aria-labels, focus-visible, aria-live regions, aria-pressed states, type-to-answer fallback, semantic HTML |
 | FISMA certification | 🔴 | Deferred — requires formal process |
 
 ---
