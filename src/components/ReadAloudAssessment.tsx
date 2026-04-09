@@ -88,8 +88,7 @@ const ReadAloudAssessment = ({ currentLevel, isESL = false, onComplete, onSkip }
 
   // Load sentences for effective level
   useEffect(() => {
-    // Skip loading if speech recognition is not supported
-    if (!isSupported) return;
+    // Load sentences for both speech and type-to-answer modes
     
     const loadSentences = async () => {
       setPhase("loading");
