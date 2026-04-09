@@ -179,8 +179,41 @@ const ReadAloudAssessment = ({ currentLevel, isESL = false, onComplete, onSkip }
 
   const handleRetry = () => {
     resetTranscript();
+    setTypedText("");
     setResult(null);
     setPhase("ready");
+  };
+
+  const handleSubmitTyped = () => {
+    const currentSentence = sentences[currentSentenceIndex];
+    // Use a fixed 30s estimate for typed answers (typing speed doesn't measure reading fluency)
+    const comparison = compareTexts(currentSentence, typedText, 30);
+    setResult(comparison);
+    setAllResults(prev => [...prev, comparison]);
+
+    if (adjustmentCount < 5) {
+      const adjustment = determineAdjustment(comparison.accuracy, comparison.wordsPerMinute, effectiveLevel);
+      if (adjustment !== 0) {
+        const newLevel = effectiveLevel + adjustment;
+        setAdjustmentDirection(adjustment > 0 ? "up" : "down");
+        setAdjustmentCount(prev => prev + 1);
+        setPhase("adjusting");
+        const message = adjustment > 0
+          ? `Great job! Moving up to Grade ${newLevel} for more challenge! 🌟`
+          : `Adjusting to Grade ${newLevel} for a better fit! 📚`;
+        toast.info(message, { duration: 3000 });
+        setTimeout(() => {
+          setEffectiveLevel(newLevel);
+          setCurrentSentenceIndex(0);
+          setResult(null);
+          setAllResults([]);
+          setTypedText("");
+          resetTranscript();
+        }, 1500);
+        return;
+      }
+    }
+    setPhase("results");
   };
 
   // Type-to-answer fallback state
@@ -253,17 +286,58 @@ const ReadAloudAssessment = ({ currentLevel, isESL = false, onComplete, onSkip }
             </p>
           </div>
           
-          <div className="text-center text-muted-foreground">
-            <p>When you're ready, tap the button and read the sentence aloud.</p>
-          </div>
-          
-          <button
-            onClick={handleStartRecording}
-            className="btn-hero w-full flex items-center justify-center gap-3"
-          >
-            <Mic className="w-5 h-5" />
-            Start Recording
-          </button>
+          {useTypeFallback ? (
+            <>
+              <div className="text-center text-muted-foreground">
+                <p>Type the sentence exactly as shown above.</p>
+              </div>
+              <textarea
+                value={typedText}
+                onChange={(e) => setTypedText(e.target.value)}
+                placeholder="Type the sentence here..."
+                className="w-full p-4 rounded-xl border-2 border-border bg-card text-foreground text-lg leading-relaxed resize-none focus:border-primary focus:outline-none min-h-[120px]"
+                aria-label="Type the sentence shown above"
+              />
+              <button
+                onClick={handleSubmitTyped}
+                disabled={!typedText.trim()}
+                className="btn-hero w-full flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                <Keyboard className="w-5 h-5" />
+                Submit Typed Answer
+              </button>
+              {isSupported && (
+                <button
+                  onClick={() => { setUseTypeFallback(false); setTypedText(""); }}
+                  className="w-full text-sm text-primary hover:underline"
+                >
+                  Switch to microphone instead
+                </button>
+              )}
+            </>
+          ) : (
+            <>
+              <div className="text-center text-muted-foreground">
+                <p>When you're ready, tap the button and read the sentence aloud.</p>
+              </div>
+              <button
+                onClick={handleStartRecording}
+                className="btn-hero w-full flex items-center justify-center gap-3"
+              >
+                <Mic className="w-5 h-5" />
+                Start Recording
+              </button>
+              <button
+                onClick={() => { setUseTypeFallback(true); resetTranscript(); }}
+                className="w-full text-sm text-muted-foreground hover:text-primary hover:underline"
+              >
+                <span className="flex items-center justify-center gap-1">
+                  <Keyboard className="w-4 h-4" />
+                  Can't use microphone? Type instead
+                </span>
+              </button>
+            </>
+          )}
         </div>
       )}
 
