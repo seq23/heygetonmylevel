@@ -286,7 +286,8 @@ export const useAI = () => {
 
   // Generate sentences for read-aloud assessment
   const generateReadAloudSentences = useCallback(async (
-    gradeLevel: number
+    gradeLevel: number,
+    language?: string
   ): Promise<{ sentences: string[] } | null> => {
     setIsLoading(true);
     setError(null);
@@ -296,6 +297,7 @@ export const useAI = () => {
         body: {
           type: "read_aloud",
           gradeLevel,
+          language,
         },
       });
 
@@ -313,7 +315,8 @@ export const useAI = () => {
 
   // Generate confirmation passage for vocabulary assessment
   const generateVocabularyConfirmation = useCallback(async (
-    gradeLevel: number
+    gradeLevel: number,
+    language?: string
   ): Promise<{ title: string; text: string; questions: Question[] } | null> => {
     setIsLoading(true);
     setError(null);
@@ -323,6 +326,7 @@ export const useAI = () => {
         body: {
           type: "vocabulary_confirmation",
           gradeLevel,
+          language,
         },
       });
 
