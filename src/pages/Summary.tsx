@@ -43,7 +43,7 @@ const Summary = () => {
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
-      <main className="flex-1 flex flex-col items-center justify-center px-6 py-12">
+      <main id="main-content" className="flex-1 flex flex-col items-center justify-center px-6 py-12">
       <div className="max-w-md w-full text-center space-y-8 fade-in-up">
         <div className="celebration-bounce">
           <div className="inline-flex items-center justify-center w-28 h-28 rounded-full bg-accent/20 mb-4">

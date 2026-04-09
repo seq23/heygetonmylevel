@@ -127,7 +127,7 @@ const Curriculum = () => {
         </div>
       </header>
 
-      <main className="container max-w-5xl py-8 px-6 space-y-8">
+      <main id="main-content" className="container max-w-5xl py-8 px-6 space-y-8">
         {/* Summary stats */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 fade-in-up">
           {[
