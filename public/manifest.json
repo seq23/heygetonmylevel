@@ -1,0 +1,22 @@
+{
+  "name": "HeyGetOnMyLevel - Reading Practice",
+  "short_name": "HeyGetOnMyLevel",
+  "description": "AI-powered reading practice for all levels",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#faf8f1",
+  "theme_color": "#33998a",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
