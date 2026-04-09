@@ -42,6 +42,7 @@ const Session = () => {
   const location = useLocation();
   const isMobile = useIsMobile();
   const { session, recordAnswer, setCurrentPassage, checkLevelProgression } = useSession();
+  const { t, language } = useLanguage();
   const [levelChangeQueued, setLevelChangeQueued] = useState<{ newLevel: number; direction: 'up' | 'down' } | null>(null);
   const [hasPendingBuddyMessage, setHasPendingBuddyMessage] = useState(false);
   const { getCachedOrGeneratePassage, generateQuestions, isLoading } = useAI();
@@ -88,7 +89,7 @@ const Session = () => {
     setState((prev) => ({ ...prev, phase: "loading" }));
     setCachedQuestions(null);
 
-    const result = await getCachedOrGeneratePassage(session.readingLevel, skillFocus, theme);
+    const result = await getCachedOrGeneratePassage(session.readingLevel, skillFocus, theme, language);
     
     if (result) {
       const { passage: passageData, questions: preGeneratedQuestions, fromCache } = result;
@@ -138,7 +139,7 @@ const Session = () => {
     setState((prev) => ({ ...prev, phase: "loading" }));
 
     // Use cached questions if available, otherwise generate new ones with skillFocus
-    const questionsData = cachedQuestions || await generateQuestions(state.passage.text, session.readingLevel, skillFocus);
+    const questionsData = cachedQuestions || await generateQuestions(state.passage.text, session.readingLevel, skillFocus, language);
 
     if (questionsData) {
       const questionsToInsert = questionsData.map((q) => ({
