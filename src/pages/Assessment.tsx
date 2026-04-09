@@ -27,7 +27,7 @@ interface ConfirmationPassage {
 const Assessment = () => {
   const navigate = useNavigate();
   const { session, updateReadingLevel, setAssessmentTaken } = useSession();
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const { generateVocabularyConfirmation, isLoading } = useAI();
 
   const [assessmentType, setAssessmentType] = useState<AssessmentType | null>(null);
@@ -86,7 +86,7 @@ const Assessment = () => {
 
   const loadConfirmationPassage = async (level: number) => {
     setPhase("confirmation");
-    const data = await generateVocabularyConfirmation(level);
+    const data = await generateVocabularyConfirmation(level, language);
     if (data) {
       setConfirmationPassage(data);
     }
