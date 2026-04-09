@@ -6,7 +6,7 @@ const Footer = () => {
   const { t } = useLanguage();
 
   return (
-    <footer className="border-t border-border bg-muted/30 py-4 px-6">
+    <footer className="border-t border-border bg-muted/30 py-4 px-6" role="contentinfo">
       <div className="container max-w-4xl flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-muted-foreground">
         <div className="text-center sm:text-left">
           <p>© {currentYear} HeyGetOnMyLevel. {t("footer.rights")}</p>
