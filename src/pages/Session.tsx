@@ -640,14 +640,13 @@ const Session = () => {
                 {/* Actions */}
                 <div className="space-y-3">
                   <button onClick={handleContinueLearning} className="btn-hero w-full">
-                    Continue Learning
+                    {t("session.continueLearning")}
                   </button>
-                   <button
-                     onClick={handleEndSession}
-                     className="w-full py-4 px-8 rounded-2xl border-2 border-border text-foreground font-semibold hover:bg-muted transition-colors"
-                   >
-                     {t("session.endSession")}
-                   </button>
+                  <button
+                    onClick={handleEndSession}
+                    className="w-full py-4 px-8 rounded-2xl border-2 border-border text-foreground font-semibold hover:bg-muted transition-colors"
+                  >
+                    {t("session.endSession")}
                   </button>
                 </div>
               </div>
