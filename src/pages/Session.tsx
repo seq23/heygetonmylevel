@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { ArrowLeft, BookOpen, CheckCircle2, XCircle, Loader2, HelpCircle, TrendingUp, TrendingDown, Bot, X, Home } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useSession } from "@/contexts/SessionContext";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { useAI } from "@/hooks/useAI";
 import { supabase } from "@/integrations/supabase/client";
 import AITutor from "@/components/AITutor";
