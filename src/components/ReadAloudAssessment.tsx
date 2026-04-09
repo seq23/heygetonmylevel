@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { Mic, MicOff, Loader2, AlertCircle, CheckCircle2, RotateCcw, BookOpen, ChevronDown, ArrowDown, ArrowUp } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 import {
   Collapsible,
   CollapsibleContent,
