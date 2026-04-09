@@ -44,13 +44,15 @@ serve(async (req) => {
 
     let systemPrompt = "";
     let userPrompt = "";
-    let maxTokens: number | undefined = undefined; // Strategy 5: Conditionally set max_tokens
+    let maxTokens: number | undefined = undefined;
 
     const level = gradeLevel || 5;
+    const isSpanish = language === "es";
+    const langInstruction = isSpanish ? "\n\nIMPORTANT: Generate ALL content (passage, title, questions, options, explanations) in SPANISH. Use grade-appropriate Spanish vocabulary." : "";
 
     if (type === "passage") {
       const gradeDesc = getGradeDescription(level);
-      systemPrompt = `You are an expert reading comprehension teacher. Generate engaging, age-appropriate reading passages that precisely match Flesch-Kincaid grade levels. Your passages should be interesting, educational, and suitable for readers of all ages who are practicing at this level.`;
+      systemPrompt = `You are an expert reading comprehension teacher. Generate engaging, age-appropriate reading passages that precisely match Flesch-Kincaid grade levels. Your passages should be interesting, educational, and suitable for readers of all ages who are practicing at this level.${isSpanish ? " You are fluent in Spanish and generate content in Spanish." : ""}`;
       
       // Build topic instruction based on whether theme is provided
       const topicInstruction = theme 
@@ -66,6 +68,7 @@ ${topicInstruction}
 - Skill focus: ${skillFocus || "general comprehension"}
 ${skillFocus === "phonics" ? `- PHONICS FOCUS: Use words with clear, consistent sound patterns (e.g., rhyming words, word families like -at, -ig, -op). Include repetition of key sounds. Make the passage fun to read aloud.` : ""}
 ${theme ? `- IMPORTANT: Incorporate the "${theme}" theme naturally into an engaging story or informational passage` : ""}
+${langInstruction}
 
 Return ONLY a JSON object in this exact format:
 {
@@ -75,7 +78,7 @@ Return ONLY a JSON object in this exact format:
 }`;
     } else if (type === "questions") {
       const gradeDesc = getGradeDescription(level);
-      systemPrompt = `You are an expert reading comprehension teacher creating questions that test understanding at the appropriate reading level. Questions should be clear, fair, and directly related to the passage.`;
+      systemPrompt = `You are an expert reading comprehension teacher creating questions that test understanding at the appropriate reading level. Questions should be clear, fair, and directly related to the passage.${isSpanish ? " Generate all questions, options, and explanations in Spanish." : ""}`;
       
       // Skill-focused question generation
       let questionTypeInstruction = "";
@@ -114,7 +117,7 @@ Requirements:
 - Question complexity: ${gradeDesc}
 - ${questionTypeInstruction}
 - Each question has 4 answer options
-- Questions should match the reading level
+- Questions should match the reading level${langInstruction}
 
 Return ONLY a JSON array in this exact format:
 [
