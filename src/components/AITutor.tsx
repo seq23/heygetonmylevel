@@ -3,6 +3,7 @@ import { Send, Bot, Sparkles, Loader2, Lightbulb, AlertCircle, Volume2, VolumeX,
 import { supabase } from "@/integrations/supabase/client";
 import { getHintForQuestionType, STATIC_HELP_TIPS } from "@/constants/readingHints";
 import { useTextToSpeech } from "@/hooks/useTextToSpeech";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface Message {
   role: "user" | "assistant" | "hint";
@@ -20,7 +21,13 @@ interface AITutorProps {
   isVisible?: boolean;
 }
 
-const WELCOME_SEQUENCE = [
+const getWelcomeSequence = (lang: string) => lang === "es" ? [
+  `¡Hola! 👋 ¡Soy tu Compañero de Lectura!`,
+  `Así es como funciono:\n\n¡Estoy aquí para ayudarte en tu camino de lectura! Primero lee el pasaje en la pantalla, y luego presiona el gran botón verde "Estoy Listo para las Preguntas" cuando hayas terminado.`,
+  `📱 En un teléfono o tablet, toca el botón "✕" para cerrarme y empezar a leer. Toca el ícono del robot 🤖 en la parte superior para encontrarme de nuevo.\n\nPuedes detenerme en cualquier momento presionando el ícono de parar mientras hablo.`,
+  `💻 En una computadora, estaré aquí al lado de tu pasaje. Puedes escribirme preguntas o usar los botones rápidos de abajo.\n\n¡También puedes tocar cualquier palabra del pasaje para escuchar cómo suena!`,
+  `Tómate tu tiempo para leer — ¡no hay prisa! Estoy aquí cuando me necesites. 📚\n\n¿Cómo te llamas? (¿O cómo te gustaría que te llame?)`,
+] : [
   `Hi there! 👋 I'm your Reading Buddy!`,
   `Here's how I work:\n\nI'm here to help you on your reading journey! You will read the passage on the screen first, and then press the big green "I'm Ready for Questions" button when you've finished.`,
   `📱 On a phone or tablet, tap the "✕" button to close me and start reading. Tap the little robot icon 🤖 at the top of the screen to find me again.\n\nYou can stop me talking anytime by pressing the small stop icon while I'm speaking.`,
@@ -44,6 +51,8 @@ const AITutor = ({
   // Load persisted name from localStorage
   const storedName = localStorage.getItem(STORAGE_KEY_NAME);
   const hasBeenWelcomed = localStorage.getItem(STORAGE_KEY_WELCOMED) === "true";
+  const { language } = useLanguage();
+  const WELCOME_SEQUENCE = getWelcomeSequence(language);
 
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
@@ -55,7 +64,7 @@ const AITutor = ({
   const [welcomeStep, setWelcomeStep] = useState(0);
   const [isWelcoming, setIsWelcoming] = useState(!hasBeenWelcomed);
   const [pendingMessages, setPendingMessages] = useState(0);
-  const { speak, speakAsync, stop, isSupported } = useTextToSpeech();
+  const { speak, speakAsync, stop, isSupported } = useTextToSpeech(language);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const welcomeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const previousPassageIdRef = useRef<string | undefined>(passageId);
