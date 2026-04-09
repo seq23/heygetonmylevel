@@ -273,6 +273,10 @@ const translations: Record<string, Record<Language, string>> = {
   "hint.general.1": { en: "Read the question twice to make sure you understand it.", es: "Lee la pregunta dos veces para asegurarte de que la entiendes." },
   "hint.general.2": { en: "Go back to the passage and find the relevant paragraph.", es: "Vuelve al pasaje y encuentra el párrafo relevante." },
   "hint.general.3": { en: "Eliminate answers that are clearly wrong first.", es: "Elimina primero las respuestas que claramente son incorrectas." },
+
+  // Footer
+  "footer.curriculum": { en: "Curriculum", es: "Currículo" },
+  "footer.downloadCurriculum": { en: "Download Curriculum Map", es: "Descargar Mapa Curricular" },
 };
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
