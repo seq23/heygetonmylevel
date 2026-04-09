@@ -54,7 +54,7 @@ const SelectLevel = () => {
         </div>
       </header>
 
-      <main className="container max-w-4xl py-8 px-6">
+      <main id="main-content" className="container max-w-4xl py-8 px-6">
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
           {levels.map((level) => (
             <button

@@ -461,7 +461,7 @@ const Phonics = () => {
         </div>
       </header>
 
-      <main className="container max-w-4xl py-6 px-4 flex-1">
+      <main id="main-content" className="container max-w-4xl py-6 px-4 flex-1">
         {!activeCategory ? (
           /* Category Selection */
           <div className="space-y-4 fade-in-up">

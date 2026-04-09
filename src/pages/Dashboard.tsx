@@ -170,7 +170,7 @@ const Dashboard = () => {
         </div>
       </header>
 
-      <main className="container max-w-4xl py-8 px-6 space-y-8">
+      <main id="main-content" className="container max-w-4xl py-8 px-6 space-y-8">
         {/* Level Card */}
         <div className="card-elevated text-center fade-in-up">
           <div className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-primary/10 mb-4">

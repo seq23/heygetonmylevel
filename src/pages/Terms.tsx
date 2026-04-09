@@ -21,7 +21,7 @@ const Terms = () => {
         </div>
       </header>
 
-      <main className="container max-w-4xl py-8 px-6 flex-1">
+      <main id="main-content" className="container max-w-4xl py-8 px-6 flex-1">
         <div className="prose prose-slate dark:prose-invert max-w-none">
           <p className="text-muted-foreground text-sm mb-8">
             Last updated: {new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
