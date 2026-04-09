@@ -4,6 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { SessionProvider } from "@/contexts/SessionContext";
+import { LanguageProvider } from "@/contexts/LanguageContext";
 import Index from "./pages/Index";
 import SelectLevel from "./pages/SelectLevel";
 import Assessment from "./pages/Assessment";
@@ -21,25 +22,27 @@ const queryClient = new QueryClient();
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
-      <SessionProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/select-level" element={<SelectLevel />} />
-            <Route path="/assessment" element={<Assessment />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/session" element={<Session />} />
-            <Route path="/phonics" element={<Phonics />} />
-            <Route path="/summary" element={<Summary />} />
-            <Route path="/privacy" element={<Privacy />} />
-            <Route path="/terms" element={<Terms />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-          <FeedbackBubble />
-        </BrowserRouter>
-      </SessionProvider>
+      <LanguageProvider>
+        <SessionProvider>
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/select-level" element={<SelectLevel />} />
+              <Route path="/assessment" element={<Assessment />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/session" element={<Session />} />
+              <Route path="/phonics" element={<Phonics />} />
+              <Route path="/summary" element={<Summary />} />
+              <Route path="/privacy" element={<Privacy />} />
+              <Route path="/terms" element={<Terms />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+            <FeedbackBubble />
+          </BrowserRouter>
+        </SessionProvider>
+      </LanguageProvider>
     </TooltipProvider>
   </QueryClientProvider>
 );

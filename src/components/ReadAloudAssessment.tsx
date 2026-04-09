@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { Mic, MicOff, Loader2, AlertCircle, CheckCircle2, RotateCcw, BookOpen, ChevronDown, ArrowDown, ArrowUp } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 import {
   Collapsible,
   CollapsibleContent,
@@ -20,6 +21,7 @@ interface ReadAloudAssessmentProps {
 type Phase = "loading" | "ready" | "countdown" | "recording" | "results" | "adjusting";
 
 const ReadAloudAssessment = ({ currentLevel, isESL = false, onComplete, onSkip }: ReadAloudAssessmentProps) => {
+  const { language } = useLanguage();
   const [phase, setPhase] = useState<Phase>("loading");
   const [sentences, setSentences] = useState<string[]>([]);
   const [currentSentenceIndex, setCurrentSentenceIndex] = useState(0);
@@ -44,7 +46,7 @@ const ReadAloudAssessment = ({ currentLevel, isESL = false, onComplete, onSkip }
     stopListening,
     resetTranscript,
     elapsedTime,
-  } = useSpeechRecognition();
+  } = useSpeechRecognition(language);
 
   // Determine if level adjustment is needed based on first attempt
   // IMPORTANT: Accuracy (word recognition) matters more than raw WPM.

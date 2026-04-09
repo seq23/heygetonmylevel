@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Volume2, VolumeX, BookOpen, Loader2 } from "lucide-react";
 import { useTextToSpeech } from "@/hooks/useTextToSpeech";
+import { useLanguage } from "@/contexts/LanguageContext";
 import {
   Popover,
   PopoverContent,
@@ -59,7 +60,8 @@ const PhonicsWord = ({ word, gradeLevel, fontSize }: PhonicsWordProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [definition, setDefinition] = useState<DictionaryDefinition | null>(null);
   const [isLoadingDefinition, setIsLoadingDefinition] = useState(false);
-  const { speak, soundOut, isSupported } = useTextToSpeech();
+  const { language } = useLanguage();
+  const { speak, soundOut, isSupported } = useTextToSpeech(language);
   
   const cleanWord = word.replace(/[.,!?;:'"]+$/, "");
   const punctuation = word.slice(cleanWord.length);

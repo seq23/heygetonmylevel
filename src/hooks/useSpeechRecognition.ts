@@ -46,7 +46,7 @@ declare global {
   }
 }
 
-export const useSpeechRecognition = (): UseSpeechRecognitionResult => {
+export const useSpeechRecognition = (language: string = "en"): UseSpeechRecognitionResult => {
   const [isListening, setIsListening] = useState(false);
   const [transcript, setTranscript] = useState("");
   const [error, setError] = useState<string | null>(null);
@@ -72,7 +72,7 @@ export const useSpeechRecognition = (): UseSpeechRecognitionResult => {
     const recognition = new SpeechRecognitionAPI();
     recognition.continuous = true;
     recognition.interimResults = true;
-    recognition.lang = "en-US";
+    recognition.lang = language === "es" ? "es-US" : "en-US";
 
     recognition.onstart = () => {
       setIsListening(true);
@@ -150,7 +150,7 @@ export const useSpeechRecognition = (): UseSpeechRecognitionResult => {
         clearInterval(timerRef.current);
       }
     };
-  }, []);
+  }, [language]);
 
   const startListening = useCallback(() => {
     if (recognitionRef.current && !isListening) {

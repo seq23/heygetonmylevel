@@ -1,12 +1,14 @@
 import { useNavigate } from "react-router-dom";
 import { BookOpen, Target, Sparkles, ArrowRight, CheckCircle, TrendingUp } from "lucide-react";
 import { useSession } from "@/contexts/SessionContext";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { useState } from "react";
 import Footer from "@/components/Footer";
 
 const Index = () => {
   const navigate = useNavigate();
   const { createSession, isLoading } = useSession();
+  const { language, setLanguage, t } = useLanguage();
   const [loadingAction, setLoadingAction] = useState<string | null>(null);
 
   const handleStartReading = async () => {
@@ -33,8 +35,26 @@ const Index = () => {
     }
   };
 
+  const featurePills = [
+    { icon: Sparkles, label: t("home.pill.noJudgment") },
+    { icon: Target, label: t("home.pill.findsLevel") },
+    { icon: BookOpen, label: t("home.pill.ages") },
+    { icon: TrendingUp, label: t("home.pill.track") },
+  ];
+
   return (
     <div className="min-h-screen bg-background flex flex-col">
+      {/* Language Toggle */}
+      <div className="flex justify-end px-4 pt-3">
+        <button
+          onClick={() => setLanguage(language === "en" ? "es" : "en")}
+          className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-muted text-sm font-medium text-muted-foreground hover:bg-primary/10 hover:text-primary transition-colors"
+          aria-label="Switch language"
+        >
+          <span>{language === "en" ? "🇪🇸 Español" : "🇺🇸 English"}</span>
+        </button>
+      </div>
+
       {/* Problem Statement Banner */}
       <section className="bg-destructive/10 border-b border-destructive/20 py-4 px-6">
         <p className="text-center text-sm md:text-base text-foreground">
@@ -44,10 +64,10 @@ const Index = () => {
             rel="noopener noreferrer"
             className="font-semibold underline decoration-dotted underline-offset-2 hover:decoration-solid transition-all"
           >
-            54% of U.S. adults
+            {t("home.stat")}
           </a>{" "}
-          read below a 6th-grade level.
-          <span className="hidden sm:inline"> Reading struggles don't have to be permanent.</span>
+          {t("home.stat.suffix")}
+          <span className="hidden sm:inline"> {t("home.stat.extra")}</span>
         </p>
       </section>
 
@@ -63,19 +83,13 @@ const Index = () => {
               HeyGet<span className="text-primary">on</span>MyLevel
             </h1>
             <p className="text-xl text-muted-foreground font-body max-w-lg mx-auto">
-              Whether you're 8 or 80, it's never too late to reach your reading potential. 
-              Build the skills you need — at your own pace, on your own terms.
+              {t("home.title.suffix")}
             </p>
           </div>
 
           {/* Feature Pills */}
           <div className="flex flex-wrap justify-center gap-3 fade-in-up" style={{ animationDelay: "0.1s" }}>
-            {[
-              { icon: Sparkles, label: "No Judgment" },
-              { icon: Target, label: "Finds Your Level" },
-              { icon: BookOpen, label: "Ages 5 to 85" },
-              { icon: TrendingUp, label: "Track Progress" },
-            ].map((feature) => (
+            {featurePills.map((feature) => (
               <div
                 key={feature.label}
                 className="skill-chip bg-muted text-muted-foreground"
@@ -88,19 +102,19 @@ const Index = () => {
 
           {/* Why This Matters */}
           <div className="bg-muted/50 rounded-2xl p-6 text-left space-y-3 fade-in-up max-w-md mx-auto" style={{ animationDelay: "0.15s" }}>
-            <h2 className="text-lg font-semibold text-foreground">Reading opens doors</h2>
+            <h2 className="text-lg font-semibold text-foreground">{t("home.readingOpens")}</h2>
             <ul className="space-y-2 text-muted-foreground text-sm">
               <li className="flex items-start gap-2">
                 <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
-                <span><strong className="text-foreground">For adults:</strong> Improve job applications, health literacy, and daily confidence</span>
+                <span><strong className="text-foreground">{t("home.forAdults")}</strong> {t("home.forAdults.desc")}</span>
               </li>
               <li className="flex items-start gap-2">
                 <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
-                <span><strong className="text-foreground">For students:</strong> Catch up to grade level with adaptive, judgment-free practice</span>
+                <span><strong className="text-foreground">{t("home.forStudents")}</strong> {t("home.forStudents.desc")}</span>
               </li>
               <li className="flex items-start gap-2">
                 <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
-                <span><strong className="text-foreground">For parents:</strong> Help your child build foundational reading skills at home</span>
+                <span><strong className="text-foreground">{t("home.forParents")}</strong> {t("home.forParents.desc")}</span>
               </li>
             </ul>
           </div>
@@ -116,7 +130,7 @@ const Index = () => {
                 <div className="w-6 h-6 border-2 border-primary-foreground/30 border-t-primary-foreground rounded-full animate-spin" />
               ) : (
                 <>
-                  <span>Start Reading Now</span>
+                  <span>{t("home.startReading")}</span>
                   <ArrowRight className="w-5 h-5" />
                 </>
               )}
@@ -132,7 +146,7 @@ const Index = () => {
               ) : (
                 <>
                   <Target className="w-5 h-5" />
-                  <span>Assess My Level</span>
+                  <span>{t("home.assessMe")}</span>
                 </>
               )}
             </button>
@@ -140,18 +154,18 @@ const Index = () => {
 
         {/* Sub-text */}
         <p className="text-sm text-muted-foreground fade-in-up" style={{ animationDelay: "0.3s" }}>
-          No account needed • Your progress stays private
+          {t("home.noAccount")}
         </p>
         <p className="text-xs text-muted-foreground/70 fade-in-up" style={{ animationDelay: "0.35s" }}>
-          📚 Assessment uses curated material • Reading sessions let you pick your topic
+          {t("home.assessmentNote")}
         </p>
         <p className="text-xs text-muted-foreground/60 fade-in-up" style={{ animationDelay: "0.4s" }}>
-          Free for personal &amp; educational use. Commercial or institutional use requires a{" "}
+          {t("home.license")}{" "}
           <a
             href="mailto:privacy@time-2-read.com?subject=Commercial%20Licensing%20Inquiry"
             className="underline underline-offset-2 hover:text-foreground transition-colors"
           >
-            license
+            {t("home.licenseLink")}
           </a>
           .
         </p>

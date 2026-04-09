@@ -2,13 +2,13 @@ import { useCallback, useRef } from "react";
 
 // Simple syllable splitting helper
 const splitIntoSyllables = (word: string): string[] => {
-  const cleanWord = word.replace(/[^a-zA-Z]/g, "").toLowerCase();
+  const cleanWord = word.replace(/[^a-zA-ZáéíóúüñÁÉÍÓÚÜÑ]/g, "").toLowerCase();
   
   if (cleanWord.length <= 3) {
     return [cleanWord];
   }
   
-  const vowels = "aeiouy";
+  const vowels = "aeiouyáéíóúü";
   let syllables: string[] = [];
   let currentSyllable = "";
   let prevWasVowel = false;
@@ -36,12 +36,26 @@ const splitIntoSyllables = (word: string): string[] => {
   return syllables.length > 0 ? syllables : [cleanWord];
 };
 
-export const useTextToSpeech = () => {
+export const useTextToSpeech = (language: string = "en") => {
   const utteranceRef = useRef<SpeechSynthesisUtterance | null>(null);
 
   const getPreferredVoice = useCallback(() => {
     const voices = window.speechSynthesis.getVoices();
-    // Prefer softer, natural-sounding voices (Samantha on macOS/iOS, Karen on some systems)
+    
+    if (language === "es") {
+      // Prefer Spanish voices
+      return voices.find(
+        (v) => v.lang.startsWith("es") && v.name.includes("Paulina")
+      ) || voices.find(
+        (v) => v.lang.startsWith("es-US")
+      ) || voices.find(
+        (v) => v.lang.startsWith("es-MX")
+      ) || voices.find(
+        (v) => v.lang.startsWith("es")
+      );
+    }
+    
+    // English voices
     return voices.find(
       (v) => v.lang.startsWith("en") && v.name.includes("Samantha")
     ) || voices.find(
@@ -51,13 +65,14 @@ export const useTextToSpeech = () => {
     ) || voices.find(
       (v) => v.lang.startsWith("en-US") && v.name.toLowerCase().includes("female")
     ) || voices.find((v) => v.lang.startsWith("en-US"));
-  }, []);
+  }, [language]);
 
   const buildUtterance = useCallback((text: string, rate: number, pitch: number) => {
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.rate = rate;
     utterance.pitch = pitch;
     utterance.volume = 0.75;
+    utterance.lang = language === "es" ? "es-US" : "en-US";
 
     const preferredVoice = getPreferredVoice();
     if (preferredVoice) {
@@ -66,7 +81,7 @@ export const useTextToSpeech = () => {
 
     utteranceRef.current = utterance;
     return utterance;
-  }, [getPreferredVoice]);
+  }, [getPreferredVoice, language]);
 
   const speak = useCallback((text: string, rate: number = 0.7, pitch: number = 0.8) => {
     if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
@@ -104,6 +119,7 @@ export const useTextToSpeech = () => {
       utterance.rate = 0.5;
       utterance.pitch = 1;
       utterance.volume = 1;
+      utterance.lang = language === "es" ? "es-US" : "en-US";
       
       const preferredVoice = getPreferredVoice();
       if (preferredVoice) {
@@ -121,7 +137,7 @@ export const useTextToSpeech = () => {
     };
     
     speakNextSyllable();
-  }, [getPreferredVoice]);
+  }, [getPreferredVoice, language]);
 
   const stop = useCallback(() => {
     window.speechSynthesis.cancel();
