@@ -235,7 +235,7 @@ const ReadAloudAssessment = ({ currentLevel, isESL = false, onComplete, onSkip }
         <h2 className="text-2xl font-display font-bold mb-2">
           Read Aloud
         </h2>
-        <p className="text-muted-foreground">
+        <p className="text-muted-foreground" aria-live="polite" aria-atomic="true">
           Grade {effectiveLevel} • Sentence {currentSentenceIndex + 1} of {sentences.length}
           {adjustmentCount > 0 && (
             <span className="ml-2 inline-flex items-center gap-1 text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full">
