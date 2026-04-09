@@ -66,14 +66,15 @@ const FeedbackBubble = () => {
   return (
     <div className="fixed bottom-4 right-4 z-50">
       {isOpen ? (
-        <div className="bg-card border rounded-xl shadow-lg w-80 p-4 animate-in slide-in-from-bottom-2">
+        <div className="bg-card border rounded-xl shadow-lg w-80 p-4 animate-in slide-in-from-bottom-2" role="dialog" aria-labelledby="feedback-title">
           <div className="flex items-center justify-between mb-3">
-            <h3 className="font-semibold text-foreground">Send Feedback</h3>
+            <h3 className="font-semibold text-foreground" id="feedback-title">Send Feedback</h3>
             <button
               onClick={() => setIsOpen(false)}
               className="text-muted-foreground hover:text-foreground transition-colors"
+              aria-label="Close feedback form"
             >
-              <X className="w-5 h-5" />
+              <X className="w-5 h-5" aria-hidden="true" />
             </button>
           </div>
 

@@ -49,7 +49,7 @@ const Index = () => {
         <button
           onClick={() => setLanguage(language === "en" ? "es" : "en")}
           className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-muted text-sm font-medium text-muted-foreground hover:bg-primary/10 hover:text-primary transition-colors"
-          aria-label="Switch language"
+          aria-label={language === "en" ? "Cambiar a Español" : "Switch to English"}
         >
           <span>{language === "en" ? "🇪🇸 Español" : "🇺🇸 English"}</span>
         </button>
@@ -72,7 +72,7 @@ const Index = () => {
       </section>
 
       {/* Hero Section */}
-      <main className="flex-1 flex flex-col items-center justify-center px-6 py-12">
+      <main id="main-content" className="flex-1 flex flex-col items-center justify-center px-6 py-12">
         <div className="max-w-2xl w-full text-center space-y-8">
           {/* Logo/Brand */}
           <div className="space-y-4 fade-in-up">

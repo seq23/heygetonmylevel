@@ -21,14 +21,21 @@ const Footer = () => {
             .
           </p>
         </div>
-        <nav className="flex items-center gap-4 flex-wrap justify-center">
+        <nav className="flex items-center gap-4 flex-wrap justify-center" aria-label="Footer navigation">
           <Link 
             to="/curriculum" 
             className="hover:text-foreground transition-colors"
           >
             {t("footer.curriculum")}
           </Link>
-          <span className="text-border">•</span>
+          <span className="text-border" aria-hidden="true">•</span>
+          <Link
+            to="/install"
+            className="hover:text-foreground transition-colors"
+          >
+            📱 {t("footer.install")}
+          </Link>
+          <span className="text-border" aria-hidden="true">•</span>
           <a
             href="/HeyGetOnMyLevel_Curriculum_Map.docx"
             download
@@ -36,14 +43,14 @@ const Footer = () => {
           >
             📄 {t("footer.downloadCurriculum")}
           </a>
-          <span className="text-border">•</span>
+          <span className="text-border" aria-hidden="true">•</span>
           <Link 
             to="/privacy" 
             className="hover:text-foreground transition-colors"
           >
             {t("footer.privacy")}
           </Link>
-          <span className="text-border">•</span>
+          <span className="text-border" aria-hidden="true">•</span>
           <Link 
             to="/terms" 
             className="hover:text-foreground transition-colors"
