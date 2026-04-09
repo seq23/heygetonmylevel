@@ -14,6 +14,7 @@ import {
   Volume2
 } from "lucide-react";
 import { useSession } from "@/contexts/SessionContext";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { Input } from "@/components/ui/input";
 import Footer from "@/components/Footer";
 
@@ -28,8 +29,8 @@ import skillComprehension from "@/assets/skill-comprehension.png";
 
 interface Skill {
   id: string;
-  name: string;
-  description: string;
+  nameKey: string;
+  descKey: string;
   icon: React.ComponentType<{ className?: string }>;
   color: string;
   image: string;
@@ -39,8 +40,8 @@ interface Skill {
 const skills: Skill[] = [
   {
     id: "phonics",
-    name: "Phonics",
-    description: "Learn letter sounds & blend them into words",
+    nameKey: "skill.phonics",
+    descKey: "skill.phonics.desc",
     icon: Volume2,
     color: "bg-secondary/10 text-secondary",
     image: skillPhonics,
@@ -48,56 +49,56 @@ const skills: Skill[] = [
   },
   {
     id: "decoding",
-    name: "Decoding",
-    description: "Breaking down words into parts",
+    nameKey: "skill.decoding",
+    descKey: "skill.decoding.desc",
     icon: Search,
     color: "bg-primary/10 text-primary",
     image: skillDecoding,
   },
   {
     id: "vocabulary",
-    name: "Vocabulary",
-    description: "Understanding word meanings",
+    nameKey: "skill.vocabulary",
+    descKey: "skill.vocabulary.desc",
     icon: BookOpen,
     color: "bg-secondary/10 text-secondary",
     image: skillVocabulary,
   },
   {
     id: "inference",
-    name: "Inference",
-    description: "Reading between the lines",
+    nameKey: "skill.inference",
+    descKey: "skill.inference.desc",
     icon: Lightbulb,
     color: "bg-accent/20 text-accent-foreground",
     image: skillInference,
   },
   {
     id: "cause_effect",
-    name: "Cause & Effect",
-    description: "Understanding why things happen",
+    nameKey: "skill.causeEffect",
+    descKey: "skill.causeEffect.desc",
     icon: Link2,
     color: "bg-success/10 text-success",
     image: skillCauseEffect,
   },
   {
     id: "reasoning",
-    name: "Multi-step Reasoning",
-    description: "Following complex arguments",
+    nameKey: "skill.reasoning",
+    descKey: "skill.reasoning.desc",
     icon: Brain,
     color: "bg-primary/10 text-primary",
     image: skillReasoning,
   },
   {
     id: "critical",
-    name: "Critical Thinking",
-    description: "Analyzing and evaluating",
+    nameKey: "skill.critical",
+    descKey: "skill.critical.desc",
     icon: Sparkles,
     color: "bg-secondary/10 text-secondary",
     image: skillCritical,
   },
   {
     id: "comprehension",
-    name: "Comprehension",
-    description: "Understanding full passages",
+    nameKey: "skill.comprehension",
+    descKey: "skill.comprehension.desc",
     icon: MessageSquare,
     color: "bg-accent/20 text-accent-foreground",
     image: skillComprehension,
@@ -105,7 +106,15 @@ const skills: Skill[] = [
 ];
 
 // Theme suggestions by grade level
-const getThemeSuggestions = (level: number): string[] => {
+const getThemeSuggestions = (level: number, language: string): string[] => {
+  if (language === "es") {
+    if (level <= 6) {
+      return ["Superhéroes", "Dinosaurios", "Espacio", "Animales", "Piratas", "Deportes"];
+    } else if (level <= 12) {
+      return ["Fantasía", "Misterio", "Deportes", "Música", "Aventura", "Ciencia"];
+    }
+    return ["Ficción Histórica", "Romance", "Tecnología", "Negocios", "Viajes", "Filosofía"];
+  }
   if (level <= 6) {
     return ["Superheroes", "Dinosaurs", "Space", "Animals", "Pirates", "Sports"];
   } else if (level <= 12) {
@@ -117,6 +126,7 @@ const getThemeSuggestions = (level: number): string[] => {
 const Dashboard = () => {
   const navigate = useNavigate();
   const { session } = useSession();
+  const { t, language } = useLanguage();
   const [theme, setTheme] = useState("");
 
   if (!session || !session.readingLevel) {
@@ -132,10 +142,12 @@ const Dashboard = () => {
     navigate("/session", { state: { skillFocus, theme: theme.trim() || undefined } });
   };
 
-  const themeSuggestions = getThemeSuggestions(session.readingLevel);
+  const themeSuggestions = getThemeSuggestions(session.readingLevel, language);
 
   const gradeLabel =
-    session.readingLevel <= 12 ? `Grade ${session.readingLevel}` : "College";
+    session.readingLevel <= 12
+      ? `${t("level.grade")} ${session.readingLevel}`
+      : t("level.college");
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
@@ -150,9 +162,9 @@ const Dashboard = () => {
             <ArrowLeft className="w-5 h-5 text-muted-foreground" />
           </button>
           <div className="flex-1">
-            <h1 className="text-xl font-display font-bold">Learning Dashboard</h1>
+            <h1 className="text-xl font-display font-bold">{t("dashboard.title")}</h1>
             <p className="text-sm text-muted-foreground">
-              Practice at your own pace
+              {t("dashboard.pace")}
             </p>
           </div>
         </div>
@@ -166,17 +178,17 @@ const Dashboard = () => {
               {session.readingLevel <= 12 ? session.readingLevel : "C"}
             </span>
           </div>
-          <h2 className="text-2xl font-display font-bold">Today's Level: {gradeLabel}</h2>
+          <h2 className="text-2xl font-display font-bold">{t("dashboard.todaysLevel")} {gradeLabel}</h2>
           <p className="text-muted-foreground mt-1">
             {session.assessmentTaken
-              ? "Based on your assessment"
-              : "You selected this level"}
+              ? t("dashboard.basedAssessment")
+              : t("dashboard.youSelected")}
           </p>
           <button
             onClick={() => navigate("/select-level")}
             className="text-sm text-primary font-medium mt-3 hover:underline"
           >
-            Change level
+            {t("dashboard.changeLevel")}
           </button>
         </div>
 
@@ -187,14 +199,14 @@ const Dashboard = () => {
               <Palette className="w-5 h-5 text-primary" />
             </div>
             <div>
-              <h3 className="font-display font-bold">What do you want to read about?</h3>
-              <p className="text-sm text-muted-foreground">Optional - leave blank for variety</p>
+              <h3 className="font-display font-bold">{t("dashboard.whatRead")}</h3>
+              <p className="text-sm text-muted-foreground">{t("dashboard.optional")}</p>
             </div>
           </div>
           <Input
             value={theme}
             onChange={(e) => setTheme(e.target.value)}
-            placeholder="e.g., superheroes, space adventure, romance..."
+            placeholder={t("dashboard.placeholder")}
             className="mb-3"
           />
           <div className="flex flex-wrap gap-2">
@@ -221,12 +233,12 @@ const Dashboard = () => {
           style={{ animationDelay: "0.1s" }}
         >
           <Play className="w-6 h-6" />
-          <span>Start Reading Session</span>
+          <span>{t("dashboard.startSession")}</span>
         </button>
 
         {/* Skills Section */}
         <div className="fade-in-up" style={{ animationDelay: "0.2s" }}>
-          <h3 className="text-lg font-display font-bold mb-4">Practice a Specific Skill</h3>
+          <h3 className="text-lg font-display font-bold mb-4">{t("dashboard.practiceSkill")}</h3>
           
           {/* Featured Phonics Card */}
           {skills.filter(s => s.featured).map((skill) => (
@@ -238,16 +250,16 @@ const Dashboard = () => {
               <div className="flex items-center gap-4">
                 <img 
                   src={skill.image} 
-                  alt={skill.name} 
+                  alt={t(skill.nameKey)} 
                   className="w-20 h-20 object-contain flex-shrink-0" 
                   loading="lazy"
                 />
                 <div className="flex-1">
                   <div className="flex items-center gap-2 mb-1">
-                    <span className="text-xs font-semibold uppercase tracking-wide text-secondary">⭐ Recommended</span>
+                    <span className="text-xs font-semibold uppercase tracking-wide text-secondary">{t("dashboard.recommended")}</span>
                   </div>
-                  <p className="font-display font-bold text-lg text-foreground">{skill.name}</p>
-                  <p className="text-sm text-muted-foreground">{skill.description}</p>
+                  <p className="font-display font-bold text-lg text-foreground">{t(skill.nameKey)}</p>
+                  <p className="text-sm text-muted-foreground">{t(skill.descKey)}</p>
                 </div>
               </div>
             </button>
@@ -264,13 +276,13 @@ const Dashboard = () => {
                 <div className="flex items-center gap-4">
                   <img 
                     src={skill.image} 
-                    alt={skill.name} 
+                    alt={t(skill.nameKey)} 
                     className="w-14 h-14 object-contain flex-shrink-0" 
                     loading="lazy"
                   />
                   <div>
-                    <p className="font-semibold text-foreground">{skill.name}</p>
-                    <p className="text-sm text-muted-foreground">{skill.description}</p>
+                    <p className="font-semibold text-foreground">{t(skill.nameKey)}</p>
+                    <p className="text-sm text-muted-foreground">{t(skill.descKey)}</p>
                   </div>
                 </div>
               </button>
@@ -281,19 +293,19 @@ const Dashboard = () => {
         {/* Session Stats (if any) */}
         {session.questionsAnswered > 0 && (
           <div className="card-elevated fade-in-up" style={{ animationDelay: "0.3s" }}>
-            <h3 className="font-display font-bold mb-4">This Session</h3>
+            <h3 className="font-display font-bold mb-4">{t("dashboard.thisSession")}</h3>
             <div className="grid grid-cols-2 gap-4">
               <div className="text-center p-4 rounded-xl bg-muted">
                 <p className="text-2xl font-bold text-foreground">
                   {session.questionsAnswered}
                 </p>
-                <p className="text-sm text-muted-foreground">Questions</p>
+                <p className="text-sm text-muted-foreground">{t("dashboard.questions")}</p>
               </div>
               <div className="text-center p-4 rounded-xl bg-success/10">
                 <p className="text-2xl font-bold text-success">
                   {Math.round((session.correctAnswers / session.questionsAnswered) * 100)}%
                 </p>
-                <p className="text-sm text-muted-foreground">Accuracy</p>
+                <p className="text-sm text-muted-foreground">{t("dashboard.accuracy")}</p>
               </div>
             </div>
           </div>
