@@ -1,7 +1,7 @@
 # Security Overview
 
-**Document Version:** 1.0  
-**Last Updated:** March 2026  
+**Document Version:** 1.1  
+**Last Updated:** April 2026  
 **Purpose:** Security posture summary for enterprise evaluation
 
 ---
@@ -57,7 +57,7 @@ HeyGetOnMyLevel is a free educational reading practice application with a **priv
 | Secrets Management | Platform-managed; never in source code |
 | Admin Access | Platform-level authentication required |
 
-### 3.3 Input Validation
+### 3.3 Input Validation & AI Safety
 
 | Vector | Protection |
 |--------|------------|
@@ -65,6 +65,18 @@ HeyGetOnMyLevel is a free educational reading practice application with a **priv
 | Grade level selection | Enumerated values only (K-8) |
 | Assessment responses | Validated against expected formats |
 | API requests | Edge function input validation |
+| AI Reading Buddy | Topic-restricted system prompt; only responds to reading/education queries |
+| Language selection | Enumerated values (en/es); stored client-side only |
+
+### 3.4 PWA / Service Worker Security
+
+| Control | Implementation |
+|---------|----------------|
+| Preview/iframe guard | SW registration blocked in iframe and preview contexts |
+| OAuth exclusion | `/~oauth` route excluded from SW cache via `navigateFallbackDenylist` |
+| Cache strategy | Network-first for navigation; cache-first for static assets |
+| API exclusion | Supabase/API calls never cached by service worker |
+| Stale cache cleanup | Old cache versions auto-deleted on SW activation |
 
 ---
 
@@ -84,10 +96,12 @@ Our risk profile is inherently low because:
 
 | Risk | Likelihood | Impact | Mitigation |
 |------|------------|--------|------------|
-| AI generates inappropriate content | Low | Low | Age-appropriate prompts; content disclaimer in ToS |
+| AI generates inappropriate content | Low | Low | Topic-restricted system prompt; age-appropriate content constraints |
+| AI used for off-topic queries | Low | Low | AI Buddy rejects non-reading queries with guardrail response |
 | User submits PII in feedback | Low | Low | Warnings displayed; 500-char limit; no storage |
-| Service disruption | Low | Low | Cloud infrastructure redundancy |
+| Service disruption | Low | Low | Cloud infrastructure redundancy; PWA offline fallback |
 | Dependency vulnerability | Low | Medium | Regular dependency updates; security scanning |
+| SW cache poisoning | Very Low | Low | Network-first strategy; OAuth/API routes excluded |
 
 ---
 
@@ -99,6 +113,8 @@ Our risk profile is inherently low because:
 | CCPA/CPRA | ✅ Compliant | No data sold; consumer rights satisfied by design |
 | COPPA | ✅ Compliant | No children's PII collected |
 | FERPA | ✅ N/A | No student records handled |
+| Section 508 | ⚠️ In Progress | Semantic HTML, ARIA; full audit planned |
+| FISMA | 🔴 Not Yet | Formal certification deferred |
 | SOC 2 | 🟡 Readiness | Controls in place; formal audit Phase 3 |
 | ISO 27001 | 🔴 Not Yet | Planned at enterprise scale |
 
@@ -169,3 +185,4 @@ You may also use the in-app feedback mechanism for non-urgent matters.
 | Version | Date | Changes |
 |---------|------|---------|
 | 1.0 | March 2026 | Initial security overview |
+| 1.1 | April 2026 | Added AI guardrails, PWA/SW security, Section 508/FISMA status, multilingual support |

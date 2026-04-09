@@ -1,8 +1,8 @@
 # Enterprise Privacy & Compliance Checklist — HeyGetOnMyLevel
 
-**Document Version:** 1.0  
-**Last Updated:** March 2026  
-**Architecture:** Anonymous, ephemeral, no-PII, no-account web application
+**Document Version:** 1.1  
+**Last Updated:** April 2026  
+**Architecture:** Anonymous, ephemeral, no-PII, no-account, multilingual PWA
 
 ---
 
@@ -196,8 +196,23 @@
 | No exposed secrets | ✅ | All secrets managed via platform |
 | Proper DNS + TLS | ✅ | Automated via Lovable Cloud |
 | DDoS protection | ✅ | Cloud infrastructure level |
+| PWA / Offline support | ✅ | Service worker with network-first caching; installable from browser |
+| Tablet compatibility (SCORE 7c) | ⚠️ | PWA installable; offline caching; formal device testing pending |
 | WAF | 🟡 | Platform-level protection |
 | Infrastructure monitoring | 🟡 | Platform-level |
+
+---
+
+## 9A. 🌍 MULTILINGUAL & CURRICULUM
+
+| Requirement | Status | Evidence |
+|------------|--------|----------|
+| English support | ✅ | Full application coverage |
+| Spanish support | ✅ | Full application coverage (UI, AI, assessments, phonics) |
+| Curriculum map (structured) | ✅ | 200-hour map: 5 grade bands × 4 modules × 10 hrs; downloadable .docx |
+| AI content guardrails | ✅ | Topic-restricted system prompt; rejects non-reading queries |
+| Section 508 accessibility | ⚠️ | Semantic HTML, ARIA labels; full audit planned |
+| FISMA certification | 🔴 | Deferred — requires formal process |
 
 ---
 
@@ -314,6 +329,12 @@ The DPA template is ready for execution. We also accept customer-provided DPA te
 - Incident response plan
 - Acceptable Use Policy
 - Vendor risk tiering
+- Commercial licensing (Spry Labs)
+- Spanish language support
+- 200-hour curriculum map
+- AI content guardrails
+- PWA / offline support
+- SCORE 7c tablet compatibility (design-level)
 - All 🟡 items addressed
 
 ### Phase 3 (WHEN DEAL SIZE WARRANTS IT)
@@ -322,6 +343,9 @@ The DPA template is ready for execution. We also accept customer-provided DPA te
 - 🔴 Formal audit trail system
 - 🔴 Enterprise SSO
 - 🔴 Continuous monitoring tooling
+- 🔴 FISMA certification
+- 🔴 Section 508 / WCAG 2.1 AA formal audit
+- 🔴 SCORE 7c on-device testing & certification
 
 ---
 
@@ -330,3 +354,4 @@ The DPA template is ready for execution. We also accept customer-provided DPA te
 | Version | Date | Changes |
 |---------|------|---------|
 | 1.0 | March 2026 | Initial enterprise checklist — Phase 1 & 2 complete |
+| 1.1 | April 2026 | Added PWA/offline, Spanish, curriculum map, AI guardrails, SCORE 7c, Section 508/FISMA status |
