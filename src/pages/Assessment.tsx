@@ -352,6 +352,7 @@ const Assessment = () => {
                         key={index}
                         onClick={() => handleAnswerSelect(option)}
                         disabled={showFeedback}
+                        aria-pressed={selectedAnswer === option}
                         className={`answer-option ${
                           selectedAnswer === option ? "selected" : ""
                         } ${
@@ -376,6 +377,8 @@ const Assessment = () => {
 
                   {showFeedback && (
                     <div
+                      role="alert"
+                      aria-live="assertive"
                       className={`mt-6 p-4 rounded-2xl fade-in-up ${
                         isCorrect ? "bg-success/10" : "bg-destructive/10"
                       }`}

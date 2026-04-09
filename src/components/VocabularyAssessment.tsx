@@ -62,6 +62,7 @@ const VocabularyAssessment = ({ onComplete }: VocabularyAssessmentProps) => {
           <button
             key={`${item.word}-${index}`}
             onClick={() => toggleWord(index)}
+            aria-pressed={item.selected}
             className={`
               relative p-4 rounded-xl border-2 transition-all duration-200
               font-medium text-lg
@@ -81,7 +82,7 @@ const VocabularyAssessment = ({ onComplete }: VocabularyAssessmentProps) => {
         ))}
       </div>
 
-      <div className="flex items-center justify-between p-4 bg-muted rounded-xl">
+      <div className="flex items-center justify-between p-4 bg-muted rounded-xl" aria-live="polite">
         <span className="text-muted-foreground">
           {t("vocab.selected")}
         </span>

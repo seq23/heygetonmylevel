@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { Mic, MicOff, Loader2, AlertCircle, CheckCircle2, RotateCcw, BookOpen, ChevronDown, ArrowDown, ArrowUp } from "lucide-react";
+import { Mic, MicOff, Loader2, AlertCircle, CheckCircle2, RotateCcw, BookOpen, ChevronDown, ArrowDown, ArrowUp, Keyboard } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import {
   Collapsible,
@@ -88,8 +88,7 @@ const ReadAloudAssessment = ({ currentLevel, isESL = false, onComplete, onSkip }
 
   // Load sentences for effective level
   useEffect(() => {
-    // Skip loading if speech recognition is not supported
-    if (!isSupported) return;
+    // Load sentences for both speech and type-to-answer modes
     
     const loadSentences = async () => {
       setPhase("loading");
@@ -180,28 +179,49 @@ const ReadAloudAssessment = ({ currentLevel, isESL = false, onComplete, onSkip }
 
   const handleRetry = () => {
     resetTranscript();
+    setTypedText("");
     setResult(null);
     setPhase("ready");
   };
 
-  if (!isSupported) {
-    return (
-      <div className="text-center space-y-6 py-8">
-        <div className="w-20 h-20 mx-auto bg-destructive/10 rounded-full flex items-center justify-center">
-          <AlertCircle className="w-10 h-10 text-destructive" />
-        </div>
-        <div>
-          <h3 className="text-xl font-semibold mb-2">Speech Recognition Not Available</h3>
-          <p className="text-muted-foreground mb-4">
-            Your browser doesn't support speech recognition. Please use Chrome, Safari, or Edge.
-          </p>
-        </div>
-        <button onClick={onSkip} className="btn-hero">
-          Skip to Vocabulary Assessment
-        </button>
-      </div>
-    );
-  }
+  const handleSubmitTyped = () => {
+    const currentSentence = sentences[currentSentenceIndex];
+    // Use a fixed 30s estimate for typed answers (typing speed doesn't measure reading fluency)
+    const comparison = compareTexts(currentSentence, typedText, 30);
+    setResult(comparison);
+    setAllResults(prev => [...prev, comparison]);
+
+    if (adjustmentCount < 5) {
+      const adjustment = determineAdjustment(comparison.accuracy, comparison.wordsPerMinute, effectiveLevel);
+      if (adjustment !== 0) {
+        const newLevel = effectiveLevel + adjustment;
+        setAdjustmentDirection(adjustment > 0 ? "up" : "down");
+        setAdjustmentCount(prev => prev + 1);
+        setPhase("adjusting");
+        const message = adjustment > 0
+          ? `Great job! Moving up to Grade ${newLevel} for more challenge! 🌟`
+          : `Adjusting to Grade ${newLevel} for a better fit! 📚`;
+        toast.info(message, { duration: 3000 });
+        setTimeout(() => {
+          setEffectiveLevel(newLevel);
+          setCurrentSentenceIndex(0);
+          setResult(null);
+          setAllResults([]);
+          setTypedText("");
+          resetTranscript();
+        }, 1500);
+        return;
+      }
+    }
+    setPhase("results");
+  };
+
+  // Type-to-answer fallback state
+  const [useTypeFallback, setUseTypeFallback] = useState(!isSupported);
+  const [typedText, setTypedText] = useState("");
+
+  // When not supported, still allow the assessment via typing
+  // (we skip the "not supported" early return and handle it in UI instead)
 
   const currentSentence = sentences[currentSentenceIndex];
   const rawTargetWPM = getTargetWPM(effectiveLevel);
@@ -215,7 +235,7 @@ const ReadAloudAssessment = ({ currentLevel, isESL = false, onComplete, onSkip }
         <h2 className="text-2xl font-display font-bold mb-2">
           Read Aloud
         </h2>
-        <p className="text-muted-foreground">
+        <p className="text-muted-foreground" aria-live="polite" aria-atomic="true">
           Grade {effectiveLevel} • Sentence {currentSentenceIndex + 1} of {sentences.length}
           {adjustmentCount > 0 && (
             <span className="ml-2 inline-flex items-center gap-1 text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full">
@@ -266,17 +286,58 @@ const ReadAloudAssessment = ({ currentLevel, isESL = false, onComplete, onSkip }
             </p>
           </div>
           
-          <div className="text-center text-muted-foreground">
-            <p>When you're ready, tap the button and read the sentence aloud.</p>
-          </div>
-          
-          <button
-            onClick={handleStartRecording}
-            className="btn-hero w-full flex items-center justify-center gap-3"
-          >
-            <Mic className="w-5 h-5" />
-            Start Recording
-          </button>
+          {useTypeFallback ? (
+            <>
+              <div className="text-center text-muted-foreground">
+                <p>Type the sentence exactly as shown above.</p>
+              </div>
+              <textarea
+                value={typedText}
+                onChange={(e) => setTypedText(e.target.value)}
+                placeholder="Type the sentence here..."
+                className="w-full p-4 rounded-xl border-2 border-border bg-card text-foreground text-lg leading-relaxed resize-none focus:border-primary focus:outline-none min-h-[120px]"
+                aria-label="Type the sentence shown above"
+              />
+              <button
+                onClick={handleSubmitTyped}
+                disabled={!typedText.trim()}
+                className="btn-hero w-full flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                <Keyboard className="w-5 h-5" />
+                Submit Typed Answer
+              </button>
+              {isSupported && (
+                <button
+                  onClick={() => { setUseTypeFallback(false); setTypedText(""); }}
+                  className="w-full text-sm text-primary hover:underline"
+                >
+                  Switch to microphone instead
+                </button>
+              )}
+            </>
+          ) : (
+            <>
+              <div className="text-center text-muted-foreground">
+                <p>When you're ready, tap the button and read the sentence aloud.</p>
+              </div>
+              <button
+                onClick={handleStartRecording}
+                className="btn-hero w-full flex items-center justify-center gap-3"
+              >
+                <Mic className="w-5 h-5" />
+                Start Recording
+              </button>
+              <button
+                onClick={() => { setUseTypeFallback(true); resetTranscript(); }}
+                className="w-full text-sm text-muted-foreground hover:text-primary hover:underline"
+              >
+                <span className="flex items-center justify-center gap-1">
+                  <Keyboard className="w-4 h-4" />
+                  Can't use microphone? Type instead
+                </span>
+              </button>
+            </>
+          )}
         </div>
       )}
 
