@@ -71,7 +71,10 @@ serve(async (req) => {
 
     const level = gradeLevel || 5;
     const isSpanish = language === "es";
-    const langInstruction = isSpanish ? "\n\nIMPORTANT: Generate ALL content (passage, title, questions, options, explanations) in SPANISH. Use grade-appropriate Spanish vocabulary." : "";
+    // Bilingual mode: passages stay in ENGLISH (the learner is building English reading skills),
+    // but questions, options, explanations, tutor responses, and feedback are in SPANISH
+    // so the Spanish-speaking learner can understand the instructions and guidance.
+    const questionsLangInstruction = isSpanish ? "\n\nIMPORTANT: The passage is in ENGLISH (the student is learning to read English). Generate all QUESTIONS, ANSWER OPTIONS, and EXPLANATIONS in SPANISH so the Spanish-speaking learner can understand what is being asked." : "";
 
     if (type === "passage") {
       const gradeDesc = getGradeDescription(level);
