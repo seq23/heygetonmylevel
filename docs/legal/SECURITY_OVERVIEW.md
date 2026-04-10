@@ -20,10 +20,12 @@ HeyGetOnMyLevel is a free educational reading practice application with a **priv
 
 | Principle | Implementation |
 |-----------|----------------|
-| **Zero PII Collection** | No names, emails, ages, locations, or identifiers collected |
+| **Zero PII Collection** | No names, emails, ages, or identifiers collected |
 | **Ephemeral Sessions** | All session data deleted when browser closes |
 | **No User Accounts** | No authentication, no credentials to breach |
 | **Data Minimization** | Only session-functional data (UUID, grade level, timestamps) |
+| **Anonymous Analytics** | Aggregated daily country/region/city counts from CDN headers; no IPs stored |
+| **Usage Monitoring** | Aggregated daily AI call counts by type for cost management |
 
 ### 2.2 Technology Stack
 
@@ -34,7 +36,8 @@ HeyGetOnMyLevel is a free educational reading practice application with a **priv
 | Database | PostgreSQL (via Lovable Cloud) | Row Level Security on all tables |
 | Backend Functions | Edge Functions | Serverless; no persistent state |
 | AI Services | Lovable AI | No user data in requests |
-| Email | Resend | Feedback delivery only; SOC 2 compliant |
+| Email | Resend | Feedback delivery + operator alerts; SOC 2 compliant |
+| Monitoring | pg_cron + Edge Functions | Monthly automated traffic/cost spike detection |
 
 ---
 
