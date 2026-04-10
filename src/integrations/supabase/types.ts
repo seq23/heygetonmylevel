@@ -219,6 +219,10 @@ export type Database = {
         Args: { session_uuid: string }
         Returns: undefined
       }
+      increment_country_stat: {
+        Args: { p_country: string }
+        Returns: undefined
+      }
     }
     Enums: {
       [_ in never]: never
