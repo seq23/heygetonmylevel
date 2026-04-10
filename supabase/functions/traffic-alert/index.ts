@@ -210,7 +210,7 @@ const handler = async (req: Request): Promise<Response> => {
           <hr style="border: none; border-top: 1px solid #eee; margin: 24px 0;" />
           <p style="color: #999; font-size: 11px;">
             Generated: ${now.toISOString()}<br/>
-            Thresholds: ${DAILY_THRESHOLD} daily avg / ${SPIKE_MULTIPLIER}x spike / $5 AI cost<br/>
+            Thresholds: ${DAILY_THRESHOLD} daily avg / ${SPIKE_MULTIPLIER}x spike / $100 AI cost<br/>
             Schedule: 1st of each month (spike-only)
           </p>
         </div>
