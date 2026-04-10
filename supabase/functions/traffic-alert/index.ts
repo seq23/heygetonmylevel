@@ -107,8 +107,8 @@ const handler = async (req: Request): Promise<Response> => {
       alerts.push(`⚠️ <strong>Traffic drop:</strong> ${current} sessions vs ${baseline} baseline (${Math.round((1 - current / baseline) * 100)}% decrease)`);
     }
     // Cost alert
-    if (estimatedAICost > 5) {
-      alerts.push(`💰 <strong>Cost alert:</strong> Estimated AI costs $${estimatedAICost.toFixed(2)} this month (${totalAICalls} calls)`);
+    if (estimatedAICost > 100) {
+      alerts.push(`💰 <strong>Cost alert:</strong> Estimated AI costs $${estimatedAICost.toFixed(2)} this month (${totalAICalls} calls) — exceeds $100 threshold`);
     }
 
     const result = {
@@ -210,7 +210,7 @@ const handler = async (req: Request): Promise<Response> => {
           <hr style="border: none; border-top: 1px solid #eee; margin: 24px 0;" />
           <p style="color: #999; font-size: 11px;">
             Generated: ${now.toISOString()}<br/>
-            Thresholds: ${DAILY_THRESHOLD} daily avg / ${SPIKE_MULTIPLIER}x spike / $5 AI cost<br/>
+            Thresholds: ${DAILY_THRESHOLD} daily avg / ${SPIKE_MULTIPLIER}x spike / $100 AI cost<br/>
             Schedule: 1st of each month (spike-only)
           </p>
         </div>
