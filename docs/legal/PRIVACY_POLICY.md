@@ -1,8 +1,8 @@
 # Privacy Policy
 
 **Effective Date:** January 2026  
-**Last Updated:** January 2026  
-**Version:** 1.0
+**Last Updated:** April 2026  
+**Version:** 1.1
 
 ---
 
@@ -33,6 +33,10 @@ We collect only what's necessary for the app to function:
 
 - **Assessment Results:** If you take an optional reading assessment, the results are used only to suggest an appropriate reading level and are stored only for your current session.
 
+- **Anonymous Geographic Data:** When you use AI-powered features (reading passages, assessments, tutoring), we record the country, region, and city derived from CDN infrastructure headers (Cloudflare). This data is aggregated as daily counts (e.g., "10 requests from US, California, Los Angeles on April 10"). No IP addresses are stored or logged. This data is used solely for operator traffic monitoring and cost management.
+
+- **Aggregated Usage Counts:** We track daily counts of AI feature usage by type (e.g., "15 passage requests, 8 tutor requests on April 10"). No individual session or user is identifiable from this data.
+
 ---
 
 ## What We Don't Collect
@@ -41,7 +45,7 @@ We intentionally do not collect:
 
 - Names, email addresses, or contact information
 - Age, birthdate, or demographic information
-- Location data or IP addresses for tracking
+- Location data or IP addresses for tracking (note: anonymous country/region/city from CDN headers is collected in aggregate only — see "What We Collect")
 - Device identifiers or fingerprints
 - Browsing history or behavior across other sites
 - Any information that could identify you personally
