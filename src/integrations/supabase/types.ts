@@ -44,6 +44,27 @@ export type Database = {
         }
         Relationships: []
       }
+      daily_country_stats: {
+        Row: {
+          country_code: string
+          id: string
+          request_count: number
+          stat_date: string
+        }
+        Insert: {
+          country_code?: string
+          id?: string
+          request_count?: number
+          stat_date?: string
+        }
+        Update: {
+          country_code?: string
+          id?: string
+          request_count?: number
+          stat_date?: string
+        }
+        Relationships: []
+      }
       passages: {
         Row: {
           created_at: string
