@@ -71,11 +71,14 @@ serve(async (req) => {
 
     const level = gradeLevel || 5;
     const isSpanish = language === "es";
-    const langInstruction = isSpanish ? "\n\nIMPORTANT: Generate ALL content (passage, title, questions, options, explanations) in SPANISH. Use grade-appropriate Spanish vocabulary." : "";
+    // Bilingual mode: passages stay in ENGLISH (the learner is building English reading skills),
+    // but questions, options, explanations, tutor responses, and feedback are in SPANISH
+    // so the Spanish-speaking learner can understand the instructions and guidance.
+    const questionsLangInstruction = isSpanish ? "\n\nIMPORTANT: The passage is in ENGLISH (the student is learning to read English). Generate all QUESTIONS, ANSWER OPTIONS, and EXPLANATIONS in SPANISH so the Spanish-speaking learner can understand what is being asked." : "";
 
     if (type === "passage") {
       const gradeDesc = getGradeDescription(level);
-      systemPrompt = `You are an expert reading comprehension teacher. Generate engaging, age-appropriate reading passages that precisely match Flesch-Kincaid grade levels. Your passages should be interesting, educational, and suitable for readers of all ages who are practicing at this level.${isSpanish ? " You are fluent in Spanish and generate content in Spanish." : ""}`;
+      systemPrompt = `You are an expert reading comprehension teacher. Generate engaging, age-appropriate reading passages IN ENGLISH that precisely match Flesch-Kincaid grade levels. Your passages should be interesting, educational, and suitable for readers of all ages who are practicing at this level. ALWAYS generate the passage in English, regardless of the student's native language.`;
       
       // Build topic instruction based on whether theme is provided
       const topicInstruction = theme 
@@ -91,7 +94,7 @@ ${topicInstruction}
 - Skill focus: ${skillFocus || "general comprehension"}
 ${skillFocus === "phonics" ? `- PHONICS FOCUS: Use words with clear, consistent sound patterns (e.g., rhyming words, word families like -at, -ig, -op). Include repetition of key sounds. Make the passage fun to read aloud.` : ""}
 ${theme ? `- IMPORTANT: Incorporate the "${theme}" theme naturally into an engaging story or informational passage` : ""}
-${langInstruction}
+${isSpanish ? `- IMPORTANT: The passage text and title MUST be in ENGLISH. The student is learning to read English.` : ""}
 
 Return ONLY a JSON object in this exact format:
 {
@@ -101,7 +104,7 @@ Return ONLY a JSON object in this exact format:
 }`;
     } else if (type === "questions") {
       const gradeDesc = getGradeDescription(level);
-      systemPrompt = `You are an expert reading comprehension teacher creating questions that test understanding at the appropriate reading level. Questions should be clear, fair, and directly related to the passage.${isSpanish ? " Generate all questions, options, and explanations in Spanish." : ""}`;
+      systemPrompt = `You are an expert reading comprehension teacher creating questions that test understanding at the appropriate reading level. Questions should be clear, fair, and directly related to the passage.${isSpanish ? " The passage is in English but the student speaks Spanish. Generate all questions, answer options, and explanations in SPANISH so the learner can understand what is being asked while practicing English reading." : ""}`;
       
       // Skill-focused question generation
       let questionTypeInstruction = "";
@@ -140,7 +143,7 @@ Requirements:
 - Question complexity: ${gradeDesc}
 - ${questionTypeInstruction}
 - Each question has 4 answer options
-- Questions should match the reading level${langInstruction}
+- Questions should match the reading level${questionsLangInstruction}
 
 Return ONLY a JSON array in this exact format:
 [
@@ -222,7 +225,7 @@ Return ONLY a JSON object:
 }`;
     } else if (type === "evaluate") {
       const gradeDesc = getGradeDescription(level);
-      systemPrompt = `You are a supportive reading tutor. Provide encouraging, educational feedback that helps readers understand and improve. Adapt your explanation to the reader's level.${isSpanish ? " Respond entirely in Spanish." : ""}`;
+      systemPrompt = `You are a supportive reading tutor. Provide encouraging, educational feedback that helps readers understand and improve. Adapt your explanation to the reader's level.${isSpanish ? " The student speaks Spanish and is learning to read English. Respond entirely in Spanish to help them understand, but reference the English passage text when needed." : ""}`;
       
       userPrompt = `The reader answered a comprehension question.
 
@@ -246,7 +249,7 @@ Return ONLY a JSON object:
       // Strategy 5: Limit tutor response tokens
       maxTokens = 100;
       
-      systemPrompt = `You are a friendly, encouraging reading buddy for a student at Grade ${level} level.${isSpanish ? " Communicate entirely in Spanish." : ""} Your job is to:
+      systemPrompt = `You are a friendly, encouraging reading buddy for a student at Grade ${level} level.${isSpanish ? " The student speaks Spanish and is learning to read English. Communicate entirely in Spanish to help them, but reference English words from the passage when explaining vocabulary or reading concepts." : ""} Your job is to:
 - Help them understand the passage without giving away answers
 - Give hints when asked, but encourage them to think
 - Explain difficult words or concepts in simpler terms
@@ -277,7 +280,7 @@ Return ONLY a JSON object:
 }`;
     } else if (type === "read_aloud") {
       const gradeDesc = getGradeDescription(level);
-      systemPrompt = `You are an expert reading teacher creating sentences for students to read aloud. Generate age-appropriate sentences that match the specified grade level.${isSpanish ? " Generate all sentences in Spanish." : ""}`;
+      systemPrompt = `You are an expert reading teacher creating sentences for students to read aloud. Generate age-appropriate sentences IN ENGLISH that match the specified grade level. The student is practicing English reading skills.`;
       
       userPrompt = `Create 3 sentences for a Grade ${level} student to read aloud.
 
@@ -330,7 +333,7 @@ Return ONLY a JSON object:
       const randomTopic = confirmationTopics[Math.floor(Math.random() * confirmationTopics.length)];
       const variationSeed = Date.now() % 10000;
       
-      systemPrompt = `You are an expert reading comprehension teacher. Create a short, UNIQUE passage with questions to confirm a reader's level. Generate fresh, original content each time.${isSpanish ? " Generate all content in Spanish." : ""}`;
+      systemPrompt = `You are an expert reading comprehension teacher. Create a short, UNIQUE passage IN ENGLISH with questions to confirm a reader's level. Generate fresh, original content each time. The passage MUST be in English.${isSpanish ? " Generate questions, options, and explanations in SPANISH since the student speaks Spanish, but keep the passage text in English." : ""}`;
       
       userPrompt = `Create a SHORT confirmation passage for Grade ${level} level.
 
