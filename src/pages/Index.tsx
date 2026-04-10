@@ -46,13 +46,20 @@ const Index = () => {
     <div className="min-h-screen bg-background flex flex-col">
       {/* Language Toggle */}
       <div className="flex justify-end px-4 pt-3">
-        <button
-          onClick={() => setLanguage(language === "en" ? "es" : "en")}
-          className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-muted text-sm font-medium text-muted-foreground hover:bg-primary/10 hover:text-primary transition-colors"
-          aria-label={language === "en" ? "Cambiar a Español" : "Switch to English"}
-        >
-          <span>{language === "en" ? "🇪🇸 Español" : "🇺🇸 English"}</span>
-        </button>
+        <div className="flex flex-col items-end gap-1">
+          <button
+            onClick={() => setLanguage(language === "en" ? "es" : "en")}
+            className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-muted text-sm font-medium text-muted-foreground hover:bg-primary/10 hover:text-primary transition-colors"
+            aria-label={language === "en" ? "Cambiar a Español" : "Switch to English"}
+          >
+            <span>{language === "en" ? "🇪🇸 Español" : "🇺🇸 English"}</span>
+          </button>
+          {language === "es" && (
+            <p className="text-[11px] text-muted-foreground max-w-[220px] text-right leading-tight">
+              Modo bilingüe: lees en inglés, te guiamos en español
+            </p>
+          )}
+        </div>
       </div>
 
       {/* Problem Statement Banner */}
