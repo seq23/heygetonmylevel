@@ -112,6 +112,13 @@ Full Section 508 / WCAG 2.1 AA formal audit is planned as part of institutional 
 | Input validation | Character limits, enumerated values, PII warnings |
 | AI content guardrails | Topic-restricted to reading/education only |
 | Service worker security | SW excluded from preview/iframe contexts; OAuth routes excluded from cache |
+| Operator admin panel | Hidden `/admin` route (no nav link); on-demand cost & traffic reporting for operator only |
+| Incident response | Formal plan with severity tiers and 72-hour notification commitment |
+| Database access control | Row Level Security (RLS) on all tables |
+| Secrets management | Platform-managed; never in source code |
+| Input validation | Character limits, enumerated values, PII warnings |
+| AI content guardrails | Topic-restricted to reading/education only |
+| Service worker security | SW excluded from preview/iframe contexts; OAuth routes excluded from cache |
 | Incident response | Formal plan with severity tiers and 72-hour notification commitment |
 
 ---
