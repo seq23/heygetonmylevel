@@ -41,14 +41,17 @@ Our application is built on a **zero-PII architecture** — we do not collect, s
 
 ## Platform Capabilities
 
-### Multilingual Support
+### Multilingual / Bilingual ESL Support
 
-The application currently supports **English** and **Spanish** across all features:
-- AI-generated reading passages
-- Assessment and vocabulary tools
-- Phonics exercises
-- AI Reading Buddy (tutor)
-- All UI labels, navigation, and instructions
+The application supports a **bilingual ESL mode** for Spanish-speaking learners:
+- **Reading passages are always in English** — the learner is building English reading skills
+- **Questions and answer options are in Spanish** — so the learner understands what is being asked
+- **Explanations and feedback are in Spanish** — to help comprehension of correct/incorrect answers
+- **AI Reading Buddy speaks Spanish** — guiding the learner in their native language while referencing English vocabulary from the passage
+- **Read-aloud exercises stay in English** — practicing English pronunciation and fluency
+- **All UI labels, navigation, and instructions are in Spanish** when Spanish mode is active
+
+This bilingual approach mirrors best practices in ESL/ELL education: scaffold understanding in the native language while building target-language literacy skills.
 
 Language selection is stored only in-browser (localStorage) and is never transmitted to any server.
 
@@ -181,7 +184,7 @@ Yes. No personal information is collected from any user, including children. No 
 The application is a PWA installable via the device browser without app store access. Previously visited content is cached for offline use. Formal testing on SCORE 7c hardware is pending; a commercial license is required for institutional deployment.
 
 **What languages are supported?**  
-English and Spanish. All features — AI passages, assessments, vocabulary, phonics, UI — are fully translated. Additional languages can be added based on institutional demand.
+English and Spanish. Spanish mode operates as a bilingual ESL mode: reading passages and read-aloud exercises remain in English (the target language being learned), while questions, explanations, tutor guidance, and UI are in Spanish. Additional languages can be added based on institutional demand.
 
 ---
 

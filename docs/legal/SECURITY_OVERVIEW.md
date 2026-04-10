@@ -70,7 +70,7 @@ HeyGetOnMyLevel is a free educational reading practice application with a **priv
 | Assessment responses | Validated against expected formats |
 | API requests | Edge function input validation |
 | AI Reading Buddy | Topic-restricted system prompt; only responds to reading/education queries |
-| Language selection | Enumerated values (en/es); stored client-side only |
+| Language selection | Enumerated values (en/es); stored client-side only; bilingual ESL mode keeps passages in English |
 
 ### 3.4 PWA / Service Worker Security
 
