@@ -107,8 +107,8 @@ const handler = async (req: Request): Promise<Response> => {
       alerts.push(`⚠️ <strong>Traffic drop:</strong> ${current} sessions vs ${baseline} baseline (${Math.round((1 - current / baseline) * 100)}% decrease)`);
     }
     // Cost alert
-    if (estimatedAICost > 5) {
-      alerts.push(`💰 <strong>Cost alert:</strong> Estimated AI costs $${estimatedAICost.toFixed(2)} this month (${totalAICalls} calls)`);
+    if (estimatedAICost > 100) {
+      alerts.push(`💰 <strong>Cost alert:</strong> Estimated AI costs $${estimatedAICost.toFixed(2)} this month (${totalAICalls} calls) — exceeds $100 threshold`);
     }
 
     const result = {
