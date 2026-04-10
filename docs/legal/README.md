@@ -30,6 +30,11 @@ This directory contains all legal documentation for HeyGetOnMyLevel, a free read
 | [DPA_TEMPLATE.md](./DPA_TEMPLATE.md) | Data Processing Agreement for counterparties | March 2026 |
 | [ACCEPTABLE_USE_POLICY.md](./ACCEPTABLE_USE_POLICY.md) | Permitted and prohibited uses | March 2026 |
 
+### Feature Documentation
+| Document | Purpose | Last Updated |
+|----------|---------|--------------|
+| [BILINGUAL_ESL_MODE.md](./BILINGUAL_ESL_MODE.md) | Bilingual ESL mode — architecture, pedagogy, and technical reference | April 2026 |
+
 ## Quick Reference
 
 - **Data Collection**: Ephemeral, anonymous session data only
