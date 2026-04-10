@@ -141,7 +141,7 @@ We use three vendors. No personal data is shared with any of them.
 |--------|---------|-------------|
 | Lovable Cloud | Hosting, database, serverless functions | Anonymous session data + aggregated geo/usage stats only |
 | Lovable AI | AI-generated educational content | Grade level + content type requests only (no user data) |
-| Resend | Feedback email delivery + operator traffic alerts | User-submitted feedback text only (max 500 chars); traffic alerts sent to operator only |
+| Resend | Feedback email delivery + operator alerts/reports | User-submitted feedback text only (max 500 chars); traffic alerts and quarterly cost reports sent to operator only |
 
 Full subprocessor details with risk tiering available upon request.
 

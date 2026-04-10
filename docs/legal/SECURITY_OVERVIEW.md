@@ -1,6 +1,6 @@
 # Security Overview
 
-**Document Version:** 1.1  
+**Document Version:** 1.3  
 **Last Updated:** April 2026  
 **Purpose:** Security posture summary for enterprise evaluation
 
@@ -37,7 +37,7 @@ HeyGetOnMyLevel is a free educational reading practice application with a **priv
 | Backend Functions | Edge Functions | Serverless; no persistent state |
 | AI Services | Lovable AI | No user data in requests |
 | Email | Resend | Feedback delivery + operator alerts; SOC 2 compliant |
-| Monitoring | pg_cron + Edge Functions | Monthly automated traffic/cost spike detection |
+| Monitoring | pg_cron + Edge Functions | Monthly spike detection + quarterly cumulative cost reports |
 
 ---
 
@@ -190,3 +190,4 @@ You may also use the in-app feedback mechanism for non-urgent matters.
 | 1.0 | March 2026 | Initial security overview |
 | 1.1 | April 2026 | Added AI guardrails, PWA/SW security, Section 508/FISMA status, multilingual support |
 | 1.2 | April 2026 | Added anonymous geo analytics (CDN-derived), usage/cost monitoring, automated traffic alerting |
+| 1.3 | April 2026 | Added quarterly cumulative cost reporting (automated + on-demand) |
