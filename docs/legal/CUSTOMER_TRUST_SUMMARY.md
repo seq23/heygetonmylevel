@@ -30,10 +30,10 @@ Our application is built on a **zero-PII architecture** — we do not collect, s
 |----------------|----------------------|
 | Random session ID (UUID) — deleted on browser close | Names, emails, or contact information |
 | Grade level selection | Age, birthdate, or demographics |
-| Practice responses — ephemeral only | Location data or IP addresses for tracking |
+| Practice responses — ephemeral only | IP addresses (never stored or logged) |
 | Language preference (English/Spanish) | Device identifiers or fingerprints |
-| | Voice recordings (speech runs locally in-browser) |
-| | Browsing history or cross-site behavior |
+| Anonymous country/region/city (from CDN headers, aggregated daily) | Voice recordings (speech runs locally in-browser) |
+| AI call type counts (aggregated daily, for cost monitoring) | Browsing history or cross-site behavior |
 
 **All session data is automatically deleted when the browser closes.** There are no user profiles, no login credentials, and no persistent records of any individual's usage.
 
@@ -139,9 +139,9 @@ We use three vendors. No personal data is shared with any of them.
 
 | Vendor | Purpose | Data Access |
 |--------|---------|-------------|
-| Lovable Cloud | Hosting, database, serverless functions | Anonymous session data only |
+| Lovable Cloud | Hosting, database, serverless functions | Anonymous session data + aggregated geo/usage stats only |
 | Lovable AI | AI-generated educational content | Grade level + content type requests only (no user data) |
-| Resend | Feedback email delivery | User-submitted feedback text only (max 500 chars) |
+| Resend | Feedback email delivery + operator traffic alerts | User-submitted feedback text only (max 500 chars); traffic alerts sent to operator only |
 
 Full subprocessor details with risk tiering available upon request.
 
