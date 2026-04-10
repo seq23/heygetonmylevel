@@ -47,13 +47,13 @@ const handler = async (req: Request): Promise<Response> => {
 
     const now = new Date();
 
-    // Current period: last 15 days
+    // Current period: last 30 days
     const currentStart = new Date(now);
-    currentStart.setDate(currentStart.getDate() - 15);
+    currentStart.setDate(currentStart.getDate() - 30);
 
-    // Baseline period: 15-30 days ago
+    // Baseline period: 30-60 days ago
     const baselineStart = new Date(now);
-    baselineStart.setDate(baselineStart.getDate() - 30);
+    baselineStart.setDate(baselineStart.getDate() - 60);
 
     // Count sessions in current period
     const { count: currentCount, error: currentError } = await supabase
@@ -93,8 +93,8 @@ const handler = async (req: Request): Promise<Response> => {
 
     const current = currentCount ?? 0;
     const baseline = baselineCount ?? 0;
-    const dailyAvg = Math.round(current / 15);
-    const baselineDailyAvg = baseline > 0 ? Math.round(baseline / 15) : 0;
+    const dailyAvg = Math.round(current / 30);
+    const baselineDailyAvg = baseline > 0 ? Math.round(baseline / 30) : 0;
 
     const alerts: string[] = [];
 
@@ -138,13 +138,18 @@ const handler = async (req: Request): Promise<Response> => {
         }).join("")
       : `<tr><td colspan="3" style="padding: 8px 12px; border: 1px solid #dee2e6; color: #999; text-align: center;">No geo data yet — data starts collecting after deployment</td></tr>`;
 
-    // Always send the report (bi-monthly digest), highlight alerts if any
-    const hasAlerts = alerts.length > 0;
-    const subject = hasAlerts
-      ? `🚨 Traffic Alert — HeyGetOnMyLevel (${dailyAvg} avg/day)`
-      : `📊 Traffic Report — HeyGetOnMyLevel (${dailyAvg} avg/day)`;
+    // Only send email if there are alerts (spike-only mode)
+    if (alerts.length === 0) {
+      console.log("No alerts triggered — skipping email (spike-only mode)");
+      return new Response(JSON.stringify({ success: true, emailSent: false, ...result }), {
+        status: 200,
+        headers: { "Content-Type": "application/json", ...corsHeaders },
+      });
+    }
 
-    console.log(`Sending traffic report (${hasAlerts ? alerts.length + " alerts" : "no alerts"})`);
+    const subject = `🚨 Traffic Alert — HeyGetOnMyLevel (${dailyAvg} avg/day)`;
+
+    console.log(`Sending traffic alert with ${alerts.length} alert(s)`);
 
     await resend.emails.send({
       from: "HeyGetOnMyLevel <onboarding@resend.dev>",
@@ -152,13 +157,11 @@ const handler = async (req: Request): Promise<Response> => {
       subject,
       html: `
         <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
-          <h2 style="color: ${hasAlerts ? "#e74c3c" : "#2c3e50"};">${hasAlerts ? "🚨 Traffic Alert" : "📊 Bi-Monthly Traffic Report"}</h2>
+          <h2 style="color: #e74c3c;">🚨 Traffic Alert</h2>
           
-          ${hasAlerts ? `
           <div style="background: #fff3cd; padding: 16px; border-radius: 8px; border-left: 4px solid #ffc107; margin: 16px 0;">
             ${alerts.map((a) => `<p style="margin: 8px 0;">${a}</p>`).join("")}
-          </div>` : `
-          <p style="color: #555;">Traffic is within normal range. Here's your bi-monthly summary:</p>`}
+          </div>
 
           <h3 style="color: #333; margin-top: 24px;">📊 Session Summary (15-day period)</h3>
           <table style="width: 100%; border-collapse: collapse; margin: 12px 0;">
