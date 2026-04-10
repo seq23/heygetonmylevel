@@ -1,4 +1,5 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2.87.1";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -33,6 +34,17 @@ serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
   }
+
+  // Track country-level stats (fire-and-forget, non-blocking)
+  try {
+    const country = req.headers.get("cf-ipcountry") || "XX";
+    const supabaseUrl = Deno.env.get("SUPABASE_URL");
+    const supabaseKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
+    if (supabaseUrl && supabaseKey) {
+      const sb = createClient(supabaseUrl, supabaseKey);
+      sb.rpc("increment_country_stat", { p_country: country }).then(() => {}).catch(() => {});
+    }
+  } catch { /* non-critical */ }
 
   try {
     const { type, gradeLevel, skillFocus, theme, passageText, question, userAnswer, correctAnswer, userQuestion, currentQuestion, language } = await req.json() as PassageRequest;

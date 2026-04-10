@@ -44,6 +44,27 @@ export type Database = {
         }
         Relationships: []
       }
+      daily_country_stats: {
+        Row: {
+          country_code: string
+          id: string
+          request_count: number
+          stat_date: string
+        }
+        Insert: {
+          country_code?: string
+          id?: string
+          request_count?: number
+          stat_date?: string
+        }
+        Update: {
+          country_code?: string
+          id?: string
+          request_count?: number
+          stat_date?: string
+        }
+        Relationships: []
+      }
       passages: {
         Row: {
           created_at: string
@@ -196,6 +217,10 @@ export type Database = {
     Functions: {
       delete_session_data: {
         Args: { session_uuid: string }
+        Returns: undefined
+      }
+      increment_country_stat: {
+        Args: { p_country: string }
         Returns: undefined
       }
     }
