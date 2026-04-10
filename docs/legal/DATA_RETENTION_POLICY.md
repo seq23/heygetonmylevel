@@ -1,7 +1,7 @@
 # Data Retention Policy
 
-**Document Version:** 1.0  
-**Last Updated:** March 2026
+**Document Version:** 1.1  
+**Last Updated:** April 2026
 
 ---
 
@@ -23,6 +23,8 @@ This policy defines how long data is retained by HeyGetOnMyLevel and the mechani
 | Responses (answers) | Browser session only | Cascade delete with session | Linked to session |
 | Timestamps | Browser session only | Cascade delete with session | Operational metadata |
 | Cached passages | Indefinite | Manual cleanup | Pre-generated content; contains no user data |
+| Country/region/city stats | Indefinite | Aggregated daily counts | Anonymous geo analytics from CDN headers; no PII |
+| AI usage stats | Indefinite | Aggregated daily counts | Cost monitoring by call type; no PII |
 | Feedback messages | Not stored | Email delivery only | Sent via Resend; not persisted in database |
 | Sidebar cookie | Browser-managed | Browser cookie expiry | Functional UI preference |
 | LocalStorage (name, tutorial) | Until cleared by user | User action or browser clear | Reading Buddy personalization |
@@ -92,3 +94,4 @@ This policy is reviewed:
 | Version | Date | Changes |
 |---------|------|---------|
 | 1.0 | March 2026 | Initial retention policy |
+| 1.1 | April 2026 | Added anonymous geo stats and AI usage stats retention; both are aggregated daily counts with no PII |
