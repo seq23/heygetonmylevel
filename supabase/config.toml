@@ -8,3 +8,6 @@ verify_jwt = false
 
 [functions.traffic-alert]
 verify_jwt = false
+
+[functions.cost-report]
+verify_jwt = false
