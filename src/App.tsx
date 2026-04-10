@@ -17,6 +17,7 @@ import Terms from "./pages/Terms";
 import Phonics from "./pages/Phonics";
 import Curriculum from "./pages/Curriculum";
 import Install from "./pages/Install";
+import Admin from "./pages/Admin";
 import NotFound from "./pages/NotFound";
 import FeedbackBubble from "./components/FeedbackBubble";
 
@@ -43,6 +44,7 @@ const App = () => (
               <Route path="/summary" element={<Summary />} />
               <Route path="/privacy" element={<Privacy />} />
               <Route path="/terms" element={<Terms />} />
+              <Route path="/admin" element={<Admin />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
             <FeedbackBubble />
