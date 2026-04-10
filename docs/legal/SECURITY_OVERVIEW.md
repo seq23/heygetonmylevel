@@ -189,3 +189,4 @@ You may also use the in-app feedback mechanism for non-urgent matters.
 |---------|------|---------|
 | 1.0 | March 2026 | Initial security overview |
 | 1.1 | April 2026 | Added AI guardrails, PWA/SW security, Section 508/FISMA status, multilingual support |
+| 1.2 | April 2026 | Added anonymous geo analytics (CDN-derived), usage/cost monitoring, automated traffic alerting |
