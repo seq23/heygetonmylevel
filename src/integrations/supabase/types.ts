@@ -46,21 +46,48 @@ export type Database = {
       }
       daily_country_stats: {
         Row: {
+          city: string
           country_code: string
           id: string
+          region: string
           request_count: number
           stat_date: string
         }
         Insert: {
+          city?: string
           country_code?: string
           id?: string
+          region?: string
           request_count?: number
           stat_date?: string
         }
         Update: {
+          city?: string
           country_code?: string
           id?: string
+          region?: string
           request_count?: number
+          stat_date?: string
+        }
+        Relationships: []
+      }
+      daily_usage_stats: {
+        Row: {
+          call_count: number
+          call_type: string
+          id: string
+          stat_date: string
+        }
+        Insert: {
+          call_count?: number
+          call_type?: string
+          id?: string
+          stat_date?: string
+        }
+        Update: {
+          call_count?: number
+          call_type?: string
+          id?: string
           stat_date?: string
         }
         Relationships: []
@@ -219,8 +246,14 @@ export type Database = {
         Args: { session_uuid: string }
         Returns: undefined
       }
-      increment_country_stat: {
-        Args: { p_country: string }
+      increment_country_stat:
+        | { Args: { p_country: string }; Returns: undefined }
+        | {
+            Args: { p_city?: string; p_country: string; p_region?: string }
+            Returns: undefined
+          }
+      increment_usage_stat: {
+        Args: { p_call_type: string }
         Returns: undefined
       }
     }
