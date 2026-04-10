@@ -194,15 +194,15 @@ const handler = async (req: Request): Promise<Response> => {
           <p style="color: #999; font-size: 12px;">
             Generated: ${now.toISOString()}<br/>
             Alert thresholds: ${DAILY_THRESHOLD} daily avg / ${SPIKE_MULTIPLIER}x spike multiplier<br/>
-            Schedule: 1st & 15th of each month
+            Schedule: 1st of each month (spike-only alerts)
           </p>
         </div>
       `,
     });
 
-    console.log("Traffic report email sent successfully");
+    console.log("Traffic alert email sent successfully");
 
-    return new Response(JSON.stringify({ success: true, ...result }), {
+    return new Response(JSON.stringify({ success: true, emailSent: true, ...result }), {
       status: 200,
       headers: { "Content-Type": "application/json", ...corsHeaders },
     });
