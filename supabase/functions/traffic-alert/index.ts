@@ -10,8 +10,23 @@ const corsHeaders = {
 
 // Configuration
 const ALERT_EMAIL = "seq.taylor@gmail.com";
-const DAILY_THRESHOLD = 50; // Alert if average daily sessions exceed this
-const SPIKE_MULTIPLIER = 3; // Alert if current period is 3x the baseline
+const DAILY_THRESHOLD = 50;
+const SPIKE_MULTIPLIER = 3;
+
+// Country code to flag/name mapping
+const COUNTRY_NAMES: Record<string, string> = {
+  US: "🇺🇸 United States", GB: "🇬🇧 United Kingdom", CA: "🇨🇦 Canada",
+  AU: "🇦🇺 Australia", DE: "🇩🇪 Germany", FR: "🇫🇷 France",
+  ES: "🇪🇸 Spain", MX: "🇲🇽 Mexico", BR: "🇧🇷 Brazil",
+  NL: "🇳🇱 Netherlands", BG: "🇧🇬 Bulgaria", IN: "🇮🇳 India",
+  JP: "🇯🇵 Japan", KR: "🇰🇷 South Korea", CN: "🇨🇳 China",
+  IT: "🇮🇹 Italy", PT: "🇵🇹 Portugal", AR: "🇦🇷 Argentina",
+  CO: "🇨🇴 Colombia", CL: "🇨🇱 Chile", PE: "🇵🇪 Peru",
+  PH: "🇵🇭 Philippines", NG: "🇳🇬 Nigeria", ZA: "🇿🇦 South Africa",
+  XX: "🌐 Unknown",
+};
+
+const getCountryName = (code: string) => COUNTRY_NAMES[code] || `🏳️ ${code}`;
 
 const handler = async (req: Request): Promise<Response> => {
   if (req.method === "OPTIONS") {
@@ -58,6 +73,24 @@ const handler = async (req: Request): Promise<Response> => {
 
     if (baselineError) throw baselineError;
 
+    // Get country stats for current period
+    const { data: countryData, error: countryError } = await supabase
+      .from("daily_country_stats")
+      .select("country_code, request_count")
+      .gte("stat_date", currentStart.toISOString().split("T")[0])
+      .order("request_count", { ascending: false });
+
+    if (countryError) throw countryError;
+
+    // Aggregate country stats (multiple days per country)
+    const countryTotals: Record<string, number> = {};
+    for (const row of countryData || []) {
+      countryTotals[row.country_code] = (countryTotals[row.country_code] || 0) + row.request_count;
+    }
+    const sortedCountries = Object.entries(countryTotals)
+      .sort(([, a], [, b]) => b - a);
+    const totalGeoRequests = sortedCountries.reduce((sum, [, count]) => sum + count, 0);
+
     const current = currentCount ?? 0;
     const baseline = baselineCount ?? 0;
     const dailyAvg = Math.round(current / 15);
@@ -65,21 +98,18 @@ const handler = async (req: Request): Promise<Response> => {
 
     const alerts: string[] = [];
 
-    // Check absolute threshold
     if (dailyAvg >= DAILY_THRESHOLD) {
       alerts.push(
         `📈 <strong>High traffic:</strong> ${dailyAvg} avg daily sessions (threshold: ${DAILY_THRESHOLD})`
       );
     }
 
-    // Check spike vs baseline
     if (baseline > 0 && current >= baseline * SPIKE_MULTIPLIER) {
       alerts.push(
         `🚀 <strong>Traffic spike:</strong> ${current} sessions this period vs ${baseline} last period (${Math.round(current / baseline)}x increase)`
       );
     }
 
-    // Also alert if there's a significant drop (could indicate issues)
     if (baseline > 10 && current < baseline * 0.2) {
       alerts.push(
         `⚠️ <strong>Traffic drop:</strong> ${current} sessions this period vs ${baseline} last period (${Math.round((1 - current / baseline) * 100)}% decrease)`
@@ -92,50 +122,82 @@ const handler = async (req: Request): Promise<Response> => {
       dailyAverage: dailyAvg,
       baselineDailyAverage: baselineDailyAvg,
       alertsTriggered: alerts.length,
+      countries: countryTotals,
       timestamp: now.toISOString(),
     };
 
-    if (alerts.length > 0) {
-      console.log(`Sending traffic alert with ${alerts.length} alert(s)`);
+    // Build country table rows
+    const countryRows = sortedCountries.length > 0
+      ? sortedCountries.map(([code, count]) => {
+          const pct = totalGeoRequests > 0 ? Math.round((count / totalGeoRequests) * 100) : 0;
+          return `<tr>
+            <td style="padding: 6px 12px; border: 1px solid #dee2e6;">${getCountryName(code)}</td>
+            <td style="padding: 6px 12px; border: 1px solid #dee2e6; text-align: right;">${count}</td>
+            <td style="padding: 6px 12px; border: 1px solid #dee2e6; text-align: right;">${pct}%</td>
+          </tr>`;
+        }).join("")
+      : `<tr><td colspan="3" style="padding: 8px 12px; border: 1px solid #dee2e6; color: #999; text-align: center;">No geo data yet — data starts collecting after deployment</td></tr>`;
 
-      await resend.emails.send({
-        from: "HeyGetOnMyLevel <onboarding@resend.dev>",
-        to: [ALERT_EMAIL],
-        subject: `🚨 Traffic Alert — HeyGetOnMyLevel (${dailyAvg} avg/day)`,
-        html: `
-          <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
-            <h2 style="color: #e74c3c;">🚨 Traffic Alert</h2>
-            <p style="color: #555;">The following alert(s) were triggered for HeyGetOnMyLevel:</p>
-            
-            <div style="background: #fff3cd; padding: 16px; border-radius: 8px; border-left: 4px solid #ffc107; margin: 16px 0;">
-              ${alerts.map((a) => `<p style="margin: 8px 0;">${a}</p>`).join("")}
-            </div>
+    // Always send the report (bi-monthly digest), highlight alerts if any
+    const hasAlerts = alerts.length > 0;
+    const subject = hasAlerts
+      ? `🚨 Traffic Alert — HeyGetOnMyLevel (${dailyAvg} avg/day)`
+      : `📊 Traffic Report — HeyGetOnMyLevel (${dailyAvg} avg/day)`;
 
-            <h3 style="color: #333; margin-top: 24px;">📊 Period Summary</h3>
-            <table style="width: 100%; border-collapse: collapse; margin: 12px 0;">
-              <tr style="background: #f8f9fa;">
-                <td style="padding: 8px 12px; border: 1px solid #dee2e6;"><strong>Current Period (last 15 days)</strong></td>
-                <td style="padding: 8px 12px; border: 1px solid #dee2e6;">${current} sessions (${dailyAvg}/day avg)</td>
-              </tr>
-              <tr>
-                <td style="padding: 8px 12px; border: 1px solid #dee2e6;"><strong>Baseline (15-30 days ago)</strong></td>
-                <td style="padding: 8px 12px; border: 1px solid #dee2e6;">${baseline} sessions (${baselineDailyAvg}/day avg)</td>
-              </tr>
-            </table>
+    console.log(`Sending traffic report (${hasAlerts ? alerts.length + " alerts" : "no alerts"})`);
 
-            <hr style="border: none; border-top: 1px solid #eee; margin: 24px 0;" />
-            <p style="color: #999; font-size: 12px;">
-              Generated: ${now.toISOString()}<br/>
-              Thresholds: ${DAILY_THRESHOLD} daily avg / ${SPIKE_MULTIPLIER}x spike multiplier
-            </p>
-          </div>
-        `,
-      });
+    await resend.emails.send({
+      from: "HeyGetOnMyLevel <onboarding@resend.dev>",
+      to: [ALERT_EMAIL],
+      subject,
+      html: `
+        <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
+          <h2 style="color: ${hasAlerts ? "#e74c3c" : "#2c3e50"};">${hasAlerts ? "🚨 Traffic Alert" : "📊 Bi-Monthly Traffic Report"}</h2>
+          
+          ${hasAlerts ? `
+          <div style="background: #fff3cd; padding: 16px; border-radius: 8px; border-left: 4px solid #ffc107; margin: 16px 0;">
+            ${alerts.map((a) => `<p style="margin: 8px 0;">${a}</p>`).join("")}
+          </div>` : `
+          <p style="color: #555;">Traffic is within normal range. Here's your bi-monthly summary:</p>`}
 
-      console.log("Traffic alert email sent successfully");
-    } else {
-      console.log("No alerts triggered — traffic within normal range");
-    }
+          <h3 style="color: #333; margin-top: 24px;">📊 Session Summary (15-day period)</h3>
+          <table style="width: 100%; border-collapse: collapse; margin: 12px 0;">
+            <tr style="background: #f8f9fa;">
+              <td style="padding: 8px 12px; border: 1px solid #dee2e6;"><strong>Current Period</strong></td>
+              <td style="padding: 8px 12px; border: 1px solid #dee2e6;">${current} sessions (${dailyAvg}/day avg)</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px 12px; border: 1px solid #dee2e6;"><strong>Previous Period</strong></td>
+              <td style="padding: 8px 12px; border: 1px solid #dee2e6;">${baseline} sessions (${baselineDailyAvg}/day avg)</td>
+            </tr>
+            <tr style="background: #f8f9fa;">
+              <td style="padding: 8px 12px; border: 1px solid #dee2e6;"><strong>Change</strong></td>
+              <td style="padding: 8px 12px; border: 1px solid #dee2e6;">${baseline > 0 ? `${current > baseline ? "+" : ""}${Math.round(((current - baseline) / baseline) * 100)}%` : "N/A (no baseline)"}</td>
+            </tr>
+          </table>
+
+          <h3 style="color: #333; margin-top: 24px;">🌍 Traffic by Country</h3>
+          <table style="width: 100%; border-collapse: collapse; margin: 12px 0;">
+            <tr style="background: #333; color: #fff;">
+              <th style="padding: 8px 12px; text-align: left;">Country</th>
+              <th style="padding: 8px 12px; text-align: right;">Requests</th>
+              <th style="padding: 8px 12px; text-align: right;">Share</th>
+            </tr>
+            ${countryRows}
+          </table>
+          <p style="color: #999; font-size: 12px;">Country data based on ${totalGeoRequests} tracked requests via edge functions.</p>
+
+          <hr style="border: none; border-top: 1px solid #eee; margin: 24px 0;" />
+          <p style="color: #999; font-size: 12px;">
+            Generated: ${now.toISOString()}<br/>
+            Alert thresholds: ${DAILY_THRESHOLD} daily avg / ${SPIKE_MULTIPLIER}x spike multiplier<br/>
+            Schedule: 1st & 15th of each month
+          </p>
+        </div>
+      `,
+    });
+
+    console.log("Traffic report email sent successfully");
 
     return new Response(JSON.stringify({ success: true, ...result }), {
       status: 200,
