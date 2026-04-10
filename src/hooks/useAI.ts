@@ -140,7 +140,8 @@ export const useAI = () => {
   // Original generatePassage (kept for backward compatibility)
   const generatePassage = useCallback(async (
     gradeLevel: number,
-    skillFocus?: string
+    skillFocus?: string,
+    language?: string
   ): Promise<Passage | null> => {
     setIsLoading(true);
     setError(null);
@@ -151,6 +152,7 @@ export const useAI = () => {
           type: "passage",
           gradeLevel,
           skillFocus,
+          language,
         },
       });
 
@@ -200,7 +202,8 @@ export const useAI = () => {
 
   // Strategy 6: Batched assessment - generate all 3 difficulty levels in ONE call
   const generateBatchedAssessment = useCallback(async (
-    baseLevel: number
+    baseLevel: number,
+    language?: string
   ): Promise<BatchedAssessmentData | null> => {
     setIsLoading(true);
     setError(null);
@@ -210,6 +213,7 @@ export const useAI = () => {
         body: {
           type: "assessment_batch",
           gradeLevel: baseLevel,
+          language,
         },
       });
 
@@ -227,7 +231,8 @@ export const useAI = () => {
 
   // Original assessment (kept for fallback)
   const generateAssessment = useCallback(async (
-    gradeLevel: number
+    gradeLevel: number,
+    language?: string
   ): Promise<AssessmentData | null> => {
     setIsLoading(true);
     setError(null);
@@ -237,6 +242,7 @@ export const useAI = () => {
         body: {
           type: "assessment",
           gradeLevel,
+          language,
         },
       });
 
@@ -256,7 +262,8 @@ export const useAI = () => {
     question: string,
     userAnswer: string,
     correctAnswer: string,
-    gradeLevel: number
+    gradeLevel: number,
+    language?: string
   ): Promise<EvaluationResult | null> => {
     setIsLoading(true);
     setError(null);
@@ -269,6 +276,7 @@ export const useAI = () => {
           userAnswer,
           correctAnswer,
           gradeLevel,
+          language,
         },
       });
 

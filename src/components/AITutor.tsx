@@ -273,6 +273,7 @@ const AITutor = ({
           passageText,
           userQuestion: userMessage,
           currentQuestion,
+          language,
         },
       });
 
