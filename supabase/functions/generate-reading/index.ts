@@ -35,14 +35,25 @@ serve(async (req) => {
     return new Response(null, { headers: corsHeaders });
   }
 
-  // Track country-level stats (fire-and-forget, non-blocking)
+  // Track geo + usage stats (fire-and-forget, non-blocking)
+  let requestType = "other";
+  try {
+    // Clone request to peek at type without consuming body
+    const cloned = req.clone();
+    const body = await cloned.json().catch(() => ({}));
+    requestType = body.type || "other";
+  } catch { /* ignore */ }
+
   try {
     const country = req.headers.get("cf-ipcountry") || "XX";
+    const region = req.headers.get("cf-region") || req.headers.get("cf-ipregion") || "Unknown";
+    const city = req.headers.get("cf-ipcity") || "Unknown";
     const supabaseUrl = Deno.env.get("SUPABASE_URL");
     const supabaseKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
     if (supabaseUrl && supabaseKey) {
       const sb = createClient(supabaseUrl, supabaseKey);
-      sb.rpc("increment_country_stat", { p_country: country }).then(() => {}).catch(() => {});
+      sb.rpc("increment_country_stat", { p_country: country, p_region: region, p_city: city }).then(() => {}).catch(() => {});
+      sb.rpc("increment_usage_stat", { p_call_type: requestType }).then(() => {}).catch(() => {});
     }
   } catch { /* non-critical */ }
 
