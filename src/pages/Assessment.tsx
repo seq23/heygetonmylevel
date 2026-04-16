@@ -82,7 +82,9 @@ const Assessment = () => {
     
     if (assessmentType === "both") {
       setPhase("read_aloud");
-      // Pre-fetch confirmation passage in parallel while user does read-aloud.
+      // Pre-fetch confirmation at the predicted combined level. Read-aloud starts
+      // at `level`, so if it stays there the combined = level. This is our best
+      // prediction; we'll re-prefetch via onLevelChange if read-aloud shifts.
       setPrefetchedConfirmation({
         level,
         promise: generateVocabularyConfirmation(level, language),
