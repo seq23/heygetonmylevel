@@ -198,7 +198,7 @@ const ReadAloudAssessment = ({ currentLevel, isESL = false, onComplete, onSkip }
     setResult(comparison);
     setAllResults(prev => [...prev, comparison]);
 
-    if (adjustmentCount < 5) {
+    if (adjustmentCount < MAX_ADJUSTMENTS) {
       const adjustment = determineAdjustment(comparison.accuracy, comparison.wordsPerMinute, effectiveLevel);
       if (adjustment !== 0) {
         const newLevel = effectiveLevel + adjustment;
@@ -208,19 +208,32 @@ const ReadAloudAssessment = ({ currentLevel, isESL = false, onComplete, onSkip }
         const message = adjustment > 0
           ? `Great job! Moving up to Grade ${newLevel} for more challenge! 🌟`
           : `Adjusting to Grade ${newLevel} for a better fit! 📚`;
-        toast.info(message, { duration: 3000 });
+        toast.info(message, { duration: 2500 });
+        // Keep progress: do NOT reset currentSentenceIndex or allResults.
         setTimeout(() => {
           setEffectiveLevel(newLevel);
-          setCurrentSentenceIndex(0);
           setResult(null);
-          setAllResults([]);
           setTypedText("");
           resetTranscript();
-        }, 1500);
+        }, 1200);
         return;
       }
     }
     setPhase("results");
+  };
+
+  // Escape hatch: complete the assessment immediately with whatever results we have.
+  const handleFinishNow = () => {
+    stopListening();
+    if (allResults.length > 0) {
+      const avgAccuracy = allResults.reduce((sum, r) => sum + r.accuracy, 0) / allResults.length;
+      const avgWpm = Math.round(allResults.reduce((sum, r) => sum + r.wordsPerMinute, 0) / allResults.length);
+      onComplete(avgAccuracy, avgWpm, effectiveLevel);
+    } else {
+      // No results yet — just hand back the current effective level so the
+      // confirmation passage can still calibrate the final grade.
+      onComplete(0, 0, effectiveLevel);
+    }
   };
 
   // Type-to-answer fallback state
