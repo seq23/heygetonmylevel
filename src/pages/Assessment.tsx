@@ -332,6 +332,14 @@ const Assessment = () => {
             currentLevel={estimatedLevel || 5}
             isESL={isESL}
             onComplete={handleReadAloudComplete}
+            onLevelChange={(newLevel) => {
+              // Re-prefetch confirmation passage at the new level so it's ready
+              // by the time the user finishes their remaining read-aloud sentences.
+              setPrefetchedConfirmation({
+                level: newLevel,
+                promise: generateVocabularyConfirmation(newLevel, language),
+              });
+            }}
             onSkip={() => {
               if (estimatedLevel) {
                 loadConfirmationPassage(estimatedLevel);
