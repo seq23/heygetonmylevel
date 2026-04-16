@@ -31,7 +31,9 @@ const ReadAloudAssessment = ({ currentLevel, isESL = false, onComplete, onSkip }
   // Track all sentence results for averaging
   const [allResults, setAllResults] = useState<ComparisonResult[]>([]);
   
-  // Adaptive level state — adjusts after EVERY sentence until level stabilizes
+  // Adaptive level state — ONE mid-flight calibration only.
+  // Further fine-tuning happens during the confirmation passage in Assessment.tsx.
+  const MAX_ADJUSTMENTS = 1;
   const [effectiveLevel, setEffectiveLevel] = useState(currentLevel);
   const [adjustmentCount, setAdjustmentCount] = useState(0);
   const [adjustmentDirection, setAdjustmentDirection] = useState<"up" | "down" | null>(null);
