@@ -264,6 +264,16 @@ const ReadAloudAssessment = ({ currentLevel, isESL = false, onComplete, onSkip }
             </span>
           )}
         </p>
+        {/* Escape hatch — always available so users never feel stuck */}
+        {phase !== "adjusting" && phase !== "loading" && (
+          <button
+            onClick={handleFinishNow}
+            className="mt-2 text-xs text-muted-foreground hover:text-primary hover:underline transition-colors"
+            aria-label="Finish assessment now with current results"
+          >
+            Finish now & see my level →
+          </button>
+        )}
       </div>
 
       {/* Adjusting State */}
