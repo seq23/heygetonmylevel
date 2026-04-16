@@ -152,6 +152,10 @@ const ReadAloudAssessment = ({ currentLevel, isESL = false, onComplete, onSkip, 
         
         toast.info(message, { duration: 2500 });
         
+        // Tell parent so it can pre-fetch the confirmation passage at the new level NOW
+        // (in parallel with the user reading their next sentence).
+        onLevelChange?.(newLevel);
+        
         // Keep progress: update level (which triggers sentence reload via effect),
         // but DO NOT reset currentSentenceIndex or allResults.
         // The loadSentences effect will fetch fresh sentences; we advance into them
