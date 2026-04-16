@@ -82,7 +82,9 @@ const Assessment = () => {
     
     if (assessmentType === "both") {
       setPhase("read_aloud");
-      // Pre-fetch confirmation passage in parallel while user does read-aloud.
+      // Pre-fetch confirmation at the predicted combined level. Read-aloud starts
+      // at `level`, so if it stays there the combined = level. This is our best
+      // prediction; we'll re-prefetch via onLevelChange if read-aloud shifts.
       setPrefetchedConfirmation({
         level,
         promise: generateVocabularyConfirmation(level, language),
@@ -333,11 +335,15 @@ const Assessment = () => {
             isESL={isESL}
             onComplete={handleReadAloudComplete}
             onLevelChange={(newLevel) => {
-              // Re-prefetch confirmation passage at the new level so it's ready
-              // by the time the user finishes their remaining read-aloud sentences.
+              // Predict the level we'll actually use for confirmation.
+              // In "both" mode, that's the weighted combination with vocab.
+              const predictedLevel =
+                assessmentType === "both" && estimatedLevel
+                  ? Math.round(estimatedLevel * 0.6 + newLevel * 0.4)
+                  : newLevel;
               setPrefetchedConfirmation({
-                level: newLevel,
-                promise: generateVocabularyConfirmation(newLevel, language),
+                level: predictedLevel,
+                promise: generateVocabularyConfirmation(predictedLevel, language),
               });
             }}
             onSkip={() => {
