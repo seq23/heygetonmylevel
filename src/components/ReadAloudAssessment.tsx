@@ -22,7 +22,7 @@ interface ReadAloudAssessmentProps {
 
 type Phase = "loading" | "ready" | "countdown" | "recording" | "results" | "adjusting";
 
-const ReadAloudAssessment = ({ currentLevel, isESL = false, onComplete, onSkip }: ReadAloudAssessmentProps) => {
+const ReadAloudAssessment = ({ currentLevel, isESL = false, onComplete, onSkip, onLevelChange }: ReadAloudAssessmentProps) => {
   const { language } = useLanguage();
   const [phase, setPhase] = useState<Phase>("loading");
   const [sentences, setSentences] = useState<string[]>([]);
