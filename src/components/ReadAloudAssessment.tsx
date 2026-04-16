@@ -215,6 +215,8 @@ const ReadAloudAssessment = ({ currentLevel, isESL = false, onComplete, onSkip, 
           ? `Great job! Moving up to Grade ${newLevel} for more challenge! 🌟`
           : `Adjusting to Grade ${newLevel} for a better fit! 📚`;
         toast.info(message, { duration: 2500 });
+        // Pre-fetch confirmation passage at the new level in parallel.
+        onLevelChange?.(newLevel);
         // Keep progress: do NOT reset currentSentenceIndex or allResults.
         setTimeout(() => {
           setEffectiveLevel(newLevel);
