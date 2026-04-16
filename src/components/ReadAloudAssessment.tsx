@@ -16,6 +16,8 @@ interface ReadAloudAssessmentProps {
   isESL?: boolean;
   onComplete: (accuracy: number, wpm: number, level: number) => void;
   onSkip: () => void;
+  /** Notifies parent when the effective level changes mid-flight (so it can pre-fetch the confirmation passage at the new level). */
+  onLevelChange?: (level: number) => void;
 }
 
 type Phase = "loading" | "ready" | "countdown" | "recording" | "results" | "adjusting";
