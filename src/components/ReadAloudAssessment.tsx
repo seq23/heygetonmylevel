@@ -16,11 +16,13 @@ interface ReadAloudAssessmentProps {
   isESL?: boolean;
   onComplete: (accuracy: number, wpm: number, level: number) => void;
   onSkip: () => void;
+  /** Notifies parent when the effective level changes mid-flight (so it can pre-fetch the confirmation passage at the new level). */
+  onLevelChange?: (level: number) => void;
 }
 
 type Phase = "loading" | "ready" | "countdown" | "recording" | "results" | "adjusting";
 
-const ReadAloudAssessment = ({ currentLevel, isESL = false, onComplete, onSkip }: ReadAloudAssessmentProps) => {
+const ReadAloudAssessment = ({ currentLevel, isESL = false, onComplete, onSkip, onLevelChange }: ReadAloudAssessmentProps) => {
   const { language } = useLanguage();
   const [phase, setPhase] = useState<Phase>("loading");
   const [sentences, setSentences] = useState<string[]>([]);
@@ -31,7 +33,9 @@ const ReadAloudAssessment = ({ currentLevel, isESL = false, onComplete, onSkip }
   // Track all sentence results for averaging
   const [allResults, setAllResults] = useState<ComparisonResult[]>([]);
   
-  // Adaptive level state — adjusts after EVERY sentence until level stabilizes
+  // Adaptive level state — ONE mid-flight calibration only.
+  // Further fine-tuning happens during the confirmation passage in Assessment.tsx.
+  const MAX_ADJUSTMENTS = 1;
   const [effectiveLevel, setEffectiveLevel] = useState(currentLevel);
   const [adjustmentCount, setAdjustmentCount] = useState(0);
   const [adjustmentDirection, setAdjustmentDirection] = useState<"up" | "down" | null>(null);
@@ -95,6 +99,8 @@ const ReadAloudAssessment = ({ currentLevel, isESL = false, onComplete, onSkip }
       const data = await generateReadAloudSentences(effectiveLevel, language);
       if (data?.sentences) {
         setSentences(data.sentences);
+        // Clamp current index in case adjustment happened past the new array length
+        setCurrentSentenceIndex(prev => Math.min(prev, data.sentences.length - 1));
         setPhase("ready");
       }
     };
@@ -130,8 +136,8 @@ const ReadAloudAssessment = ({ currentLevel, isESL = false, onComplete, onSkip }
     setResult(comparison);
     setAllResults(prev => [...prev, comparison]);
     
-    // Adjust level after EVERY sentence (up to 5 times to prevent loops)
-    if (adjustmentCount < 5) {
+    // Adjust level ONCE (mid-flight calibration). Confirmation passage handles further tuning.
+    if (adjustmentCount < MAX_ADJUSTMENTS) {
       const adjustment = determineAdjustment(comparison.accuracy, comparison.wordsPerMinute, effectiveLevel);
       
       if (adjustment !== 0) {
@@ -144,15 +150,22 @@ const ReadAloudAssessment = ({ currentLevel, isESL = false, onComplete, onSkip }
           ? `Great job! Moving up to Grade ${newLevel} for more challenge! 🌟`
           : `Adjusting to Grade ${newLevel} for a better fit! 📚`;
         
-        toast.info(message, { duration: 3000 });
+        toast.info(message, { duration: 2500 });
         
+        // Tell parent so it can pre-fetch the confirmation passage at the new level NOW
+        // (in parallel with the user reading their next sentence).
+        onLevelChange?.(newLevel);
+        
+        // Keep progress: update level (which triggers sentence reload via effect),
+        // but DO NOT reset currentSentenceIndex or allResults.
+        // The loadSentences effect will fetch fresh sentences; we advance into them
+        // at the same index so the user keeps moving forward.
         setTimeout(() => {
           setEffectiveLevel(newLevel);
-          setCurrentSentenceIndex(0);
           setResult(null);
-          setAllResults([]); // Reset results since level changed
           resetTranscript();
-        }, 1500);
+          setTypedText("");
+        }, 1200);
         
         return;
       }
@@ -191,7 +204,7 @@ const ReadAloudAssessment = ({ currentLevel, isESL = false, onComplete, onSkip }
     setResult(comparison);
     setAllResults(prev => [...prev, comparison]);
 
-    if (adjustmentCount < 5) {
+    if (adjustmentCount < MAX_ADJUSTMENTS) {
       const adjustment = determineAdjustment(comparison.accuracy, comparison.wordsPerMinute, effectiveLevel);
       if (adjustment !== 0) {
         const newLevel = effectiveLevel + adjustment;
@@ -201,19 +214,34 @@ const ReadAloudAssessment = ({ currentLevel, isESL = false, onComplete, onSkip }
         const message = adjustment > 0
           ? `Great job! Moving up to Grade ${newLevel} for more challenge! 🌟`
           : `Adjusting to Grade ${newLevel} for a better fit! 📚`;
-        toast.info(message, { duration: 3000 });
+        toast.info(message, { duration: 2500 });
+        // Pre-fetch confirmation passage at the new level in parallel.
+        onLevelChange?.(newLevel);
+        // Keep progress: do NOT reset currentSentenceIndex or allResults.
         setTimeout(() => {
           setEffectiveLevel(newLevel);
-          setCurrentSentenceIndex(0);
           setResult(null);
-          setAllResults([]);
           setTypedText("");
           resetTranscript();
-        }, 1500);
+        }, 1200);
         return;
       }
     }
     setPhase("results");
+  };
+
+  // Escape hatch: complete the assessment immediately with whatever results we have.
+  const handleFinishNow = () => {
+    stopListening();
+    if (allResults.length > 0) {
+      const avgAccuracy = allResults.reduce((sum, r) => sum + r.accuracy, 0) / allResults.length;
+      const avgWpm = Math.round(allResults.reduce((sum, r) => sum + r.wordsPerMinute, 0) / allResults.length);
+      onComplete(avgAccuracy, avgWpm, effectiveLevel);
+    } else {
+      // No results yet — just hand back the current effective level so the
+      // confirmation passage can still calibrate the final grade.
+      onComplete(0, 0, effectiveLevel);
+    }
   };
 
   // Type-to-answer fallback state
@@ -244,6 +272,16 @@ const ReadAloudAssessment = ({ currentLevel, isESL = false, onComplete, onSkip }
             </span>
           )}
         </p>
+        {/* Escape hatch — always available so users never feel stuck */}
+        {phase !== "adjusting" && phase !== "loading" && (
+          <button
+            onClick={handleFinishNow}
+            className="mt-2 text-xs text-muted-foreground hover:text-primary hover:underline transition-colors"
+            aria-label="Finish assessment now with current results"
+          >
+            Finish now & see my level →
+          </button>
+        )}
       </div>
 
       {/* Adjusting State */}
