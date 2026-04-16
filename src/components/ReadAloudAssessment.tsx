@@ -97,6 +97,8 @@ const ReadAloudAssessment = ({ currentLevel, isESL = false, onComplete, onSkip }
       const data = await generateReadAloudSentences(effectiveLevel, language);
       if (data?.sentences) {
         setSentences(data.sentences);
+        // Clamp current index in case adjustment happened past the new array length
+        setCurrentSentenceIndex(prev => Math.min(prev, data.sentences.length - 1));
         setPhase("ready");
       }
     };
