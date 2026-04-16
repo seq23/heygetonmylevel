@@ -132,8 +132,8 @@ const ReadAloudAssessment = ({ currentLevel, isESL = false, onComplete, onSkip }
     setResult(comparison);
     setAllResults(prev => [...prev, comparison]);
     
-    // Adjust level after EVERY sentence (up to 5 times to prevent loops)
-    if (adjustmentCount < 5) {
+    // Adjust level ONCE (mid-flight calibration). Confirmation passage handles further tuning.
+    if (adjustmentCount < MAX_ADJUSTMENTS) {
       const adjustment = determineAdjustment(comparison.accuracy, comparison.wordsPerMinute, effectiveLevel);
       
       if (adjustment !== 0) {
@@ -146,15 +146,18 @@ const ReadAloudAssessment = ({ currentLevel, isESL = false, onComplete, onSkip }
           ? `Great job! Moving up to Grade ${newLevel} for more challenge! 🌟`
           : `Adjusting to Grade ${newLevel} for a better fit! 📚`;
         
-        toast.info(message, { duration: 3000 });
+        toast.info(message, { duration: 2500 });
         
+        // Keep progress: update level (which triggers sentence reload via effect),
+        // but DO NOT reset currentSentenceIndex or allResults.
+        // The loadSentences effect will fetch fresh sentences; we advance into them
+        // at the same index so the user keeps moving forward.
         setTimeout(() => {
           setEffectiveLevel(newLevel);
-          setCurrentSentenceIndex(0);
           setResult(null);
-          setAllResults([]); // Reset results since level changed
           resetTranscript();
-        }, 1500);
+          setTypedText("");
+        }, 1200);
         
         return;
       }
