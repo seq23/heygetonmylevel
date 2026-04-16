@@ -48,6 +48,13 @@ const Assessment = () => {
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
   const [confirmationCorrect, setConfirmationCorrect] = useState(0);
 
+  // Pre-fetch cache for the confirmation passage so it's ready by the time
+  // the user finishes read-aloud. Keyed by level to avoid stale matches.
+  const [prefetchedConfirmation, setPrefetchedConfirmation] = useState<{
+    level: number;
+    promise: Promise<ConfirmationPassage | null>;
+  } | null>(null);
+
   useEffect(() => {
     if (!session) {
       navigate("/");
@@ -60,6 +67,13 @@ const Assessment = () => {
       setPhase("vocabulary");
     } else {
       setPhase("read_aloud");
+      // Pre-fetch confirmation passage in parallel using a sensible starting level.
+      // If the read-aloud assessment lands on a different level, we'll re-fetch then.
+      const guessLevel = 5;
+      setPrefetchedConfirmation({
+        level: guessLevel,
+        promise: generateVocabularyConfirmation(guessLevel, language),
+      });
     }
   };
 
@@ -68,6 +82,11 @@ const Assessment = () => {
     
     if (assessmentType === "both") {
       setPhase("read_aloud");
+      // Pre-fetch confirmation passage in parallel while user does read-aloud.
+      setPrefetchedConfirmation({
+        level,
+        promise: generateVocabularyConfirmation(level, language),
+      });
     } else {
       await loadConfirmationPassage(level);
     }
@@ -86,6 +105,16 @@ const Assessment = () => {
 
   const loadConfirmationPassage = async (level: number) => {
     setPhase("confirmation");
+
+    // Reuse pre-fetched passage if it matches the level we ended up at.
+    if (prefetchedConfirmation && prefetchedConfirmation.level === level) {
+      const data = await prefetchedConfirmation.promise;
+      if (data) {
+        setConfirmationPassage(data);
+        return;
+      }
+    }
+
     const data = await generateVocabularyConfirmation(level, language);
     if (data) {
       setConfirmationPassage(data);
