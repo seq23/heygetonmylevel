@@ -58,11 +58,21 @@ const SelectLevel = () => {
     description: t(`level.${i + 1}.desc`),
   }));
 
-  const handleSelectLevel = async (grade: number) => {
+  const handleSelectLevel = (grade: number) => {
     setSelectedLevel(grade);
+    // Smoothly scroll to skills so the user sees the next step
+    setTimeout(() => {
+      document
+        .getElementById("skill-picker")
+        ?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 50);
+  };
+
+  const handleContinue = async () => {
+    if (!selectedLevel) return;
     setIsLoading(true);
     try {
-      await updateReadingLevel(grade);
+      await updateReadingLevel(selectedLevel);
       navigate("/dashboard");
     } catch (error) {
       console.error("Failed to update level:", error);
