@@ -1,9 +1,49 @@
 import { useNavigate } from "react-router-dom";
-import { ArrowLeft, GraduationCap } from "lucide-react";
+import {
+  ArrowLeft,
+  GraduationCap,
+  BookOpen,
+  Brain,
+  Lightbulb,
+  Link2,
+  Search,
+  Sparkles,
+  MessageSquare,
+  Volume2,
+} from "lucide-react";
 import { useSession } from "@/contexts/SessionContext";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useState } from "react";
 import Footer from "@/components/Footer";
+
+import skillPhonics from "@/assets/skill-phonics.png";
+import skillDecoding from "@/assets/skill-decoding.png";
+import skillVocabulary from "@/assets/skill-vocabulary.png";
+import skillInference from "@/assets/skill-inference.png";
+import skillCauseEffect from "@/assets/skill-cause-effect.png";
+import skillReasoning from "@/assets/skill-reasoning.png";
+import skillCritical from "@/assets/skill-critical.png";
+import skillComprehension from "@/assets/skill-comprehension.png";
+
+interface Skill {
+  id: string;
+  nameKey: string;
+  descKey: string;
+  icon: React.ComponentType<{ className?: string }>;
+  image: string;
+  featured?: boolean;
+}
+
+const skills: Skill[] = [
+  { id: "phonics", nameKey: "skill.phonics", descKey: "skill.phonics.desc", icon: Volume2, image: skillPhonics, featured: true },
+  { id: "decoding", nameKey: "skill.decoding", descKey: "skill.decoding.desc", icon: Search, image: skillDecoding },
+  { id: "vocabulary", nameKey: "skill.vocabulary", descKey: "skill.vocabulary.desc", icon: BookOpen, image: skillVocabulary },
+  { id: "inference", nameKey: "skill.inference", descKey: "skill.inference.desc", icon: Lightbulb, image: skillInference },
+  { id: "cause_effect", nameKey: "skill.causeEffect", descKey: "skill.causeEffect.desc", icon: Link2, image: skillCauseEffect },
+  { id: "reasoning", nameKey: "skill.reasoning", descKey: "skill.reasoning.desc", icon: Brain, image: skillReasoning },
+  { id: "critical", nameKey: "skill.critical", descKey: "skill.critical.desc", icon: Sparkles, image: skillCritical },
+  { id: "comprehension", nameKey: "skill.comprehension", descKey: "skill.comprehension.desc", icon: MessageSquare, image: skillComprehension },
+];
 
 const SelectLevel = () => {
   const navigate = useNavigate();
@@ -18,14 +58,41 @@ const SelectLevel = () => {
     description: t(`level.${i + 1}.desc`),
   }));
 
-  const handleSelectLevel = async (grade: number) => {
+  const handleSelectLevel = (grade: number) => {
     setSelectedLevel(grade);
+    // Smoothly scroll to skills so the user sees the next step
+    setTimeout(() => {
+      document
+        .getElementById("skill-picker")
+        ?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 50);
+  };
+
+  const handleContinue = async () => {
+    if (!selectedLevel) return;
     setIsLoading(true);
     try {
-      await updateReadingLevel(grade);
+      await updateReadingLevel(selectedLevel);
       navigate("/dashboard");
     } catch (error) {
       console.error("Failed to update level:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleSelectSkill = async (skillId: string) => {
+    if (!selectedLevel) return;
+    setIsLoading(true);
+    try {
+      await updateReadingLevel(selectedLevel);
+      if (skillId === "phonics") {
+        navigate("/phonics");
+      } else {
+        navigate("/session", { state: { skillFocus: skillId } });
+      }
+    } catch (error) {
+      console.error("Failed to start skill session:", error);
     } finally {
       setIsLoading(false);
     }
@@ -88,6 +155,104 @@ const SelectLevel = () => {
               </div>
             </button>
           ))}
+        </div>
+
+        {/* Continue button (visible once a level is picked) */}
+        {selectedLevel && (
+          <div className="mt-6 flex justify-center">
+            <button
+              onClick={handleContinue}
+              disabled={isLoading}
+              className="btn-hero px-8 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {isLoading ? "..." : `${t("dashboard.startSession")} →`}
+            </button>
+          </div>
+        )}
+
+        {/* Skill picker — same content as the dashboard hub */}
+        <div id="skill-picker" className="mt-10">
+          <div className="mb-4 flex items-baseline justify-between gap-3">
+            <h2 className="text-lg font-display font-bold">
+              {t("dashboard.practiceSkill")}
+            </h2>
+            {!selectedLevel && (
+              <p className="text-xs text-muted-foreground">
+                ↑ {t("selectLevel.subtitle")}
+              </p>
+            )}
+          </div>
+
+          {/* Featured (Phonics) */}
+          {skills
+            .filter((s) => s.featured)
+            .map((skill) => (
+              <button
+                key={skill.id}
+                onClick={() => handleSelectSkill(skill.id)}
+                disabled={!selectedLevel || isLoading}
+                className={`w-full card-elevated text-left mb-6 transition-all ${
+                  !selectedLevel || isLoading
+                    ? "opacity-50 cursor-not-allowed"
+                    : "hover:ring-2 hover:ring-secondary/50"
+                }`}
+              >
+                <div className="flex items-center gap-4">
+                  <img
+                    src={skill.image}
+                    alt={t(skill.nameKey)}
+                    className="w-20 h-20 object-contain flex-shrink-0"
+                    loading="lazy"
+                  />
+                  <div className="flex-1">
+                    <span className="text-xs font-semibold uppercase tracking-wide text-secondary">
+                      {t("dashboard.recommended")}
+                    </span>
+                    <p className="font-display font-bold text-lg text-foreground">
+                      {t(skill.nameKey)}
+                    </p>
+                    <p className="text-sm text-muted-foreground">
+                      {t(skill.descKey)}
+                    </p>
+                  </div>
+                </div>
+              </button>
+            ))}
+
+          {/* Other skills */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {skills
+              .filter((s) => !s.featured)
+              .map((skill) => (
+                <button
+                  key={skill.id}
+                  onClick={() => handleSelectSkill(skill.id)}
+                  disabled={!selectedLevel || isLoading}
+                  className={`card-elevated text-left transition-all ${
+                    !selectedLevel || isLoading
+                      ? "opacity-50 cursor-not-allowed"
+                      : "hover:ring-2 hover:ring-primary/50"
+                  }`}
+                >
+                  <div className="flex items-center gap-4">
+                    <img
+                      src={skill.image}
+                      alt={t(skill.nameKey)}
+                      className="w-14 h-14 object-contain flex-shrink-0"
+                      loading="lazy"
+                    />
+                    <div>
+                      <p className="font-semibold text-foreground">
+                        {t(skill.nameKey)}
+                      </p>
+                      <p className="text-sm text-muted-foreground">
+                        {t(skill.descKey)}
+                      </p>
+                    </div>
+                  </div>
+                </button>
+              ))}
+          </div>
         </div>
 
         <div className="mt-8 p-6 rounded-2xl bg-muted/50 text-center">
