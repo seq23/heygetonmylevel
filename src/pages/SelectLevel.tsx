@@ -157,6 +157,104 @@ const SelectLevel = () => {
           ))}
         </div>
 
+        {/* Continue button (visible once a level is picked) */}
+        {selectedLevel && (
+          <div className="mt-6 flex justify-center">
+            <button
+              onClick={handleContinue}
+              disabled={isLoading}
+              className="btn-hero px-8 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {isLoading ? "..." : `${t("dashboard.startSession")} →`}
+            </button>
+          </div>
+        )}
+
+        {/* Skill picker — same content as the dashboard hub */}
+        <div id="skill-picker" className="mt-10">
+          <div className="mb-4 flex items-baseline justify-between gap-3">
+            <h2 className="text-lg font-display font-bold">
+              {t("dashboard.practiceSkill")}
+            </h2>
+            {!selectedLevel && (
+              <p className="text-xs text-muted-foreground">
+                ↑ {t("selectLevel.subtitle")}
+              </p>
+            )}
+          </div>
+
+          {/* Featured (Phonics) */}
+          {skills
+            .filter((s) => s.featured)
+            .map((skill) => (
+              <button
+                key={skill.id}
+                onClick={() => handleSelectSkill(skill.id)}
+                disabled={!selectedLevel || isLoading}
+                className={`w-full card-elevated text-left mb-6 transition-all ${
+                  !selectedLevel || isLoading
+                    ? "opacity-50 cursor-not-allowed"
+                    : "hover:ring-2 hover:ring-secondary/50"
+                }`}
+              >
+                <div className="flex items-center gap-4">
+                  <img
+                    src={skill.image}
+                    alt={t(skill.nameKey)}
+                    className="w-20 h-20 object-contain flex-shrink-0"
+                    loading="lazy"
+                  />
+                  <div className="flex-1">
+                    <span className="text-xs font-semibold uppercase tracking-wide text-secondary">
+                      {t("dashboard.recommended")}
+                    </span>
+                    <p className="font-display font-bold text-lg text-foreground">
+                      {t(skill.nameKey)}
+                    </p>
+                    <p className="text-sm text-muted-foreground">
+                      {t(skill.descKey)}
+                    </p>
+                  </div>
+                </div>
+              </button>
+            ))}
+
+          {/* Other skills */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {skills
+              .filter((s) => !s.featured)
+              .map((skill) => (
+                <button
+                  key={skill.id}
+                  onClick={() => handleSelectSkill(skill.id)}
+                  disabled={!selectedLevel || isLoading}
+                  className={`card-elevated text-left transition-all ${
+                    !selectedLevel || isLoading
+                      ? "opacity-50 cursor-not-allowed"
+                      : "hover:ring-2 hover:ring-primary/50"
+                  }`}
+                >
+                  <div className="flex items-center gap-4">
+                    <img
+                      src={skill.image}
+                      alt={t(skill.nameKey)}
+                      className="w-14 h-14 object-contain flex-shrink-0"
+                      loading="lazy"
+                    />
+                    <div>
+                      <p className="font-semibold text-foreground">
+                        {t(skill.nameKey)}
+                      </p>
+                      <p className="text-sm text-muted-foreground">
+                        {t(skill.descKey)}
+                      </p>
+                    </div>
+                  </div>
+                </button>
+              ))}
+          </div>
+        </div>
+
         <div className="mt-8 p-6 rounded-2xl bg-muted/50 text-center">
           <p className="text-muted-foreground">
             {t("selectLevel.notSure")}{" "}
