@@ -1,9 +1,49 @@
 import { useNavigate } from "react-router-dom";
-import { ArrowLeft, GraduationCap } from "lucide-react";
+import {
+  ArrowLeft,
+  GraduationCap,
+  BookOpen,
+  Brain,
+  Lightbulb,
+  Link2,
+  Search,
+  Sparkles,
+  MessageSquare,
+  Volume2,
+} from "lucide-react";
 import { useSession } from "@/contexts/SessionContext";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useState } from "react";
 import Footer from "@/components/Footer";
+
+import skillPhonics from "@/assets/skill-phonics.png";
+import skillDecoding from "@/assets/skill-decoding.png";
+import skillVocabulary from "@/assets/skill-vocabulary.png";
+import skillInference from "@/assets/skill-inference.png";
+import skillCauseEffect from "@/assets/skill-cause-effect.png";
+import skillReasoning from "@/assets/skill-reasoning.png";
+import skillCritical from "@/assets/skill-critical.png";
+import skillComprehension from "@/assets/skill-comprehension.png";
+
+interface Skill {
+  id: string;
+  nameKey: string;
+  descKey: string;
+  icon: React.ComponentType<{ className?: string }>;
+  image: string;
+  featured?: boolean;
+}
+
+const skills: Skill[] = [
+  { id: "phonics", nameKey: "skill.phonics", descKey: "skill.phonics.desc", icon: Volume2, image: skillPhonics, featured: true },
+  { id: "decoding", nameKey: "skill.decoding", descKey: "skill.decoding.desc", icon: Search, image: skillDecoding },
+  { id: "vocabulary", nameKey: "skill.vocabulary", descKey: "skill.vocabulary.desc", icon: BookOpen, image: skillVocabulary },
+  { id: "inference", nameKey: "skill.inference", descKey: "skill.inference.desc", icon: Lightbulb, image: skillInference },
+  { id: "cause_effect", nameKey: "skill.causeEffect", descKey: "skill.causeEffect.desc", icon: Link2, image: skillCauseEffect },
+  { id: "reasoning", nameKey: "skill.reasoning", descKey: "skill.reasoning.desc", icon: Brain, image: skillReasoning },
+  { id: "critical", nameKey: "skill.critical", descKey: "skill.critical.desc", icon: Sparkles, image: skillCritical },
+  { id: "comprehension", nameKey: "skill.comprehension", descKey: "skill.comprehension.desc", icon: MessageSquare, image: skillComprehension },
+];
 
 const SelectLevel = () => {
   const navigate = useNavigate();
