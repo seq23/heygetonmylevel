@@ -71,6 +71,23 @@ const SelectLevel = () => {
     }
   };
 
+  const handleSelectSkill = async (skillId: string) => {
+    if (!selectedLevel) return;
+    setIsLoading(true);
+    try {
+      await updateReadingLevel(selectedLevel);
+      if (skillId === "phonics") {
+        navigate("/phonics");
+      } else {
+        navigate("/session", { state: { skillFocus: skillId } });
+      }
+    } catch (error) {
+      console.error("Failed to start skill session:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   if (!session) {
     navigate("/");
     return null;
