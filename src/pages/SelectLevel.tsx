@@ -15,6 +15,7 @@ import { useSession } from "@/contexts/SessionContext";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useState } from "react";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
 
 import skillPhonics from "@/assets/skill-phonics.png";
 import skillDecoding from "@/assets/skill-decoding.png";
@@ -105,6 +106,11 @@ const SelectLevel = () => {
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
+      <SEO
+        title="Pick Your Reading Level — HeyGetOnMyLevel"
+        description="Choose your reading grade (1–13) and a skill focus — phonics, vocabulary, inference, comprehension and more — to start a tailored session."
+        path="/select-level"
+      />
       <header className="sticky top-0 bg-background/80 backdrop-blur-sm border-b border-border z-10">
         <div className="container max-w-4xl py-4 flex items-center gap-4">
           <button

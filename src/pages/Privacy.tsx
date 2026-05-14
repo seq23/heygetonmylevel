@@ -1,12 +1,18 @@
 import { ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
 
 const Privacy = () => {
   const navigate = useNavigate();
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
+      <SEO
+        title="Privacy Policy — HeyGetOnMyLevel"
+        description="HeyGetOnMyLevel collects no personal information. Sessions are ephemeral and zero-PII. Read our full privacy commitment."
+        path="/privacy"
+      />
       {/* Header */}
       <header className="sticky top-0 bg-background/80 backdrop-blur-sm border-b border-border z-10">
         <div className="container max-w-4xl py-4 flex items-center gap-4">

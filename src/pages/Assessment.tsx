@@ -7,6 +7,7 @@ import { useAI } from "@/hooks/useAI";
 import VocabularyAssessment from "@/components/VocabularyAssessment";
 import ReadAloudAssessment from "@/components/ReadAloudAssessment";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
 
 type AssessmentType = "vocabulary" | "read_aloud" | "both";
 type Phase = "select_type" | "vocabulary" | "read_aloud" | "confirmation" | "result";
@@ -187,6 +188,11 @@ const Assessment = () => {
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
+      <SEO
+        title="Reading Assessment — Find Your Level | HeyGetOnMyLevel"
+        description="Discover your reading level with a quick vocabulary check, read-aloud fluency test, or both. Private, judgment-free, and accurate."
+        path="/assessment"
+      />
       <header className="sticky top-0 bg-background/80 backdrop-blur-sm border-b border-border z-10">
         <div className="container max-w-4xl py-4 flex items-center gap-4 px-4">
           <button

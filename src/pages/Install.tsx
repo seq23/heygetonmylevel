@@ -2,6 +2,7 @@ import { ArrowLeft, Smartphone, Tablet, Monitor, Download } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
 
 const Install = () => {
   const navigate = useNavigate();
@@ -84,6 +85,11 @@ const Install = () => {
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
+      <SEO
+        title="Install HeyGetOnMyLevel — Add to Phone, Tablet or Desktop"
+        description="Step-by-step instructions for installing HeyGetOnMyLevel as a PWA on Android, iPad, desktop, and SCORE 7c tablets."
+        path="/install"
+      />
       <header className="border-b border-border px-6 py-4">
         <div className="container max-w-3xl flex items-center gap-3">
           <button

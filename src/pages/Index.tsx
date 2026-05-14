@@ -4,6 +4,7 @@ import { useSession } from "@/contexts/SessionContext";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useState } from "react";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
 
 const Index = () => {
   const navigate = useNavigate();
@@ -44,6 +45,11 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
+      <SEO
+        title="HeyGetOnMyLevel — AI-Powered Reading Practice for All Ages"
+        description="Find your reading level and grow with AI-generated passages, vocabulary checks, and read-aloud practice. Free, private, judgment-free literacy for ages 5–85+."
+        path="/"
+      />
       {/* Language Toggle */}
       <div className="flex justify-end px-4 pt-3">
         <div className="flex flex-col items-end gap-1">
@@ -163,10 +169,10 @@ const Index = () => {
         <p className="text-sm text-muted-foreground fade-in-up" style={{ animationDelay: "0.3s" }}>
           {t("home.noAccount")}
         </p>
-        <p className="text-xs text-muted-foreground/70 fade-in-up" style={{ animationDelay: "0.35s" }}>
+        <p className="text-xs text-muted-foreground fade-in-up" style={{ animationDelay: "0.35s" }}>
           {t("home.assessmentNote")}
         </p>
-        <p className="text-xs text-muted-foreground/60 fade-in-up" style={{ animationDelay: "0.4s" }}>
+        <p className="text-xs text-muted-foreground fade-in-up" style={{ animationDelay: "0.4s" }}>
           {t("home.license")}{" "}
           <a
             href="mailto:privacy@time-2-read.com?subject=Commercial%20Licensing%20Inquiry"
