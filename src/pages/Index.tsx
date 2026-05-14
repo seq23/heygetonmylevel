@@ -169,10 +169,10 @@ const Index = () => {
         <p className="text-sm text-muted-foreground fade-in-up" style={{ animationDelay: "0.3s" }}>
           {t("home.noAccount")}
         </p>
-        <p className="text-xs text-muted-foreground/70 fade-in-up" style={{ animationDelay: "0.35s" }}>
+        <p className="text-xs text-muted-foreground fade-in-up" style={{ animationDelay: "0.35s" }}>
           {t("home.assessmentNote")}
         </p>
-        <p className="text-xs text-muted-foreground/60 fade-in-up" style={{ animationDelay: "0.4s" }}>
+        <p className="text-xs text-muted-foreground fade-in-up" style={{ animationDelay: "0.4s" }}>
           {t("home.license")}{" "}
           <a
             href="mailto:privacy@time-2-read.com?subject=Commercial%20Licensing%20Inquiry"
