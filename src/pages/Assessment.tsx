@@ -7,6 +7,7 @@ import { useAI } from "@/hooks/useAI";
 import VocabularyAssessment from "@/components/VocabularyAssessment";
 import ReadAloudAssessment from "@/components/ReadAloudAssessment";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
 
 type AssessmentType = "vocabulary" | "read_aloud" | "both";
 type Phase = "select_type" | "vocabulary" | "read_aloud" | "confirmation" | "result";

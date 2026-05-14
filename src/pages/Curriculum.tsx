@@ -98,6 +98,11 @@ const Curriculum = () => {
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
+      <SEO
+        title="Reading Curriculum Map — HeyGetOnMyLevel"
+        description="200-hour reading curriculum across 5 grade bands and 20 modules. Phonics to critical thinking, K through college."
+        path="/curriculum"
+      />
       <header className="sticky top-0 bg-background/80 backdrop-blur-sm border-b border-border z-10">
         <div className="container max-w-5xl py-4 flex items-center gap-4">
           <button
