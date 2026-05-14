@@ -188,6 +188,11 @@ const Assessment = () => {
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
+      <SEO
+        title="Reading Assessment — Find Your Level | HeyGetOnMyLevel"
+        description="Discover your reading level with a quick vocabulary check, read-aloud fluency test, or both. Private, judgment-free, and accurate."
+        path="/assessment"
+      />
       <header className="sticky top-0 bg-background/80 backdrop-blur-sm border-b border-border z-10">
         <div className="container max-w-4xl py-4 flex items-center gap-4 px-4">
           <button
