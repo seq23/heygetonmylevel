@@ -11,7 +11,7 @@ const Footer = () => {
         <div className="flex flex-col sm:flex-row items-center justify-between gap-3 w-full">
           <div className="text-center sm:text-left">
             <p>© {currentYear} HeyGetOnMyLevel. {t("footer.rights")}</p>
-            <p className="text-xs text-muted-foreground/60 mt-1">
+            <p className="text-xs text-muted-foreground mt-1">
               {t("footer.personal")}{" "}
               <a
                 href="mailto:privacy@time-2-read.com?subject=Commercial%20Licensing%20Inquiry"
@@ -63,7 +63,7 @@ const Footer = () => {
 
         {/* Our Family of Tools */}
         <div className="border-t border-border/50 pt-3 w-full text-center">
-          <p className="text-xs text-muted-foreground/70 font-medium mb-1">Our Family of Tools</p>
+          <p className="text-xs text-muted-foreground font-medium mb-1">Our Family of Tools</p>
           <div className="flex items-center justify-center gap-2 text-xs">
             <a
               href="https://time-2-read.com"
@@ -76,7 +76,7 @@ const Footer = () => {
             <span className="text-border" aria-hidden="true">·</span>
             <span className="font-semibold text-foreground/80">HeyGetOnMyLevel</span>
           </div>
-          <p className="text-xs text-muted-foreground/50 mt-0.5">
+          <p className="text-xs text-muted-foreground mt-0.5">
             Test reading levels with our companion tool.
           </p>
         </div>
