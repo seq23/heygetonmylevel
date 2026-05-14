@@ -3,6 +3,7 @@ import { ArrowLeft, Download, BookOpen, Clock, CheckCircle } from "lucide-react"
 import { useSession } from "@/contexts/SessionContext";
 import { useLanguage } from "@/contexts/LanguageContext";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
 
 interface Module {
   num: number;

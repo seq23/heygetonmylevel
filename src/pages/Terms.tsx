@@ -1,12 +1,18 @@
 import { ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
 
 const Terms = () => {
   const navigate = useNavigate();
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
+      <SEO
+        title="Terms of Service — HeyGetOnMyLevel"
+        description="Personal-use license terms for HeyGetOnMyLevel. Commercial and institutional licensing available on request."
+        path="/terms"
+      />
       {/* Header */}
       <header className="sticky top-0 bg-background/80 backdrop-blur-sm border-b border-border z-10">
         <div className="container max-w-4xl py-4 flex items-center gap-4">
