@@ -104,6 +104,15 @@ const Privacy = () => {
           </section>
 
           <section className="card-elevated mb-6">
+            <h2 className="text-lg font-semibold text-foreground mb-3">Site Analytics</h2>
+            <p className="text-muted-foreground">
+              We count page views with <strong>Cloudflare Web Analytics</strong>, which sets no cookies, does not
+              fingerprint your device, and does not track you across other sites. It reports only aggregate
+              totals such as how many times a page was visited.
+            </p>
+          </section>
+
+          <section className="card-elevated mb-6">
             <h2 className="text-lg font-semibold text-foreground mb-3">Children's Privacy</h2>
             <p className="text-muted-foreground">
               HeyGetOnMyLevel is open to users of all ages, including children. Because we don't collect any 

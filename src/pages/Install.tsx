@@ -31,10 +31,10 @@ const Install = () => {
     ],
     score7c: [
       { en: "Open the built-in browser on the SCORE 7c tablet", es: "Abre el navegador integrado en la tableta SCORE 7c" },
-      { en: "Navigate to heygetonmylevel.lovable.app", es: "Navega a heygetonmylevel.lovable.app" },
+      { en: "Navigate to heygetonmylevel.com", es: "Navega a heygetonmylevel.com" },
       { en: "Tap the browser menu and select Add to Home Screen", es: "Toca el menú del navegador y selecciona Añadir a pantalla de inicio" },
       { en: "Confirm installation — the app will be available offline for previously visited content", es: "Confirma la instalación — la app estará disponible sin conexión para contenido previamente visitado" },
-      { en: "For institutional deployment, a commercial license is required — contact privacy@time-2-read.com", es: "Para despliegue institucional, se requiere una licencia comercial — contacta privacy@time-2-read.com" },
+      { en: "For institutional deployment, a commercial license is required", es: "Para despliegue institucional, se requiere una licencia comercial" },
     ],
   };
 
