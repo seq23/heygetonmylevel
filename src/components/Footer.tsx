@@ -12,14 +12,7 @@ const Footer = () => {
           <div className="text-center sm:text-left">
             <p>© {currentYear} HeyGetOnMyLevel. {t("footer.rights")}</p>
             <p className="text-xs text-muted-foreground mt-1">
-              {t("footer.personal")}{" "}
-              <a
-                href="mailto:privacy@time-2-read.com?subject=Commercial%20Licensing%20Inquiry"
-                className="underline underline-offset-2 hover:text-foreground transition-colors"
-              >
-                {t("footer.license")}
-              </a>
-              .
+              {t("footer.personal")} {t("footer.license")}.
             </p>
           </div>
           <nav className="flex items-center gap-4 flex-wrap justify-center" aria-label="Footer navigation">
@@ -78,6 +71,16 @@ const Footer = () => {
           </div>
           <p className="text-xs text-muted-foreground mt-0.5">
             Test reading levels with our companion tool.
+          </p>
+          <p className="text-xs mt-2">
+            <a
+              href="https://time-2-read.com"
+              target="_blank"
+              rel="noopener"
+              className="font-semibold text-primary underline underline-offset-2 hover:opacity-80"
+            >
+              Included free with Time2Read Premium
+            </a>
           </p>
         </div>
       </div>

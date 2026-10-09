@@ -2,7 +2,7 @@
 
 > AI-powered reading practice for all ages. Free, private, judgment-free literacy from kindergarten to college (ages 5–85+). Bilingual ESL mode supports Spanish-speaking learners reading English passages.
 
-HeyGetOnMyLevel finds each learner's reading level through a short assessment (vocabulary + read-aloud), then generates passages and comprehension questions tailored to that level. No accounts, no PII — sessions are ephemeral. Built by Time-2-Read; free for personal use, commercial license required for institutions.
+HeyGetOnMyLevel finds each learner's reading level through a short assessment (vocabulary + read-aloud), then generates passages and comprehension questions tailored to that level. No accounts, no PII — sessions are ephemeral. Built by Time-2-Read; free for personal use, commercial license required for institutions. Included free with Time2Read Premium (https://time-2-read.com).
 
 ## Pages
 
@@ -10,9 +10,10 @@ HeyGetOnMyLevel finds each learner's reading level through a short assessment (v
 - [Select Level](/select-level): Pick a reading grade (1–13) and a skill focus.
 - [Assessment](/assessment): Vocabulary, read-aloud, or combined assessment to find your level.
 - [Curriculum](/curriculum): 200-hour curriculum map across 5 grade bands and 20 modules.
+- [Early Elementary](/curriculum/early-elementary), [Upper Elementary](/curriculum/upper-elementary), [Middle School](/curriculum/middle-school), [High School](/curriculum/high-school), [College / Adult](/curriculum/college-adult): the four modules in each grade band.
 - [Install](/install): Add HeyGetOnMyLevel to your phone, tablet, or desktop as a PWA.
 
 ## Optional
 
 - [Privacy Policy](/privacy): Zero-PII commitment, ephemeral sessions, no tracking.
-- [Terms of Service](/terms): Personal-use license terms and commercial licensing contact.
+- [Terms of Service](/terms): Personal-use license terms.

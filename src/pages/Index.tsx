@@ -5,6 +5,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { useState } from "react";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
+import Time2ReadCallout from "@/components/Time2ReadCallout";
 
 const Index = () => {
   const navigate = useNavigate();
@@ -173,15 +174,10 @@ const Index = () => {
           {t("home.assessmentNote")}
         </p>
         <p className="text-xs text-muted-foreground fade-in-up" style={{ animationDelay: "0.4s" }}>
-          {t("home.license")}{" "}
-          <a
-            href="mailto:privacy@time-2-read.com?subject=Commercial%20Licensing%20Inquiry"
-            className="underline underline-offset-2 hover:text-foreground transition-colors"
-          >
-            {t("home.licenseLink")}
-          </a>
-          .
+          {t("home.license")} {t("home.licenseLink")}.
         </p>
+
+        <Time2ReadCallout />
         </div>
       </main>
 

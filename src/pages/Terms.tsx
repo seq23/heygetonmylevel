@@ -66,10 +66,7 @@ const Terms = () => {
             </ul>
             <p className="text-muted-foreground">
               Unauthorized commercial deployment constitutes a violation of these Terms of Service and applicable 
-              copyright law, and may result in legal action. To inquire about commercial licensing, contact{' '}
-              <a href="mailto:privacy@time-2-read.com" className="text-primary hover:underline">
-                privacy@time-2-read.com
-              </a>.
+              copyright law, and may result in legal action.
             </p>
           </section>
 

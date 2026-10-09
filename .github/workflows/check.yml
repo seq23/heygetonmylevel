@@ -1,0 +1,25 @@
+name: check
+on:
+  pull_request:
+  push:
+    branches: [main]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - run: npx tsc -p tsconfig.app.json --noEmit
+      # The build prerenders every public route and fails if any renders empty.
+      - run: npm run build
+      - name: Prerendered pages and sitemap exist
+        run: |
+          n=$(grep -c "<loc>" dist/sitemap.xml); echo "sitemap urls: $n"; [ "$n" -ge 10 ]
+          for f in dist/index.html dist/curriculum/index.html dist/install/index.html dist/privacy/index.html dist/terms/index.html; do
+            grep -q '<div id="root"><' "$f" || { echo "empty root in $f"; exit 1; }
+          done
