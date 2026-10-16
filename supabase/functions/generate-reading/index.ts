@@ -30,41 +30,22 @@ const getGradeDescription = (level: number): string => {
   return "college-level vocabulary, complex academic prose, critical analysis required";
 };
 
-serve(async (req) => {
-  if (req.method === "OPTIONS") {
-    return new Response(null, { headers: corsHeaders });
+// Shared passages other readers are served (cached_passages) are written ONLY here,
+// with the service role, and only from text this function generated itself in the
+// same call. The browser never inserts into cached_passages (guard:
+// scripts/check-rls-lockdown.mjs), so no one can plant text that children then read.
+interface CacheablePassageRequest extends PassageRequest {
+  cache?: boolean;
+}
+
+class GatewayError extends Error {
+  constructor(public status: number, message: string) {
+    super(message);
   }
+}
 
-  // Track geo + usage stats (fire-and-forget, non-blocking)
-  let requestType = "other";
-  try {
-    // Clone request to peek at type without consuming body
-    const cloned = req.clone();
-    const body = await cloned.json().catch(() => ({}));
-    requestType = body.type || "other";
-  } catch { /* ignore */ }
-
-  try {
-    const country = req.headers.get("cf-ipcountry") || "XX";
-    const region = req.headers.get("cf-region") || req.headers.get("cf-ipregion") || "Unknown";
-    const city = req.headers.get("cf-ipcity") || "Unknown";
-    const supabaseUrl = Deno.env.get("SUPABASE_URL");
-    const supabaseKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
-    if (supabaseUrl && supabaseKey) {
-      const sb = createClient(supabaseUrl, supabaseKey);
-      sb.rpc("increment_country_stat", { p_country: country, p_region: region, p_city: city }).then(() => {}).catch(() => {});
-      sb.rpc("increment_usage_stat", { p_call_type: requestType }).then(() => {}).catch(() => {});
-    }
-  } catch { /* non-critical */ }
-
-  try {
-    const { type, gradeLevel, skillFocus, theme, passageText, question, userAnswer, correctAnswer, userQuestion, currentQuestion, language } = await req.json() as PassageRequest;
-    const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
-    
-    if (!LOVABLE_API_KEY) {
-      throw new Error("LOVABLE_API_KEY is not configured");
-    }
-
+const buildPrompts = (p: PassageRequest) => {
+    const { type, gradeLevel, skillFocus, theme, passageText, question, userAnswer, correctAnswer, userQuestion, currentQuestion, language } = p;
     let systemPrompt = "";
     let userPrompt = "";
     let maxTokens: number | undefined = undefined;
@@ -367,6 +348,11 @@ Return ONLY a JSON object:
 }`;
     }
 
+    return { systemPrompt, userPrompt, maxTokens };
+};
+
+// deno-lint-ignore no-explicit-any
+const callAI = async (LOVABLE_API_KEY: string, { systemPrompt, userPrompt, maxTokens }: ReturnType<typeof buildPrompts>): Promise<any> => {
     // Build request body
     const requestBody: Record<string, unknown> = {
       model: "google/gemini-2.5-flash",
@@ -392,16 +378,10 @@ Return ONLY a JSON object:
 
     if (!response.ok) {
       if (response.status === 429) {
-        return new Response(JSON.stringify({ error: "Rate limit exceeded. Please try again in a moment." }), {
-          status: 429,
-          headers: { ...corsHeaders, "Content-Type": "application/json" },
-        });
+        throw new GatewayError(429, "Rate limit exceeded. Please try again in a moment.");
       }
       if (response.status === 402) {
-        return new Response(JSON.stringify({ error: "Service temporarily unavailable. Please try again later." }), {
-          status: 402,
-          headers: { ...corsHeaders, "Content-Type": "application/json" },
-        });
+        throw new GatewayError(402, "Service temporarily unavailable. Please try again later.");
       }
       const errorText = await response.text();
       console.error("AI gateway error:", response.status, errorText);
@@ -425,12 +405,86 @@ Return ONLY a JSON object:
       console.error("Failed to parse AI response:", content);
       throw new Error("Failed to parse AI response");
     }
+    return result;
+};
+
+const isQuestionList = (q: unknown): q is { text: string; options: string[]; correctAnswer: string }[] =>
+  Array.isArray(q) && q.length > 0 && q.every((x) =>
+    x && typeof x.text === "string" && Array.isArray(x.options) && x.options.every((o: unknown) => typeof o === "string") && typeof x.correctAnswer === "string");
+
+serve(async (req) => {
+  if (req.method === "OPTIONS") {
+    return new Response(null, { headers: corsHeaders });
+  }
+
+  // Track geo + usage stats (fire-and-forget, non-blocking)
+  let requestType = "other";
+  try {
+    // Clone request to peek at type without consuming body
+    const cloned = req.clone();
+    const body = await cloned.json().catch(() => ({}));
+    requestType = body.type || "other";
+  } catch { /* ignore */ }
+
+  try {
+    const country = req.headers.get("cf-ipcountry") || "XX";
+    const region = req.headers.get("cf-region") || req.headers.get("cf-ipregion") || "Unknown";
+    const city = req.headers.get("cf-ipcity") || "Unknown";
+    const supabaseUrl = Deno.env.get("SUPABASE_URL");
+    const supabaseKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
+    if (supabaseUrl && supabaseKey) {
+      const sb = createClient(supabaseUrl, supabaseKey);
+      sb.rpc("increment_country_stat", { p_country: country, p_region: region, p_city: city }).then(() => {}, () => {});
+      sb.rpc("increment_usage_stat", { p_call_type: requestType }).then(() => {}, () => {});
+    }
+  } catch { /* non-critical */ }
+
+  try {
+    const body = await req.json() as CacheablePassageRequest;
+    const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
+
+    if (!LOVABLE_API_KEY) {
+      throw new Error("LOVABLE_API_KEY is not configured");
+    }
+
+    const result = await callAI(LOVABLE_API_KEY, buildPrompts(body));
+
+    // Cacheable passage: generic English passage (no custom theme). Generate its
+    // questions here too, store both server-side, and return them together.
+    const cacheable = body.type === "passage" && body.cache === true && !body.theme && body.language !== "es";
+    if (cacheable && typeof result?.text === "string" && typeof result?.title === "string") {
+      const questions = await callAI(LOVABLE_API_KEY, buildPrompts({
+        type: "questions", passageText: result.text, gradeLevel: body.gradeLevel, skillFocus: body.skillFocus, language: body.language,
+      }));
+      const supabaseUrl = Deno.env.get("SUPABASE_URL");
+      const supabaseKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
+      const grade = Number(body.gradeLevel);
+      if (supabaseUrl && supabaseKey && isQuestionList(questions) && Number.isInteger(grade)) {
+        const { error: cacheError } = await createClient(supabaseUrl, supabaseKey).from("cached_passages").insert({
+          grade_level: grade,
+          skill_focus: body.skillFocus || null,
+          title: result.title,
+          passage_text: result.text,
+          questions,
+        });
+        if (cacheError) console.warn("Failed to cache passage:", cacheError.message);
+      }
+      return new Response(JSON.stringify({ ...result, questions }), {
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
 
     return new Response(JSON.stringify(result), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
 
   } catch (error) {
+    if (error instanceof GatewayError) {
+      return new Response(JSON.stringify({ error: error.message }), {
+        status: error.status,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
     console.error("Error in generate-reading function:", error);
     return new Response(
       JSON.stringify({ error: error instanceof Error ? error.message : "Unknown error" }),

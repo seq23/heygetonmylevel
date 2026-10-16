@@ -94,36 +94,26 @@ export const useAI = () => {
         }
       }
 
-      // Generate new passage (with optional theme)
+      // Generic English passages are generated AND cached server-side in one call
+      // (the edge function writes cached_passages with the service role; the browser
+      // never inserts into it). Themed/Spanish passages are one-offs and not cached.
+      const cacheable = !theme && language !== "es";
       const { data: passageData, error: passageError } = await supabase.functions.invoke("generate-reading", {
-        body: { type: "passage", gradeLevel, skillFocus, theme, language },
+        body: { type: "passage", gradeLevel, skillFocus, theme, language, cache: cacheable },
       });
       if (passageError) throw passageError;
 
-      const { data: questionsData, error: questionsError } = await supabase.functions.invoke("generate-reading", {
-        body: { type: "questions", passageText: passageData.text, gradeLevel, language },
-      });
-      if (questionsError) throw questionsError;
-
-      // Only save to cache if no custom theme and English (themed/Spanish passages are one-offs)
-      if (!theme && language !== "es") {
-        supabase.from("cached_passages").insert({
-          grade_level: gradeLevel,
-          skill_focus: skillFocus || null,
-          title: passageData.title,
-          passage_text: passageData.text,
-          questions: questionsData
-        }).then((result) => {
-          if (result.error) {
-            console.warn("Failed to cache passage:", result.error);
-          } else {
-            console.log("Passage cached for future use");
-          }
+      let questionsData = cacheable && Array.isArray(passageData?.questions) ? passageData.questions : null;
+      if (!questionsData) {
+        const { data, error: questionsError } = await supabase.functions.invoke("generate-reading", {
+          body: { type: "questions", passageText: passageData.text, gradeLevel, language },
         });
+        if (questionsError) throw questionsError;
+        questionsData = data;
       }
 
       return {
-        passage: passageData as Passage,
+        passage: { title: passageData.title, text: passageData.text, topic: passageData.topic } as Passage,
         questions: questionsData as Question[],
         fromCache: false
       };
