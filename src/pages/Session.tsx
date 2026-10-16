@@ -95,18 +95,20 @@ const Session = () => {
       const { passage: passageData, questions: preGeneratedQuestions, fromCache } = result;
       
       // Store passage in database
-      const { data: storedPassage, error } = await supabase
+      // RLS is insert-only for the browser, so ids are generated here, not read back.
+      const passageId = crypto.randomUUID();
+      const { error } = await supabase
         .from("passages")
         .insert({
+          id: passageId,
           session_id: session.id,
           text: passageData.text,
           fk_grade_level: session.readingLevel,
           skill_focus: skillFocus || null,
-        })
-        .select()
-        .single();
+        });
+      const storedPassage = error ? null : { id: passageId };
 
-      if (!error && storedPassage) {
+      if (storedPassage) {
         setCurrentPassage(storedPassage.id);
       }
 
@@ -143,6 +145,7 @@ const Session = () => {
 
     if (questionsData) {
       const questionsToInsert = questionsData.map((q) => ({
+        id: crypto.randomUUID(),
         passage_id: state.passage!.id,
         text: q.text,
         question_type: q.type,
@@ -151,10 +154,10 @@ const Session = () => {
         options: q.options,
       }));
 
-      const { data: storedQuestions } = await supabase
+      const { error: questionsError } = await supabase
         .from("questions")
-        .insert(questionsToInsert)
-        .select();
+        .insert(questionsToInsert);
+      const storedQuestions = questionsError ? null : questionsToInsert;
 
       const questionsWithIds = questionsData.map((q, i) => ({
         ...q,

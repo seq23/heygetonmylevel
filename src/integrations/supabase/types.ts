@@ -256,6 +256,17 @@ export type Database = {
         Args: { p_call_type: string }
         Returns: undefined
       }
+      passage_is_open: { Args: { passage_uuid: string }; Returns: boolean }
+      session_is_open: { Args: { session_uuid: string }; Returns: boolean }
+      update_session: {
+        Args: {
+          p_assessment_taken?: boolean
+          p_end?: boolean
+          p_reading_level?: number
+          session_uuid: string
+        }
+        Returns: undefined
+      }
     }
     Enums: {
       [_ in never]: never

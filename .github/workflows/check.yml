@@ -25,3 +25,5 @@ jobs:
           done
       - name: IndexNow key, Search Console token and homepage JSON-LD ship in dist
         run: node scripts/check-seo-surfaces.mjs dist
+      - name: Locked tables stay insert-only (RLS guard, static + live anon probe)
+        run: node scripts/check-rls-lockdown.mjs --live
