@@ -35,13 +35,13 @@ export const SessionProvider: React.FC<{ children: React.ReactNode }> = ({ child
   const createSession = useCallback(async (): Promise<string> => {
     setIsLoading(true);
     try {
-      const { data, error } = await supabase
-        .from("sessions")
-        .insert({})
-        .select()
-        .single();
+      // The browser may add a session but never read it back (RLS: insert-only),
+      // so the id is generated here and is the only key to the session.
+      const id = crypto.randomUUID();
+      const { error } = await supabase.from("sessions").insert({ id });
 
       if (error) throw error;
+      const data = { id };
 
       const newSession: SessionData = {
         id: data.id,
@@ -70,10 +70,10 @@ export const SessionProvider: React.FC<{ children: React.ReactNode }> = ({ child
     if (!session) return;
 
     try {
-      const { error } = await supabase
-        .from("sessions")
-        .update({ selected_reading_level: level })
-        .eq("id", session.id);
+      const { error } = await supabase.rpc("update_session", {
+        session_uuid: session.id,
+        p_reading_level: level,
+      });
 
       if (error) throw error;
 
@@ -88,10 +88,10 @@ export const SessionProvider: React.FC<{ children: React.ReactNode }> = ({ child
     if (!session) return;
 
     try {
-      const { error } = await supabase
-        .from("sessions")
-        .update({ assessment_taken: taken })
-        .eq("id", session.id);
+      const { error } = await supabase.rpc("update_session", {
+        session_uuid: session.id,
+        p_assessment_taken: taken,
+      });
 
       if (error) throw error;
 
@@ -155,10 +155,7 @@ export const SessionProvider: React.FC<{ children: React.ReactNode }> = ({ child
 
     try {
       // Update end time
-      await supabase
-        .from("sessions")
-        .update({ end_time: new Date().toISOString() })
-        .eq("id", session.id);
+      await supabase.rpc("update_session", { session_uuid: session.id, p_end: true });
 
       // Delete all session data (cascade will handle related records)
       await supabase.rpc("delete_session_data", { session_uuid: session.id });
