@@ -32,10 +32,35 @@ for (const f of [LOCKDOWN, ...migs.slice(at + 1)]) {
   if (/DISABLE\s+ROW\s+LEVEL\s+SECURITY/i.test(sql)) fail(`${f}: disables RLS`);
 }
 
+// 3. cached_passages (shared content other readers are served): replay every
+//    CREATE/DROP POLICY in migration order; the surviving policies must be SELECT
+//    only, so only the service-role edge function can write it.
+const SERVER_WRITE_ONLY = ["cached_passages"];
+const policies = new Map();
+for (const f of migs) {
+  const sql = readFileSync(join(migDir, f), "utf8");
+  for (const m of sql.matchAll(/(CREATE|DROP)\s+POLICY\s+(?:IF\s+EXISTS\s+)?"([^"]+)"\s+ON\s+(?:public\.)?(\w+)([\s\S]*?);/gi)) {
+    const key = `${m[3]}::${m[2]}`;
+    if (m[1].toUpperCase() === "DROP") policies.delete(key);
+    else policies.set(key, { file: f, table: m[3], name: m[2], cmd: (m[4].match(/\bFOR\s+(ALL|SELECT|INSERT|UPDATE|DELETE)\b/i)?.[1] || "ALL").toUpperCase() });
+  }
+}
+for (const t of SERVER_WRITE_ONLY) {
+  const live = [...policies.values()].filter((p) => p.table === t);
+  checks++;
+  if (live.length === 0) fail(`${t}: no surviving policy found (expected a SELECT policy; parser broken?)`);
+  for (const p of live) if (p.cmd !== "SELECT") fail(`${p.file}: policy "${p.name}" lets the browser ${p.cmd} ${t} (server-write only)`);
+}
+
 const walk = (d) => readdirSync(d, { withFileTypes: true }).flatMap((e) => e.isDirectory() ? walk(join(d, e.name)) : /\.(t|j)sx?$/.test(e.name) ? [join(d, e.name)] : []);
 for (const file of walk("src")) {
   const code = readFileSync(file, "utf8");
   for (const m of code.matchAll(/\.from\(\s*["'](\w+)["']\s*\)([\s\S]{0,800}?)(?:;|\n\s*\n)/g)) {
+    if (SERVER_WRITE_ONLY.includes(m[1])) {
+      checks++;
+      if (/\.(insert|update|delete|upsert)\(/.test(m[2])) fail(`${file}: browser writes ${m[1]} directly (only the edge function may)`);
+      continue;
+    }
     if (!LOCKED.includes(m[1])) continue;
     checks++;
     if (/\.(select|update|delete|upsert)\(/.test(m[2])) fail(`${file}: browser reads or changes ${m[1]} directly (RLS is insert-only)`);
@@ -54,6 +79,17 @@ if (process.argv.includes("--live")) {
     const total = Number(range.split("/")[1] || 0);
     if (r.ok && total > 0) fail(`live: anon key can read ${total} rows of ${t}`);
     else console.log(`live ${t}: ${r.status} ${range || "-"}`);
+  }
+  if (url && key) {
+    // Anon insert probe with a NULL title: RLS is checked before NOT NULL, so a denied
+    // insert answers 42501 and an open one answers 23502. No row is written either way.
+    const r = await fetch(`${url}/rest/v1/cached_passages`, { method: "POST", headers: { apikey: key, Authorization: `Bearer ${key}`, "Content-Type": "application/json", Prefer: "return=minimal" }, body: JSON.stringify({ grade_level: 1, title: null, passage_text: "rls-probe", questions: [] }) });
+    const code = (await r.json().catch(() => ({}))).code || "";
+    checks++;
+    if (code === "42501") console.log(`live cached_passages anon insert: denied (${r.status})`);
+    // Until the owner's SQL editor applies 20261016180000_cached_passages_server_write_only.sql
+    // this is a visible CI warning; the static check above is the hard gate.
+    else console.log(`::warning::live cached_passages anon insert still OPEN (${r.status} ${code}); apply supabase/migrations/20261016180000_cached_passages_server_write_only.sql`);
   }
 }
 
