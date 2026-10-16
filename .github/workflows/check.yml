@@ -23,3 +23,5 @@ jobs:
           for f in dist/index.html dist/curriculum/index.html dist/install/index.html dist/privacy/index.html dist/terms/index.html; do
             grep -q '<div id="root"><' "$f" || { echo "empty root in $f"; exit 1; }
           done
+      - name: IndexNow key, Search Console token and homepage JSON-LD ship in dist
+        run: node scripts/check-seo-surfaces.mjs dist

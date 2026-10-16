@@ -1,0 +1,32 @@
+name: IndexNow after deploy
+
+# Lovable publishes this site outside GitHub Actions, so this lane waits (bounded)
+# for the IndexNow key file to answer on the live host, then submits every
+# sitemap URL to api.indexnow.org ($0). A missing key file fails with a named error.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions: { contents: read }
+concurrency:
+  group: indexnow-after-deploy
+  cancel-in-progress: true
+jobs:
+  submit:
+    timeout-minutes: 25  # 20 min live-wait ceiling + submit; fault detector, not a budget
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
+      - name: Wait for the key file on the live host
+        run: |
+          f="$(ls public | grep -E '^[0-9a-f]{32}\.txt$')"; key="${f%.txt}"
+          deadline=$(( $(date +%s) + 1200 ))
+          until [ "$(curl -fsS "https://heygetonmylevel.com/${key}.txt" 2>/dev/null | tr -d '[:space:]')" = "$key" ]; do
+            if [ "$(date +%s)" -ge "$deadline" ]; then echo "::error::KEY_FILE_NOT_LIVE https://heygetonmylevel.com/${key}.txt after 20 min (publish not live yet)"; exit 1; fi
+            sleep 30
+          done
+          echo "key file live on heygetonmylevel.com"
+      - name: Submit sitemap URLs to IndexNow
+        run: node scripts/indexnow-submit.mjs heygetonmylevel.com
