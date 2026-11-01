@@ -25,5 +25,7 @@ jobs:
           done
       - name: IndexNow key, Search Console token and homepage JSON-LD ship in dist
         run: node scripts/check-seo-surfaces.mjs dist
+      - name: Static learn section builds (hub, sitemap, one action, canonical) + self-test
+        run: node scripts/learn-build.mjs --check && node scripts/learn-build.mjs --self-test
       - name: Locked tables stay insert-only (RLS guard, static + live anon probe)
         run: node scripts/check-rls-lockdown.mjs --live

@@ -1,0 +1,54 @@
+name: Search Loop
+
+# The shared search growth engine (seq23/search-loop @v1), owner ruling 1 Nov 2026:
+# find easy reading-level searches weekly, build one gated page per search daily, check
+# every page at 2/4/8 weeks, strengthen / undo / merge, upload the "search-loop-week" report.
+# Pages live on learn.heygetonmylevel.com — a static section (questions/ + learn-static/)
+# deployed by Cloudflare Pages (project heygetonmylevel-learn), never via Lovable Publish.
+# Until that host is live the commit helper keeps main in proof mode (NAMED STOP
+# [LEARN_HOST_NOT_LIVE]). Global switch: gh variable set SEARCH_LOOP_MODE --body slow -R seq23/search-loop
+on:
+  schedule:
+    - cron: "47 11 * * *"
+  workflow_dispatch:
+    inputs:
+      stage:
+        description: "auto | find | build | check"
+        required: false
+        default: auto
+        type: string
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: search-loop
+  cancel-in-progress: false
+
+jobs:
+  host:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
+      - name: Search Console property for the learn host (once it is live)
+        env:
+          GSC_SERVICE_ACCOUNT_JSON: ${{ secrets.GSC_SERVICE_ACCOUNT_JSON }}
+        run: |
+          if [ "$(bash .github/scripts/learn-host-live.sh)" = "true" ]; then node scripts/learn-gsc-property.mjs
+          else echo "NAMED STOP [LEARN_HOST_NOT_LIVE] learn.heygetonmylevel.com not live yet; Search Console property not checked" | tee -a "$GITHUB_STEP_SUMMARY"; fi
+
+  search-loop:
+    needs: host
+    uses: seq23/search-loop/.github/workflows/search-loop.yml@v1
+    with:
+      engine_ref: v1
+      stage: ${{ inputs.stage || 'auto' }}
+      commit_command: bash .github/scripts/search-loop-commit.sh
+    secrets:
+      OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+      GSC_SERVICE_ACCOUNT_JSON: ${{ secrets.GSC_SERVICE_ACCOUNT_JSON }}
+      GSC_SITE_URL: ${{ secrets.GSC_SITE_URL }}

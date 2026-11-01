@@ -22,3 +22,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# search loop (shared engine) and the static learn.heygetonmylevel.com build
+.search-loop-engine/
+.search-loop-run.log
+learn-dist/
