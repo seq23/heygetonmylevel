@@ -1,0 +1,1891 @@
+{
+  "schema": "search-loop-targets-v1",
+  "site": "learn.heygetonmylevel.com",
+  "week": "2026-W44",
+  "generated_at": "2026-11-01T14:14:11.733Z",
+  "sources": {
+    "search_console": "not read: HTTP 403 User does not have sufficient permission for site 'https://learn.heygetonmylevel.com/'. See also: ht",
+    "bing_webmaster": "not read: BING_WEBMASTER_API_KEY is not set",
+    "suggestqueries.google.com": "ok",
+    "api.bing.com": "ok",
+    "relevance_screen": "ok: kept 143 of 150 (free model)"
+  },
+  "targets": [
+    {
+      "query": "is my child reading at grade level",
+      "variants": [
+        "what grade level is my child reading at",
+        "how to get my child reading on grade level"
+      ],
+      "signals": {
+        "words": 7,
+        "question": true,
+        "google_suggest": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 45,
+      "kind": "new"
+    },
+    {
+      "query": "what reading level is my child",
+      "variants": [
+        "what is my childs reading level",
+        "what level should my child be reading at",
+        "how to improve a childs reading level"
+      ],
+      "signals": {
+        "words": 6,
+        "question": true,
+        "bing_suggest": true,
+        "google_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 45,
+      "kind": "new"
+    },
+    {
+      "query": "what grade is my reading level",
+      "variants": [
+        "reading on grade level",
+        "what grade level do i read at",
+        "reading level by grade",
+        "reading level by grade examples",
+        "reading levels by grade examples",
+        "how to grade reading level",
+        "reading grade level",
+        "what reading level by grade",
+        "what is my reading level grade"
+      ],
+      "signals": {
+        "words": 6,
+        "question": true,
+        "bing_suggest": true,
+        "google_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 45,
+      "kind": "new"
+    },
+    {
+      "query": "what reading level should a 7 year old be at",
+      "variants": [
+        "what reading level is a 7 year old"
+      ],
+      "signals": {
+        "words": 10,
+        "question": true,
+        "google_suggest": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 45,
+      "kind": "new"
+    },
+    {
+      "query": "how to improve reading comprehension",
+      "variants": [
+        "how to get better at reading and comprehension",
+        "ways to improve reading comprehension",
+        "reading comprehension is good",
+        "how to read with comprehension",
+        "best tips for reading comprehension",
+        "how to get good at reading comprehension"
+      ],
+      "signals": {
+        "words": 5,
+        "question": true,
+        "google_suggest": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 45,
+      "kind": "new"
+    },
+    {
+      "query": "how to improve reading skills",
+      "variants": [
+        "how to improve your reading skills",
+        "ways to improve reading skills"
+      ],
+      "signals": {
+        "words": 5,
+        "question": true,
+        "google_suggest": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 45,
+      "kind": "new"
+    },
+    {
+      "query": "how to help with reading fluency",
+      "variants": [
+        "ways to help with reading fluency"
+      ],
+      "signals": {
+        "words": 6,
+        "question": true,
+        "bing_suggest": true,
+        "google_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 45,
+      "kind": "new"
+    },
+    {
+      "query": "what is reading fluency and why is it important",
+      "variants": [
+        "why is reading fluency important"
+      ],
+      "signals": {
+        "words": 9,
+        "question": true,
+        "google_suggest": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 45,
+      "kind": "new"
+    },
+    {
+      "query": "what is the best way to teach reading and comprehension",
+      "variants": [
+        "how to teach comprehension in reading",
+        "ways to teach reading comprehension",
+        "how to teach reading comprehension"
+      ],
+      "signals": {
+        "words": 10,
+        "question": true,
+        "google_suggest": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 45,
+      "kind": "new"
+    },
+    {
+      "query": "what is reading comprehension and why is it important",
+      "variants": [
+        "is reading comprehension important"
+      ],
+      "signals": {
+        "words": 9,
+        "question": true,
+        "google_suggest": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 45,
+      "kind": "new"
+    },
+    {
+      "query": "what is the purpose of reading comprehension",
+      "variants": [
+        "purpose of reading comprehension"
+      ],
+      "signals": {
+        "words": 7,
+        "question": true,
+        "google_suggest": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 45,
+      "kind": "new"
+    },
+    {
+      "query": "reading level by grade chart",
+      "variants": [
+        "reading level chart by grade",
+        "reading levels by grade chart"
+      ],
+      "signals": {
+        "words": 5,
+        "question": false,
+        "google_suggest": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 40,
+      "kind": "new"
+    },
+    {
+      "query": "reading level by grade test",
+      "variants": [
+        "reading grade level test",
+        "how to test your reading level grade",
+        "test reading grade level"
+      ],
+      "signals": {
+        "words": 5,
+        "question": false,
+        "google_suggest": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 40,
+      "kind": "new"
+    },
+    {
+      "query": "reading level by grade fountas and pinnell",
+      "variants": [
+        "reading level by grade fountas pinnell"
+      ],
+      "signals": {
+        "words": 7,
+        "question": false,
+        "google_suggest": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 40,
+      "kind": "new"
+    },
+    {
+      "query": "reading level by grade lexile",
+      "variants": [
+        "lexile reading level by grade",
+        "reading lexile levels by grade"
+      ],
+      "signals": {
+        "words": 5,
+        "question": false,
+        "google_suggest": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 40,
+      "kind": "new"
+    },
+    {
+      "query": "reading levels by grade canada",
+      "variants": [],
+      "signals": {
+        "words": 5,
+        "question": false,
+        "google_suggest": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 40,
+      "kind": "new"
+    },
+    {
+      "query": "lexile level by grade",
+      "variants": [
+        "what are lexile levels by grade",
+        "lexile to grade level",
+        "what is lexile levels by grade",
+        "lexile levels by grade"
+      ],
+      "signals": {
+        "words": 4,
+        "question": false,
+        "google_suggest": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 40,
+      "kind": "new"
+    },
+    {
+      "query": "lexile level by grade chart",
+      "variants": [
+        "lexile grade level chart",
+        "lexile to grade level chart"
+      ],
+      "signals": {
+        "words": 5,
+        "question": false,
+        "google_suggest": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 40,
+      "kind": "new"
+    },
+    {
+      "query": "lexile levels by grade pdf",
+      "variants": [],
+      "signals": {
+        "words": 5,
+        "question": false,
+        "google_suggest": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 40,
+      "kind": "new"
+    },
+    {
+      "query": "reading comprehension practice test",
+      "variants": [
+        "how to practice for reading comprehension test"
+      ],
+      "signals": {
+        "words": 4,
+        "question": false,
+        "google_suggest": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 40,
+      "kind": "new"
+    },
+    {
+      "query": "reading comprehension practice for adults",
+      "variants": [
+        "how to practice reading comprehension as an adult",
+        "adult reading comprehension practice"
+      ],
+      "signals": {
+        "words": 5,
+        "question": false,
+        "google_suggest": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 40,
+      "kind": "new"
+    },
+    {
+      "query": "reading comprehension practice online",
+      "variants": [],
+      "signals": {
+        "words": 4,
+        "question": false,
+        "google_suggest": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 40,
+      "kind": "new"
+    },
+    {
+      "query": "reading practice for adults",
+      "variants": [],
+      "signals": {
+        "words": 4,
+        "question": false,
+        "google_suggest": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 40,
+      "kind": "new"
+    },
+    {
+      "query": "english reading practice for adults",
+      "variants": [],
+      "signals": {
+        "words": 5,
+        "question": false,
+        "google_suggest": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 40,
+      "kind": "new"
+    },
+    {
+      "query": "english reading practice for adults pdf",
+      "variants": [
+        "english reading practice pdf for adults"
+      ],
+      "signals": {
+        "words": 6,
+        "question": false,
+        "google_suggest": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 40,
+      "kind": "new"
+    },
+    {
+      "query": "how to know if my child is reading at grade level",
+      "variants": [],
+      "signals": {
+        "words": 11,
+        "question": true,
+        "google_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 30,
+      "kind": "new"
+    },
+    {
+      "query": "how can i test my childs grade level",
+      "variants": [],
+      "signals": {
+        "words": 8,
+        "question": true,
+        "google_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 30,
+      "kind": "new"
+    },
+    {
+      "query": "how to tell what grade level your child is reading at",
+      "variants": [],
+      "signals": {
+        "words": 11,
+        "question": true,
+        "google_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 30,
+      "kind": "new"
+    },
+    {
+      "query": "how to determine reading level by grade",
+      "variants": [],
+      "signals": {
+        "words": 7,
+        "question": true,
+        "google_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 30,
+      "kind": "new"
+    },
+    {
+      "query": "what is reading level for grade 2",
+      "variants": [],
+      "signals": {
+        "words": 7,
+        "question": true,
+        "google_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 30,
+      "kind": "new"
+    },
+    {
+      "query": "what is reading level for 1st grade",
+      "variants": [
+        "how to improve reading level 1st grade"
+      ],
+      "signals": {
+        "words": 7,
+        "question": true,
+        "google_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 30,
+      "kind": "new"
+    },
+    {
+      "query": "what is reading level for 3rd grade",
+      "variants": [],
+      "signals": {
+        "words": 7,
+        "question": true,
+        "google_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 30,
+      "kind": "new"
+    },
+    {
+      "query": "what is reading level for 4th grade",
+      "variants": [],
+      "signals": {
+        "words": 7,
+        "question": true,
+        "google_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 30,
+      "kind": "new"
+    },
+    {
+      "query": "what is reading level for 7th grade",
+      "variants": [],
+      "signals": {
+        "words": 7,
+        "question": true,
+        "google_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 30,
+      "kind": "new"
+    },
+    {
+      "query": "what grade is reading level j",
+      "variants": [],
+      "signals": {
+        "words": 6,
+        "question": true,
+        "google_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 30,
+      "kind": "new"
+    },
+    {
+      "query": "what grade is reading level l",
+      "variants": [],
+      "signals": {
+        "words": 6,
+        "question": true,
+        "google_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 30,
+      "kind": "new"
+    },
+    {
+      "query": "how to find my childs reading level",
+      "variants": [
+        "how to find your childs reading level"
+      ],
+      "signals": {
+        "words": 7,
+        "question": true,
+        "google_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 30,
+      "kind": "new"
+    },
+    {
+      "query": "how to get my childs reading level up",
+      "variants": [],
+      "signals": {
+        "words": 8,
+        "question": true,
+        "google_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 30,
+      "kind": "new"
+    },
+    {
+      "query": "how to know my kids reading level",
+      "variants": [],
+      "signals": {
+        "words": 7,
+        "question": true,
+        "google_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 30,
+      "kind": "new"
+    },
+    {
+      "query": "how to determine my childs lexile reading level",
+      "variants": [],
+      "signals": {
+        "words": 8,
+        "question": true,
+        "google_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 30,
+      "kind": "new"
+    },
+    {
+      "query": "how do i know my childs reading level",
+      "variants": [],
+      "signals": {
+        "words": 8,
+        "question": true,
+        "google_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 30,
+      "kind": "new"
+    },
+    {
+      "query": "what reading level should a 7 year old be at uk",
+      "variants": [],
+      "signals": {
+        "words": 11,
+        "question": true,
+        "google_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 30,
+      "kind": "new"
+    },
+    {
+      "query": "what oxford reading level should a 7 year old be at",
+      "variants": [],
+      "signals": {
+        "words": 11,
+        "question": true,
+        "google_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 30,
+      "kind": "new"
+    },
+    {
+      "query": "what is the highest reading age",
+      "variants": [],
+      "signals": {
+        "words": 6,
+        "question": true,
+        "google_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 30,
+      "kind": "new"
+    },
+    {
+      "query": "what is lexile level for 4th grade",
+      "variants": [],
+      "signals": {
+        "words": 7,
+        "question": true,
+        "google_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 30,
+      "kind": "new"
+    },
+    {
+      "query": "what is lexile level for 3rd grade",
+      "variants": [],
+      "signals": {
+        "words": 7,
+        "question": true,
+        "google_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 30,
+      "kind": "new"
+    },
+    {
+      "query": "what is lexile level for 5th grade",
+      "variants": [],
+      "signals": {
+        "words": 7,
+        "question": true,
+        "google_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 30,
+      "kind": "new"
+    },
+    {
+      "query": "what is lexile level for 7th grade",
+      "variants": [],
+      "signals": {
+        "words": 7,
+        "question": true,
+        "google_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 30,
+      "kind": "new"
+    },
+    {
+      "query": "what is lexile level for 6th grade",
+      "variants": [],
+      "signals": {
+        "words": 7,
+        "question": true,
+        "google_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 30,
+      "kind": "new"
+    },
+    {
+      "query": "what is lexile level for 8th grade",
+      "variants": [],
+      "signals": {
+        "words": 7,
+        "question": true,
+        "google_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 30,
+      "kind": "new"
+    },
+    {
+      "query": "what is lexile level for 1st grade",
+      "variants": [],
+      "signals": {
+        "words": 7,
+        "question": true,
+        "google_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 30,
+      "kind": "new"
+    },
+    {
+      "query": "what is lexile level for 2nd grade",
+      "variants": [],
+      "signals": {
+        "words": 7,
+        "question": true,
+        "google_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 30,
+      "kind": "new"
+    },
+    {
+      "query": "how to improve reading level adults",
+      "variants": [],
+      "signals": {
+        "words": 6,
+        "question": true,
+        "google_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 30,
+      "kind": "new"
+    },
+    {
+      "query": "how to increase reading level",
+      "variants": [],
+      "signals": {
+        "words": 5,
+        "question": true,
+        "google_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 30,
+      "kind": "new"
+    },
+    {
+      "query": "how to increase reading level for kids",
+      "variants": [],
+      "signals": {
+        "words": 7,
+        "question": true,
+        "google_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 30,
+      "kind": "new"
+    },
+    {
+      "query": "how to improve reading comprehension as an adult",
+      "variants": [],
+      "signals": {
+        "words": 8,
+        "question": true,
+        "google_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 30,
+      "kind": "new"
+    },
+    {
+      "query": "how to practice reading fluency at home",
+      "variants": [],
+      "signals": {
+        "words": 7,
+        "question": true,
+        "google_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 30,
+      "kind": "new"
+    },
+    {
+      "query": "how to improve reading fluency at home",
+      "variants": [],
+      "signals": {
+        "words": 7,
+        "question": true,
+        "google_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 30,
+      "kind": "new"
+    },
+    {
+      "query": "why is reading fluency so important",
+      "variants": [],
+      "signals": {
+        "words": 6,
+        "question": true,
+        "google_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 30,
+      "kind": "new"
+    },
+    {
+      "query": "reading comprehension practice",
+      "variants": [
+        "how to practice reading comprehension",
+        "practice reading comprehension",
+        "what is reading comprehension practice",
+        "reading practice and comprehension"
+      ],
+      "signals": {
+        "words": 3,
+        "question": false,
+        "google_suggest": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 30,
+      "kind": "new"
+    },
+    {
+      "query": "what is reading comprehension exercise",
+      "variants": [],
+      "signals": {
+        "words": 5,
+        "question": true,
+        "google_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 30,
+      "kind": "new"
+    },
+    {
+      "query": "my child is not reading at grade level",
+      "variants": [],
+      "signals": {
+        "words": 8,
+        "question": false,
+        "google_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 25,
+      "kind": "new"
+    },
+    {
+      "query": "how to help a child reading below grade level",
+      "variants": [],
+      "signals": {
+        "words": 9,
+        "question": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 25,
+      "kind": "new"
+    },
+    {
+      "query": "what grade do children learn to read",
+      "variants": [],
+      "signals": {
+        "words": 7,
+        "question": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 25,
+      "kind": "new"
+    },
+    {
+      "query": "what grade do kids start reading",
+      "variants": [],
+      "signals": {
+        "words": 6,
+        "question": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 25,
+      "kind": "new"
+    },
+    {
+      "query": "how to determine a childs reading level",
+      "variants": [],
+      "signals": {
+        "words": 7,
+        "question": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 25,
+      "kind": "new"
+    },
+    {
+      "query": "what grade do kids learn to read",
+      "variants": [],
+      "signals": {
+        "words": 7,
+        "question": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 25,
+      "kind": "new"
+    },
+    {
+      "query": "how to test my childs reading level",
+      "variants": [],
+      "signals": {
+        "words": 7,
+        "question": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 25,
+      "kind": "new"
+    },
+    {
+      "query": "what level should kindergarteners read at",
+      "variants": [],
+      "signals": {
+        "words": 6,
+        "question": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 25,
+      "kind": "new"
+    },
+    {
+      "query": "reading level by grade az",
+      "variants": [],
+      "signals": {
+        "words": 5,
+        "question": false,
+        "google_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 25,
+      "kind": "new"
+    },
+    {
+      "query": "reading level by grade 1",
+      "variants": [
+        "what reading level grade 1"
+      ],
+      "signals": {
+        "words": 5,
+        "question": false,
+        "google_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 25,
+      "kind": "new"
+    },
+    {
+      "query": "level m reading grade level books",
+      "variants": [],
+      "signals": {
+        "words": 6,
+        "question": false,
+        "google_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 25,
+      "kind": "new"
+    },
+    {
+      "query": "why is third grade reading level important",
+      "variants": [],
+      "signals": {
+        "words": 7,
+        "question": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 25,
+      "kind": "new"
+    },
+    {
+      "query": "what determines reading level",
+      "variants": [],
+      "signals": {
+        "words": 4,
+        "question": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 25,
+      "kind": "new"
+    },
+    {
+      "query": "how to determine a students reading level",
+      "variants": [],
+      "signals": {
+        "words": 7,
+        "question": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 25,
+      "kind": "new"
+    },
+    {
+      "query": "what grade do you learn to read",
+      "variants": [],
+      "signals": {
+        "words": 7,
+        "question": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 25,
+      "kind": "new"
+    },
+    {
+      "query": "what grade do students learn to read",
+      "variants": [],
+      "signals": {
+        "words": 7,
+        "question": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 25,
+      "kind": "new"
+    },
+    {
+      "query": "how to test for reading level",
+      "variants": [],
+      "signals": {
+        "words": 6,
+        "question": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 25,
+      "kind": "new"
+    },
+    {
+      "query": "how to determine your reading level",
+      "variants": [
+        "how to determine my reading level",
+        "how to determine reading levels"
+      ],
+      "signals": {
+        "words": 6,
+        "question": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 25,
+      "kind": "new"
+    },
+    {
+      "query": "how to tell your reading level",
+      "variants": [],
+      "signals": {
+        "words": 6,
+        "question": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 25,
+      "kind": "new"
+    },
+    {
+      "query": "how to find your reading level",
+      "variants": [],
+      "signals": {
+        "words": 6,
+        "question": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 25,
+      "kind": "new"
+    },
+    {
+      "query": "how to figure out your reading level",
+      "variants": [],
+      "signals": {
+        "words": 7,
+        "question": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 25,
+      "kind": "new"
+    },
+    {
+      "query": "how to find out my reading level",
+      "variants": [],
+      "signals": {
+        "words": 7,
+        "question": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 25,
+      "kind": "new"
+    },
+    {
+      "query": "how to assess kids reading level",
+      "variants": [],
+      "signals": {
+        "words": 6,
+        "question": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 25,
+      "kind": "new"
+    },
+    {
+      "query": "how to check my reading level",
+      "variants": [],
+      "signals": {
+        "words": 6,
+        "question": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 25,
+      "kind": "new"
+    },
+    {
+      "query": "reading level chart by age",
+      "variants": [],
+      "signals": {
+        "words": 5,
+        "question": false,
+        "google_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 25,
+      "kind": "new"
+    },
+    {
+      "query": "american reading level chart by age",
+      "variants": [],
+      "signals": {
+        "words": 6,
+        "question": false,
+        "google_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 25,
+      "kind": "new"
+    },
+    {
+      "query": "what is the reading age range",
+      "variants": [],
+      "signals": {
+        "words": 6,
+        "question": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 25,
+      "kind": "new"
+    },
+    {
+      "query": "what is the reading age",
+      "variants": [
+        "what is a reading age",
+        "what is my reading age",
+        "what is a good reading age"
+      ],
+      "signals": {
+        "words": 5,
+        "question": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 25,
+      "kind": "new"
+    },
+    {
+      "query": "what is the average reading age",
+      "variants": [],
+      "signals": {
+        "words": 6,
+        "question": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 25,
+      "kind": "new"
+    },
+    {
+      "query": "level 17 reading age",
+      "variants": [],
+      "signals": {
+        "words": 4,
+        "question": false,
+        "google_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 25,
+      "kind": "new"
+    },
+    {
+      "query": "level 10 reading age",
+      "variants": [],
+      "signals": {
+        "words": 4,
+        "question": false,
+        "google_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 25,
+      "kind": "new"
+    },
+    {
+      "query": "how to calculate reading age",
+      "variants": [],
+      "signals": {
+        "words": 5,
+        "question": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 25,
+      "kind": "new"
+    },
+    {
+      "query": "how to find your reading age",
+      "variants": [],
+      "signals": {
+        "words": 6,
+        "question": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 25,
+      "kind": "new"
+    },
+    {
+      "query": "how to calculate average reading age",
+      "variants": [],
+      "signals": {
+        "words": 6,
+        "question": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 25,
+      "kind": "new"
+    },
+    {
+      "query": "how to know your reading age",
+      "variants": [],
+      "signals": {
+        "words": 6,
+        "question": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 25,
+      "kind": "new"
+    },
+    {
+      "query": "how to check reading age",
+      "variants": [
+        "how to check your reading age"
+      ],
+      "signals": {
+        "words": 5,
+        "question": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 25,
+      "kind": "new"
+    },
+    {
+      "query": "what age should a child be reading",
+      "variants": [],
+      "signals": {
+        "words": 7,
+        "question": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 25,
+      "kind": "new"
+    },
+    {
+      "query": "how to test my reading age",
+      "variants": [],
+      "signals": {
+        "words": 6,
+        "question": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 25,
+      "kind": "new"
+    },
+    {
+      "query": "lexile level by grade 2025",
+      "variants": [],
+      "signals": {
+        "words": 5,
+        "question": false,
+        "google_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 25,
+      "kind": "new"
+    },
+    {
+      "query": "lexile levels by grade australia",
+      "variants": [],
+      "signals": {
+        "words": 5,
+        "question": false,
+        "google_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 25,
+      "kind": "new"
+    },
+    {
+      "query": "lexile levels by grade 2026",
+      "variants": [],
+      "signals": {
+        "words": 5,
+        "question": false,
+        "google_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 25,
+      "kind": "new"
+    },
+    {
+      "query": "lexile levels by grade georgia",
+      "variants": [],
+      "signals": {
+        "words": 5,
+        "question": false,
+        "google_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 25,
+      "kind": "new"
+    },
+    {
+      "query": "lexile levels by grade 2024",
+      "variants": [],
+      "signals": {
+        "words": 5,
+        "question": false,
+        "google_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 25,
+      "kind": "new"
+    },
+    {
+      "query": "lexile levels by grade pdf free",
+      "variants": [],
+      "signals": {
+        "words": 6,
+        "question": false,
+        "google_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 25,
+      "kind": "new"
+    },
+    {
+      "query": "average lexile level by grade",
+      "variants": [],
+      "signals": {
+        "words": 5,
+        "question": false,
+        "google_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 25,
+      "kind": "new"
+    },
+    {
+      "query": "how to test lexile level",
+      "variants": [],
+      "signals": {
+        "words": 5,
+        "question": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 25,
+      "kind": "new"
+    },
+    {
+      "query": "how to find lexile level of student",
+      "variants": [],
+      "signals": {
+        "words": 7,
+        "question": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 25,
+      "kind": "new"
+    },
+    {
+      "query": "how to test lexile level at home",
+      "variants": [],
+      "signals": {
+        "words": 7,
+        "question": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 25,
+      "kind": "new"
+    },
+    {
+      "query": "how to find your lexile level",
+      "variants": [],
+      "signals": {
+        "words": 6,
+        "question": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 25,
+      "kind": "new"
+    },
+    {
+      "query": "how to determine lexile level",
+      "variants": [],
+      "signals": {
+        "words": 5,
+        "question": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 25,
+      "kind": "new"
+    },
+    {
+      "query": "how to read lexile levels",
+      "variants": [],
+      "signals": {
+        "words": 5,
+        "question": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 25,
+      "kind": "new"
+    },
+    {
+      "query": "how to increase students reading levels",
+      "variants": [],
+      "signals": {
+        "words": 6,
+        "question": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 25,
+      "kind": "new"
+    },
+    {
+      "query": "how to improve my reading ability",
+      "variants": [],
+      "signals": {
+        "words": 6,
+        "question": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 25,
+      "kind": "new"
+    },
+    {
+      "query": "how to improve reading rate",
+      "variants": [],
+      "signals": {
+        "words": 5,
+        "question": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 25,
+      "kind": "new"
+    },
+    {
+      "query": "reading comprehension practice at home",
+      "variants": [
+        "how to practice reading comprehension at home"
+      ],
+      "signals": {
+        "words": 5,
+        "question": false,
+        "google_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 25,
+      "kind": "new"
+    },
+    {
+      "query": "reading fluency activities at home",
+      "variants": [],
+      "signals": {
+        "words": 5,
+        "question": false,
+        "google_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 25,
+      "kind": "new"
+    },
+    {
+      "query": "fun ways to practice reading fluency",
+      "variants": [],
+      "signals": {
+        "words": 6,
+        "question": false,
+        "google_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 25,
+      "kind": "new"
+    },
+    {
+      "query": "how to learn english reading fluency",
+      "variants": [],
+      "signals": {
+        "words": 6,
+        "question": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 25,
+      "kind": "new"
+    },
+    {
+      "query": "how to determine reading fluency",
+      "variants": [],
+      "signals": {
+        "words": 5,
+        "question": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 25,
+      "kind": "new"
+    },
+    {
+      "query": "how to test reading fluency",
+      "variants": [
+        "how to test for reading fluency"
+      ],
+      "signals": {
+        "words": 5,
+        "question": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 25,
+      "kind": "new"
+    },
+    {
+      "query": "how to improve students reading fluency",
+      "variants": [],
+      "signals": {
+        "words": 6,
+        "question": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 25,
+      "kind": "new"
+    },
+    {
+      "query": "how to increase fluency in reading",
+      "variants": [
+        "strategies to increase reading fluency",
+        "how can i increase my reading fluency"
+      ],
+      "signals": {
+        "words": 6,
+        "question": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 25,
+      "kind": "new"
+    },
+    {
+      "query": "reading comprehension practice for 3rd grade",
+      "variants": [],
+      "signals": {
+        "words": 6,
+        "question": false,
+        "google_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 25,
+      "kind": "new"
+    },
+    {
+      "query": "reading comprehension practice 4th grade",
+      "variants": [
+        "how to practice reading comprehension 4th grade"
+      ],
+      "signals": {
+        "words": 5,
+        "question": false,
+        "google_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 25,
+      "kind": "new"
+    },
+    {
+      "query": "reading comprehension practice 5th grade",
+      "variants": [],
+      "signals": {
+        "words": 5,
+        "question": false,
+        "google_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 25,
+      "kind": "new"
+    },
+    {
+      "query": "reading comprehension practice 6th grade",
+      "variants": [],
+      "signals": {
+        "words": 5,
+        "question": false,
+        "google_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 25,
+      "kind": "new"
+    },
+    {
+      "query": "reading comprehension practice for 2nd grade",
+      "variants": [],
+      "signals": {
+        "words": 6,
+        "question": false,
+        "google_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 25,
+      "kind": "new"
+    },
+    {
+      "query": "reading comprehension practice test for adults",
+      "variants": [],
+      "signals": {
+        "words": 6,
+        "question": false,
+        "google_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 25,
+      "kind": "new"
+    },
+    {
+      "query": "how to help with reading comprehension",
+      "variants": [
+        "how to help reading comprehension",
+        "ways to help with reading comprehension",
+        "strategies to help reading comprehension"
+      ],
+      "signals": {
+        "words": 6,
+        "question": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 25,
+      "kind": "new"
+    },
+    {
+      "query": "how to understand reading comprehension",
+      "variants": [],
+      "signals": {
+        "words": 5,
+        "question": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 25,
+      "kind": "new"
+    },
+    {
+      "query": "what is reading comprehension primarily about",
+      "variants": [],
+      "signals": {
+        "words": 6,
+        "question": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 25,
+      "kind": "new"
+    },
+    {
+      "query": "is reading comprehension a skill",
+      "variants": [],
+      "signals": {
+        "words": 5,
+        "question": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 25,
+      "kind": "new"
+    },
+    {
+      "query": "how to learn reading comprehension books",
+      "variants": [],
+      "signals": {
+        "words": 6,
+        "question": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 25,
+      "kind": "new"
+    },
+    {
+      "query": "how to learn reading comprehension techniques",
+      "variants": [],
+      "signals": {
+        "words": 6,
+        "question": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 25,
+      "kind": "new"
+    },
+    {
+      "query": "reading practice for adults free",
+      "variants": [],
+      "signals": {
+        "words": 5,
+        "question": false,
+        "google_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 25,
+      "kind": "new"
+    },
+    {
+      "query": "reading practice for adults pdf",
+      "variants": [],
+      "signals": {
+        "words": 5,
+        "question": false,
+        "google_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 25,
+      "kind": "new"
+    },
+    {
+      "query": "reading exercises for adults",
+      "variants": [],
+      "signals": {
+        "words": 4,
+        "question": false,
+        "google_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 25,
+      "kind": "new"
+    },
+    {
+      "query": "reading exercises for adults pdf",
+      "variants": [],
+      "signals": {
+        "words": 5,
+        "question": false,
+        "google_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 25,
+      "kind": "new"
+    },
+    {
+      "query": "paragraph reading practice for adults",
+      "variants": [],
+      "signals": {
+        "words": 5,
+        "question": false,
+        "google_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 25,
+      "kind": "new"
+    },
+    {
+      "query": "child reading below grade level",
+      "variants": [],
+      "signals": {
+        "words": 5,
+        "question": false,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 20,
+      "kind": "new"
+    },
+    {
+      "query": "help kids read at grade level",
+      "variants": [],
+      "signals": {
+        "words": 6,
+        "question": false,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 20,
+      "kind": "new"
+    },
+    {
+      "query": "percentage of students reading on grade level",
+      "variants": [],
+      "signals": {
+        "words": 7,
+        "question": false,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 20,
+      "kind": "new"
+    }
+  ],
+  "strengthen": [
+    {
+      "query": "how do you read a level",
+      "variants": [
+        "how to improve reading level",
+        "how to improve your reading level"
+      ],
+      "signals": {
+        "words": 6,
+        "question": true,
+        "bing_suggest": true,
+        "google_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 45,
+      "page": "/questions/"
+    },
+    {
+      "query": "how to improve my reading",
+      "variants": [
+        "strategies to improve reading",
+        "what can reading improve"
+      ],
+      "signals": {
+        "words": 5,
+        "question": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "score": 25,
+      "page": "/questions/"
+    }
+  ]
+}
