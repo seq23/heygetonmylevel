@@ -1,0 +1,22 @@
+/* learn.heygetonmylevel.com: the static reading-questions section (built by scripts/learn-build.mjs). */
+:root { --bg: #fbfaf6; --ink: #1d2433; --muted: #5b6474; --teal: #29a396; --teal-dark: #1f7f75; --line: #e6e2d8; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 18px/1.65 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+a { color: var(--teal-dark); }
+.site-header, .site-footer { border-bottom: 1px solid var(--line); }
+.site-footer { border-top: 1px solid var(--line); border-bottom: 0; margin-top: 3rem; color: var(--muted); font-size: 15px; }
+.wrap { max-width: 760px; margin: 0 auto; padding: 1rem 1.25rem; }
+.site-header .wrap { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
+.brand { font-weight: 700; text-decoration: none; color: var(--ink); }
+.site-header nav a { margin-left: 1rem; font-size: 16px; }
+main { max-width: 760px; margin: 0 auto; padding: 1.5rem 1.25rem; }
+h1 { font-size: 2rem; line-height: 1.2; margin: .5rem 0 1rem; }
+h2 { font-size: 1.35rem; margin-top: 2rem; }
+h3 { font-size: 1.1rem; margin-bottom: .25rem; }
+.breadcrumb, .page-dates { color: var(--muted); font-size: 15px; }
+.direct-answer { font-size: 1.15rem; background: #fff; border-left: 4px solid var(--teal); padding: 1rem 1.25rem; border-radius: 8px; }
+.site-action { margin: 2.5rem 0 1rem; }
+.button { display: inline-block; background: var(--teal); color: #fff; text-decoration: none; font-weight: 600; padding: .9rem 1.4rem; border-radius: 14px; }
+.button:hover { background: var(--teal-dark); }
+.question-list { list-style: none; padding: 0; }
+.question-list li { padding: .6rem 0; border-bottom: 1px solid var(--line); }
