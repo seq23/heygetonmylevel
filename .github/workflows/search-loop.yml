@@ -8,8 +8,6 @@ name: Search Loop
 # Until that host is live the commit helper keeps main in proof mode (NAMED STOP
 # [LEARN_HOST_NOT_LIVE]). Global switch: gh variable set SEARCH_LOOP_MODE --body slow -R seq23/search-loop
 on:
-  push:
-    branches: [feat/search-loop]  # TEMP proof run; removed before merge
   schedule:
     - cron: "47 11 * * *"
   workflow_dispatch:
