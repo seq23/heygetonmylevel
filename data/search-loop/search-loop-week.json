@@ -2,7 +2,7 @@
   "schema": "search-loop-week-v1",
   "week": "2026-W45",
   "site": "learn.heygetonmylevel.com",
-  "generated_at": "2026-11-02T14:33:13.487Z",
+  "generated_at": "2026-11-02T21:39:38.006Z",
   "state": "running",
   "published": 10,
   "indexed": "not read: no page old enough to inspect yet (14 days)",
@@ -14,8 +14,7 @@
   "undone": 0,
   "merged": 0,
   "notes": [
-    "IndexNow: 10 new page(s) not live yet; submitted when they answer 200",
-    "pace: held at 10/day: indexing not read (no pages old enough to measure)"
+    "BUILD: today's quota (10) already published"
   ],
-  "run_url": "https://github.com/seq23/heygetonmylevel/actions/runs/41462968916"
+  "run_url": "https://github.com/seq23/heygetonmylevel/actions/runs/41530268780"
 }
