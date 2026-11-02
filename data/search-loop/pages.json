@@ -1,5 +1,20 @@
 {
   "schema": "search-loop-pages-v1",
   "pages": [],
-  "dropped": []
+  "dropped": [
+    {
+      "query": "what reading level is my child",
+      "at": "2026-11-02",
+      "reason": [
+        "b2 meta description is 32 chars (needs 120-160)"
+      ]
+    },
+    {
+      "query": "what grade is my reading level",
+      "at": "2026-11-02",
+      "reason": [
+        "facts: needs at least one fact whose source URL answered 200"
+      ]
+    }
+  ]
 }

@@ -1,14 +1,14 @@
 {
   "schema": "search-loop-targets-v1",
   "site": "learn.heygetonmylevel.com",
-  "week": "2026-W44",
-  "generated_at": "2026-11-01T14:14:11.733Z",
+  "week": "2026-W45",
+  "generated_at": "2026-11-02T11:49:22.913Z",
   "sources": {
-    "search_console": "not read: HTTP 403 User does not have sufficient permission for site 'https://learn.heygetonmylevel.com/'. See also: ht",
+    "search_console": "ok: 0 rows",
     "bing_webmaster": "not read: BING_WEBMASTER_API_KEY is not set",
     "suggestqueries.google.com": "ok",
     "api.bing.com": "ok",
-    "relevance_screen": "ok: kept 143 of 150 (free model)"
+    "relevance_screen": "ok: kept 139 of 150 (free model)"
   },
   "targets": [
     {
@@ -1326,31 +1326,7 @@
       "kind": "new"
     },
     {
-      "query": "lexile levels by grade australia",
-      "variants": [],
-      "signals": {
-        "words": 5,
-        "question": false,
-        "google_suggest": true,
-        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
-      },
-      "score": 25,
-      "kind": "new"
-    },
-    {
       "query": "lexile levels by grade 2026",
-      "variants": [],
-      "signals": {
-        "words": 5,
-        "question": false,
-        "google_suggest": true,
-        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
-      },
-      "score": 25,
-      "kind": "new"
-    },
-    {
-      "query": "lexile levels by grade georgia",
       "variants": [],
       "signals": {
         "words": 5,
@@ -1735,18 +1711,6 @@
       "kind": "new"
     },
     {
-      "query": "how to learn reading comprehension books",
-      "variants": [],
-      "signals": {
-        "words": 6,
-        "question": true,
-        "bing_suggest": true,
-        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
-      },
-      "score": 25,
-      "kind": "new"
-    },
-    {
       "query": "how to learn reading comprehension techniques",
       "variants": [],
       "signals": {
@@ -1835,18 +1799,6 @@
       "variants": [],
       "signals": {
         "words": 6,
-        "question": false,
-        "bing_suggest": true,
-        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
-      },
-      "score": 20,
-      "kind": "new"
-    },
-    {
-      "query": "percentage of students reading on grade level",
-      "variants": [],
-      "signals": {
-        "words": 7,
         "question": false,
         "bing_suggest": true,
         "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
