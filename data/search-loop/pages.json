@@ -1,6 +1,250 @@
 {
   "schema": "search-loop-pages-v1",
-  "pages": [],
+  "pages": [
+    {
+      "slug": "is-my-child-reading-at-grade-level",
+      "query": "is my child reading at grade level",
+      "score": 45,
+      "signals": {
+        "words": 7,
+        "question": true,
+        "google_suggest": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "rel": "questions/is-my-child-reading-at-grade-level/index.html",
+      "route": "/questions/is-my-child-reading-at-grade-level/",
+      "url": "https://learn.heygetonmylevel.com/questions/is-my-child-reading-at-grade-level/",
+      "published_at": "2026-11-02",
+      "status": "live",
+      "hash": "9bd58f9db891934d2a40ba185e10f34e4c7222cfe80f8d0f5c29a8219dbf9442",
+      "model": "free-route",
+      "facts": [
+        "https://nces.ed.gov/",
+        "https://ies.ed.gov/"
+      ],
+      "linked_from": [],
+      "checks": {}
+    },
+    {
+      "slug": "what-reading-level-should-a-7-year-old-be-at",
+      "query": "what reading level should a 7 year old be at",
+      "score": 45,
+      "signals": {
+        "words": 10,
+        "question": true,
+        "google_suggest": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "rel": "questions/what-reading-level-should-a-7-year-old-be-at/index.html",
+      "route": "/questions/what-reading-level-should-a-7-year-old-be-at/",
+      "url": "https://learn.heygetonmylevel.com/questions/what-reading-level-should-a-7-year-old-be-at/",
+      "published_at": "2026-11-02",
+      "status": "live",
+      "hash": "59e99d222e425b10babdc5775cf0ab2a8d0b8000bddc4fab68477ef6572c5927",
+      "model": "free-route",
+      "facts": [
+        "https://en.wikipedia.org/wiki/Lexile"
+      ],
+      "linked_from": [],
+      "checks": {}
+    },
+    {
+      "slug": "reading-level-by-grade-chart",
+      "query": "reading level by grade chart",
+      "score": 40,
+      "signals": {
+        "words": 5,
+        "question": false,
+        "google_suggest": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "rel": "questions/reading-level-by-grade-chart/index.html",
+      "route": "/questions/reading-level-by-grade-chart/",
+      "url": "https://learn.heygetonmylevel.com/questions/reading-level-by-grade-chart/",
+      "published_at": "2026-11-02",
+      "status": "live",
+      "hash": "3ec33daa8f56096b5a8f8d0ca5565dbf9d97c585b501afd19ecff8176d35d644",
+      "model": "free-route",
+      "facts": [
+        "https://www.ala.org/"
+      ],
+      "linked_from": [],
+      "checks": {}
+    },
+    {
+      "slug": "reading-level-by-grade-fountas-and-pinnell",
+      "query": "reading level by grade fountas and pinnell",
+      "score": 40,
+      "signals": {
+        "words": 7,
+        "question": false,
+        "google_suggest": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "rel": "questions/reading-level-by-grade-fountas-and-pinnell/index.html",
+      "route": "/questions/reading-level-by-grade-fountas-and-pinnell/",
+      "url": "https://learn.heygetonmylevel.com/questions/reading-level-by-grade-fountas-and-pinnell/",
+      "published_at": "2026-11-02",
+      "status": "live",
+      "hash": "e6aa9c9ff98178bf6f8fcfbe30b801afb772aeb51a007baab8b1166ed35b10e6",
+      "model": "free-route",
+      "facts": [
+        "https://en.wikipedia.org/wiki/Fountas_and_Pinnell",
+        "https://www.fountasandpinnell.com/"
+      ],
+      "linked_from": [],
+      "checks": {}
+    },
+    {
+      "slug": "reading-levels-by-grade-canada",
+      "query": "reading levels by grade canada",
+      "score": 40,
+      "signals": {
+        "words": 5,
+        "question": false,
+        "google_suggest": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "rel": "questions/reading-levels-by-grade-canada/index.html",
+      "route": "/questions/reading-levels-by-grade-canada/",
+      "url": "https://learn.heygetonmylevel.com/questions/reading-levels-by-grade-canada/",
+      "published_at": "2026-11-02",
+      "status": "live",
+      "hash": "710319dd38960cc856cfda65e670bb9b0151efb26c3c40c41215758f82275203",
+      "model": "free-route",
+      "facts": [
+        "https://www.statcan.gc.ca/en/subjects-start/education_training_and_learning"
+      ],
+      "linked_from": [],
+      "checks": {}
+    },
+    {
+      "slug": "lexile-level-by-grade",
+      "query": "lexile level by grade",
+      "score": 40,
+      "signals": {
+        "words": 4,
+        "question": false,
+        "google_suggest": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "rel": "questions/lexile-level-by-grade/index.html",
+      "route": "/questions/lexile-level-by-grade/",
+      "url": "https://learn.heygetonmylevel.com/questions/lexile-level-by-grade/",
+      "published_at": "2026-11-02",
+      "status": "live",
+      "hash": "3f5f5a74ee040a3f3e0671d353f1d3390d9eeda0a0b850d5abafb77c5c98b1ec",
+      "model": "free-route",
+      "facts": [
+        "https://en.wikipedia.org/wiki/Lexile"
+      ],
+      "linked_from": [],
+      "checks": {}
+    },
+    {
+      "slug": "lexile-level-by-grade-chart",
+      "query": "lexile level by grade chart",
+      "score": 40,
+      "signals": {
+        "words": 5,
+        "question": false,
+        "google_suggest": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "rel": "questions/lexile-level-by-grade-chart/index.html",
+      "route": "/questions/lexile-level-by-grade-chart/",
+      "url": "https://learn.heygetonmylevel.com/questions/lexile-level-by-grade-chart/",
+      "published_at": "2026-11-02",
+      "status": "live",
+      "hash": "ec50d0290e9769e37eb60bfe0281f2a67baf8589f77f2ac03e52faf7de9dbe93",
+      "model": "free-route",
+      "facts": [
+        "https://en.wikipedia.org/wiki/Lexile",
+        "https://metametricsinc.com/about-us/"
+      ],
+      "linked_from": [],
+      "checks": {}
+    },
+    {
+      "slug": "lexile-levels-by-grade-pdf",
+      "query": "lexile levels by grade pdf",
+      "score": 40,
+      "signals": {
+        "words": 5,
+        "question": false,
+        "google_suggest": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "rel": "questions/lexile-levels-by-grade-pdf/index.html",
+      "route": "/questions/lexile-levels-by-grade-pdf/",
+      "url": "https://learn.heygetonmylevel.com/questions/lexile-levels-by-grade-pdf/",
+      "published_at": "2026-11-02",
+      "status": "live",
+      "hash": "73acc719f63a0d6b67eb3d1d5ed62f21d82edd04235853bd41a614baccdc770c",
+      "model": "free-route",
+      "facts": [
+        "https://en.wikipedia.org/wiki/Lexile"
+      ],
+      "linked_from": [],
+      "checks": {}
+    },
+    {
+      "slug": "reading-comprehension-practice-online",
+      "query": "reading comprehension practice online",
+      "score": 40,
+      "signals": {
+        "words": 4,
+        "question": false,
+        "google_suggest": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "rel": "questions/reading-comprehension-practice-online/index.html",
+      "route": "/questions/reading-comprehension-practice-online/",
+      "url": "https://learn.heygetonmylevel.com/questions/reading-comprehension-practice-online/",
+      "published_at": "2026-11-02",
+      "status": "live",
+      "hash": "464fd555259d182cc063fec2bfbee771b62025adfb33dd58278f31de9b2f2268",
+      "model": "free-route",
+      "facts": [
+        "https://en.wikipedia.org/wiki/Reading_comprehension"
+      ],
+      "linked_from": [],
+      "checks": {}
+    },
+    {
+      "slug": "reading-practice-for-adults",
+      "query": "reading practice for adults",
+      "score": 40,
+      "signals": {
+        "words": 4,
+        "question": false,
+        "google_suggest": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "rel": "questions/reading-practice-for-adults/index.html",
+      "route": "/questions/reading-practice-for-adults/",
+      "url": "https://learn.heygetonmylevel.com/questions/reading-practice-for-adults/",
+      "published_at": "2026-11-02",
+      "status": "live",
+      "hash": "0df5d6f49f017849a9bf5c6f22b93359495f411fe2eee4911e9d80b0fb98aa08",
+      "model": "free-route",
+      "facts": [
+        "https://www.imls.gov/"
+      ],
+      "linked_from": [],
+      "checks": {}
+    }
+  ],
   "dropped": [
     {
       "query": "what reading level is my child",
@@ -14,6 +258,115 @@
       "at": "2026-11-02",
       "reason": [
         "facts: needs at least one fact whose source URL answered 200"
+      ]
+    },
+    {
+      "query": "how to improve reading comprehension",
+      "at": "2026-11-02",
+      "reason": [
+        "b5 FAQ answer is 33 words (needs 40-60): \"How can I help if a reader struggles to understand\"",
+        "b5 FAQ answer is 35 words (needs 40-60): \"How long should daily reading practice last?\"",
+        "b5 FAQ answer is 30 words (needs 40-60): \"Should adults read aloud to older children?\"",
+        "b5 FAQ answer is 28 words (needs 40-60): \"What kinds of books are best for improving compreh\""
+      ]
+    },
+    {
+      "query": "how to improve reading skills",
+      "at": "2026-11-02",
+      "reason": [
+        "b5 FAQ answer is 32 words (needs 40-60): \"How do I know if my child is on grade level?\"",
+        "b5 FAQ answer is 33 words (needs 40-60): \"Can adults improve their reading skills too?\"",
+        "b5 FAQ answer is 31 words (needs 40-60): \"What should I do if a book is too hard?\"",
+        "b5 FAQ answer is 28 words (needs 40-60): \"How much time should we spend reading daily?\""
+      ]
+    },
+    {
+      "query": "how to help with reading fluency",
+      "at": "2026-11-02",
+      "reason": [
+        "b5 FAQ answer is 38 words (needs 40-60): \"What is the difference between accuracy and fluenc\"",
+        "b5 FAQ answer is 35 words (needs 40-60): \"How long should daily reading practice take?\"",
+        "b5 FAQ answer is 35 words (needs 40-60): \"Should we read the same book more than once?\"",
+        "b5 FAQ answer is 32 words (needs 40-60): \"Can adults also work on their reading fluency?\"",
+        "facts: needs at least one fact whose source URL answered 200"
+      ]
+    },
+    {
+      "query": "what is reading fluency and why is it important",
+      "at": "2026-11-02",
+      "reason": [
+        "b5 FAQ answer is 23 words (needs 40-60): \"Is reading fluency the same as reading fast?\"",
+        "b5 FAQ answer is 23 words (needs 40-60): \"How do I know if my child needs help with fluency?\"",
+        "b5 FAQ answer is 21 words (needs 40-60): \"Can adults improve their reading fluency?\"",
+        "b5 FAQ answer is 21 words (needs 40-60): \"What should I do if I am worried about reading pro\"",
+        "facts: needs at least one fact whose source URL answered 200"
+      ]
+    },
+    {
+      "query": "what is the best way to teach reading and comprehension",
+      "at": "2026-11-02",
+      "reason": [
+        "b2 meta description is 102 chars (needs 120-160)",
+        "b4 direct answer under the H1 is 15 words (needs 40-60)",
+        "b5 FAQ answer is 24 words (needs 40-60): \"Can screen time help a child learn to read?\"",
+        "b5 FAQ answer is 21 words (needs 40-60): \"How much time should be spent reading each day?\"",
+        "b5 FAQ answer is 23 words (needs 40-60): \"Is it better to read the same book many times?\""
+      ]
+    },
+    {
+      "query": "what is reading comprehension and why is it important",
+      "at": "2026-11-02",
+      "reason": [
+        "b5 FAQ answer is 37 words (needs 40-60): \"Does reading aloud help comprehension?\"",
+        "b5 FAQ answer is 39 words (needs 40-60): \"Can adults improve their reading comprehension ski\"",
+        "b5 FAQ answer is 39 words (needs 40-60): \"What should I do if reading is a constant struggle\""
+      ]
+    },
+    {
+      "query": "what is the purpose of reading comprehension",
+      "at": "2026-11-02",
+      "reason": [
+        "b5 FAQ answer is 36 words (needs 40-60): \"What is the main goal of reading comprehension?\"",
+        "b5 FAQ answer is 34 words (needs 40-60): \"How can I help someone improve their comprehension\"",
+        "b5 FAQ answer is 36 words (needs 40-60): \"Why is decoding different from comprehension?\"",
+        "b5 FAQ answer is 35 words (needs 40-60): \"What should I do if a reader struggles to understa\""
+      ]
+    },
+    {
+      "query": "reading level by grade test",
+      "at": "2026-11-02",
+      "reason": [
+        "b2 meta description is 75 chars (needs 120-160)",
+        "b5 FAQ answer is 35 words (needs 40-60): \"Can adults improve their reading level?\"",
+        "b5 FAQ answer is 34 words (needs 40-60): \"How often should reading levels be checked?\"",
+        "facts: needs at least one fact whose source URL answered 200"
+      ]
+    },
+    {
+      "query": "reading level by grade lexile",
+      "at": "2026-11-02",
+      "reason": [
+        "b2 meta description is 33 chars (needs 120-160)",
+        "b4 direct answer under the H1 is 31 words (needs 40-60)",
+        "b5 FAQ answer is 8 words (needs 40-60): \"Can I convert a Lexile measure to a grade level?\"",
+        "b5 FAQ answer is 13 words (needs 40-60): \"Do Lexile measures track growth over time?\"",
+        "facts: needs at least one fact whose source URL answered 200"
+      ]
+    },
+    {
+      "query": "reading comprehension practice test",
+      "at": "2026-11-02",
+      "reason": [
+        "b5 FAQ answer is 39 words (needs 40-60): \"Can adults use these practice tests too?\""
+      ]
+    },
+    {
+      "query": "reading comprehension practice for adults",
+      "at": "2026-11-02",
+      "reason": [
+        "b5 FAQ answer is 37 words (needs 40-60): \"How long should I practice each day?\"",
+        "b5 FAQ answer is 37 words (needs 40-60): \"Do I need to read classic literature to improve?\"",
+        "b5 FAQ answer is 39 words (needs 40-60): \"What if I get stuck on a word while reading?\""
       ]
     }
   ]

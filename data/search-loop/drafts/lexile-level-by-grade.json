@@ -1,0 +1,63 @@
+{
+  "h1": "What is the Lexile level by grade?",
+  "title_lead": "Lexile level by grade",
+  "meta_description": "Learn how Lexile levels match reading abilities by grade, what these scores mean for children and adults, and how to practise everyday reading skills.",
+  "direct_answer": "Lexile level by grade is a system that measures both a reader's skill and a book's text difficulty on a single scale. It uses numbers followed by the letter L to show how well a person can read or how hard a text is to understand.",
+  "sections": [
+    {
+      "heading": "What do Lexile numbers mean for readers?",
+      "paragraphs": [
+        "A Lexile measure helps you understand the difficulty of a book or the current skill of a reader. The scale starts low with beginning readers and goes higher as texts get more complex. It looks at word frequency and sentence length. It does not measure the maturity or content of a story. A short book about a complex science topic might have a high score because of the vocabulary. A longer book about daily life might have a simpler score because the words are common.",
+        "When you know a reader's score, you can find books that match. This helps avoid frustration with texts that are too hard. It also prevents boredom with texts that are too simple. Reading books in the right range helps build confidence over time. Keep in mind that scores are only one tool. They give a general idea of text difficulty. They do not tell the whole story about a person's enjoyment or comprehension. Talk to the child's teacher or a qualified professional for any concern about reading progress."
+      ]
+    },
+    {
+      "heading": "How do Lexile levels change across grades?",
+      "paragraphs": [
+        "Children grow as readers at different paces. Because of this, grades cover a wide range of scores rather than a single fixed number. Early elementary grades often start near the lower end of the scale or use beginning indicators. As students move through school, the expected ranges rise steadily to match longer sentences and harder words. Adult learners also use this scale to find materials that match their current comfort level without judgment.",
+        "Do not worry if a score falls outside the typical range for a specific grade. Every person has unique strengths and interests. Some readers enjoy tackling harder topics with help. Others prefer easier texts to build fluency and speed. The goal is to encourage regular practice rather than chase a specific target number. If you have questions about grade expectations, talking to the child's teacher or a qualified professional is always a good idea."
+      ]
+    },
+    {
+      "heading": "How can you find your reading level?",
+      "paragraphs": [
+        "Schools often test students using standardized assessments to find their current score. These tests look at vocabulary and comprehension through short passages and questions. Adults can find their range by taking online questionnaires or reviewing book lists that match their comfort level. You can also estimate a comfortable range by picking a book and counting unfamiliar words on a page. If you need help finding an accurate measure, reach out to a local educator or librarian.",
+        "Remember that scores can change depending on the topic. A reader might handle historical fiction easily because they love history. That same reader might struggle with a science text because the vocabulary is new. Use scores as a general guide rather than a strict rule. Focus on finding books that keep the reader engaged and curious about the world around them."
+      ]
+    },
+    {
+      "heading": "How to practise reading every day",
+      "paragraphs": [
+        "Daily practice is the best way to improve reading comfort over time. Set aside a few minutes each day for quiet reading. Let the reader choose books that spark their personal interests. Graphic novels, magazines, newspapers and websites all count as valid reading material. Variety keeps practice fun and reduces resistance to daily habits.",
+        "Read together out loud to share the load on harder pages. Talk about the story, the characters or the facts you learn along the way. Ask questions about what might happen next. This builds comprehension skills naturally without turning reading into a chore. Consistent, gentle practice helps build lasting confidence for learners of all ages. Start a free week of Time-2-Read."
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "What if my reading score is lower than expected?",
+      "a": "Every reader grows at a different pace and faces unique challenges. A lower score simply means you need more practice with texts that match your current ability. Focus on finding interesting books and building daily habits. Talk to the child's teacher or a qualified professional for any concern."
+    },
+    {
+      "q": "Can graphic novels and comics help improve skills?",
+      "a": "Yes, graphic novels and comics are fantastic tools for daily reading practice. They combine images with text to help readers understand context and story flow. Many reluctant readers find great enjoyment in these formats, which helps them build confidence and vocabulary without feeling overwhelmed by dense pages."
+    },
+    {
+      "q": "How often should I check reading levels?",
+      "a": "You do not need to check reading levels very often. Once or twice a year is usually enough to see general progress and find new book ranges. Focusing too much on scores can create unnecessary pressure. Enjoying books every day matters much more than constantly testing your current ability on the scale."
+    },
+    {
+      "q": "Should adults use children's books to practise?",
+      "a": "Adults can certainly use simpler books or children's materials to build fluency and confidence. The most important thing is finding text that matches your current comfort level and interests. Practising with accessible stories helps adults improve reading skills at their own pace without feeling rushed or stressed."
+    }
+  ],
+  "facts": [
+    {
+      "claim": "The Lexile Framework for Reading measures both reader ability and text difficulty on the same developmental scale.",
+      "source_url": "https://en.wikipedia.org/wiki/Lexile",
+      "source_name": "Wikipedia",
+      "verified": true,
+      "checked_status": 200
+    }
+  ]
+}

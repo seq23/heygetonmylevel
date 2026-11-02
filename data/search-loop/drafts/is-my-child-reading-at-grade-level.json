@@ -1,0 +1,70 @@
+{
+  "h1": "Is my child reading at grade level?",
+  "title_lead": "Is my child reading at grade level?",
+  "meta_description": "Wondering if your child reads at grade level? Learn what reading levels mean, how to check progress simply at home, and ways to practise every day.",
+  "direct_answer": "Reading level is a measure of text complexity and comprehension skill that shows how well a reader understands books meant for a specific age or school grade. It helps families understand current abilities, choose appropriate books, and guide daily practice without stress or pressure.",
+  "sections": [
+    {
+      "heading": "What does a reading level actually mean for your child?",
+      "paragraphs": [
+        "When teachers talk about reading levels, they usually mean a system that matches a reader with books of the right difficulty. These systems look at word length, sentence structure, and vocabulary. A level is not a permanent label or a fixed grade. It is simply a snapshot of what books a reader can tackle right now with some support or independently.",
+        "Every child grows at an individual pace. Some readers race ahead in comprehension while others take more time to build decoding skills. A reading level helps you find books that are neither too frustrating nor too easy. The goal is enjoyment and steady engagement. When books match current abilities, reading feels rewarding rather than exhausting. You can support this journey by focusing on regular practice and positive shared reading moments at home, keeping expectations gentle and open-ended."
+      ]
+    },
+    {
+      "heading": "How to check if your reader is on track",
+      "paragraphs": [
+        "You can observe reading progress during everyday moments at home. Listen as your child reads a page aloud from a favorite library book. Notice how many words cause a pause or a stumble. If a page has five or more unknown words, the book might be too challenging right now. If your child reads every word smoothly with zero effort, it might be time for a slightly richer text.",
+        "Comprehension matters just as much as word recognition. Ask simple questions about the story when you finish a chapter. Can your child retell the main events in order? Do they make predictions about what happens next? These informal checks give you a clear picture of understanding. For formal assessments or specific concerns about development, always talk to your child's teacher or a qualified professional who can offer guidance tailored to your unique situation."
+      ]
+    },
+    {
+      "heading": "Building a daily reading routine that works",
+      "paragraphs": [
+        "Consistency matters more than long hours of instruction. Set aside fifteen minutes every single day for dedicated reading time. Sit together on the couch and take turns reading pages aloud. This shared approach lowers pressure and models fluent phrasing for developing readers. Let your child pick topics of genuine interest, from graphic novels to non-fiction books about animals or space.",
+        "Adult learners can use these same daily habits to build confidence. Set aside quiet time, pick materials that spark curiosity, and read a little bit each day. Explore our Reading level questions, answered — HeyGetOnMyLevel guide to learn more about how levels work. When you are ready to add structured daily practice, Start a free week of Time-2-Read."
+      ]
+    },
+    {
+      "heading": "Moving forward with patience and support",
+      "paragraphs": [
+        "Supporting a reader at home is a journey filled with ups and downs. Some weeks bring huge leaps in understanding, while other weeks feel quiet and steady. Celebrate small wins and keep conversations about books light and fun. Avoid comparing progress with siblings or classmates, as every individual path looks entirely different.",
+        "Remember that you do not have to figure everything out on your own. Teachers and school librarians are wonderful partners in this process. Reach out whenever you have questions about book choices or classroom expectations. Keep the focus on curiosity and joy, and let daily practice unfold naturally over time."
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "What if my child hates reading books at their level?",
+      "a": "Children often resist books that feel too hard or uninteresting. Try reading aloud together from a more advanced story while they follow along. Let them choose graphic novels, magazines, or comic books that spark genuine curiosity, keeping the reading experience light and enjoyable every single day."
+    },
+    {
+      "q": "Should I help my child sound out every difficult word?",
+      "a": "Stopping on every single word can break the flow of the story and cause frustration. Offer gentle support for tricky words, but also allow context clues to work. If a sentence becomes too difficult, read it aloud together to maintain comprehension and keep the momentum going."
+    },
+    {
+      "q": "Can adults use these same reading level concepts?",
+      "a": "Adult learners can benefit greatly from finding texts that match their current interests and reading ability. Choosing materials with comfortable vocabulary builds confidence and fluency over time. Daily practice with manageable texts helps any adult improve comprehension skills and enjoy the process of reading."
+    },
+    {
+      "q": "How often should I check my child's reading level?",
+      "a": "There is no need to test reading levels constantly throughout the week. A casual check every few months is usually plenty to see how skills are growing. Focus most of your energy on daily reading habits, shared book discussions, and encouraging a lifelong love of stories."
+    }
+  ],
+  "facts": [
+    {
+      "claim": "The National Center for Education Statistics provides regular reports on student reading performance across different school grade levels in the United States.",
+      "source_url": "https://nces.ed.gov/",
+      "source_name": "National Center for Education Statistics",
+      "verified": true,
+      "checked_status": 200
+    },
+    {
+      "claim": "The Institute of Education Sciences publishes research-based guides and recommendations for supporting literacy development in children at home and in school.",
+      "source_url": "https://ies.ed.gov/",
+      "source_name": "Institute of Education Sciences",
+      "verified": true,
+      "checked_status": 200
+    }
+  ]
+}

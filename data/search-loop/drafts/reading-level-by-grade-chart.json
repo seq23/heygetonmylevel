@@ -1,0 +1,70 @@
+{
+  "h1": "Reading Level by Grade Chart: What to Know",
+  "title_lead": "Reading level by grade chart",
+  "meta_description": "Use a reading level by grade chart to see how readers grow. Learn what levels mean, how to find them, and ways to practise every day with warm, simple guidance.",
+  "direct_answer": "A reading level by grade chart is a general guide that matches books with readers based on word count, vocabulary, sentence length, and topic complexity. It helps parents, homeschoolers, and adult learners choose books that match current skills without feeling too easy or too hard, supporting steady and enjoyable growth over time.",
+  "sections": [
+    {
+      "heading": "What does a reading level actually mean?",
+      "paragraphs": [
+        "A reading level is simply a way to describe how complex a book is. Publishers and educators look at how long sentences are. They check how often rare words appear. They look at the layout of the page and the size of the text. All of these details help group books into stages. These stages show a path from simple words to long chapters. They do not define a person's intelligence or potential. They are just markers on a map.",
+        "Every reader moves at a unique pace. Some readers spend a long time on one level because they love the books there. Others move quickly through a few levels. A reading level is not a permanent label. It is a snapshot of what a book looks like today. The goal of knowing a level is to find books that bring joy and confidence. When books match current skills, reading feels like an adventure rather than a chore."
+      ]
+    },
+    {
+      "heading": "How can you find your child's reading level?",
+      "paragraphs": [
+        "You can find a reading level in a few different ways. Many schools use specific assessment systems during the year. You can ask the teacher for the current level or for book recommendations that fit. If you are homeschooling or learning as an adult, you can use the five-finger rule. Have the reader open a book in the middle and read a page. Hold up one finger for every word they do not know. If you reach five fingers by the end of the page, the book might be too hard right now. Zero or one finger might mean it is too easy.",
+        "Another simple way is to talk about the book together. Ask what happened in the story or what new ideas the author shared. If the reader can retell the main points easily, the level is likely a good fit. You can also explore our guide on Reading level questions, answered for more ideas on how to approach this topic. Remember that different systems use different letters or numbers, so a little variation is completely normal."
+      ]
+    },
+    {
+      "heading": "How to practise reading every day",
+      "paragraphs": [
+        "Daily practice builds strong habits and deepens enjoyment. Set aside a quiet time each day just for books. You can read together, take turns reading pages aloud, or read your own books side by side. Keep a variety of books nearby so there is always something interesting to pick up. Graphic novels, magazines, and non-fiction books all count as real reading. The format matters less than the engagement and the pleasure of the experience.",
+        "Talk about what you read during meals or walks. Ask open questions like what might happen next or which character is a favourite. Keep the tone warm and encouraging. Praise effort rather than speed or perfection. If a reader feels frustrated, take a break and try an easier book for a while. Consistent, low-pressure practice helps build lasting confidence."
+      ]
+    },
+    {
+      "heading": "When to seek extra guidance",
+      "paragraphs": [
+        "Reading journeys have ups and downs. If you notice persistent frustration, avoidance of books, or very slow progress over many months, it is wise to seek outside input. Talk to the child's teacher, a school librarian, or another qualified professional for any concern about reading development. They can offer fresh perspectives, helpful tools, and gentle next steps tailored to your specific situation.",
+        "Every reader deserves support and understanding. A professional can help rule out underlying issues or simply suggest new ways to make reading fun. Never hesitate to reach out for a conversation. Working together with educators ensures that every reader feels supported, valued, and encouraged on their unique path forward."
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Are reading level charts exact rules?",
+      "a": "No, reading level charts are just flexible guides rather than strict rules. Every reader has different interests, background knowledge, and moods that affect which books they enjoy and understand. Use the chart as a helpful starting point, but always let personal interest and comfort guide your actual book choices."
+    },
+    {
+      "q": "What should I do if a book is too hard?",
+      "a": "If a book feels too difficult, gently set it aside for another time without making a big deal of it. You can read it aloud to the learner so they can still enjoy the story, or help them pick out something simpler that matches their current comfort level today."
+    },
+    {
+      "q": "Do graphic novels count as real reading?",
+      "a": "Yes, graphic novels absolutely count as real reading for learners of all ages. They combine images and text to tell rich stories, which helps build strong comprehension skills, vocabulary, and a genuine love for turning pages and following complex plots over time."
+    },
+    {
+      "q": "When should I talk to a professional?",
+      "a": "You should consider talking to a teacher or a qualified professional if you notice ongoing frustration, a strong dislike of reading, or very little progress over a long period. They can provide helpful guidance, answer your questions, and offer tailored support for your situation."
+    }
+  ],
+  "facts": [
+    {
+      "claim": "Reading aloud to children helps build vocabulary and language comprehension skills before they read independently.",
+      "source_url": "https://www.readingrockets.org/reading-101/reading-and-writing-basics/reading-aloud",
+      "source_name": "Reading Rockets",
+      "verified": false,
+      "checked_status": 403
+    },
+    {
+      "claim": "Public libraries provide free access to a wide range of leveled books and resources for readers of all ages.",
+      "source_url": "https://www.ala.org/",
+      "source_name": "American Library Association",
+      "verified": true,
+      "checked_status": 200
+    }
+  ]
+}
