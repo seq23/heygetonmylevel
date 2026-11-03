@@ -1,0 +1,50 @@
+name: post-deploy live check
+
+# Search Readiness h4: read the deployed site from outside and fail on what it actually serves.
+# "The build can pass and the edge can still serve the wrong thing (a Worker that 301'd
+# robots.txt did)."
+#
+# check.yml holds the BUILT output (scripts/check-seo-surfaces.mjs, scripts/check-entity-graph.mjs).
+# This holds the LIVE host: crawl files, the icons and og image, the manifest, the IndexNow key,
+# the Search Console file, http -> https, no second copy on www, and every sampled sitemap URL
+# answering 200 with a title, a description and the Organization and WebSite nodes entity.json
+# declares.
+#
+# Lovable publishes this site by hand, outside Actions, so a push to main is not a deploy. The
+# script tiers its checks on the live build's own x-build-date stamp: invariants always fail hard,
+# and a claim that only the newest build can satisfy prints AWAITING_PUBLISH instead of reddening
+# main for something no code change can clear. That grace is bounded in the script - a live build
+# over 45 days old, or (from 1 Dec 2026) one with no stamp at all, is a hard LIVE_BUILD_STALE.
+#
+# It reads only public URLs: no secret, nothing spent.
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    # 06:20 CT daily, off the hour: scheduled runs bunch on the hour and get dropped under load.
+    - cron: '20 12 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: post-deploy-live-check
+  cancel-in-progress: false
+
+jobs:
+  live:
+    # The script makes ~25 requests and finishes in well under a minute; 6 is a fault detector,
+    # not a budget.
+    timeout-minutes: 6
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: The live host serves what this repo says it should (+ self-test)
+        run: |
+          node scripts/live-check.mjs --self-test
+          node scripts/live-check.mjs | tee -a "$GITHUB_STEP_SUMMARY"

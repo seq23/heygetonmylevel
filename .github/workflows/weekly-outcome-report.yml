@@ -1,0 +1,77 @@
+name: weekly outcome report
+
+# Search Readiness i9: "Without a report nobody notices a drop for a month. Without self-closing
+# issues the list rots."
+#
+# Mondays 07:40 CT, from the measurements search-console-daily.yml already collects -
+# data/search_intelligence/gsc_truth.json, gsc_query_history.json and index_coverage.json. It
+# invents no numbers: the first recorded week says it has no prior week rather than showing a
+# delta against nothing.
+#
+# NOTHING HERE EMAILS (the 1 Nov 2026 ruling on the grid's weekly reports): the report goes up as
+# the step summary and the `weekly-outcome-report` artifact, and Boss OS sends the one Spry Labs
+# weekly email. One self-closing issue is what keeps the list from rotting - red opens it, still
+# red updates it, no longer red closes it with the measurement that cleared it.
+#
+# It reads and reports. It writes nothing back into the repo, so a report run can never move a
+# page, a script or a validator.
+
+on:
+  schedule:
+    # A DST pair; the script's own guard lets only the 07:40 America/Chicago one do the work.
+    - cron: '40 12 * * 1'
+    - cron: '40 13 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: weekly-outcome-report
+  cancel-in-progress: false
+
+jobs:
+  report:
+    timeout-minutes: 10
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Only the 07:40 America/Chicago cron does the work
+        id: when
+        run: |
+          if [ "${{ github.event_name }}" != "schedule" ]; then echo "run=yes" >> "$GITHUB_OUTPUT"; exit 0; fi
+          hour=$(TZ=America/Chicago date +%H)
+          if [ "$hour" = "07" ]; then echo "run=yes" >> "$GITHUB_OUTPUT"; else echo "run=no (Chicago hour $hour, not 07)" >> "$GITHUB_OUTPUT"; fi
+      - name: Week over week from the Search Console truth files (+ self-test)
+        if: startsWith(steps.when.outputs.run, 'yes')
+        env:
+          REPORT_OUT: ${{ runner.temp }}/weekly-outcome-report.json
+        run: |
+          node scripts/weekly-outcome-report.mjs --self-test
+          node scripts/weekly-outcome-report.mjs | tee -a "$GITHUB_STEP_SUMMARY"
+      - name: Keep the report
+        if: startsWith(steps.when.outputs.run, 'yes')
+        uses: actions/upload-artifact@v4
+        with:
+          name: weekly-outcome-report
+          path: ${{ runner.temp }}/weekly-outcome-report.json
+          if-no-files-found: error
+      - name: One self-closing issue while the site is red
+        if: startsWith(steps.when.outputs.run, 'yes')
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPORT: ${{ runner.temp }}/weekly-outcome-report.json
+        run: |
+          title="Weekly outcome: heygetonmylevel.com is red"
+          verdict=$(jq -r '.verdict' "$REPORT")
+          open=$(gh issue list --state open --search "in:title \"$title\"" --json number --jq '.[0].number // empty')
+          if [ "$verdict" = "red" ]; then
+            body=$(jq -r '"Week of " + .week.end_date + "\n\n" + (.reasons | map("- " + .) | join("\n")) + "\n\n" + .summary + "\n\nFrom data/search_intelligence/. Closes itself on the first weekly run that is no longer red."' "$REPORT")
+            if [ -n "$open" ]; then gh issue edit "$open" --body "$body"; else gh issue create --title "$title" --body "$body"; fi
+          elif [ -n "$open" ]; then
+            gh issue close "$open" --comment "$(jq -r '"No longer red on " + .week.end_date + ": " + .summary' "$REPORT")"
+          fi
