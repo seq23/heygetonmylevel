@@ -1,14 +1,9 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.87.1";
 import { Resend } from "https://esm.sh/resend@2.0.0";
+import { corsFor, requireAdmin } from "../_shared/guard.ts";
 
-const corsHeaders = {
-  "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Headers":
-    "authorization, x-client-info, apikey, content-type",
-};
 
-const ALERT_EMAIL = "seq.taylor@gmail.com";
 const DAILY_THRESHOLD = 50;
 const SPIKE_MULTIPLIER = 3;
 
@@ -25,9 +20,15 @@ const COUNTRY_NAMES: Record<string, string> = {
 const getCountryName = (code: string) => COUNTRY_NAMES[code] || `🏳️ ${code}`;
 
 const handler = async (req: Request): Promise<Response> => {
+  const corsHeaders = corsFor(req);
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
   }
+  // Operator-only: reads business stats and emails the owner. Service-role key (cron)
+  // or the ADMIN_REPORT_KEY secret; the public app key is not enough.
+  const denied = requireAdmin(req, (k) => Deno.env.get(k));
+  if (denied) return denied;
+  const ALERT_EMAIL = Deno.env.get("OWNER_ALERT_EMAIL") || "";
 
   try {
     const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
@@ -151,6 +152,8 @@ const handler = async (req: Request): Promise<Response> => {
         <td style="padding: 6px 12px; border: 1px solid #dee2e6; text-align: right;">${count}</td>
         <td style="padding: 6px 12px; border: 1px solid #dee2e6; text-align: right;">~$${(count * ESTIMATED_COST_PER_AI_CALL).toFixed(3)}</td>
       </tr>`).join("") || `<tr><td colspan="3" style="padding: 8px; border: 1px solid #dee2e6; color: #999; text-align: center;">No usage data yet</td></tr>`;
+
+    if (!ALERT_EMAIL) throw new Error("OWNER_ALERT_EMAIL_MISSING: set the OWNER_ALERT_EMAIL function secret");
 
     await resend.emails.send({
       from: "HeyGetOnMyLevel <onboarding@resend.dev>",

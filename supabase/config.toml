@@ -1,13 +1,13 @@
 project_id = "kiokmixifusessprnesk"
 
 [functions.generate-reading]
-verify_jwt = false
+verify_jwt = true
 
 [functions.send-feedback]
-verify_jwt = false
+verify_jwt = true
 
 [functions.traffic-alert]
-verify_jwt = false
+verify_jwt = true
 
 [functions.cost-report]
-verify_jwt = false
+verify_jwt = true

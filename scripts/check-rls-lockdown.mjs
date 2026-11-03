@@ -7,7 +7,7 @@
 import { readFileSync, readdirSync, existsSync } from "node:fs";
 import { join } from "node:path";
 
-const LOCKED = ["sessions", "passages", "questions", "responses", "daily_usage_stats", "daily_country_stats"];
+const LOCKED = ["sessions", "passages", "questions", "responses", "daily_usage_stats", "daily_country_stats", "rate_limit_hits"];
 const LOCKDOWN = "20261016120000_lock_down_public_tables.sql";
 const fail = (m) => { console.error(`RLS guard: ${m}`); process.exitCode = 1; };
 let checks = 0;
