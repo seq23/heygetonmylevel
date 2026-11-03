@@ -6,6 +6,8 @@ import { pathToFileURL } from "url";
 import { componentTagger } from "lovable-tagger";
 
 const SITE_URL = "https://heygetonmylevel.com";
+/** When this build was made, written into every prerendered page (see the live check). */
+const BUILD_DATE = new Date().toISOString();
 
 /** Head tags the per-route Helmet output replaces in the prerendered HTML. */
 const ROUTE_HEAD_TAGS = [
@@ -73,7 +75,11 @@ function prerender(): Plugin {
         let page = template;
         for (const re of ROUTE_HEAD_TAGS) page = page.replace(re, "");
         page = page
-          .replace("</head>", `    ${head}\n  </head>`)
+          // The build stamp lets scripts/live-check.mjs tell a published build that is simply
+          // older than this commit (Lovable publishes by hand, outside Actions) apart from an
+          // edge serving something wrong. Without it the live check could only guess, and a
+          // post-deploy check that cannot tell those two apart is a check nobody can act on.
+          .replace("</head>", `    <meta name="x-build-date" content="${BUILD_DATE}" />\n    ${head}\n  </head>`)
           .replace('<div id="root"></div>', `<div id="root">${html}</div>`);
         if (route === "/") {
           fs.writeFileSync(path.join(outDir, "index.html"), page);

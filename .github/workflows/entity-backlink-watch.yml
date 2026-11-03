@@ -1,0 +1,80 @@
+name: entity backlink watch
+
+# Search Readiness k6 (authority audit, 30 Oct 2026). Weekly: every profile in entity.json is
+# fetched to confirm it still resolves and still names heygetonmylevel.com.
+# scripts/entity-backlink-watch.mjs decides; this file only turns its result into something a
+# person sees:
+#   - a self-heal (dead sameAs removed, pending profile promoted) becomes a PR;
+#   - a missing link-back becomes ONE open issue, updated each week while it lasts and closed by
+#     the first run that finds the link again.
+# Rule 0 lives in the script: zero profiles examined fails this job.
+#
+# It also runs on a push to main that touches the entity files. k6 wants the newest run green and
+# under eight days old, so the commit that adds a profile proves the profile the moment it lands
+# instead of waiting up to a week for the cron.
+
+on:
+  schedule:
+    - cron: '0 7 * * 4'  # Thursdays 07:00 CT
+      timezone: America/Chicago
+  push:
+    branches: [main]
+    paths:
+      - 'entity.json'
+      - 'scripts/entity-backlink-watch.mjs'
+      - '.github/workflows/entity-backlink-watch.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+concurrency:
+  group: entity-backlink-watch
+  cancel-in-progress: false
+
+jobs:
+  watch:
+    timeout-minutes: 8
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Fetch every profile, classify, self-heal entity.json
+        env:
+          WATCH_REPORT: ${{ runner.temp }}/entity-watch.json
+        run: node scripts/entity-backlink-watch.mjs | tee -a "$GITHUB_STEP_SUMMARY"
+      - name: The healed entity.json still matches the published node
+        run: node scripts/check-entity-graph.mjs
+      - name: Self-heal as a PR
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if git diff --quiet -- entity.json; then echo "entity.json unchanged"; exit 0; fi
+          branch="entity-watch/$(date -u +%Y-%m-%d)"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git switch -c "$branch"
+          git add entity.json
+          git commit -m "entity-watch: self-heal sameAs ($(date -u +%Y-%m-%d))"
+          git push -f origin "$branch"
+          body=$(jq -r '"Weekly entity backlink watch.\n\n" + (.changes | map("- " + .) | join("\n"))' "$RUNNER_TEMP/entity-watch.json")
+          gh pr view "$branch" >/dev/null 2>&1 || gh pr create --head "$branch" --base main --title "entity-watch: self-heal sameAs" --body "$body"
+      - name: Missing link-back as one named-stop issue
+        if: always()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          [ -f "$RUNNER_TEMP/entity-watch.json" ] || { echo "no report to read"; exit 0; }
+          title="Named stop: entity link-back missing (heygetonmylevel.com)"
+          stops=$(jq -r '.stops | join("\n\n")' "$RUNNER_TEMP/entity-watch.json")
+          open=$(gh issue list --state open --search "in:title \"$title\"" --json number --jq '.[0].number // empty')
+          if [ -n "$stops" ]; then
+            body=$(printf '%s\n\nChecked %s by the weekly entity backlink watch. Closes itself on the first run that finds the link.' "$stops" "$(date -u +%Y-%m-%d)")
+            if [ -n "$open" ]; then gh issue edit "$open" --body "$body"; else gh issue create --title "$title" --body "$body"; fi
+          elif [ -n "$open" ]; then
+            gh issue close "$open" --comment "Link-back found on $(date -u +%Y-%m-%d); cleared by the weekly watch."
+          fi
