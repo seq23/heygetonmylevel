@@ -82,3 +82,22 @@ export const gradeBands: GradeBand[] = [
 
 export const findBand = (slug: string | undefined): GradeBand | undefined =>
   gradeBands.find((gb) => gb.slug === slug);
+
+/**
+ * When the curriculum itself was last read through, in the site's own words — the date the
+ * curriculum pages show in their byline and send as dateModified. A CONTENT date, edited by hand
+ * when the modules or their descriptions change; never `new Date()`, which would move on every
+ * build and teach crawlers the dates mean nothing.
+ */
+export const CURRICULUM_REVIEWED_ON = "2026-11-03";
+
+/** The map's own totals, counted from the bands, so a new module cannot leave the page lying. */
+export const curriculumTotals = () => ({
+  bands: gradeBands.length,
+  modules: gradeBands.reduce((n, gb) => n + gb.modules.length, 0),
+  hours: gradeBands.reduce((n, gb) => n + gb.modules.reduce((h, m) => h + m.hours, 0), 0),
+  // "All Skills" is the final module's shorthand for the others, not a skill of its own.
+  skills: new Set(
+    gradeBands.flatMap((gb) => gb.modules.flatMap((m) => m.skills.split(", "))).filter((s) => s !== "All Skills"),
+  ).size,
+});

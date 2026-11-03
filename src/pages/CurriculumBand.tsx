@@ -5,7 +5,8 @@ import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import Time2ReadCallout from "@/components/Time2ReadCallout";
 import NotFound from "./NotFound";
-import { findBand, gradeBands } from "@/data/curriculum";
+import PageByline from "@/components/PageByline";
+import { CURRICULUM_REVIEWED_ON, findBand, gradeBands } from "@/data/curriculum";
 import { fitDescription } from "@/lib/seoText";
 
 export const bandSeo = (slug: string) => {
@@ -36,6 +37,8 @@ const CurriculumBand = () => {
   if (!gb) return <NotFound />;
   const seo = bandSeo(gb.slug);
   const others = gradeBands.filter((o) => o.slug !== gb.slug);
+  const moduleCount = gb.modules.length;
+  const bandHours = gb.modules.reduce((h, m) => h + m.hours, 0);
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
@@ -43,6 +46,7 @@ const CurriculumBand = () => {
         title={seo.title}
         description={seo.description}
         path={`/curriculum/${gb.slug}`}
+        reviewed={CURRICULUM_REVIEWED_ON}
         breadcrumb={[
           { name: "Curriculum", path: "/curriculum" },
           { name: gb.band, path: `/curriculum/${gb.slug}` },
@@ -58,18 +62,28 @@ const CurriculumBand = () => {
               {isEs ? gb.bandEs : gb.band}: {isEs ? "currículo de lectura" : "reading curriculum"}
             </h1>
             <p className="text-sm text-muted-foreground">
-              {isEs ? "Grados" : "Grades"} {gb.grades.join(", ")} — 4 {isEs ? "módulos" : "modules"} • 40 {isEs ? "horas" : "hours"}
+              {isEs ? "Grados" : "Grades"} {gb.grades.join(", ")} — {moduleCount} {isEs ? "módulos" : "modules"} • {bandHours}{" "}
+              {isEs ? "horas" : "hours"}
             </p>
           </div>
         </div>
       </header>
 
       <main id="main-content" className="container max-w-4xl py-8 px-6 space-y-6 flex-1">
-        <p className="text-muted-foreground">
-          {isEs
-            ? `Esta banda de grado cubre ${seo.gradeLabel} con cuatro módulos de 10 horas. Cada sesión de HeyGetOnMyLevel genera un pasaje a tu nivel, revisa el vocabulario y la comprensión, y te deja practicar la lectura en voz alta.`
-            : `This grade band covers ${seo.gradeLabel} with four 10-hour modules. Every HeyGetOnMyLevel session generates a passage at your level, checks vocabulary and comprehension, and lets you practise reading aloud. No account is needed and nothing personal is stored.`}
-        </p>
+        {/* The band's own answer, under the question a reader actually asks. */}
+        <section className="space-y-3">
+          <h2 className="text-lg font-display font-bold">
+            {isEs
+              ? `¿Qué cubre el currículo de lectura de ${gb.bandEs}?`
+              : `What does the ${gb.band} reading curriculum cover?`}
+          </h2>
+          <p className="text-muted-foreground">
+            {isEs
+              ? `El currículo de ${gb.bandEs} son ${bandHours} horas en ${moduleCount} módulos para ${seo.gradeLabel}: ${gb.modules.map((m) => m.titleEs).join(", ")}. Cada sesión de HeyGetOnMyLevel genera un pasaje a tu nivel, revisa el vocabulario y la comprensión, y te deja practicar la lectura en voz alta. No hace falta cuenta y no se guarda nada personal.`
+              : `The ${gb.band} curriculum is ${bandHours} hours in ${moduleCount} modules for ${seo.gradeLabel}: ${gb.modules.map((m) => m.title).join(", ")}. Every HeyGetOnMyLevel session generates a passage at your level, checks vocabulary and comprehension, and lets you practise reading aloud. No account is needed and nothing personal is stored.`}
+          </p>
+          <PageByline reviewed={CURRICULUM_REVIEWED_ON} />
+        </section>
 
         {gb.modules.map((mod) => (
           <section key={mod.num} className="card-elevated">

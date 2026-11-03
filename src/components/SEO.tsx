@@ -3,6 +3,8 @@ import { Helmet } from "react-helmet-async";
 const SITE_URL = "https://heygetonmylevel.com";
 const SITE_NAME = "HeyGetOnMyLevel";
 const DEFAULT_OG = `${SITE_URL}/og-image.jpg`;
+// entity.json's @id — the one node that says who this site is.
+const ORGANIZATION_ID = `${SITE_URL}/#organization`;
 // The real pixel size of public/og-image.jpg. Declaring the true size is the point of
 // these tags: a crawler that is told 1200x630 and handed a 1536x1024 file lays the card
 // out wrong. The file is well above the 1200px width every network wants.
@@ -25,6 +27,11 @@ interface SEOProps {
   breadcrumb?: Crumb[];
   /** Extra JSON-LD nodes for this page (the homepage's SoftwareApplication, for one). */
   schema?: Record<string, unknown>[];
+  /**
+   * The page's own content date (ISO, e.g. "2026-11-03"), the same date its visible byline shows.
+   * Never a build date: a date that moves on every build teaches crawlers the dates are noise.
+   */
+  reviewed?: string;
 }
 
 /** "early-elementary" -> "Early Elementary". Used when a page gives no explicit trail. */
@@ -40,7 +47,7 @@ const trailFor = (path: string, given?: Crumb[]): Crumb[] => {
   return parts.map((slug, i) => ({ name: labelFromSlug(slug), path: `/${parts.slice(0, i + 1).join("/")}` }));
 };
 
-const SEO = ({ title, description, path, type = "website", image = DEFAULT_OG, breadcrumb, schema = [] }: SEOProps) => {
+const SEO = ({ title, description, path, type = "website", image = DEFAULT_OG, breadcrumb, schema = [], reviewed }: SEOProps) => {
   const url = `${SITE_URL}${path}`;
   const trail = trailFor(path, breadcrumb);
 
@@ -54,6 +61,12 @@ const SEO = ({ title, description, path, type = "website", image = DEFAULT_OG, b
     isPartOf: { "@type": "WebSite", "@id": `${SITE_URL}/#website`, name: SITE_NAME, url: SITE_URL },
     inLanguage: "en",
     primaryImageOfPage: { "@type": "ImageObject", url: image, width: OG_WIDTH, height: OG_HEIGHT },
+    // The publisher IS the author: entity.json publishes no Person node on purpose ("the app speaks
+    // as a product, not a person"), so every page names the organization that wrote it, the same
+    // @id index.html's Organization node carries. PageByline shows the same claim to readers.
+    author: { "@id": ORGANIZATION_ID, "@type": "Organization", name: SITE_NAME, url: SITE_URL },
+    publisher: { "@id": ORGANIZATION_ID, "@type": "Organization", name: SITE_NAME, url: SITE_URL },
+    ...(reviewed ? { dateModified: reviewed } : {}),
   };
 
   // Every page below the root gets a trail; the homepage is the root and has none.
