@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0.0",
+  "repo": "heygetonmylevel",
+  "site": "heygetonmylevel.com",
+  "scope": "The app's own inference, which runs only when a reader asks for a passage. Never read by scripts/llm/free_router.mjs and never an automation fallback.",
+  "paid_lanes": [
+    {
+      "id": "product-inference",
+      "status": "out_of_scope_funded_by_the_lovable_project_credit",
+      "where": "supabase/functions/generate-reading",
+      "purpose": "The reading product itself: passages, comprehension questions, assessments, answer evaluation, the tutor, read-aloud text and vocabulary confirmation.",
+      "provider_endpoints": [
+        "ai.gateway.lovable.dev"
+      ],
+      "provider_model_ids": [
+        "google/gemini-2.5-flash"
+      ],
+      "why_not_free": "A reader waiting on a passage is the product working, not an unattended probe. The owner's zero-paid rule governs what this repo runs on a schedule; this lane runs only on a request from the app and is funded by the Lovable project's own credit.",
+      "gated_by": "supabase/functions/_shared/guard.ts guardPaid(): no anonymous caller and no caller over the limit reaches the gateway. supabase/functions/_shared/guard.test.ts proves both with the paid call mocked, and runs in check.yml.",
+      "guard": "scripts/check-llm-routing.mjs keeps this lane listed here: a provider endpoint called from server code that is in neither this manifest nor the free router fails the build, so a new paid call site cannot appear unrecorded.",
+      "open_question_2026_11_03": "The Lovable AI gateway serves Google Gemini models, and the Gemini API Additional Terms (ai.google.dev/gemini-api/terms) say the API is not for services directed to, or likely to be accessed by, individuals under 18. dailystory removed the Lovable gateway from Time-2-Read's children's text chain on 26 Oct 2026 for exactly that clause. This app is a reading product for ages 5-85+, so the same clause reads across to it. Recorded here, not changed: which provider a children's product may call is the owner's ruling and the risk brain's rule, not an audit pass's call. Raised with her on 3 Nov 2026."
+    }
+  ]
+}

@@ -34,6 +34,8 @@ jobs:
         run: node scripts/check-seo-surfaces.mjs dist
       - name: The published Organization node matches entity.json (+ self-test)
         run: node scripts/check-entity-graph.mjs dist && node scripts/check-entity-graph.mjs --self-test
+      - name: Nothing paid - routing config, the doc, the CLAUDE.md line, no unrecorded endpoint (+ self-test)
+        run: node scripts/check-llm-routing.mjs && node scripts/check-llm-routing.mjs --self-test
       - name: Static learn section builds (hub, sitemap, one action, canonical) + self-test
         run: node scripts/learn-build.mjs --check && node scripts/learn-build.mjs --self-test
       - name: Locked tables stay insert-only (RLS guard, static + live anon probe)
