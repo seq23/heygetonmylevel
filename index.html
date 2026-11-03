@@ -12,7 +12,11 @@
     <meta property="og:description" content="Find your reading level and grow with AI-generated passages tailored to you. Free, private, judgment-free." />
     <meta property="og:url" content="https://heygetonmylevel.com/" />
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="HeyGetOnMyLevel" />
     <meta property="og:image" content="https://heygetonmylevel.com/og-image.jpg" />
+    <meta property="og:image:width" content="1536" />
+    <meta property="og:image:height" content="1024" />
+    <meta property="og:image:alt" content="HeyGetOnMyLevel — AI-powered reading practice, shown beside an open book" />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@HeyGetonMyLevel" />
@@ -22,9 +26,11 @@
       {
         "@context": "https://schema.org",
         "@type": "Organization",
+        "@id": "https://heygetonmylevel.com/#organization",
         "name": "HeyGetOnMyLevel",
         "url": "https://heygetonmylevel.com",
-        "logo": "https://heygetonmylevel.com/icons/icon-192.png",
+        "logo": "https://heygetonmylevel.com/icons/icon-512.png",
+        "sameAs": ["https://github.com/seq23/heygetonmylevel"],
         "email": "privacy@time-2-read.com",
         "description": "AI-powered reading practice for all ages. Free, private, judgment-free literacy."
       }
@@ -33,13 +39,15 @@
       {
         "@context": "https://schema.org",
         "@type": "WebSite",
+        "@id": "https://heygetonmylevel.com/#website",
         "name": "HeyGetOnMyLevel",
-        "url": "https://heygetonmylevel.com"
+        "url": "https://heygetonmylevel.com",
+        "publisher": { "@id": "https://heygetonmylevel.com/#organization" }
       }
     </script>
     
     <link rel="manifest" href="/manifest.json" />
-    <link rel="apple-touch-icon" href="/icons/icon-192.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="theme-color" content="#33998a" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />

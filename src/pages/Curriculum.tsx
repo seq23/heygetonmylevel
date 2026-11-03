@@ -25,7 +25,7 @@ const Curriculum = () => {
     <div className="min-h-screen bg-background flex flex-col">
       <SEO
         title="Reading Curriculum Map — HeyGetOnMyLevel"
-        description="200-hour reading curriculum across 5 grade bands and 20 modules. Phonics to critical thinking, K through college."
+        description="A 200-hour reading curriculum across 5 grade bands and 20 modules, from phonics and decoding to critical thinking. Free, private, judgment-free practice."
         path="/curriculum"
       />
       <header className="sticky top-0 bg-background/80 backdrop-blur-sm border-b border-border z-10">

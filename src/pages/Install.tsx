@@ -87,7 +87,7 @@ const Install = () => {
     <div className="min-h-screen bg-background flex flex-col">
       <SEO
         title="Install HeyGetOnMyLevel — Add to Phone, Tablet or Desktop"
-        description="Step-by-step instructions for installing HeyGetOnMyLevel as a PWA on Android, iPad, desktop, and SCORE 7c tablets."
+        description="Install HeyGetOnMyLevel as an app on Android, iPad, desktop or a SCORE 7c tablet. Step-by-step instructions, no app store and no account needed."
         path="/install"
       />
       <header className="border-b border-border px-6 py-4">

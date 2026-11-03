@@ -16,8 +16,15 @@ const Footer = () => {
             </p>
           </div>
           <nav className="flex items-center gap-4 flex-wrap justify-center" aria-label="Footer navigation">
-            <Link 
-              to="/curriculum" 
+            <Link
+              to="/about"
+              className="hover:text-foreground transition-colors"
+            >
+              {t("footer.about")}
+            </Link>
+            <span className="text-border" aria-hidden="true">•</span>
+            <Link
+              to="/curriculum"
               className="hover:text-foreground transition-colors"
             >
               {t("footer.curriculum")}

@@ -13,6 +13,7 @@ export const PRERENDER_ROUTES = [
   "/",
   "/curriculum",
   ...gradeBands.map((gb) => `/curriculum/${gb.slug}`),
+  "/about",
   "/install",
   "/privacy",
   "/terms",
@@ -27,6 +28,9 @@ export function render(url: string) {
     </HelmetProvider>,
   );
   const h = helmetContext.helmet;
-  const head = h ? [h.title.toString(), h.meta.toString(), h.link.toString()].join("\n    ") : "";
+  // h.script carries the per-route JSON-LD (WebPage, BreadcrumbList, the homepage's
+  // SoftwareApplication). Without it the prerendered HTML — the only HTML a crawler
+  // reads — loses every structured-data block SEO.tsx emits.
+  const head = h ? [h.title.toString(), h.meta.toString(), h.link.toString(), h.script.toString()].join("\n    ") : "";
   return { html, head };
 }
