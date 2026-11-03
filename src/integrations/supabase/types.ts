@@ -168,6 +168,24 @@ export type Database = {
           },
         ]
       }
+      rate_limit_hits: {
+        Row: {
+          bucket: string
+          hits: number
+          window_start: string
+        }
+        Insert: {
+          bucket: string
+          hits?: number
+          window_start: string
+        }
+        Update: {
+          bucket?: string
+          hits?: number
+          window_start?: string
+        }
+        Relationships: []
+      }
       responses: {
         Row: {
           created_at: string
@@ -257,6 +275,10 @@ export type Database = {
         Returns: undefined
       }
       passage_is_open: { Args: { passage_uuid: string }; Returns: boolean }
+      rate_limit_hit: {
+        Args: { p_bucket: string; p_window_seconds: number }
+        Returns: number
+      }
       session_is_open: { Args: { session_uuid: string }; Returns: boolean }
       update_session: {
         Args: {
