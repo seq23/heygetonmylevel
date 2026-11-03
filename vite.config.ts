@@ -11,7 +11,10 @@ const SITE_URL = "https://heygetonmylevel.com";
 const ROUTE_HEAD_TAGS = [
   /<title>[\s\S]*?<\/title>\s*/,
   /<meta name="description"[^>]*>\s*/,
-  /<meta property="og:(title|description|url|type|image)"[^>]*>\s*/g,
+  // og:image:width / og:image:height need their own alternative: the quote after the
+  // group means "og:image" alone does not match them, and leaving them in the template
+  // would duplicate the pair SEO.tsx emits on every prerendered route.
+  /<meta property="og:(title|description|url|type|image|site_name|image:width|image:height|image:alt)"[^>]*>\s*/g,
   /<meta name="twitter:(card|title|description|image)"[^>]*>\s*/g,
 ];
 
@@ -92,8 +95,15 @@ function prerender(): Plugin {
         path.join(outDir, "sitemap.xml"),
         `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`,
       );
+      // /site.webmanifest is the name crawlers and the Search Readiness check look for;
+      // /manifest.json is the name index.html and the service worker have always used and
+      // installed PWAs still request. Emitting one from the other keeps a single source of
+      // truth in public/manifest.json instead of two files that drift apart.
+      const manifest = fs.readFileSync(path.join(outDir, "manifest.json"), "utf8");
+      fs.writeFileSync(path.join(outDir, "site.webmanifest"), manifest);
+
       fs.rmSync(ssrOut, { recursive: true, force: true });
-      console.log(`prerender: ${routes.length} routes written, sitemap updated`);
+      console.log(`prerender: ${routes.length} routes written, sitemap and site.webmanifest updated`);
     },
   };
 }

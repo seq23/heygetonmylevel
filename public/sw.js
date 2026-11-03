@@ -1,4 +1,4 @@
-const CACHE_NAME = 'heygetonmylevel-v1';
+const CACHE_NAME = 'heygetonmylevel-v2';
 const PRECACHE_URLS = [
   '/',
   '/manifest.json',

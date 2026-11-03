@@ -1,0 +1,31 @@
+{
+  "schema_version": "1.0",
+  "property": "https://heygetonmylevel.com/",
+  "keep": 120,
+  "windows": [
+    {
+      "start_date": "2026-10-04",
+      "end_date": "2026-10-31",
+      "days": 28,
+      "collected_at": "2026-11-03T13:30:31.990Z",
+      "totals": {
+        "clicks": 0,
+        "impressions": 12,
+        "ctr": 0,
+        "position": 28.42
+      },
+      "queries": {
+        "middle school reading curriculum": {
+          "impressions": 1,
+          "clicks": 0,
+          "position": 76
+        },
+        "upper elementary reading": {
+          "impressions": 1,
+          "clicks": 0,
+          "position": 38
+        }
+      }
+    }
+  ]
+}

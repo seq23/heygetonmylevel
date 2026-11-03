@@ -50,6 +50,30 @@ const Index = () => {
         title="HeyGetOnMyLevel — AI-Powered Reading Practice for All Ages"
         description="Find your reading level and grow with AI-generated passages, vocabulary checks, and read-aloud practice. Free, private, judgment-free literacy for ages 5–85+."
         path="/"
+        schema={[
+          {
+            "@context": "https://schema.org",
+            "@type": "SoftwareApplication",
+            "@id": "https://heygetonmylevel.com/#app",
+            name: "HeyGetOnMyLevel",
+            url: "https://heygetonmylevel.com/",
+            applicationCategory: "EducationalApplication",
+            // A browser PWA: it installs on phone, tablet and desktop from the page itself.
+            operatingSystem: "Any (web browser); installable on Android, iOS, Windows and macOS",
+            browserRequirements: "Requires JavaScript and a modern browser",
+            inLanguage: ["en", "es"],
+            isAccessibleForFree: true,
+            publisher: { "@id": "https://heygetonmylevel.com/#organization" },
+            // The app is free to use and needs no account. The price is genuinely 0.
+            offers: {
+              "@type": "Offer",
+              price: "0",
+              priceCurrency: "USD",
+              availability: "https://schema.org/InStock",
+              url: "https://heygetonmylevel.com/",
+            },
+          },
+        ]}
       />
       {/* Language Toggle */}
       <div className="flex justify-end px-4 pt-3">

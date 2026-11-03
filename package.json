@@ -8,7 +8,10 @@
     "build": "vite build",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "gsc:truth": "node scripts/search_intelligence/collect_gsc_truth.mjs",
+    "gsc:coverage": "node scripts/search_intelligence/collect_index_coverage.mjs",
+    "gsc:all": "npm run gsc:truth && npm run gsc:coverage"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",

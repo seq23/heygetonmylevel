@@ -19,6 +19,7 @@ import Phonics from "./pages/Phonics";
 import Curriculum from "./pages/Curriculum";
 import CurriculumBand from "./pages/CurriculumBand";
 import Install from "./pages/Install";
+import About from "./pages/About";
 import Admin from "./pages/Admin";
 import NotFound from "./pages/NotFound";
 import FeedbackBubble from "./components/FeedbackBubble";
@@ -47,6 +48,7 @@ const App = ({ Router, queryClient = new QueryClient() }: { Router: ComponentTyp
               <Route path="/curriculum" element={<Curriculum />} />
               <Route path="/curriculum/:band" element={<CurriculumBand />} />
               <Route path="/install" element={<Install />} />
+              <Route path="/about" element={<About />} />
               <Route path="/summary" element={<Summary />} />
               <Route path="/privacy" element={<Privacy />} />
               <Route path="/terms" element={<Terms />} />

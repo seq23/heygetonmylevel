@@ -10,7 +10,7 @@ const Privacy = () => {
     <div className="min-h-screen bg-background flex flex-col">
       <SEO
         title="Privacy Policy — HeyGetOnMyLevel"
-        description="HeyGetOnMyLevel collects no personal information. Sessions are ephemeral and zero-PII. Read our full privacy commitment."
+        description="HeyGetOnMyLevel collects no personal information and keeps no account. Sessions are ephemeral and zero-PII. Read the full privacy commitment."
         path="/privacy"
       />
       {/* Header */}

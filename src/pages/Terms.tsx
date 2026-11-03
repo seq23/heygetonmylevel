@@ -10,7 +10,7 @@ const Terms = () => {
     <div className="min-h-screen bg-background flex flex-col">
       <SEO
         title="Terms of Service — HeyGetOnMyLevel"
-        description="Personal-use license terms for HeyGetOnMyLevel. Commercial and institutional licensing available on request."
+        description="The personal-use licence terms for HeyGetOnMyLevel, the free AI reading practice app. Commercial and institutional licensing is available on request."
         path="/terms"
       />
       {/* Header */}

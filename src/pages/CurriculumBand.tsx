@@ -6,13 +6,24 @@ import SEO from "@/components/SEO";
 import Time2ReadCallout from "@/components/Time2ReadCallout";
 import NotFound from "./NotFound";
 import { findBand, gradeBands } from "@/data/curriculum";
+import { fitDescription } from "@/lib/seoText";
 
 export const bandSeo = (slug: string) => {
   const gb = findBand(slug)!;
-  const gradeLabel = gb.grades.length === 1 && gb.grades[0] === 13 ? "college and adult readers" : `grades ${gb.grades.join(", ")}`;
+  const isAdult = gb.grades.length === 1 && gb.grades[0] === 13;
+  const gradeLabel = isAdult ? "college and adult readers" : `grades ${gb.grades.join(", ")}`;
+  // The search result line: the band and who it is for first, no brand suffix. With one
+  // the longest of these would sit at exactly 65 characters, the very edge of the band.
+  const range = `Grades ${gb.grades[0]}–${gb.grades[gb.grades.length - 1]}`;
+  const title = isAdult ? "College and Adult Reading Curriculum" : `${gb.band} Reading Curriculum — ${range}`;
+  const who = isAdult ? "college and adult readers" : `grades ${gb.grades[0]}–${gb.grades[gb.grades.length - 1]}`;
   return {
-    title: `${gb.band} Reading Curriculum (${gradeLabel}) — HeyGetOnMyLevel`,
-    description: `Four 10-hour reading modules for ${gradeLabel}: ${gb.modules.map((m) => m.title).join(", ")}. Free, private, judgment-free practice.`,
+    title,
+    description: fitDescription(
+      `Four 10-hour reading modules for ${who}: `,
+      gb.modules.map((m) => m.title),
+      "Free, private practice at your own level — no account needed.",
+    ),
     gradeLabel,
   };
 };
@@ -28,7 +39,15 @@ const CurriculumBand = () => {
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
-      <SEO title={seo.title} description={seo.description} path={`/curriculum/${gb.slug}`} />
+      <SEO
+        title={seo.title}
+        description={seo.description}
+        path={`/curriculum/${gb.slug}`}
+        breadcrumb={[
+          { name: "Curriculum", path: "/curriculum" },
+          { name: gb.band, path: `/curriculum/${gb.slug}` },
+        ]}
+      />
       <header className="border-b border-border">
         <div className="container max-w-4xl py-4 flex items-center gap-4">
           <Link to="/curriculum" className="p-2 rounded-xl hover:bg-muted transition-colors" aria-label="Back to the curriculum map">
