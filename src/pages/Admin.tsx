@@ -30,13 +30,16 @@ const Admin = () => {
   const [endDate, setEndDate] = useState<Date>(new Date());
   const [loading, setLoading] = useState(false);
   const [reportData, setReportData] = useState<ReportData | null>(null);
+  const [adminKey, setAdminKey] = useState<string>(() => sessionStorage.getItem("hgoml-admin-key") || "");
   const { toast } = useToast();
 
   const handleRequest = async (sendEmail: boolean) => {
     setLoading(true);
     setReportData(null);
     try {
+      sessionStorage.setItem("hgoml-admin-key", adminKey);
       const { data, error } = await supabase.functions.invoke("cost-report", {
+        headers: { "x-admin-key": adminKey },
         body: {
           startDate: format(startDate, "yyyy-MM-dd"),
           endDate: format(endDate, "yyyy-MM-dd"),
@@ -120,6 +123,18 @@ const Admin = () => {
                 </PopoverContent>
               </Popover>
             </div>
+          </div>
+
+          <div className="space-y-1">
+            <label htmlFor="admin-key" className="text-sm font-medium text-foreground">Operator key</label>
+            <input
+              id="admin-key"
+              type="password"
+              autoComplete="off"
+              value={adminKey}
+              onChange={(e) => setAdminKey(e.target.value)}
+              className="flex h-10 w-[300px] rounded-md border border-input bg-background px-3 py-2 text-sm"
+            />
           </div>
 
           <div className="flex gap-3 pt-2">
