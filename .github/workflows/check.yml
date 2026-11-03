@@ -12,16 +12,18 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: npm
-      - run: npm ci --no-audit --no-fund
+      # Install exactly as Lovable does: bun from bun.lock, the only lockfile (Lovable writes it).
+      # A package.json change without its bun.lock fails here, before Lovable sees it.
+      - uses: oven-sh/setup-bun@v2
+      - run: bun install --frozen-lockfile
       - uses: denoland/setup-deno@v2
         with:
           deno-version: v2.x
       - name: Paid edge functions refuse anonymous and over-limit callers
         run: deno test --no-lock supabase/functions/_shared/
-      - run: npx tsc -p tsconfig.app.json --noEmit
+      - run: bunx tsc -p tsconfig.app.json --noEmit
       # The build prerenders every public route and fails if any renders empty.
-      - run: npm run build
+      - run: bun run build
       - name: Prerendered pages and sitemap exist
         run: |
           n=$(grep -c "<loc>" dist/sitemap.xml); echo "sitemap urls: $n"; [ "$n" -ge 10 ]
