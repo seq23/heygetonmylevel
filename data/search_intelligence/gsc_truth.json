@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0",
+  "truth_source": "google_search_console_search_analytics",
+  "property": "https://heygetonmylevel.com/",
+  "collected_at": "2026-11-03T13:30:31.990Z",
+  "state": "OK",
+  "named_stop": null,
+  "window": {
+    "start_date": "2026-10-04",
+    "end_date": "2026-10-31",
+    "days": 28
+  },
+  "totals": {
+    "clicks": 0,
+    "impressions": 12,
+    "ctr": 0,
+    "position": 28.42
+  },
+  "row_count": 2,
+  "query_count": 2,
+  "page_count": 2,
+  "attributed_impressions": 2,
+  "truth_boundary": "Rows are query x page for the window. Search Console withholds anonymised queries from query rows, so attributed_impressions is below totals.impressions; the property total is the headline number.",
+  "rows": [
+    {
+      "query": "middle school reading curriculum",
+      "page": "https://heygetonmylevel.com/curriculum/middle-school",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 76
+    },
+    {
+      "query": "upper elementary reading",
+      "page": "https://heygetonmylevel.com/curriculum/upper-elementary",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 38
+    }
+  ]
+}
