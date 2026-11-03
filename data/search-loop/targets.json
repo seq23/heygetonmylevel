@@ -1809,6 +1809,357 @@
   ],
   "strengthen": [
     {
+      "query": "what grade do students learn to read",
+      "page": "/questions/what-grade-do-you-learn-to-read/",
+      "url": "https://learn.heygetonmylevel.com/questions/what-grade-do-you-learn-to-read/",
+      "score": 25,
+      "from": "distinct-gate",
+      "matched_by": "high token overlap (0.75 >= 0.6)",
+      "at": "2026-11-03"
+    },
+    {
+      "query": "why is third grade reading level important",
+      "page": "/questions/reading-level-by-grade-fountas-and-pinnell/",
+      "url": "https://learn.heygetonmylevel.com/questions/reading-level-by-grade-fountas-and-pinnell/",
+      "score": 25,
+      "from": "distinct-gate",
+      "matched_by": "high token overlap (0.60 >= 0.6)",
+      "at": "2026-11-03"
+    },
+    {
+      "query": "level m reading grade level books",
+      "page": "/questions/reading-level-by-grade-fountas-and-pinnell/",
+      "url": "https://learn.heygetonmylevel.com/questions/reading-level-by-grade-fountas-and-pinnell/",
+      "score": 25,
+      "from": "distinct-gate",
+      "matched_by": "high token overlap (0.75 >= 0.6)",
+      "at": "2026-11-03"
+    },
+    {
+      "query": "reading level by grade 1",
+      "page": "/questions/reading-level-by-grade-fountas-and-pinnell/",
+      "url": "https://learn.heygetonmylevel.com/questions/reading-level-by-grade-fountas-and-pinnell/",
+      "score": 25,
+      "from": "distinct-gate",
+      "matched_by": "same wording",
+      "at": "2026-11-03"
+    },
+    {
+      "query": "reading level by grade az",
+      "page": "/questions/reading-level-by-grade-fountas-and-pinnell/",
+      "url": "https://learn.heygetonmylevel.com/questions/reading-level-by-grade-fountas-and-pinnell/",
+      "score": 25,
+      "from": "distinct-gate",
+      "matched_by": "high token overlap (0.75 >= 0.6)",
+      "at": "2026-11-03"
+    },
+    {
+      "query": "how to test my childs reading level",
+      "page": "/questions/is-my-child-reading-at-grade-level/",
+      "url": "https://learn.heygetonmylevel.com/questions/is-my-child-reading-at-grade-level/",
+      "score": 25,
+      "from": "distinct-gate",
+      "matched_by": "high token overlap (0.60 >= 0.6)",
+      "at": "2026-11-03"
+    },
+    {
+      "query": "what grade do kids learn to read",
+      "page": "/questions/what-grade-do-kids-start-reading/",
+      "url": "https://learn.heygetonmylevel.com/questions/what-grade-do-kids-start-reading/",
+      "score": 25,
+      "from": "distinct-gate",
+      "matched_by": "high token overlap (0.75 >= 0.6)",
+      "at": "2026-11-03"
+    },
+    {
+      "query": "how to determine a childs reading level",
+      "page": "/questions/is-my-child-reading-at-grade-level/",
+      "url": "https://learn.heygetonmylevel.com/questions/is-my-child-reading-at-grade-level/",
+      "score": 25,
+      "from": "distinct-gate",
+      "matched_by": "high token overlap (0.60 >= 0.6)",
+      "at": "2026-11-03"
+    },
+    {
+      "query": "how to help a child reading below grade level",
+      "page": "/questions/is-my-child-reading-at-grade-level/",
+      "url": "https://learn.heygetonmylevel.com/questions/is-my-child-reading-at-grade-level/",
+      "score": 25,
+      "from": "distinct-gate",
+      "matched_by": "high token overlap (0.67 >= 0.6)",
+      "at": "2026-11-03"
+    },
+    {
+      "query": "my child is not reading at grade level",
+      "page": "/questions/is-my-child-reading-at-grade-level/",
+      "url": "https://learn.heygetonmylevel.com/questions/is-my-child-reading-at-grade-level/",
+      "score": 25,
+      "from": "distinct-gate",
+      "matched_by": "high token overlap (0.80 >= 0.6)",
+      "at": "2026-11-03"
+    },
+    {
+      "query": "reading comprehension practice",
+      "page": "/questions/reading-comprehension-practice-online/",
+      "url": "https://learn.heygetonmylevel.com/questions/reading-comprehension-practice-online/",
+      "score": 30,
+      "from": "distinct-gate",
+      "matched_by": "high token overlap (0.75 >= 0.6)",
+      "at": "2026-11-03"
+    },
+    {
+      "query": "how to increase reading level for kids",
+      "page": "/questions/how-to-increase-reading-level/",
+      "url": "https://learn.heygetonmylevel.com/questions/how-to-increase-reading-level/",
+      "score": 30,
+      "from": "distinct-gate",
+      "matched_by": "high token overlap (0.75 >= 0.6)",
+      "at": "2026-11-03"
+    },
+    {
+      "query": "what is lexile level for 2nd grade",
+      "page": "/questions/lexile-level-by-grade/",
+      "url": "https://learn.heygetonmylevel.com/questions/lexile-level-by-grade/",
+      "score": 30,
+      "from": "distinct-gate",
+      "matched_by": "high token overlap (0.75 >= 0.6)",
+      "at": "2026-11-03"
+    },
+    {
+      "query": "what is lexile level for 1st grade",
+      "page": "/questions/lexile-level-by-grade/",
+      "url": "https://learn.heygetonmylevel.com/questions/lexile-level-by-grade/",
+      "score": 30,
+      "from": "distinct-gate",
+      "matched_by": "high token overlap (0.75 >= 0.6)",
+      "at": "2026-11-03"
+    },
+    {
+      "query": "what is lexile level for 8th grade",
+      "page": "/questions/lexile-level-by-grade/",
+      "url": "https://learn.heygetonmylevel.com/questions/lexile-level-by-grade/",
+      "score": 30,
+      "from": "distinct-gate",
+      "matched_by": "high token overlap (0.75 >= 0.6)",
+      "at": "2026-11-03"
+    },
+    {
+      "query": "what is lexile level for 6th grade",
+      "page": "/questions/lexile-level-by-grade/",
+      "url": "https://learn.heygetonmylevel.com/questions/lexile-level-by-grade/",
+      "score": 30,
+      "from": "distinct-gate",
+      "matched_by": "high token overlap (0.75 >= 0.6)",
+      "at": "2026-11-03"
+    },
+    {
+      "query": "what is lexile level for 7th grade",
+      "page": "/questions/lexile-level-by-grade/",
+      "url": "https://learn.heygetonmylevel.com/questions/lexile-level-by-grade/",
+      "score": 30,
+      "from": "distinct-gate",
+      "matched_by": "high token overlap (0.75 >= 0.6)",
+      "at": "2026-11-03"
+    },
+    {
+      "query": "what is lexile level for 5th grade",
+      "page": "/questions/lexile-level-by-grade/",
+      "url": "https://learn.heygetonmylevel.com/questions/lexile-level-by-grade/",
+      "score": 30,
+      "from": "distinct-gate",
+      "matched_by": "high token overlap (0.75 >= 0.6)",
+      "at": "2026-11-03"
+    },
+    {
+      "query": "what is lexile level for 3rd grade",
+      "page": "/questions/lexile-level-by-grade/",
+      "url": "https://learn.heygetonmylevel.com/questions/lexile-level-by-grade/",
+      "score": 30,
+      "from": "distinct-gate",
+      "matched_by": "high token overlap (0.75 >= 0.6)",
+      "at": "2026-11-03"
+    },
+    {
+      "query": "what is lexile level for 4th grade",
+      "page": "/questions/lexile-level-by-grade/",
+      "url": "https://learn.heygetonmylevel.com/questions/lexile-level-by-grade/",
+      "score": 30,
+      "from": "distinct-gate",
+      "matched_by": "high token overlap (0.75 >= 0.6)",
+      "at": "2026-11-03"
+    },
+    {
+      "query": "what oxford reading level should a 7 year old be at",
+      "page": "/questions/what-reading-level-should-a-7-year-old-be-at/",
+      "url": "https://learn.heygetonmylevel.com/questions/what-reading-level-should-a-7-year-old-be-at/",
+      "score": 30,
+      "from": "distinct-gate",
+      "matched_by": "high token overlap (0.80 >= 0.6)",
+      "at": "2026-11-03"
+    },
+    {
+      "query": "what reading level should a 7 year old be at uk",
+      "page": "/questions/what-reading-level-should-a-7-year-old-be-at/",
+      "url": "https://learn.heygetonmylevel.com/questions/what-reading-level-should-a-7-year-old-be-at/",
+      "score": 30,
+      "from": "distinct-gate",
+      "matched_by": "high token overlap (0.80 >= 0.6)",
+      "at": "2026-11-03"
+    },
+    {
+      "query": "how do i know my childs reading level",
+      "page": "/questions/is-my-child-reading-at-grade-level/",
+      "url": "https://learn.heygetonmylevel.com/questions/is-my-child-reading-at-grade-level/",
+      "score": 30,
+      "from": "distinct-gate",
+      "matched_by": "high token overlap (0.60 >= 0.6)",
+      "at": "2026-11-03"
+    },
+    {
+      "query": "how to know my kids reading level",
+      "page": "/questions/is-my-child-reading-at-grade-level/",
+      "url": "https://learn.heygetonmylevel.com/questions/is-my-child-reading-at-grade-level/",
+      "score": 30,
+      "from": "distinct-gate",
+      "matched_by": "high token overlap (0.60 >= 0.6)",
+      "at": "2026-11-03"
+    },
+    {
+      "query": "how to get my childs reading level up",
+      "page": "/questions/is-my-child-reading-at-grade-level/",
+      "url": "https://learn.heygetonmylevel.com/questions/is-my-child-reading-at-grade-level/",
+      "score": 30,
+      "from": "distinct-gate",
+      "matched_by": "high token overlap (0.60 >= 0.6)",
+      "at": "2026-11-03"
+    },
+    {
+      "query": "how to find my childs reading level",
+      "page": "/questions/is-my-child-reading-at-grade-level/",
+      "url": "https://learn.heygetonmylevel.com/questions/is-my-child-reading-at-grade-level/",
+      "score": 30,
+      "from": "distinct-gate",
+      "matched_by": "high token overlap (0.60 >= 0.6)",
+      "at": "2026-11-03"
+    },
+    {
+      "query": "what grade is reading level l",
+      "page": "/questions/reading-level-by-grade-fountas-and-pinnell/",
+      "url": "https://learn.heygetonmylevel.com/questions/reading-level-by-grade-fountas-and-pinnell/",
+      "score": 30,
+      "from": "distinct-gate",
+      "matched_by": "same wording",
+      "at": "2026-11-03"
+    },
+    {
+      "query": "what grade is reading level j",
+      "page": "/questions/reading-level-by-grade-fountas-and-pinnell/",
+      "url": "https://learn.heygetonmylevel.com/questions/reading-level-by-grade-fountas-and-pinnell/",
+      "score": 30,
+      "from": "distinct-gate",
+      "matched_by": "same wording",
+      "at": "2026-11-03"
+    },
+    {
+      "query": "what is reading level for 7th grade",
+      "page": "/questions/reading-level-by-grade-fountas-and-pinnell/",
+      "url": "https://learn.heygetonmylevel.com/questions/reading-level-by-grade-fountas-and-pinnell/",
+      "score": 30,
+      "from": "distinct-gate",
+      "matched_by": "high token overlap (0.75 >= 0.6)",
+      "at": "2026-11-03"
+    },
+    {
+      "query": "what is reading level for 4th grade",
+      "page": "/questions/reading-level-by-grade-fountas-and-pinnell/",
+      "url": "https://learn.heygetonmylevel.com/questions/reading-level-by-grade-fountas-and-pinnell/",
+      "score": 30,
+      "from": "distinct-gate",
+      "matched_by": "high token overlap (0.75 >= 0.6)",
+      "at": "2026-11-03"
+    },
+    {
+      "query": "what is reading level for 3rd grade",
+      "page": "/questions/reading-level-by-grade-fountas-and-pinnell/",
+      "url": "https://learn.heygetonmylevel.com/questions/reading-level-by-grade-fountas-and-pinnell/",
+      "score": 30,
+      "from": "distinct-gate",
+      "matched_by": "high token overlap (0.75 >= 0.6)",
+      "at": "2026-11-03"
+    },
+    {
+      "query": "what is reading level for 1st grade",
+      "page": "/questions/reading-level-by-grade-fountas-and-pinnell/",
+      "url": "https://learn.heygetonmylevel.com/questions/reading-level-by-grade-fountas-and-pinnell/",
+      "score": 30,
+      "from": "distinct-gate",
+      "matched_by": "high token overlap (0.75 >= 0.6)",
+      "at": "2026-11-03"
+    },
+    {
+      "query": "what is reading level for grade 2",
+      "page": "/questions/reading-level-by-grade-fountas-and-pinnell/",
+      "url": "https://learn.heygetonmylevel.com/questions/reading-level-by-grade-fountas-and-pinnell/",
+      "score": 30,
+      "from": "distinct-gate",
+      "matched_by": "same wording",
+      "at": "2026-11-03"
+    },
+    {
+      "query": "how to determine reading level by grade",
+      "page": "/questions/reading-level-by-grade-fountas-and-pinnell/",
+      "url": "https://learn.heygetonmylevel.com/questions/reading-level-by-grade-fountas-and-pinnell/",
+      "score": 30,
+      "from": "distinct-gate",
+      "matched_by": "high token overlap (0.75 >= 0.6)",
+      "at": "2026-11-03"
+    },
+    {
+      "query": "how to tell what grade level your child is reading at",
+      "page": "/questions/is-my-child-reading-at-grade-level/",
+      "url": "https://learn.heygetonmylevel.com/questions/is-my-child-reading-at-grade-level/",
+      "score": 30,
+      "from": "distinct-gate",
+      "matched_by": "high token overlap (0.80 >= 0.6)",
+      "at": "2026-11-03"
+    },
+    {
+      "query": "how can i test my childs grade level",
+      "page": "/questions/is-my-child-reading-at-grade-level/",
+      "url": "https://learn.heygetonmylevel.com/questions/is-my-child-reading-at-grade-level/",
+      "score": 30,
+      "from": "distinct-gate",
+      "matched_by": "high token overlap (0.60 >= 0.6)",
+      "at": "2026-11-03"
+    },
+    {
+      "query": "how to know if my child is reading at grade level",
+      "page": "/questions/is-my-child-reading-at-grade-level/",
+      "url": "https://learn.heygetonmylevel.com/questions/is-my-child-reading-at-grade-level/",
+      "score": 30,
+      "from": "distinct-gate",
+      "matched_by": "high token overlap (0.67 >= 0.6)",
+      "at": "2026-11-03"
+    },
+    {
+      "query": "english reading practice for adults pdf",
+      "page": "/questions/reading-practice-for-adults/",
+      "url": "https://learn.heygetonmylevel.com/questions/reading-practice-for-adults/",
+      "score": 40,
+      "from": "distinct-gate",
+      "matched_by": "high token overlap (0.60 >= 0.6)",
+      "at": "2026-11-03"
+    },
+    {
+      "query": "english reading practice for adults",
+      "page": "/questions/reading-practice-for-adults/",
+      "url": "https://learn.heygetonmylevel.com/questions/reading-practice-for-adults/",
+      "score": 40,
+      "from": "distinct-gate",
+      "matched_by": "high token overlap (0.75 >= 0.6)",
+      "at": "2026-11-03"
+    },
+    {
       "query": "how do you read a level",
       "variants": [
         "how to improve reading level",

@@ -1,0 +1,23 @@
+{
+  "schema": "search-loop-cap-v1",
+  "max_live_pages": 20,
+  "config_value": null,
+  "reason": "held at 20: no Search Console numbers to judge results (Search Console has no rows for 2026-09-06..2026-10-03, so there is nothing to compare the last 28 days with); the cap never grows without data",
+  "last_eval_week": "2026-W45",
+  "history": [
+    {
+      "at": "2026-11-03T12:23:31.183Z",
+      "from": null,
+      "to": 20,
+      "reason": "started at 20: the site's 6 distinct live engine page(s), raised to the starting floor of 20"
+    },
+    {
+      "at": "2026-11-03T11:48:30.911Z",
+      "week": "2026-W45",
+      "from": 20,
+      "to": 20,
+      "reason": "held at 20: no Search Console numbers to judge results (Search Console has no rows for 2026-09-06..2026-10-03, so there is nothing to compare the last 28 days with); the cap never grows without data"
+    }
+  ],
+  "held": {}
+}

@@ -25,7 +25,19 @@
       ],
       "linked_from": [],
       "checks": {},
-      "indexnow_at": "2026-11-02"
+      "indexnow_at": "2026-11-02",
+      "extra_queries": [
+        "how can i test my childs grade level",
+        "how to tell what grade level your child is reading at",
+        "how to find my childs reading level",
+        "how to get my childs reading level up",
+        "how to know my kids reading level",
+        "how do i know my childs reading level",
+        "my child is not reading at grade level",
+        "how to help a child reading below grade level",
+        "how to determine a childs reading level",
+        "how to test my childs reading level"
+      ]
     },
     {
       "slug": "what-reading-level-should-a-7-year-old-be-at",
@@ -50,7 +62,11 @@
       ],
       "linked_from": [],
       "checks": {},
-      "indexnow_at": "2026-11-02"
+      "indexnow_at": "2026-11-02",
+      "extra_queries": [
+        "what reading level should a 7 year old be at uk",
+        "what oxford reading level should a 7 year old be at"
+      ]
     },
     {
       "slug": "reading-level-by-grade-chart",
@@ -101,7 +117,19 @@
       ],
       "linked_from": [],
       "checks": {},
-      "indexnow_at": "2026-11-02"
+      "indexnow_at": "2026-11-02",
+      "extra_queries": [
+        "what is reading level for 1st grade",
+        "what is reading level for 3rd grade",
+        "what is reading level for 4th grade",
+        "what is reading level for 7th grade",
+        "what grade is reading level j",
+        "what grade is reading level l",
+        "reading level by grade az",
+        "reading level by grade 1",
+        "level m reading grade level books",
+        "why is third grade reading level important"
+      ]
     },
     {
       "slug": "reading-levels-by-grade-canada",
@@ -151,7 +179,17 @@
       ],
       "linked_from": [],
       "checks": {},
-      "indexnow_at": "2026-11-02"
+      "indexnow_at": "2026-11-02",
+      "extra_queries": [
+        "what is lexile level for 4th grade",
+        "what is lexile level for 3rd grade",
+        "what is lexile level for 5th grade",
+        "what is lexile level for 7th grade",
+        "what is lexile level for 6th grade",
+        "what is lexile level for 8th grade",
+        "what is lexile level for 1st grade",
+        "what is lexile level for 2nd grade"
+      ]
     },
     {
       "slug": "lexile-level-by-grade-chart",
@@ -227,7 +265,10 @@
       ],
       "linked_from": [],
       "checks": {},
-      "indexnow_at": "2026-11-02"
+      "indexnow_at": "2026-11-02",
+      "extra_queries": [
+        "reading comprehension practice"
+      ]
     },
     {
       "slug": "reading-practice-for-adults",
@@ -252,7 +293,301 @@
       ],
       "linked_from": [],
       "checks": {},
-      "indexnow_at": "2026-11-02"
+      "indexnow_at": "2026-11-02",
+      "extra_queries": [
+        "english reading practice for adults",
+        "english reading practice for adults pdf"
+      ]
+    },
+    {
+      "slug": "what-is-the-highest-reading-age",
+      "query": "what is the highest reading age",
+      "score": 30,
+      "signals": {
+        "words": 6,
+        "question": true,
+        "google_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "rel": "questions/what-is-the-highest-reading-age/index.html",
+      "route": "/questions/what-is-the-highest-reading-age/",
+      "url": "https://learn.heygetonmylevel.com/questions/what-is-the-highest-reading-age/",
+      "published_at": "2026-11-03",
+      "status": "live",
+      "hash": "16386dd60cbe9bdedc6cd1215a8e040be8e2a4bccd66ef54275b938fe1b4c639",
+      "model": "free-route",
+      "facts": [
+        "https://en.wikipedia.org/wiki/Reading_level"
+      ],
+      "linked_from": [],
+      "checks": {},
+      "gate_notes": [
+        "b5 FAQ answer is 38 words (aim 40-60): \"What should I do if a reading score seems too low?\"",
+        "b5 FAQ answer is 34 words (aim 40-60): \"Can adults improve their reading level over time?\"",
+        "b5 FAQ answer is 32 words (aim 40-60): \"Are audiobooks helpful for reading development?\""
+      ]
+    },
+    {
+      "slug": "how-to-increase-reading-level",
+      "query": "how to increase reading level",
+      "score": 30,
+      "signals": {
+        "words": 5,
+        "question": true,
+        "google_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "rel": "questions/how-to-increase-reading-level/index.html",
+      "route": "/questions/how-to-increase-reading-level/",
+      "url": "https://learn.heygetonmylevel.com/questions/how-to-increase-reading-level/",
+      "published_at": "2026-11-03",
+      "status": "live",
+      "hash": "de25c93d84b04e6a399e5a3c3243b175e77d8b8a2b16111459a3047cf82061fc",
+      "model": "free-route",
+      "facts": [
+        "https://www.ncbi.nlm.nih.gov/books/NBK216749/"
+      ],
+      "linked_from": [
+        {
+          "rel": "questions/is-my-child-reading-at-grade-level/index.html",
+          "route": "/questions/is-my-child-reading-at-grade-level/",
+          "before_hash": "9bd58f9db891934d2a40ba185e10f34e4c7222cfe80f8d0f5c29a8219dbf9442",
+          "after_hash": "93a7d8e7d306a7019a69544798b2a1f2e2fe50b811c2c77f66925f9d729c5626"
+        },
+        {
+          "rel": "questions/reading-level-by-grade-chart/index.html",
+          "route": "/questions/reading-level-by-grade-chart/",
+          "before_hash": "3ec33daa8f56096b5a8f8d0ca5565dbf9d97c585b501afd19ecff8176d35d644",
+          "after_hash": "b0c79520194283f87556bf4a7eeda4e3ec59eb89385aa8141b1618bb812f8c8f"
+        }
+      ],
+      "checks": {},
+      "gate_notes": [
+        "b4 direct answer under the H1 is 38 words (aim 40-60)",
+        "b5 FAQ answer is 37 words (aim 40-60): \"Should adults read aloud to older children and lea\"",
+        "b5 FAQ answer is 39 words (aim 40-60): \"What if a reader dislikes the books assigned at sc\""
+      ],
+      "extra_queries": [
+        "how to increase reading level for kids"
+      ]
+    },
+    {
+      "slug": "how-to-improve-reading-comprehension-as-an-adult",
+      "query": "how to improve reading comprehension as an adult",
+      "score": 30,
+      "signals": {
+        "words": 8,
+        "question": true,
+        "google_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "rel": "questions/how-to-improve-reading-comprehension-as-an-adult/index.html",
+      "route": "/questions/how-to-improve-reading-comprehension-as-an-adult/",
+      "url": "https://learn.heygetonmylevel.com/questions/how-to-improve-reading-comprehension-as-an-adult/",
+      "published_at": "2026-11-03",
+      "status": "live",
+      "hash": "c8565adf3b20d80bcad0447c85e8742f83e8627ff88ca8bc1dd994c074e0ecc0",
+      "model": "free-route",
+      "facts": [
+        "https://en.wikipedia.org/wiki/Reading_comprehension"
+      ],
+      "linked_from": [
+        {
+          "rel": "questions/reading-comprehension-practice-online/index.html",
+          "route": "/questions/reading-comprehension-practice-online/",
+          "before_hash": "464fd555259d182cc063fec2bfbee771b62025adfb33dd58278f31de9b2f2268",
+          "after_hash": "e6c3ee7c96d28bb32c988402e466224bee0737b7e8d5bab466169def108e5c42"
+        }
+      ],
+      "checks": {},
+      "gate_notes": [
+        "b5 FAQ answer is 36 words (aim 40-60): \"How much time should I spend reading every day?\"",
+        "b5 FAQ answer is 39 words (aim 40-60): \"Should I look up every unfamiliar word immediately\"",
+        "b5 FAQ answer is 36 words (aim 40-60): \"Is it normal for my mind to wander while reading?\"",
+        "b5 FAQ answer is 37 words (aim 40-60): \"How do I choose the right books for my goals?\""
+      ]
+    },
+    {
+      "slug": "what-grade-do-kids-start-reading",
+      "query": "what grade do kids start reading",
+      "score": 25,
+      "signals": {
+        "words": 6,
+        "question": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "rel": "questions/what-grade-do-kids-start-reading/index.html",
+      "route": "/questions/what-grade-do-kids-start-reading/",
+      "url": "https://learn.heygetonmylevel.com/questions/what-grade-do-kids-start-reading/",
+      "published_at": "2026-11-03",
+      "status": "live",
+      "hash": "43750899e9aa504f0804a5502749b21ce2b9484acc5510e4b4606fcf514ab63f",
+      "model": "free-route",
+      "facts": [
+        "https://en.wikipedia.org/wiki/Reading_education"
+      ],
+      "linked_from": [
+        {
+          "rel": "questions/is-my-child-reading-at-grade-level/index.html",
+          "route": "/questions/is-my-child-reading-at-grade-level/",
+          "before_hash": "93a7d8e7d306a7019a69544798b2a1f2e2fe50b811c2c77f66925f9d729c5626",
+          "after_hash": "5b8df218fb427e382e34d947d8e930d612bda87a4b0916a4e75942e5f420b0ac"
+        },
+        {
+          "rel": "questions/lexile-levels-by-grade-pdf/index.html",
+          "route": "/questions/lexile-levels-by-grade-pdf/",
+          "before_hash": "73acc719f63a0d6b67eb3d1d5ed62f21d82edd04235853bd41a614baccdc770c",
+          "after_hash": "1c76e2f77743e45cd751bc2895d22aad4c576e8ae3a4254393390deab41b71a0"
+        }
+      ],
+      "checks": {},
+      "extra_queries": [
+        "what grade do kids learn to read"
+      ]
+    },
+    {
+      "slug": "what-determines-reading-level",
+      "query": "what determines reading level",
+      "score": 25,
+      "signals": {
+        "words": 4,
+        "question": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "rel": "questions/what-determines-reading-level/index.html",
+      "route": "/questions/what-determines-reading-level/",
+      "url": "https://learn.heygetonmylevel.com/questions/what-determines-reading-level/",
+      "published_at": "2026-11-03",
+      "status": "live",
+      "hash": "dfd7263f061841edeaa8b8c207ecb08ae30493cbc336a261cafc1af25b795978",
+      "model": "free-route",
+      "facts": [
+        "https://en.wikipedia.org/wiki/Readability"
+      ],
+      "linked_from": [
+        {
+          "rel": "questions/is-my-child-reading-at-grade-level/index.html",
+          "route": "/questions/is-my-child-reading-at-grade-level/",
+          "before_hash": "5b8df218fb427e382e34d947d8e930d612bda87a4b0916a4e75942e5f420b0ac",
+          "after_hash": "ebf0976a853fe649e6c662047d8a1ebc1a5199639f72cc19adf79674dad225d5"
+        },
+        {
+          "rel": "questions/reading-level-by-grade-chart/index.html",
+          "route": "/questions/reading-level-by-grade-chart/",
+          "before_hash": "b0c79520194283f87556bf4a7eeda4e3ec59eb89385aa8141b1618bb812f8c8f",
+          "after_hash": "bf09cd91485b03de4793c01546c15145614827d42101d494b7cc6194b71e886d"
+        }
+      ],
+      "checks": {}
+    },
+    {
+      "slug": "what-grade-do-you-learn-to-read",
+      "query": "what grade do you learn to read",
+      "score": 25,
+      "signals": {
+        "words": 7,
+        "question": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "rel": "questions/what-grade-do-you-learn-to-read/index.html",
+      "route": "/questions/what-grade-do-you-learn-to-read/",
+      "url": "https://learn.heygetonmylevel.com/questions/what-grade-do-you-learn-to-read/",
+      "published_at": "2026-11-03",
+      "status": "live",
+      "hash": "c0148ccac932e0a70ffef842b9ea0299be45cf56cc8f5b2d1c622b6c5d0a9510",
+      "model": "free-route",
+      "facts": [
+        "https://en.wikipedia.org/wiki/Reading_education"
+      ],
+      "linked_from": [],
+      "checks": {},
+      "gate_notes": [
+        "b2 meta description is 118 chars (aim 120-160)"
+      ],
+      "extra_queries": [
+        "what grade do students learn to read"
+      ]
+    },
+    {
+      "slug": "how-to-determine-your-reading-level",
+      "query": "how to determine your reading level",
+      "score": 25,
+      "signals": {
+        "words": 6,
+        "question": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "rel": "questions/how-to-determine-your-reading-level/index.html",
+      "route": "/questions/how-to-determine-your-reading-level/",
+      "url": "https://learn.heygetonmylevel.com/questions/how-to-determine-your-reading-level/",
+      "published_at": "2026-11-03",
+      "status": "live",
+      "hash": "d99dfeb821e47060cb57a7a72d3bf0082e0b8dd267bc4518294f3e2cec583d5f",
+      "model": "free-route",
+      "facts": [
+        "https://www.ala.org"
+      ],
+      "linked_from": [
+        {
+          "rel": "questions/is-my-child-reading-at-grade-level/index.html",
+          "route": "/questions/is-my-child-reading-at-grade-level/",
+          "before_hash": "ebf0976a853fe649e6c662047d8a1ebc1a5199639f72cc19adf79674dad225d5",
+          "after_hash": "b41e5760439b1d9bab89891055c67ccf946f9d4cd31564327c0fee9b6700fea4"
+        },
+        {
+          "rel": "questions/reading-level-by-grade-chart/index.html",
+          "route": "/questions/reading-level-by-grade-chart/",
+          "before_hash": "bf09cd91485b03de4793c01546c15145614827d42101d494b7cc6194b71e886d",
+          "after_hash": "8d3e47e0aa75d7a64b4686cc2ca289eeaffa523d6f789f9f4af53703acd8c592"
+        }
+      ],
+      "checks": {}
+    },
+    {
+      "slug": "how-to-tell-your-reading-level",
+      "query": "how to tell your reading level",
+      "score": 25,
+      "signals": {
+        "words": 6,
+        "question": true,
+        "bing_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "rel": "questions/how-to-tell-your-reading-level/index.html",
+      "route": "/questions/how-to-tell-your-reading-level/",
+      "url": "https://learn.heygetonmylevel.com/questions/how-to-tell-your-reading-level/",
+      "published_at": "2026-11-03",
+      "status": "live",
+      "hash": "0ce4398226a1b216443169961d94e9554229e000933740a1fb6de1fd02bc569d",
+      "model": "free-route",
+      "facts": [
+        "https://en.wikipedia.org/wiki/Reading_comprehension",
+        "https://www.ala.org/"
+      ],
+      "linked_from": [
+        {
+          "rel": "questions/is-my-child-reading-at-grade-level/index.html",
+          "route": "/questions/is-my-child-reading-at-grade-level/",
+          "before_hash": "b41e5760439b1d9bab89891055c67ccf946f9d4cd31564327c0fee9b6700fea4",
+          "after_hash": "ab7d4ed2b17c82ade835f153ce6aeddbd0861a78d5a4d9027fb136d47e2289e3"
+        },
+        {
+          "rel": "questions/reading-level-by-grade-chart/index.html",
+          "route": "/questions/reading-level-by-grade-chart/",
+          "before_hash": "8d3e47e0aa75d7a64b4686cc2ca289eeaffa523d6f789f9f4af53703acd8c592",
+          "after_hash": "bda3c30fbc655314afe5eeb97aad81aff1e621e6cd69e3a500df4b7a7928912a"
+        }
+      ],
+      "checks": {},
+      "gate_notes": [
+        "b4 direct answer under the H1 is 36 words (aim 40-60)",
+        "b5 FAQ answer is 39 words (aim 40-60): \"Are comics and graphic novels good for daily readi\"",
+        "b5 FAQ answer is 36 words (aim 40-60): \"Do reading levels change during the school year?\""
+      ]
     }
   ],
   "dropped": [
@@ -378,6 +713,526 @@
         "b5 FAQ answer is 37 words (needs 40-60): \"Do I need to read classic literature to improve?\"",
         "b5 FAQ answer is 39 words (needs 40-60): \"What if I get stuck on a word while reading?\""
       ]
+    },
+    {
+      "query": "how to determine my childs lexile reading level",
+      "at": "2026-11-03",
+      "reason": [
+        "b2 meta description is 28 chars (aim 120-160)",
+        "b5 FAQ answer is 25 words (aim 40-60): \"Can my child have a negative Lexile measure?\"",
+        "b5 FAQ answer is 23 words (aim 40-60): \"Does a Lexile measure test comprehension?\"",
+        "b5 FAQ answer is 23 words (aim 40-60): \"How often should I check my child's reading level?\"",
+        "b5 FAQ answer is 23 words (aim 40-60): \"Should my child only read books at their exact num\""
+      ]
+    },
+    {
+      "query": "how to improve reading level adults",
+      "at": "2026-11-03",
+      "reason": [
+        "off-audience: The search 'how to improve reading level adults' is about adult literacy and general skill building, which falls outside"
+      ]
+    },
+    {
+      "query": "how to practice reading fluency at home",
+      "at": "2026-11-03",
+      "reason": [
+        "b5 FAQ answer is 21 words (aim 40-60): \"How long should daily reading practice be?\"",
+        "b5 FAQ answer is 29 words (aim 40-60): \"Should I correct every mistake while reading aloud\"",
+        "b5 FAQ answer is 24 words (aim 40-60): \"Is reading fast the most important goal of fluency\"",
+        "b5 FAQ answer is 23 words (aim 40-60): \"Can adults use these same strategies to improve?\"",
+        "facts: needs at least one fact whose source URL answered 200"
+      ]
+    },
+    {
+      "query": "how to improve reading fluency at home",
+      "at": "2026-11-03",
+      "reason": [
+        "b5 FAQ answer is 26 words (aim 40-60): \"How much time should we spend practicing each day?\"",
+        "b5 FAQ answer is 26 words (aim 40-60): \"Should we only read books at the exact current lev\"",
+        "b5 FAQ answer is 24 words (aim 40-60): \"What should I do when the reader makes a mistake?\"",
+        "b5 FAQ answer is 24 words (aim 40-60): \"Can audiobooks count toward reading practice?\"",
+        "facts: needs at least one fact whose source URL answered 200"
+      ]
+    },
+    {
+      "query": "why is reading fluency so important",
+      "at": "2026-11-03",
+      "reason": [
+        "b5 FAQ answer is 24 words (aim 40-60): \"Can adults improve their reading fluency?\"",
+        "b5 FAQ answer is 24 words (aim 40-60): \"Why do fluent readers understand text better?\"",
+        "b5 FAQ answer is 20 words (aim 40-60): \"How long should daily reading practice take?\"",
+        "facts: needs at least one fact whose source URL answered 200"
+      ]
+    },
+    {
+      "query": "what is reading comprehension exercise",
+      "at": "2026-11-03",
+      "reason": [
+        "off-audience: This search query does not match the core intent of the site regarding reading levels, grade-level assessment, and daily"
+      ]
+    },
+    {
+      "query": "what grade do children learn to read",
+      "at": "2026-11-03",
+      "reason": [
+        "b5 FAQ answer is 26 words (aim 40-60): \"Are digital reading tools helpful?\"",
+        "b5 FAQ answer is 26 words (aim 40-60): \"How long should daily reading practice last?\"",
+        "b5 FAQ answer is 24 words (aim 40-60): \"Should I help sound out every difficult word?\""
+      ]
+    },
+    {
+      "query": "what level should kindergarteners read at",
+      "at": "2026-11-03",
+      "reason": [
+        "b5 FAQ answer is 26 words (aim 40-60): \"Should my kindergartener be reading chapter books?\"",
+        "b5 FAQ answer is 29 words (aim 40-60): \"What if my child does not like reading books?\"",
+        "b5 FAQ answer is 25 words (aim 40-60): \"How much time should we spend reading each day?\"",
+        "b5 FAQ answer is 25 words (aim 40-60): \"Are digital reading apps helpful for beginners?\""
+      ]
+    },
+    {
+      "query": "how to determine a students reading level",
+      "at": "2026-11-03",
+      "reason": [
+        "b2 meta description is 32 chars (aim 120-160)",
+        "b5 FAQ answer is 19 words (aim 40-60): \"How often should I check a reading level?\"",
+        "b5 FAQ answer is 22 words (aim 40-60): \"What if a book is too hard for the reader?\"",
+        "b5 FAQ answer is 15 words (aim 40-60): \"Do audiobooks count toward reading practice?\"",
+        "b5 FAQ answer is 18 words (aim 40-60): \"Should I focus on speed when reading aloud?\""
+      ]
+    },
+    {
+      "query": "how to test for reading level",
+      "at": "2026-11-03",
+      "reason": [
+        "b5 FAQ answer is 26 words (aim 40-60): \"Should I choose books above the reading level?\"",
+        "b5 FAQ answer is 28 words (aim 40-60): \"Are digital books okay to use for practice?\"",
+        "facts: needs at least one fact whose source URL answered 200"
+      ]
+    },
+    {
+      "query": "how to find your reading level",
+      "at": "2026-11-03",
+      "reason": [
+        "b2 meta description is 50 chars (aim 120-160)",
+        "b5 FAQ answer is 25 words (aim 40-60): \"How often should reading levels be checked?\"",
+        "b5 FAQ answer is 24 words (aim 40-60): \"What if a child wants to read books that are too h\"",
+        "b5 FAQ answer is 21 words (aim 40-60): \"Are audiobooks helpful for reading practice?\"",
+        "b5 FAQ answer is 27 words (aim 40-60): \"Should adults also test their reading level?\""
+      ]
+    },
+    {
+      "query": "how to figure out your reading level",
+      "at": "2026-11-03",
+      "reason": [
+        "b5 FAQ answer is 29 words (aim 40-60): \"Can reading levels change from week to week?\"",
+        "b5 FAQ answer is 23 words (aim 40-60): \"Should adults read books that match a specific lev\"",
+        "b5 FAQ answer is 28 words (aim 40-60): \"What should I do if a book is too hard?\"",
+        "b5 FAQ answer is 22 words (aim 40-60): \"How often should reading skills be checked?\"",
+        "facts: needs at least one fact whose source URL answered 200"
+      ]
+    },
+    {
+      "query": "how to find out my reading level",
+      "at": "2026-11-03",
+      "reason": [
+        "b5 FAQ answer is 10 words (aim 40-60): \"How often should I check a reading level?\"",
+        "b5 FAQ answer is 11 words (aim 40-60): \"Can reading levels change from day to day?\"",
+        "b5 FAQ answer is 10 words (aim 40-60): \"Should adults worry about formal reading levels?\"",
+        "b5 FAQ answer is 13 words (aim 40-60): \"What if a book is too difficult right now?\""
+      ]
+    }
+  ],
+  "redirected": [
+    {
+      "query": "english reading practice for adults",
+      "at": "2026-11-03",
+      "url": "https://learn.heygetonmylevel.com/questions/reading-practice-for-adults/",
+      "route": "/questions/reading-practice-for-adults/",
+      "kind": "engine",
+      "matched_by": "high token overlap (0.75 >= 0.6)",
+      "matched_text": "reading practice for adults",
+      "stage": "search"
+    },
+    {
+      "query": "english reading practice for adults pdf",
+      "at": "2026-11-03",
+      "url": "https://learn.heygetonmylevel.com/questions/reading-practice-for-adults/",
+      "route": "/questions/reading-practice-for-adults/",
+      "kind": "engine",
+      "matched_by": "high token overlap (0.60 >= 0.6)",
+      "matched_text": "reading practice for adults",
+      "stage": "search"
+    },
+    {
+      "query": "how to know if my child is reading at grade level",
+      "at": "2026-11-03",
+      "url": "https://learn.heygetonmylevel.com/questions/is-my-child-reading-at-grade-level/",
+      "route": "/questions/is-my-child-reading-at-grade-level/",
+      "kind": "engine",
+      "matched_by": "high token overlap (0.67 >= 0.6)",
+      "matched_text": "is my child reading at grade level",
+      "stage": "search"
+    },
+    {
+      "query": "how can i test my childs grade level",
+      "at": "2026-11-03",
+      "url": "https://learn.heygetonmylevel.com/questions/is-my-child-reading-at-grade-level/",
+      "route": "/questions/is-my-child-reading-at-grade-level/",
+      "kind": "engine",
+      "matched_by": "high token overlap (0.60 >= 0.6)",
+      "matched_text": "is my child reading at grade level",
+      "stage": "search"
+    },
+    {
+      "query": "how to tell what grade level your child is reading at",
+      "at": "2026-11-03",
+      "url": "https://learn.heygetonmylevel.com/questions/is-my-child-reading-at-grade-level/",
+      "route": "/questions/is-my-child-reading-at-grade-level/",
+      "kind": "engine",
+      "matched_by": "high token overlap (0.80 >= 0.6)",
+      "matched_text": "is my child reading at grade level",
+      "stage": "search"
+    },
+    {
+      "query": "how to determine reading level by grade",
+      "at": "2026-11-03",
+      "url": "https://learn.heygetonmylevel.com/questions/reading-level-by-grade-fountas-and-pinnell/",
+      "route": "/questions/reading-level-by-grade-fountas-and-pinnell/",
+      "kind": "page",
+      "matched_by": "high token overlap (0.75 >= 0.6)",
+      "matched_text": "Reading levels by grade explained — HeyGetOnMyLevel",
+      "stage": "search"
+    },
+    {
+      "query": "what is reading level for grade 2",
+      "at": "2026-11-03",
+      "url": "https://learn.heygetonmylevel.com/questions/reading-level-by-grade-fountas-and-pinnell/",
+      "route": "/questions/reading-level-by-grade-fountas-and-pinnell/",
+      "kind": "page",
+      "matched_by": "same wording",
+      "matched_text": "Reading levels by grade explained — HeyGetOnMyLevel",
+      "stage": "search"
+    },
+    {
+      "query": "what is reading level for 1st grade",
+      "at": "2026-11-03",
+      "url": "https://learn.heygetonmylevel.com/questions/reading-level-by-grade-fountas-and-pinnell/",
+      "route": "/questions/reading-level-by-grade-fountas-and-pinnell/",
+      "kind": "page",
+      "matched_by": "high token overlap (0.75 >= 0.6)",
+      "matched_text": "Reading levels by grade explained — HeyGetOnMyLevel",
+      "stage": "search"
+    },
+    {
+      "query": "what is reading level for 3rd grade",
+      "at": "2026-11-03",
+      "url": "https://learn.heygetonmylevel.com/questions/reading-level-by-grade-fountas-and-pinnell/",
+      "route": "/questions/reading-level-by-grade-fountas-and-pinnell/",
+      "kind": "page",
+      "matched_by": "high token overlap (0.75 >= 0.6)",
+      "matched_text": "Reading levels by grade explained — HeyGetOnMyLevel",
+      "stage": "search"
+    },
+    {
+      "query": "what is reading level for 4th grade",
+      "at": "2026-11-03",
+      "url": "https://learn.heygetonmylevel.com/questions/reading-level-by-grade-fountas-and-pinnell/",
+      "route": "/questions/reading-level-by-grade-fountas-and-pinnell/",
+      "kind": "page",
+      "matched_by": "high token overlap (0.75 >= 0.6)",
+      "matched_text": "Reading levels by grade explained — HeyGetOnMyLevel",
+      "stage": "search"
+    },
+    {
+      "query": "what is reading level for 7th grade",
+      "at": "2026-11-03",
+      "url": "https://learn.heygetonmylevel.com/questions/reading-level-by-grade-fountas-and-pinnell/",
+      "route": "/questions/reading-level-by-grade-fountas-and-pinnell/",
+      "kind": "page",
+      "matched_by": "high token overlap (0.75 >= 0.6)",
+      "matched_text": "Reading levels by grade explained — HeyGetOnMyLevel",
+      "stage": "search"
+    },
+    {
+      "query": "what grade is reading level j",
+      "at": "2026-11-03",
+      "url": "https://learn.heygetonmylevel.com/questions/reading-level-by-grade-fountas-and-pinnell/",
+      "route": "/questions/reading-level-by-grade-fountas-and-pinnell/",
+      "kind": "page",
+      "matched_by": "same wording",
+      "matched_text": "Reading levels by grade explained — HeyGetOnMyLevel",
+      "stage": "search"
+    },
+    {
+      "query": "what grade is reading level l",
+      "at": "2026-11-03",
+      "url": "https://learn.heygetonmylevel.com/questions/reading-level-by-grade-fountas-and-pinnell/",
+      "route": "/questions/reading-level-by-grade-fountas-and-pinnell/",
+      "kind": "page",
+      "matched_by": "same wording",
+      "matched_text": "Reading levels by grade explained — HeyGetOnMyLevel",
+      "stage": "search"
+    },
+    {
+      "query": "how to find my childs reading level",
+      "at": "2026-11-03",
+      "url": "https://learn.heygetonmylevel.com/questions/is-my-child-reading-at-grade-level/",
+      "route": "/questions/is-my-child-reading-at-grade-level/",
+      "kind": "engine",
+      "matched_by": "high token overlap (0.60 >= 0.6)",
+      "matched_text": "is my child reading at grade level",
+      "stage": "search"
+    },
+    {
+      "query": "how to get my childs reading level up",
+      "at": "2026-11-03",
+      "url": "https://learn.heygetonmylevel.com/questions/is-my-child-reading-at-grade-level/",
+      "route": "/questions/is-my-child-reading-at-grade-level/",
+      "kind": "engine",
+      "matched_by": "high token overlap (0.60 >= 0.6)",
+      "matched_text": "is my child reading at grade level",
+      "stage": "search"
+    },
+    {
+      "query": "how to know my kids reading level",
+      "at": "2026-11-03",
+      "url": "https://learn.heygetonmylevel.com/questions/is-my-child-reading-at-grade-level/",
+      "route": "/questions/is-my-child-reading-at-grade-level/",
+      "kind": "engine",
+      "matched_by": "high token overlap (0.60 >= 0.6)",
+      "matched_text": "is my child reading at grade level",
+      "stage": "draft"
+    },
+    {
+      "query": "how do i know my childs reading level",
+      "at": "2026-11-03",
+      "url": "https://learn.heygetonmylevel.com/questions/is-my-child-reading-at-grade-level/",
+      "route": "/questions/is-my-child-reading-at-grade-level/",
+      "kind": "engine",
+      "matched_by": "high token overlap (0.60 >= 0.6)",
+      "matched_text": "is my child reading at grade level",
+      "stage": "search"
+    },
+    {
+      "query": "what reading level should a 7 year old be at uk",
+      "at": "2026-11-03",
+      "url": "https://learn.heygetonmylevel.com/questions/what-reading-level-should-a-7-year-old-be-at/",
+      "route": "/questions/what-reading-level-should-a-7-year-old-be-at/",
+      "kind": "engine",
+      "matched_by": "high token overlap (0.80 >= 0.6)",
+      "matched_text": "what reading level should a 7 year old be at",
+      "stage": "search"
+    },
+    {
+      "query": "what oxford reading level should a 7 year old be at",
+      "at": "2026-11-03",
+      "url": "https://learn.heygetonmylevel.com/questions/what-reading-level-should-a-7-year-old-be-at/",
+      "route": "/questions/what-reading-level-should-a-7-year-old-be-at/",
+      "kind": "engine",
+      "matched_by": "high token overlap (0.80 >= 0.6)",
+      "matched_text": "what reading level should a 7 year old be at",
+      "stage": "search"
+    },
+    {
+      "query": "what is lexile level for 4th grade",
+      "at": "2026-11-03",
+      "url": "https://learn.heygetonmylevel.com/questions/lexile-level-by-grade/",
+      "route": "/questions/lexile-level-by-grade/",
+      "kind": "engine",
+      "matched_by": "high token overlap (0.75 >= 0.6)",
+      "matched_text": "lexile level by grade",
+      "stage": "search"
+    },
+    {
+      "query": "what is lexile level for 3rd grade",
+      "at": "2026-11-03",
+      "url": "https://learn.heygetonmylevel.com/questions/lexile-level-by-grade/",
+      "route": "/questions/lexile-level-by-grade/",
+      "kind": "engine",
+      "matched_by": "high token overlap (0.75 >= 0.6)",
+      "matched_text": "lexile level by grade",
+      "stage": "search"
+    },
+    {
+      "query": "what is lexile level for 5th grade",
+      "at": "2026-11-03",
+      "url": "https://learn.heygetonmylevel.com/questions/lexile-level-by-grade/",
+      "route": "/questions/lexile-level-by-grade/",
+      "kind": "engine",
+      "matched_by": "high token overlap (0.75 >= 0.6)",
+      "matched_text": "lexile level by grade",
+      "stage": "search"
+    },
+    {
+      "query": "what is lexile level for 7th grade",
+      "at": "2026-11-03",
+      "url": "https://learn.heygetonmylevel.com/questions/lexile-level-by-grade/",
+      "route": "/questions/lexile-level-by-grade/",
+      "kind": "engine",
+      "matched_by": "high token overlap (0.75 >= 0.6)",
+      "matched_text": "lexile level by grade",
+      "stage": "search"
+    },
+    {
+      "query": "what is lexile level for 6th grade",
+      "at": "2026-11-03",
+      "url": "https://learn.heygetonmylevel.com/questions/lexile-level-by-grade/",
+      "route": "/questions/lexile-level-by-grade/",
+      "kind": "engine",
+      "matched_by": "high token overlap (0.75 >= 0.6)",
+      "matched_text": "lexile level by grade",
+      "stage": "search"
+    },
+    {
+      "query": "what is lexile level for 8th grade",
+      "at": "2026-11-03",
+      "url": "https://learn.heygetonmylevel.com/questions/lexile-level-by-grade/",
+      "route": "/questions/lexile-level-by-grade/",
+      "kind": "engine",
+      "matched_by": "high token overlap (0.75 >= 0.6)",
+      "matched_text": "lexile level by grade",
+      "stage": "search"
+    },
+    {
+      "query": "what is lexile level for 1st grade",
+      "at": "2026-11-03",
+      "url": "https://learn.heygetonmylevel.com/questions/lexile-level-by-grade/",
+      "route": "/questions/lexile-level-by-grade/",
+      "kind": "engine",
+      "matched_by": "high token overlap (0.75 >= 0.6)",
+      "matched_text": "lexile level by grade",
+      "stage": "search"
+    },
+    {
+      "query": "what is lexile level for 2nd grade",
+      "at": "2026-11-03",
+      "url": "https://learn.heygetonmylevel.com/questions/lexile-level-by-grade/",
+      "route": "/questions/lexile-level-by-grade/",
+      "kind": "engine",
+      "matched_by": "high token overlap (0.75 >= 0.6)",
+      "matched_text": "lexile level by grade",
+      "stage": "search"
+    },
+    {
+      "query": "how to increase reading level for kids",
+      "at": "2026-11-03",
+      "url": "https://learn.heygetonmylevel.com/questions/how-to-increase-reading-level/",
+      "route": "/questions/how-to-increase-reading-level/",
+      "kind": "engine",
+      "matched_by": "high token overlap (0.75 >= 0.6)",
+      "matched_text": "how to increase reading level",
+      "stage": "search"
+    },
+    {
+      "query": "reading comprehension practice",
+      "at": "2026-11-03",
+      "url": "https://learn.heygetonmylevel.com/questions/reading-comprehension-practice-online/",
+      "route": "/questions/reading-comprehension-practice-online/",
+      "kind": "engine",
+      "matched_by": "high token overlap (0.75 >= 0.6)",
+      "matched_text": "reading comprehension practice online",
+      "stage": "search"
+    },
+    {
+      "query": "my child is not reading at grade level",
+      "at": "2026-11-03",
+      "url": "https://learn.heygetonmylevel.com/questions/is-my-child-reading-at-grade-level/",
+      "route": "/questions/is-my-child-reading-at-grade-level/",
+      "kind": "engine",
+      "matched_by": "high token overlap (0.80 >= 0.6)",
+      "matched_text": "is my child reading at grade level",
+      "stage": "search"
+    },
+    {
+      "query": "how to help a child reading below grade level",
+      "at": "2026-11-03",
+      "url": "https://learn.heygetonmylevel.com/questions/is-my-child-reading-at-grade-level/",
+      "route": "/questions/is-my-child-reading-at-grade-level/",
+      "kind": "engine",
+      "matched_by": "high token overlap (0.67 >= 0.6)",
+      "matched_text": "is my child reading at grade level",
+      "stage": "search"
+    },
+    {
+      "query": "how to determine a childs reading level",
+      "at": "2026-11-03",
+      "url": "https://learn.heygetonmylevel.com/questions/is-my-child-reading-at-grade-level/",
+      "route": "/questions/is-my-child-reading-at-grade-level/",
+      "kind": "engine",
+      "matched_by": "high token overlap (0.60 >= 0.6)",
+      "matched_text": "is my child reading at grade level",
+      "stage": "search"
+    },
+    {
+      "query": "what grade do kids learn to read",
+      "at": "2026-11-03",
+      "url": "https://learn.heygetonmylevel.com/questions/what-grade-do-kids-start-reading/",
+      "route": "/questions/what-grade-do-kids-start-reading/",
+      "kind": "engine",
+      "matched_by": "high token overlap (0.75 >= 0.6)",
+      "matched_text": "what grade do kids start reading",
+      "stage": "search"
+    },
+    {
+      "query": "how to test my childs reading level",
+      "at": "2026-11-03",
+      "url": "https://learn.heygetonmylevel.com/questions/is-my-child-reading-at-grade-level/",
+      "route": "/questions/is-my-child-reading-at-grade-level/",
+      "kind": "engine",
+      "matched_by": "high token overlap (0.60 >= 0.6)",
+      "matched_text": "is my child reading at grade level",
+      "stage": "search"
+    },
+    {
+      "query": "reading level by grade az",
+      "at": "2026-11-03",
+      "url": "https://learn.heygetonmylevel.com/questions/reading-level-by-grade-fountas-and-pinnell/",
+      "route": "/questions/reading-level-by-grade-fountas-and-pinnell/",
+      "kind": "page",
+      "matched_by": "high token overlap (0.75 >= 0.6)",
+      "matched_text": "Reading levels by grade explained — HeyGetOnMyLevel",
+      "stage": "search"
+    },
+    {
+      "query": "reading level by grade 1",
+      "at": "2026-11-03",
+      "url": "https://learn.heygetonmylevel.com/questions/reading-level-by-grade-fountas-and-pinnell/",
+      "route": "/questions/reading-level-by-grade-fountas-and-pinnell/",
+      "kind": "page",
+      "matched_by": "same wording",
+      "matched_text": "Reading levels by grade explained — HeyGetOnMyLevel",
+      "stage": "search"
+    },
+    {
+      "query": "level m reading grade level books",
+      "at": "2026-11-03",
+      "url": "https://learn.heygetonmylevel.com/questions/reading-level-by-grade-fountas-and-pinnell/",
+      "route": "/questions/reading-level-by-grade-fountas-and-pinnell/",
+      "kind": "page",
+      "matched_by": "high token overlap (0.75 >= 0.6)",
+      "matched_text": "Reading levels by grade explained — HeyGetOnMyLevel",
+      "stage": "search"
+    },
+    {
+      "query": "why is third grade reading level important",
+      "at": "2026-11-03",
+      "url": "https://learn.heygetonmylevel.com/questions/reading-level-by-grade-fountas-and-pinnell/",
+      "route": "/questions/reading-level-by-grade-fountas-and-pinnell/",
+      "kind": "page",
+      "matched_by": "high token overlap (0.60 >= 0.6)",
+      "matched_text": "Reading levels by grade explained — HeyGetOnMyLevel",
+      "stage": "search"
+    },
+    {
+      "query": "what grade do students learn to read",
+      "at": "2026-11-03",
+      "url": "https://learn.heygetonmylevel.com/questions/what-grade-do-you-learn-to-read/",
+      "route": "/questions/what-grade-do-you-learn-to-read/",
+      "kind": "engine",
+      "matched_by": "high token overlap (0.75 >= 0.6)",
+      "matched_text": "what grade do you learn to read",
+      "stage": "search"
     }
   ]
 }

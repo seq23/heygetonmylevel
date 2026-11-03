@@ -1,0 +1,70 @@
+{
+  "h1": "How to Determine Your Reading Level",
+  "title_lead": "How to determine your reading level",
+  "meta_description": "Learn how to determine your reading level with simple methods and tools. Find out what reading levels mean, how to check progress, and support daily reading.",
+  "direct_answer": "Determining your reading level is the process of identifying the complexity of texts a reader can understand independently. A reading level is a helpful tool that matches a reader with books that offer the right balance of challenge and comfort, supporting steady growth and steady confidence over time.",
+  "sections": [
+    {
+      "heading": "What does a reading level actually mean?",
+      "paragraphs": [
+        "A reading level is a guide. It shows roughly which books match a reader's current skills. Every reader grows at a unique pace. Some readers breeze through chapters. Others pause often to sound out words. Both paths are completely normal. The goal of knowing a reading level is never to box someone into a strict category. The goal is to find books that feel engaging rather than overwhelming.",
+        "When a book matches a reader's level, reading stays fun. Too many hard words can cause frustration. Too many easy words might cause boredom. A good reading level helps you find the sweet spot in the middle. You can explore more about this topic in our guide on Reading level questions, answered — HeyGetOnMyLevel. Remember that levels change naturally as practice happens each day."
+      ]
+    },
+    {
+      "heading": "How can you check your current reading level?",
+      "paragraphs": [
+        "You can estimate a reading level with a quick check. Pick a short page from a book that looks interesting. Read the page out loud. Hold up one finger for every word you do not know or cannot figure out. If you hold up five or more fingers by the end of the page, the book is likely too difficult right now. If you hold up zero or one finger, the book might be too simple.",
+        "Finding two to three unfamiliar words on a page is often a sign of a great fit. This gives you a gentle challenge without getting stuck. You can also explore our resource called Is my child reading at grade level? — HeyGetOnMyLevel for more ideas. If you want to see typical goals by age, take a look at the Reading level by grade chart — HeyGetOnMyLevel. Always remember that these tools are simple guides, not strict rules for learning."
+      ]
+    },
+    {
+      "heading": "How to practise reading every single day",
+      "paragraphs": [
+        "Daily practice matters more than any official test score. Set aside a quiet time for reading every day. Ten or fifteen minutes of steady focus makes a big difference over weeks and months. Let readers pick topics they truly love. Graphic novels, magazines, animal books, and fantasy series all count as real reading. Interest drives motivation, and motivation drives progress.",
+        "Read together when you can. Take turns reading pages aloud. Talk about the story as you go. Ask simple questions about what might happen next. This shared time builds comprehension and keeps the mood warm and relaxed. Never turn reading time into a chore or a test. Keep the experience cozy so that reading becomes a habit you look forward to every day."
+      ]
+    },
+    {
+      "heading": "When to ask a teacher or professional for help",
+      "paragraphs": [
+        "Sometimes you might notice ongoing signs of struggle. A reader might consistently guess words, avoid reading tasks entirely, or show deep frustration during reading time. If you feel worried about a reader's progress, reach out for guidance. Talk to the child's teacher, a school librarian, or a qualified educational professional for support.",
+        "Teachers see readers in many different settings. They can offer gentle insights and practical ideas tailored to the individual. You never have to figure everything out on your own. A collaborative conversation with a professional helps ensure that every reader gets the right encouragement, the right tools, and a warm environment to grow."
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Can adults figure out their own reading level?",
+      "a": "Yes, adults can easily estimate their reading level by trying books from different genres and difficulty tiers. Choosing materials that feel comfortable yet slightly challenging helps adults build strong reading habits, expand their vocabulary, and enjoy daily practice without any unnecessary stress or pressure."
+    },
+    {
+      "q": "How often should reading levels be re-checked?",
+      "a": "Reading levels do not need to be checked constantly. Checking every few months is usually plenty of time to see natural growth. Consistent daily reading naturally builds skills, so testing too often can add unnecessary pressure instead of keeping the reading experience fun."
+    },
+    {
+      "q": "Are comics and graphic novels good for practice?",
+      "a": "Comics and graphic novels are wonderful tools for reading practice. They combine images with text, which helps readers follow complex storylines, understand character emotions, and stay deeply engaged in the reading process every single day without feeling overwhelmed by dense paragraphs."
+    },
+    {
+      "q": "What should I do if a book is too hard?",
+      "a": "If a book feels too difficult, simply set it aside for another time. There is no shame in pausing a challenging book. Switch to an easier or more familiar story to keep reading enjoyable, and come back to the harder book later when skills have grown."
+    }
+  ],
+  "facts": [
+    {
+      "claim": "Regular independent reading improves vocabulary and reading comprehension skills over time.",
+      "source_url": "https://www.ed.gov",
+      "source_name": "U.S. Department of Education",
+      "verified": false,
+      "checked_status": 403
+    },
+    {
+      "claim": "Public libraries provide free access to a wide variety of leveled books for readers of all ages.",
+      "source_url": "https://www.ala.org",
+      "source_name": "American Library Association",
+      "verified": true,
+      "checked_status": 200
+    }
+  ]
+}
