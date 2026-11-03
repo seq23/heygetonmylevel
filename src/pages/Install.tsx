@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
+import PageByline from "@/components/PageByline";
 
 const Install = () => {
   const navigate = useNavigate();
@@ -114,6 +115,7 @@ const Install = () => {
                 ? "HeyGetOnMyLevel se puede instalar directamente desde tu navegador — no se necesita tienda de aplicaciones. El contenido visitado previamente estará disponible sin conexión."
                 : "HeyGetOnMyLevel can be installed directly from your browser — no app store needed. Previously visited content will be available offline."}
             </p>
+            <PageByline />
           </section>
 
           {sections.map((section) => (

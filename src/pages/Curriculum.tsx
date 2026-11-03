@@ -4,7 +4,8 @@ import { useSession } from "@/contexts/SessionContext";
 import { useLanguage } from "@/contexts/LanguageContext";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
-import { gradeBands } from "@/data/curriculum";
+import PageByline from "@/components/PageByline";
+import { CURRICULUM_REVIEWED_ON, curriculumTotals, gradeBands } from "@/data/curriculum";
 
 const Curriculum = () => {
   const navigate = useNavigate();
@@ -20,6 +21,9 @@ const Curriculum = () => {
   };
 
   const currentBand = getUserBand();
+  const totals = curriculumTotals();
+  const firstBand = gradeBands[0];
+  const lastBand = gradeBands[gradeBands.length - 1];
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
@@ -27,6 +31,7 @@ const Curriculum = () => {
         title="Reading Curriculum Map — HeyGetOnMyLevel"
         description="A 200-hour reading curriculum across 5 grade bands and 20 modules, from phonics and decoding to critical thinking. Free, private, judgment-free practice."
         path="/curriculum"
+        reviewed={CURRICULUM_REVIEWED_ON}
       />
       <header className="sticky top-0 bg-background/80 backdrop-blur-sm border-b border-border z-10">
         <div className="container max-w-5xl py-4 flex items-center gap-4">
@@ -59,13 +64,28 @@ const Curriculum = () => {
       </header>
 
       <main id="main-content" className="container max-w-5xl py-8 px-6 space-y-8">
+        {/* The answer first: what the map is, in the page's own numbers. */}
+        <section className="space-y-3">
+          <h2 className="text-lg font-display font-bold">
+            {isEs
+              ? "¿Qué incluye el currículo de lectura de HeyGetOnMyLevel?"
+              : "What is in the HeyGetOnMyLevel reading curriculum?"}
+          </h2>
+          <p className="text-muted-foreground">
+            {isEs
+              ? `El currículo de lectura de HeyGetOnMyLevel son ${totals.hours} horas de práctica en ${totals.modules} módulos de 10 horas, repartidos en ${totals.bands} bandas de grado desde ${firstBand.bandEs} hasta ${lastBand.bandEs}. Cada módulo trabaja una de ${totals.skills} habilidades, de la fonética al pensamiento crítico. Es gratis, no necesita cuenta y no guarda nada personal.`
+              : `The HeyGetOnMyLevel reading curriculum is ${totals.hours} hours of practice in ${totals.modules} ten-hour modules, spread across ${totals.bands} grade bands from ${firstBand.band} to ${lastBand.band}. Each module works one of ${totals.skills} reading skills, from phonics to critical thinking. It is free, needs no account, and stores nothing personal.`}
+          </p>
+          <PageByline reviewed={CURRICULUM_REVIEWED_ON} />
+        </section>
+
         {/* Summary stats */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 fade-in-up">
           {[
-            { label: isEs ? "Bandas de Grado" : "Grade Bands", value: "5" },
-            { label: isEs ? "Módulos" : "Modules", value: "20" },
-            { label: isEs ? "Horas Totales" : "Total Hours", value: "200" },
-            { label: isEs ? "Habilidades" : "Skills Covered", value: "8" },
+            { label: isEs ? "Bandas de Grado" : "Grade Bands", value: String(totals.bands) },
+            { label: isEs ? "Módulos" : "Modules", value: String(totals.modules) },
+            { label: isEs ? "Horas Totales" : "Total Hours", value: String(totals.hours) },
+            { label: isEs ? "Habilidades" : "Skills Covered", value: String(totals.skills) },
           ].map((stat) => (
             <div key={stat.label} className="card-elevated text-center">
               <p className="text-2xl font-bold text-primary">{stat.value}</p>

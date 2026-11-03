@@ -2,6 +2,7 @@ import { ArrowLeft } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
+import PageByline from "@/components/PageByline";
 
 /**
  * The page that says who publishes this app. Search engines and AI answer tools
@@ -54,6 +55,7 @@ const About = () => {
               comprehension, and lets you practise reading aloud. It runs in a browser, installs on a phone,
               tablet or desktop, and needs no account.
             </p>
+            <PageByline />
           </section>
 
           <section className="card-elevated mb-6">

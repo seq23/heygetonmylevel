@@ -34,6 +34,8 @@ jobs:
         run: node scripts/check-seo-surfaces.mjs dist
       - name: The published Organization node matches entity.json (+ self-test)
         run: node scripts/check-entity-graph.mjs dist && node scripts/check-entity-graph.mjs --self-test
+      - name: Content pages name a visible author and ask a question in a heading (q1 + self-test)
+        run: node scripts/check-page-shape.mjs dist && node scripts/check-page-shape.mjs --self-test
       - name: Nothing paid - routing config, the doc, the CLAUDE.md line, no unrecorded endpoint (+ self-test)
         run: node scripts/check-llm-routing.mjs && node scripts/check-llm-routing.mjs --self-test
       - name: The live check and the weekly report still behave (self-tests, no network)
