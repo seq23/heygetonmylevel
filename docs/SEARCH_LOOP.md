@@ -8,3 +8,7 @@ heygetonmylevel is parked as a business but runs the shared search engine (`seq2
 - **Once live:** the next daily run publishes, the `host` job verifies and adds the Search Console property with the service account (`scripts/learn-gsc-property.mjs`), and the engine submits new URLs to IndexNow.
 - **One action:** "Start a free week of Time-2-Read" -> https://time-2-read.com/pricing. Shares its audience with time-2-read.com (dailystory's ledger), so the two never target the same search.
 - **Throttle:** `gh variable set SEARCH_LOOP_MODE --body slow -R seq23/search-loop` (normal | slow | off).
+
+## Curated publishing (4 November 2026)
+
+Automatic generation is paused with site `mode: off`; measurement still runs. The deployed learn build now renders `data/page-quality/guides.json` through `scripts/reading-page.mjs`, using the exact kept/redirect inventory in `data/page-quality/kept.json`. It publishes five guides and the hub, with 13 direct redirects. `questions/` retains readable source artifacts for upstream indexing but does not decide what the build publishes. See `PAGE_QUALITY.md` and `heygetonmylevel-diagnosis.md` for consolidation evidence and limits.

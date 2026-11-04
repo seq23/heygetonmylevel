@@ -90,11 +90,12 @@ function prerender(): Plugin {
           fs.writeFileSync(path.join(outDir, `${rel}.html`), page);
         }
       }
-      const today = new Date().toISOString().slice(0, 10);
+
+      fs.writeFileSync(path.join(outDir, "prerender-routes.json"), JSON.stringify(routes));
       const urls = routes
         .map((r) => {
           const priority = r === "/" ? "1.0" : r.startsWith("/curriculum") ? "0.8" : r === "/privacy" || r === "/terms" ? "0.3" : "0.7";
-          return `  <url>\n    <loc>${SITE_URL}${r}</loc>\n    <lastmod>${today}</lastmod>\n    <priority>${priority}</priority>\n  </url>`;
+          return `  <url>\n    <loc>${SITE_URL}${r}</loc>\n    ${r.startsWith("/curriculum/") ? "<lastmod>2026-11-04</lastmod>" : ""}\n    <priority>${priority}</priority>\n  </url>`;
         })
         .join("\n");
       fs.writeFileSync(

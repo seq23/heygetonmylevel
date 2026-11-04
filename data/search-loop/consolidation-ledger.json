@@ -1,4 +1,96 @@
 {
   "schema": "search-loop-consolidation-v1",
-  "merges": []
+  "merges": [
+    {
+      "from": "/questions/what-reading-level-should-a-7-year-old-be-at/",
+      "at": "2026-11-04",
+      "reason": "Overlapping intent; merged into a distinct sourced guide.",
+      "into": "/questions/is-my-child-reading-at-grade-level/",
+      "redirect": "/questions/what-reading-level-should-a-7-year-old-be-at/ /questions/is-my-child-reading-at-grade-level/ 301"
+    },
+    {
+      "from": "/questions/reading-level-by-grade-fountas-and-pinnell/",
+      "at": "2026-11-04",
+      "reason": "Overlapping intent; merged into a distinct sourced guide.",
+      "into": "/questions/reading-level-by-grade-chart/",
+      "redirect": "/questions/reading-level-by-grade-fountas-and-pinnell/ /questions/reading-level-by-grade-chart/ 301"
+    },
+    {
+      "from": "/questions/reading-levels-by-grade-canada/",
+      "at": "2026-11-04",
+      "reason": "Overlapping intent; merged into a distinct sourced guide.",
+      "into": "/questions/reading-level-by-grade-chart/",
+      "redirect": "/questions/reading-levels-by-grade-canada/ /questions/reading-level-by-grade-chart/ 301"
+    },
+    {
+      "from": "/questions/lexile-level-by-grade-chart/",
+      "at": "2026-11-04",
+      "reason": "Overlapping intent; merged into a distinct sourced guide.",
+      "into": "/questions/lexile-level-by-grade/",
+      "redirect": "/questions/lexile-level-by-grade-chart/ /questions/lexile-level-by-grade/ 301"
+    },
+    {
+      "from": "/questions/lexile-levels-by-grade-pdf/",
+      "at": "2026-11-04",
+      "reason": "Overlapping intent; merged into a distinct sourced guide.",
+      "into": "/questions/lexile-level-by-grade/",
+      "redirect": "/questions/lexile-levels-by-grade-pdf/ /questions/lexile-level-by-grade/ 301"
+    },
+    {
+      "from": "/questions/how-to-determine-your-reading-level/",
+      "at": "2026-11-04",
+      "reason": "Overlapping intent; merged into a distinct sourced guide.",
+      "into": "/questions/reading-level-by-grade-chart/",
+      "redirect": "/questions/how-to-determine-your-reading-level/ /questions/reading-level-by-grade-chart/ 301"
+    },
+    {
+      "from": "/questions/how-to-tell-your-reading-level/",
+      "at": "2026-11-04",
+      "reason": "Overlapping intent; merged into a distinct sourced guide.",
+      "into": "/questions/reading-level-by-grade-chart/",
+      "redirect": "/questions/how-to-tell-your-reading-level/ /questions/reading-level-by-grade-chart/ 301"
+    },
+    {
+      "from": "/questions/what-determines-reading-level/",
+      "at": "2026-11-04",
+      "reason": "Overlapping intent; merged into a distinct sourced guide.",
+      "into": "/questions/reading-level-by-grade-chart/",
+      "redirect": "/questions/what-determines-reading-level/ /questions/reading-level-by-grade-chart/ 301"
+    },
+    {
+      "from": "/questions/what-is-the-highest-reading-age/",
+      "at": "2026-11-04",
+      "reason": "Overlapping intent; merged into a distinct sourced guide.",
+      "into": "/questions/reading-level-by-grade-chart/",
+      "redirect": "/questions/what-is-the-highest-reading-age/ /questions/reading-level-by-grade-chart/ 301"
+    },
+    {
+      "from": "/questions/how-to-increase-reading-level/",
+      "at": "2026-11-04",
+      "reason": "Overlapping intent; merged into a distinct sourced guide.",
+      "into": "/questions/reading-comprehension-practice-online/",
+      "redirect": "/questions/how-to-increase-reading-level/ /questions/reading-comprehension-practice-online/ 301"
+    },
+    {
+      "from": "/questions/how-to-improve-reading-comprehension-as-an-adult/",
+      "at": "2026-11-04",
+      "reason": "Overlapping intent; merged into a distinct sourced guide.",
+      "into": "/questions/reading-practice-for-adults/",
+      "redirect": "/questions/how-to-improve-reading-comprehension-as-an-adult/ /questions/reading-practice-for-adults/ 301"
+    },
+    {
+      "from": "/questions/what-grade-do-kids-start-reading/",
+      "at": "2026-11-04",
+      "reason": "Overlapping intent; merged into a distinct sourced guide.",
+      "into": "/questions/is-my-child-reading-at-grade-level/",
+      "redirect": "/questions/what-grade-do-kids-start-reading/ /questions/is-my-child-reading-at-grade-level/ 301"
+    },
+    {
+      "from": "/questions/what-grade-do-you-learn-to-read/",
+      "at": "2026-11-04",
+      "reason": "Overlapping intent; merged into a distinct sourced guide.",
+      "into": "/questions/is-my-child-reading-at-grade-level/",
+      "redirect": "/questions/what-grade-do-you-learn-to-read/ /questions/is-my-child-reading-at-grade-level/ 301"
+    }
+  ]
 }
