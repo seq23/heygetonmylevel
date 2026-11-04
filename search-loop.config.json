@@ -72,7 +72,21 @@
     "public",
     "supabase",
     "learn-static",
-    "docs"
+    "docs",
+    "questions/what-reading-level-should-a-7-year-old-be-at",
+    "questions/reading-level-by-grade-fountas-and-pinnell",
+    "questions/reading-levels-by-grade-canada",
+    "questions/lexile-level-by-grade-chart",
+    "questions/lexile-levels-by-grade-pdf",
+    "questions/how-to-determine-your-reading-level",
+    "questions/how-to-tell-your-reading-level",
+    "questions/what-determines-reading-level",
+    "questions/what-is-the-highest-reading-age",
+    "questions/how-to-increase-reading-level",
+    "questions/how-to-improve-reading-comprehension-as-an-adult",
+    "questions/what-grade-do-kids-start-reading",
+    "questions/what-grade-do-you-learn-to-read",
+    "questions/level-17-reading-age"
   ],
   "output": {
     "dir": "questions",

@@ -40,6 +40,10 @@ jobs:
         run: node scripts/check-llm-routing.mjs && node scripts/check-llm-routing.mjs --self-test
       - name: The live check and the weekly report still behave (self-tests, no network)
         run: node scripts/live-check.mjs --self-test && node scripts/weekly-outcome-report.mjs --self-test
+      - name: Search loop refuses retired page paths (workflow engine v1)
+        run: |
+          git clone --depth 1 --branch v1 https://github.com/seq23/search-loop.git "$RUNNER_TEMP/search-loop-retirement-test"
+          SEARCH_LOOP_ENGINE="$RUNNER_TEMP/search-loop-retirement-test" node --test scripts/retired-path.test.mjs
       - name: Static learn section builds (hub, sitemap, one action, canonical) + self-test
         run: node scripts/learn-build.mjs --check && node scripts/learn-build.mjs --self-test
       - name: Locked tables stay insert-only (RLS guard, static + live anon probe)

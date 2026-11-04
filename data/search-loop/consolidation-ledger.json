@@ -91,6 +91,13 @@
       "reason": "Overlapping intent; merged into a distinct sourced guide.",
       "into": "/questions/is-my-child-reading-at-grade-level/",
       "redirect": "/questions/what-grade-do-you-learn-to-read/ /questions/is-my-child-reading-at-grade-level/ 301"
+    },
+    {
+      "from": "/questions/level-17-reading-age/",
+      "at": "2026-11-04",
+      "into": "/questions/reading-level-by-grade-chart/",
+      "reason": "Overlapping reading-age intent; consolidated into the kept chart guide.",
+      "redirect": "/questions/level-17-reading-age/ /questions/reading-level-by-grade-chart/ 301"
     }
   ]
 }
