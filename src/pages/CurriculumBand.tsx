@@ -3,10 +3,10 @@ import { ArrowLeft, BookOpen, Clock } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
-import Time2ReadCallout from "@/components/Time2ReadCallout";
+import { bandGuides } from "@/data/bandGuides";
 import NotFound from "./NotFound";
 import PageByline from "@/components/PageByline";
-import { CURRICULUM_REVIEWED_ON, findBand, gradeBands } from "@/data/curriculum";
+import { findBand, gradeBands } from "@/data/curriculum";
 import { fitDescription } from "@/lib/seoText";
 
 export const bandSeo = (slug: string) => {
@@ -36,6 +36,7 @@ const CurriculumBand = () => {
   const gb = findBand(band);
   if (!gb) return <NotFound />;
   const seo = bandSeo(gb.slug);
+  const guide = bandGuides[gb.slug];
   const others = gradeBands.filter((o) => o.slug !== gb.slug);
   const moduleCount = gb.modules.length;
   const bandHours = gb.modules.reduce((h, m) => h + m.hours, 0);
@@ -46,7 +47,7 @@ const CurriculumBand = () => {
         title={seo.title}
         description={seo.description}
         path={`/curriculum/${gb.slug}`}
-        reviewed={CURRICULUM_REVIEWED_ON}
+        reviewed="2026-11-04"
         breadcrumb={[
           { name: "Curriculum", path: "/curriculum" },
           { name: gb.band, path: `/curriculum/${gb.slug}` },
@@ -77,19 +78,21 @@ const CurriculumBand = () => {
               ? `¿Qué cubre el currículo de lectura de ${gb.bandEs}?`
               : `What does the ${gb.band} reading curriculum cover?`}
           </h2>
-          <p className="text-muted-foreground">
-            {isEs
-              ? `El currículo de ${gb.bandEs} son ${bandHours} horas en ${moduleCount} módulos para ${seo.gradeLabel}: ${gb.modules.map((m) => m.titleEs).join(", ")}. Cada sesión de HeyGetOnMyLevel genera un pasaje a tu nivel, revisa el vocabulario y la comprensión, y te deja practicar la lectura en voz alta. No hace falta cuenta y no se guarda nada personal.`
-              : `The ${gb.band} curriculum is ${bandHours} hours in ${moduleCount} modules for ${seo.gradeLabel}: ${gb.modules.map((m) => m.title).join(", ")}. Every HeyGetOnMyLevel session generates a passage at your level, checks vocabulary and comprehension, and lets you practise reading aloud. No account is needed and nothing personal is stored.`}
-          </p>
-          <PageByline reviewed={CURRICULUM_REVIEWED_ON} />
+          <p className="text-muted-foreground">{guide.definition}</p>
+          <PageByline reviewed="2026-11-04" />
+        </section>
+
+        <section className="card-elevated">
+          <h2 className="text-lg font-display font-bold">What can you practise in this band?</h2>
+          <p className="mt-2">{guide.task}</p>
+          <ol className="list-decimal pl-6 mt-3 space-y-2">{guide.steps.map(step => <li key={step}>{step}</li>)}</ol>
         </section>
 
         {gb.modules.map((mod) => (
           <section key={mod.num} className="card-elevated">
             <h2 className="text-lg font-display font-bold flex items-center gap-2">
               <span className="text-xs font-bold text-primary bg-primary/10 w-6 h-6 rounded-full flex items-center justify-center">{mod.num}</span>
-              {isEs ? mod.titleEs : mod.title}
+              {isEs ? `¿Qué se practica en ${mod.titleEs}?` : `What does ${mod.title} cover?`}
               <span className="ml-auto flex items-center gap-1 text-xs text-muted-foreground font-normal">
                 <Clock className="w-3 h-3" /> {mod.hours}h
               </span>
@@ -101,6 +104,14 @@ const CurriculumBand = () => {
           </section>
         ))}
 
+        <section className="card-elevated">
+          <h2 className="text-lg font-display font-bold">{guide.question}</h2>
+          <p className="mt-2">{guide.answer}</p>
+          <h2 className="text-lg font-display font-bold mt-4">What is this curriculum based on?</h2>
+          <p className="mt-2">Module names, skills and planned hours describe HeyGetOnMyLevel’s own curriculum design. Hours are a practice plan, not a measured time to reach proficiency. For background on explicit comprehension strategies, see <a className="underline" href="https://www.readingrockets.org/topics/comprehension/articles/seven-strategies-teach-students-text-comprehension">Reading Rockets’ teaching guide</a>. Practice examples here are suggestions, not standardized assessments.</p>
+        </section>
+        <aside aria-label="Next step" className="card-elevated">
+        <h2 className="text-lg font-display font-bold mb-3">How can you start practising?</h2>
         <div className="flex flex-wrap gap-3">
           <Link to="/assessment" className="btn-hero inline-flex items-center gap-2">
             {isEs ? "Evaluar mi nivel" : "Find my reading level"}
@@ -109,6 +120,8 @@ const CurriculumBand = () => {
             {isEs ? "Elegir nivel y practicar" : "Pick a level and practise"}
           </Link>
         </div>
+
+        </aside>
 
         <nav aria-label="Other grade bands" className="pt-2">
           <h2 className="text-sm font-semibold text-foreground mb-2 flex items-center gap-2">
@@ -125,7 +138,7 @@ const CurriculumBand = () => {
           </ul>
         </nav>
 
-        <Time2ReadCallout />
+
       </main>
       <Footer />
     </div>

@@ -1,0 +1,26 @@
+{
+  "site": "learn.heygetonmylevel.com",
+  "kept": [
+    "lexile-level-by-grade",
+    "reading-level-by-grade-chart",
+    "is-my-child-reading-at-grade-level",
+    "reading-comprehension-practice-online",
+    "reading-practice-for-adults"
+  ],
+  "redirects": {
+    "what-reading-level-should-a-7-year-old-be-at": "is-my-child-reading-at-grade-level",
+    "reading-level-by-grade-fountas-and-pinnell": "reading-level-by-grade-chart",
+    "reading-levels-by-grade-canada": "reading-level-by-grade-chart",
+    "lexile-level-by-grade-chart": "lexile-level-by-grade",
+    "lexile-levels-by-grade-pdf": "lexile-level-by-grade",
+    "how-to-determine-your-reading-level": "reading-level-by-grade-chart",
+    "how-to-tell-your-reading-level": "reading-level-by-grade-chart",
+    "what-determines-reading-level": "reading-level-by-grade-chart",
+    "what-is-the-highest-reading-age": "reading-level-by-grade-chart",
+    "how-to-increase-reading-level": "reading-comprehension-practice-online",
+    "how-to-improve-reading-comprehension-as-an-adult": "reading-practice-for-adults",
+    "what-grade-do-kids-start-reading": "is-my-child-reading-at-grade-level",
+    "what-grade-do-you-learn-to-read": "is-my-child-reading-at-grade-level",
+    "level-17-reading-age": "reading-level-by-grade-chart"
+  }
+}

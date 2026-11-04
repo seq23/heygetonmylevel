@@ -110,3 +110,9 @@ for (const route of routes) {
 }
 
 if (!process.exitCode) console.log(`seo surfaces ok: key ${keys[0]}, ${tok}, ${routes.length} routes with title, description, social tags and schema in band`);
+
+// Exact route equality replaces the historical fixed ten-URL minimum, with a zero guard.
+const inventory = JSON.parse(readFileSync(join(DIR, "prerender-routes.json"), "utf8"));
+const actualLocations = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map(m => m[1]).sort();
+const expectedLocations = inventory.map(r => `${SITE}${r}`).sort();
+if (!inventory.length || new Set(inventory).size !== inventory.length || JSON.stringify(actualLocations) !== JSON.stringify(expectedLocations)) fail("sitemap must match nonempty prerender inventory exactly");

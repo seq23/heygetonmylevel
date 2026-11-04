@@ -1,0 +1,18 @@
+# heygetonmylevel diagnosis — 4 November 2026
+- Live main sitemap: https://heygetonmylevel.com/sitemap.xml, HTTP 200, 10 URLs.
+- Sample: all 10 sitemap URLs fetched with curl, HTTP 200; main-content text only, tags stripped, lowercase word tokens.
+- Shared text: mean pairwise Dice overlap of five-word shingles = 13.95% across the 45 live-page pairs (not a ranking or plagiarism score).
+- Live main word counts: home 148; curriculum hub 379; early elementary 158; upper elementary 164; middle school 159; high school 158; college/adult 156; install 245; privacy 565; terms 701.
+- Thin (<300): home, five curriculum bands, install = 7/10. All serve app/navigation purposes; retain every main route.
+- Curriculum bands repeat an intro pattern but have different modules and learner tasks; expand them with band-specific guidance, never redirect these operational pages.
+- Learn sitemap https://learn.heygetonmylevel.com/sitemap.xml and Pages fallback both return HTTP 403; live learn count/overlap cannot be established from this environment.
+- Interrupted-branch learn inventory: 10 articles + hub; all articles 848–1482 main-content words, none <300. Local mean five-word Dice 1.90%; this is NOT a live measurement.
+- Intent duplicates despite low literal overlap: Lexile grade / Lexile chart / Lexile PDF; grade chart / Fountas & Pinnell / Canada; child at grade / seven-year-old.
+- Keep 5 learn guides: Lexile by grade; reading-level chart; child at grade; online comprehension; adult reading practice.
+- Redirect 13 generated articles (5 interrupted-branch overlaps plus 8 added on current main) directly to those owners, including slash/no-slash/index.html variants; remove from hub/sitemap/llms and stop regeneration.
+- Current-main search data: data/search_intelligence/gsc_truth.json (4 Nov), 5 Oct–1 Nov window: 13 impressions, 0 clicks; query rows include middle-school and upper-elementary curriculum (1 impression each). Coverage: 6 indexed, 2 crawled/not indexed, 2 discovered/not indexed.
+- Current-main learn inventory: 18 articles + hub; eight new overlapping articles join the five kept owners. Main now builds /about too (11 retained routes).
+- Other overlapping intents: determine/tell/what determines level and highest reading age → chart interpretation; improve level → comprehension; adult comprehension → adult practice; starting grade → child-at-grade guide.
+- Search-loop autocomplete signals exist; learn impression/click data and analytics remain unmeasured, so no claim of zero demand.
+- No-demand removals are not justified by missing measurements; consolidation is based on matching intent.
+- No WIP commit found: baseline 648120a is an automated ledger update; preserved. Requested external page-shape.md absent; prompt’s explicit requirements used.

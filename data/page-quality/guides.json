@@ -1,0 +1,260 @@
+{
+  "lexile-level-by-grade": {
+    "h1": "How should you use Lexile levels by grade?",
+    "direct_answer": "A Lexile measure describes a reader’s assessed reading ability or a text’s measured complexity on the same scale. A grade comparison places a student’s measure alongside a reference group at a particular time of year. It is a comparison tool, not a grade assignment or a complete judgment of reading proficiency.",
+    "sections": [
+      {
+        "heading": "What does the official grade chart show?",
+        "paragraphs": [
+          "MetaMetrics publishes grade charts that distinguish grade, testing season and percentile. Use the current official chart rather than an undated conversion copied into a worksheet. A percentile comparison answers a different question from whether a child understands the books assigned in class. There is no single Lexile number that every student in a grade must reach."
+        ],
+        "items": [
+          "Find the assessment date and reported measure on the school report.",
+          "Match the season and grade in the official chart linked below.",
+          "Ask the teacher what the result means alongside classroom work."
+        ]
+      },
+      {
+        "heading": "How do you choose books without treating the score as a label?",
+        "paragraphs": [
+          "Start with the reader’s interests, purpose and comfort with the subject. Preview a passage together and ask the reader to explain it. A technically accessible book can still contain unfamiliar ideas or age-inappropriate material. A more demanding book can be a shared reading choice with support. Record the title and what help was useful instead of turning each reading session into another test."
+        ],
+        "items": []
+      },
+      {
+        "heading": "Where are the chart and printable reference?",
+        "paragraphs": [
+          "The source link below opens the publisher’s grade chart. Use its current display or your browser’s print function for a reference copy; this site does not provide a separate official Lexile PDF. Keep the chart date and source with any printed copy so an older handout does not become an unexplained target."
+        ],
+        "items": []
+      }
+    ],
+    "faq": [
+      {
+        "q": "Does a Lexile measure diagnose a reading difficulty?",
+        "a": "No. Discuss concerns with the teacher or an appropriately qualified professional; a measure alone does not explain why a reader is struggling."
+      },
+      {
+        "q": "Can I convert a Fountas & Pinnell letter directly into a Lexile number?",
+        "a": "Do not treat a conversion as an individual assessment. Ask which assessment produced the score and use guidance for that specific system."
+      }
+    ],
+    "source": [
+      "MetaMetrics: Lexile grade charts",
+      "https://hub.lexile.com/lexile-grade-level-charts/"
+    ],
+    "published": "2026-11-02",
+    "modified": "2026-11-04"
+  },
+  "reading-level-by-grade-chart": {
+    "h1": "How do you read a reading-level chart by grade?",
+    "direct_answer": "A reading-level chart by grade is a reference that relates a named reading assessment or text-leveling system to school grades. Its meaning depends on the system, the reference population and the assessment date. Use it to ask better questions about a report, rather than to assign a child a permanent reading label.",
+    "sections": [
+      {
+        "heading": "Which system is the report using?",
+        "paragraphs": [
+          "Before looking for a chart, copy the exact assessment name from the report. A letter, a Lexile measure and a school’s own description are different kinds of information. A chart that mixes them without explaining its sources hides those differences. The Lexile publisher’s chart, linked below, is one example of a reference for a particular system."
+        ],
+        "items": [
+          "Identify the assessment and testing date.",
+          "Check whether the chart describes readers or books.",
+          "Ask whether the comparison is local, national or tied to a specific curriculum."
+        ]
+      },
+      {
+        "heading": "What about Fountas & Pinnell and Canadian grades?",
+        "paragraphs": [
+          "For a Fountas & Pinnell result, ask the school for the interpretation attached to that assessment and the actual books used. For a Canadian report, start with the province, school board and classroom expectations. This guide does not supply an unsupported country-wide conversion table. Bring a recent piece of reading work to the conversation so the chart is connected to something the learner actually read."
+        ],
+        "items": []
+      },
+      {
+        "heading": "How can a family use the chart constructively?",
+        "paragraphs": [
+          "Ask what the learner can already do independently and what still requires support. A learner may recognize words accurately yet have trouble explaining the passage. Another may understand a read-aloud well but find decoding demanding. Those observations point to different practice choices. Keep the original report and teacher explanation together instead of replacing them with a number from an unrelated online quiz."
+        ],
+        "items": []
+      },
+      {
+        "heading": "How can you find a level, and is there a highest reading age?",
+        "paragraphs": [
+          "For a reported level, identify the assessment that produced it and ask the school or adult educator how to interpret the result. To choose practice material without a report, try a short passage and explain its meaning; that observation is not a standardized score. A reading-age label needs the name and limits of the test behind it. Do not read the highest label on a chart as a universal ceiling on someone’s learning."
+        ],
+        "items": []
+      }
+    ],
+    "faq": [
+      {
+        "q": "Is there one universal reading-level chart?",
+        "a": "No single chart on this site combines all systems. Use the publisher or school reference for the named assessment."
+      },
+      {
+        "q": "Should a chart determine every book a child reads?",
+        "a": "Use it as context. Interests, subject knowledge and the support available also matter when choosing a book."
+      }
+    ],
+    "source": [
+      "MetaMetrics: grade comparison reference",
+      "https://hub.lexile.com/lexile-grade-level-charts/"
+    ],
+    "published": "2026-11-02",
+    "modified": "2026-11-04"
+  },
+  "is-my-child-reading-at-grade-level": {
+    "h1": "How can I tell whether my child is reading at grade level?",
+    "direct_answer": "Reading at grade level means meeting the reading expectations used by a child’s school for that grade and point in the school year. It involves understanding text as well as recognizing words. A classroom assessment, reading sample and teacher explanation together are more useful than an age label or an isolated online score.",
+    "sections": [
+      {
+        "heading": "What should I ask the teacher?",
+        "paragraphs": [
+          "Request the name and date of the latest assessment, an explanation of the result and an example of a text the child reads independently. Ask which skill needs attention and how progress will be reviewed. A conversation focused on a specific difficulty is more actionable than asking only whether the child is behind."
+        ],
+        "items": [
+          "Which words or patterns are difficult to decode?",
+          "Can my child explain the main idea and relevant details?",
+          "What practice matches the current classroom goal?"
+        ]
+      },
+      {
+        "heading": "What can I notice during reading at home?",
+        "paragraphs": [
+          "Choose a short, familiar text and listen without turning the activity into a timed examination. Note where the child pauses, substitutes a word or loses the meaning. Afterward, ask for a retelling and where the text supports an answer. Reading Rockets describes comprehension monitoring and summarizing as explicit strategies; the source below explains how educators teach them. Your notes are examples to share, not a diagnosis."
+        ],
+        "items": []
+      },
+      {
+        "heading": "What reading level should a seven-year-old have?",
+        "paragraphs": [
+          "Age alone does not identify an assessment result. Bring the child’s grade, school expectations, testing season and recent work to the teacher rather than assigning a target letter or number from a birthday. If concerns persist, ask the school what support and further assessment are appropriate. Avoid promises that an app or a fixed amount of practice will produce a particular grade jump."
+        ],
+        "items": []
+      },
+      {
+        "heading": "What grade do children learn to read?",
+        "paragraphs": [
+          "Ask the school which letter-sound, word-reading and comprehension skills it teaches this year and how it checks them. Beginning instruction and independent reading of unfamiliar text are different milestones. A grade label cannot tell you which parts a particular child has mastered. Use the classroom sequence and the child’s recent work to choose the next practice task rather than assigning a universal starting grade."
+        ],
+        "items": []
+      }
+    ],
+    "faq": [
+      {
+        "q": "Does fluent reading aloud prove understanding?",
+        "a": "Ask the child to explain what happened and why. Accurate oral reading and understanding are different observations."
+      },
+      {
+        "q": "Should I keep testing at home?",
+        "a": "Agree a review plan with the teacher. Use ordinary reading sessions to notice questions and successes without repeatedly assigning a score."
+      }
+    ],
+    "source": [
+      "Reading Rockets: comprehension strategies",
+      "https://www.readingrockets.org/topics/comprehension/articles/seven-strategies-teach-students-text-comprehension"
+    ],
+    "published": "2026-11-02",
+    "modified": "2026-11-04"
+  },
+  "reading-comprehension-practice-online": {
+    "h1": "How can you practise reading comprehension online?",
+    "direct_answer": "Reading comprehension practice is the process of reading a passage, explaining its meaning and checking an answer against the text. Online practice can provide passages and questions, but useful work happens when the reader identifies evidence, notices confusion and revises an explanation. A completion score alone does not show how an answer was reached.",
+    "sections": [
+      {
+        "heading": "What should a useful practice activity include?",
+        "paragraphs": [
+          "Choose an activity with a readable passage, questions that refer to it and feedback that explains the reasoning. Keep the passage visible while answering. Reading Rockets describes monitoring understanding and asking questions as strategies educators can teach explicitly. The routine below is an example you can adapt; it is not a validated test or a promise of improvement."
+        ],
+        "items": [
+          "Preview the title and state what you expect to learn.",
+          "Read a manageable section and explain it in your own words.",
+          "Answer a question and point to the sentence supporting it.",
+          "Reread a confusing part and revise the explanation."
+        ]
+      },
+      {
+        "heading": "How can you check an answer rather than guess?",
+        "paragraphs": [
+          "Separate an answer stated directly in the text from an inference. For an inference, name the clue and explain the connection. If feedback only marks an answer wrong, return to the passage before trying another option. Write down the unfamiliar word or sentence that caused trouble. That gives a teacher, tutor or practice partner something concrete to discuss."
+        ],
+        "items": []
+      },
+      {
+        "heading": "How do you choose an activity for the reader?",
+        "paragraphs": [
+          "Preview the content for topic, language and accessibility. Use a subject the learner wants to understand and adjust the passage length if maintaining attention becomes difficult. A reader who understands a spoken explanation but struggles with the printed words may need different support from someone who reads the words easily but misses the argument. Keep examples of both the passage and the response when asking for help."
+        ],
+        "items": []
+      }
+    ],
+    "faq": [
+      {
+        "q": "Is a multiple-choice score a reading level?",
+        "a": "It is a result for that activity. A grade-level interpretation needs an assessment designed and interpreted for that purpose."
+      },
+      {
+        "q": "Can I practise without an app?",
+        "a": "Yes. Use a short article or book section, explain its main point and support your explanation with details from the text."
+      }
+    ],
+    "source": [
+      "Reading Rockets: teaching text comprehension",
+      "https://www.readingrockets.org/topics/comprehension/articles/seven-strategies-teach-students-text-comprehension"
+    ],
+    "published": "2026-11-02",
+    "modified": "2026-11-04"
+  },
+  "reading-practice-for-adults": {
+    "h1": "What does useful reading practice for adults look like?",
+    "direct_answer": "Adult reading practice uses texts that matter to the learner to work on recognizing words, reading connected sentences and understanding information. The starting point is the task the adult wants to do, such as following instructions or reading for study. Materials can be accessible while still respecting adult interests, experience and privacy.",
+    "sections": [
+      {
+        "heading": "Which reading task should you start with?",
+        "paragraphs": [
+          "Pick a task with a clear purpose: comparing library notices, understanding a course description or following public instructions. Use a public example rather than uploading a personal document into a practice tool. Read the heading first and say what information you need. After reading, explain the relevant detail and where it appears."
+        ],
+        "items": [
+          "Choose a topic you would use outside a lesson.",
+          "Mark unfamiliar words without interrupting every sentence.",
+          "Restate the instruction or main point in your own words.",
+          "Return to the original to check that no condition was missed."
+        ]
+      },
+      {
+        "heading": "How can you identify what needs support?",
+        "paragraphs": [
+          "Notice whether the difficulty is recognizing words, reading sentences smoothly, understanding vocabulary or connecting ideas across the passage. The federal LINCS adult-reading resource organizes instruction around reading components rather than a single general label. A tutor can use examples from your reading to help choose the next activity. Home observations do not replace a formal assessment when one is needed."
+        ],
+        "items": []
+      },
+      {
+        "heading": "Where can an adult find materials and help?",
+        "paragraphs": [
+          "Ask a public library about adult literacy tutoring, accessible books and local adult education programs. For English learners, request material that fits both language goals and the reading task. You do not need to use children’s stories unless you choose them. Keep a private note of the task, the confusing part and what made the text easier to understand; a useful record describes a change in the task rather than an unsupported grade estimate."
+        ],
+        "items": []
+      },
+      {
+        "heading": "How can an adult practise comprehension specifically?",
+        "paragraphs": [
+          "After reading, state the main point without looking at the passage, then reopen it and check what you left out. Distinguish a detail stated directly from a conclusion you inferred. If an instruction includes a condition, explain when it applies. For study reading, turn a heading into a question and use your explanation as the answer. These are practice examples, not a scored adult-literacy assessment."
+        ],
+        "items": []
+      }
+    ],
+    "faq": [
+      {
+        "q": "Can an adult use a grade-labeled passage?",
+        "a": "Yes, if it is useful and comfortable. Treat the label as a description of the material rather than a description of the person."
+      },
+      {
+        "q": "Is reading aloud required?",
+        "a": "Choose a method that fits the goal and setting. A tutor may ask for an oral sample to understand a particular difficulty; independent practice can also include silent reading and written explanations."
+      }
+    ],
+    "source": [
+      "U.S. Department of Education, LINCS: adult reading instruction",
+      "https://lincs.ed.gov/publications/pdf/applyingresearch.pdf"
+    ],
+    "published": "2026-11-02",
+    "modified": "2026-11-04"
+  }
+}

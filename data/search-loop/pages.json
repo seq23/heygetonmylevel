@@ -17,11 +17,10 @@
       "url": "https://learn.heygetonmylevel.com/questions/is-my-child-reading-at-grade-level/",
       "published_at": "2026-11-02",
       "status": "live",
-      "hash": "9bd58f9db891934d2a40ba185e10f34e4c7222cfe80f8d0f5c29a8219dbf9442",
+      "hash": "05d269117aafd03e39d1152b2ec4473fb4402d446f40cc67ad9ccbabee9cedfa",
       "model": "free-route",
       "facts": [
-        "https://nces.ed.gov/",
-        "https://ies.ed.gov/"
+        "https://www.readingrockets.org/topics/comprehension/articles/seven-strategies-teach-students-text-comprehension"
       ],
       "linked_from": [],
       "checks": {},
@@ -54,7 +53,7 @@
       "route": "/questions/what-reading-level-should-a-7-year-old-be-at/",
       "url": "https://learn.heygetonmylevel.com/questions/what-reading-level-should-a-7-year-old-be-at/",
       "published_at": "2026-11-02",
-      "status": "live",
+      "status": "merged",
       "hash": "59e99d222e425b10babdc5775cf0ab2a8d0b8000bddc4fab68477ef6572c5927",
       "model": "free-route",
       "facts": [
@@ -66,7 +65,14 @@
       "extra_queries": [
         "what reading level should a 7 year old be at uk",
         "what oxford reading level should a 7 year old be at"
-      ]
+      ],
+      "merged_into": "https://learn.heygetonmylevel.com/questions/is-my-child-reading-at-grade-level/",
+      "merged_at": "2026-11-04",
+      "merged": {
+        "at": "2026-11-04",
+        "into": "/questions/is-my-child-reading-at-grade-level/",
+        "reason": "Overlapping intent; consolidated into a distinct sourced guide."
+      }
     },
     {
       "slug": "reading-level-by-grade-chart",
@@ -84,10 +90,10 @@
       "url": "https://learn.heygetonmylevel.com/questions/reading-level-by-grade-chart/",
       "published_at": "2026-11-02",
       "status": "live",
-      "hash": "3ec33daa8f56096b5a8f8d0ca5565dbf9d97c585b501afd19ecff8176d35d644",
+      "hash": "c56a04e581f5f065ee38532668b70907a9a315e8b26eb748faf17d9bdf410ce4",
       "model": "free-route",
       "facts": [
-        "https://www.ala.org/"
+        "https://hub.lexile.com/lexile-grade-level-charts/"
       ],
       "linked_from": [],
       "checks": {},
@@ -111,7 +117,7 @@
       "route": "/questions/reading-level-by-grade-fountas-and-pinnell/",
       "url": "https://learn.heygetonmylevel.com/questions/reading-level-by-grade-fountas-and-pinnell/",
       "published_at": "2026-11-02",
-      "status": "live",
+      "status": "merged",
       "hash": "e6aa9c9ff98178bf6f8fcfbe30b801afb772aeb51a007baab8b1166ed35b10e6",
       "model": "free-route",
       "facts": [
@@ -132,7 +138,14 @@
         "reading level by grade 1",
         "level m reading grade level books",
         "why is third grade reading level important"
-      ]
+      ],
+      "merged_into": "https://learn.heygetonmylevel.com/questions/reading-level-by-grade-chart/",
+      "merged_at": "2026-11-04",
+      "merged": {
+        "at": "2026-11-04",
+        "into": "/questions/reading-level-by-grade-chart/",
+        "reason": "Overlapping intent; consolidated into a distinct sourced guide."
+      }
     },
     {
       "slug": "reading-levels-by-grade-canada",
@@ -149,7 +162,7 @@
       "route": "/questions/reading-levels-by-grade-canada/",
       "url": "https://learn.heygetonmylevel.com/questions/reading-levels-by-grade-canada/",
       "published_at": "2026-11-02",
-      "status": "live",
+      "status": "merged",
       "hash": "710319dd38960cc856cfda65e670bb9b0151efb26c3c40c41215758f82275203",
       "model": "free-route",
       "facts": [
@@ -157,7 +170,14 @@
       ],
       "linked_from": [],
       "checks": {},
-      "indexnow_at": "2026-11-02"
+      "indexnow_at": "2026-11-02",
+      "merged_into": "https://learn.heygetonmylevel.com/questions/reading-level-by-grade-chart/",
+      "merged_at": "2026-11-04",
+      "merged": {
+        "at": "2026-11-04",
+        "into": "/questions/reading-level-by-grade-chart/",
+        "reason": "Overlapping intent; consolidated into a distinct sourced guide."
+      }
     },
     {
       "slug": "lexile-level-by-grade",
@@ -175,10 +195,10 @@
       "url": "https://learn.heygetonmylevel.com/questions/lexile-level-by-grade/",
       "published_at": "2026-11-02",
       "status": "live",
-      "hash": "3f5f5a74ee040a3f3e0671d353f1d3390d9eeda0a0b850d5abafb77c5c98b1ec",
+      "hash": "3bbe07866ef38751f97c70942809b9395882c73ff9859254115d62769a9d6bca",
       "model": "free-route",
       "facts": [
-        "https://en.wikipedia.org/wiki/Lexile"
+        "https://hub.lexile.com/lexile-grade-level-charts/"
       ],
       "linked_from": [],
       "checks": {},
@@ -209,7 +229,7 @@
       "route": "/questions/lexile-level-by-grade-chart/",
       "url": "https://learn.heygetonmylevel.com/questions/lexile-level-by-grade-chart/",
       "published_at": "2026-11-02",
-      "status": "live",
+      "status": "merged",
       "hash": "ec50d0290e9769e37eb60bfe0281f2a67baf8589f77f2ac03e52faf7de9dbe93",
       "model": "free-route",
       "facts": [
@@ -218,7 +238,14 @@
       ],
       "linked_from": [],
       "checks": {},
-      "indexnow_at": "2026-11-02"
+      "indexnow_at": "2026-11-02",
+      "merged_into": "https://learn.heygetonmylevel.com/questions/lexile-level-by-grade/",
+      "merged_at": "2026-11-04",
+      "merged": {
+        "at": "2026-11-04",
+        "into": "/questions/lexile-level-by-grade/",
+        "reason": "Overlapping intent; consolidated into a distinct sourced guide."
+      }
     },
     {
       "slug": "lexile-levels-by-grade-pdf",
@@ -235,7 +262,7 @@
       "route": "/questions/lexile-levels-by-grade-pdf/",
       "url": "https://learn.heygetonmylevel.com/questions/lexile-levels-by-grade-pdf/",
       "published_at": "2026-11-02",
-      "status": "live",
+      "status": "merged",
       "hash": "73acc719f63a0d6b67eb3d1d5ed62f21d82edd04235853bd41a614baccdc770c",
       "model": "free-route",
       "facts": [
@@ -243,7 +270,14 @@
       ],
       "linked_from": [],
       "checks": {},
-      "indexnow_at": "2026-11-02"
+      "indexnow_at": "2026-11-02",
+      "merged_into": "https://learn.heygetonmylevel.com/questions/lexile-level-by-grade/",
+      "merged_at": "2026-11-04",
+      "merged": {
+        "at": "2026-11-04",
+        "into": "/questions/lexile-level-by-grade/",
+        "reason": "Overlapping intent; consolidated into a distinct sourced guide."
+      }
     },
     {
       "slug": "reading-comprehension-practice-online",
@@ -261,10 +295,10 @@
       "url": "https://learn.heygetonmylevel.com/questions/reading-comprehension-practice-online/",
       "published_at": "2026-11-02",
       "status": "live",
-      "hash": "464fd555259d182cc063fec2bfbee771b62025adfb33dd58278f31de9b2f2268",
+      "hash": "7b1882f76e0f1b4a49786927e8f8ca1a0887572f9deeb40dd251c069359b9a0d",
       "model": "free-route",
       "facts": [
-        "https://en.wikipedia.org/wiki/Reading_comprehension"
+        "https://www.readingrockets.org/topics/comprehension/articles/seven-strategies-teach-students-text-comprehension"
       ],
       "linked_from": [],
       "checks": {},
@@ -289,10 +323,10 @@
       "url": "https://learn.heygetonmylevel.com/questions/reading-practice-for-adults/",
       "published_at": "2026-11-02",
       "status": "live",
-      "hash": "0df5d6f49f017849a9bf5c6f22b93359495f411fe2eee4911e9d80b0fb98aa08",
+      "hash": "fbcac349cd297a5f84690694042a6a81aeb24d3c88ce53b537d9edff96c455e2",
       "model": "free-route",
       "facts": [
-        "https://www.imls.gov/"
+        "https://lincs.ed.gov/publications/pdf/applyingresearch.pdf"
       ],
       "linked_from": [],
       "checks": {},
@@ -316,7 +350,7 @@
       "route": "/questions/what-is-the-highest-reading-age/",
       "url": "https://learn.heygetonmylevel.com/questions/what-is-the-highest-reading-age/",
       "published_at": "2026-11-03",
-      "status": "live",
+      "status": "merged",
       "hash": "16386dd60cbe9bdedc6cd1215a8e040be8e2a4bccd66ef54275b938fe1b4c639",
       "model": "free-route",
       "facts": [
@@ -329,6 +363,13 @@
         "b5 FAQ answer is 34 words (aim 40-60): \"Can adults improve their reading level over time?\"",
         "b5 FAQ answer is 32 words (aim 40-60): \"Are audiobooks helpful for reading development?\""
       ],
+      "merged_into": "https://learn.heygetonmylevel.com/questions/reading-level-by-grade-chart/",
+      "merged_at": "2026-11-04",
+      "merged": {
+        "at": "2026-11-04",
+        "into": "/questions/reading-level-by-grade-chart/",
+        "reason": "Overlapping intent; consolidated into a distinct sourced guide."
+      },
       "extra_queries": [
         "what is the reading age"
       ],
@@ -348,7 +389,7 @@
       "route": "/questions/how-to-increase-reading-level/",
       "url": "https://learn.heygetonmylevel.com/questions/how-to-increase-reading-level/",
       "published_at": "2026-11-03",
-      "status": "live",
+      "status": "merged",
       "hash": "de25c93d84b04e6a399e5a3c3243b175e77d8b8a2b16111459a3047cf82061fc",
       "model": "free-route",
       "facts": [
@@ -377,6 +418,13 @@
       "extra_queries": [
         "how to increase reading level for kids"
       ],
+      "merged_into": "https://learn.heygetonmylevel.com/questions/reading-comprehension-practice-online/",
+      "merged_at": "2026-11-04",
+      "merged": {
+        "at": "2026-11-04",
+        "into": "/questions/reading-comprehension-practice-online/",
+        "reason": "Overlapping intent; consolidated into a distinct sourced guide."
+      },
       "indexnow_at": "2026-11-04"
     },
     {
@@ -393,7 +441,7 @@
       "route": "/questions/how-to-improve-reading-comprehension-as-an-adult/",
       "url": "https://learn.heygetonmylevel.com/questions/how-to-improve-reading-comprehension-as-an-adult/",
       "published_at": "2026-11-03",
-      "status": "live",
+      "status": "merged",
       "hash": "c8565adf3b20d80bcad0447c85e8742f83e8627ff88ca8bc1dd994c074e0ecc0",
       "model": "free-route",
       "facts": [
@@ -414,6 +462,13 @@
         "b5 FAQ answer is 36 words (aim 40-60): \"Is it normal for my mind to wander while reading?\"",
         "b5 FAQ answer is 37 words (aim 40-60): \"How do I choose the right books for my goals?\""
       ],
+      "merged_into": "https://learn.heygetonmylevel.com/questions/reading-practice-for-adults/",
+      "merged_at": "2026-11-04",
+      "merged": {
+        "at": "2026-11-04",
+        "into": "/questions/reading-practice-for-adults/",
+        "reason": "Overlapping intent; consolidated into a distinct sourced guide."
+      },
       "indexnow_at": "2026-11-04"
     },
     {
@@ -430,7 +485,7 @@
       "route": "/questions/what-grade-do-kids-start-reading/",
       "url": "https://learn.heygetonmylevel.com/questions/what-grade-do-kids-start-reading/",
       "published_at": "2026-11-03",
-      "status": "live",
+      "status": "merged",
       "hash": "43750899e9aa504f0804a5502749b21ce2b9484acc5510e4b4606fcf514ab63f",
       "model": "free-route",
       "facts": [
@@ -454,6 +509,13 @@
       "extra_queries": [
         "what grade do kids learn to read"
       ],
+      "merged_into": "https://learn.heygetonmylevel.com/questions/is-my-child-reading-at-grade-level/",
+      "merged_at": "2026-11-04",
+      "merged": {
+        "at": "2026-11-04",
+        "into": "/questions/is-my-child-reading-at-grade-level/",
+        "reason": "Overlapping intent; consolidated into a distinct sourced guide."
+      },
       "indexnow_at": "2026-11-04"
     },
     {
@@ -470,7 +532,7 @@
       "route": "/questions/what-determines-reading-level/",
       "url": "https://learn.heygetonmylevel.com/questions/what-determines-reading-level/",
       "published_at": "2026-11-03",
-      "status": "live",
+      "status": "merged",
       "hash": "dfd7263f061841edeaa8b8c207ecb08ae30493cbc336a261cafc1af25b795978",
       "model": "free-route",
       "facts": [
@@ -491,6 +553,13 @@
         }
       ],
       "checks": {},
+      "merged_into": "https://learn.heygetonmylevel.com/questions/reading-level-by-grade-chart/",
+      "merged_at": "2026-11-04",
+      "merged": {
+        "at": "2026-11-04",
+        "into": "/questions/reading-level-by-grade-chart/",
+        "reason": "Overlapping intent; consolidated into a distinct sourced guide."
+      },
       "indexnow_at": "2026-11-04"
     },
     {
@@ -507,7 +576,7 @@
       "route": "/questions/what-grade-do-you-learn-to-read/",
       "url": "https://learn.heygetonmylevel.com/questions/what-grade-do-you-learn-to-read/",
       "published_at": "2026-11-03",
-      "status": "live",
+      "status": "merged",
       "hash": "c0148ccac932e0a70ffef842b9ea0299be45cf56cc8f5b2d1c622b6c5d0a9510",
       "model": "free-route",
       "facts": [
@@ -521,6 +590,13 @@
       "extra_queries": [
         "what grade do students learn to read"
       ],
+      "merged_into": "https://learn.heygetonmylevel.com/questions/is-my-child-reading-at-grade-level/",
+      "merged_at": "2026-11-04",
+      "merged": {
+        "at": "2026-11-04",
+        "into": "/questions/is-my-child-reading-at-grade-level/",
+        "reason": "Overlapping intent; consolidated into a distinct sourced guide."
+      },
       "indexnow_at": "2026-11-04"
     },
     {
@@ -537,7 +613,7 @@
       "route": "/questions/how-to-determine-your-reading-level/",
       "url": "https://learn.heygetonmylevel.com/questions/how-to-determine-your-reading-level/",
       "published_at": "2026-11-03",
-      "status": "live",
+      "status": "merged",
       "hash": "d99dfeb821e47060cb57a7a72d3bf0082e0b8dd267bc4518294f3e2cec583d5f",
       "model": "free-route",
       "facts": [
@@ -558,6 +634,13 @@
         }
       ],
       "checks": {},
+      "merged_into": "https://learn.heygetonmylevel.com/questions/reading-level-by-grade-chart/",
+      "merged_at": "2026-11-04",
+      "merged": {
+        "at": "2026-11-04",
+        "into": "/questions/reading-level-by-grade-chart/",
+        "reason": "Overlapping intent; consolidated into a distinct sourced guide."
+      },
       "indexnow_at": "2026-11-04"
     },
     {
@@ -574,7 +657,7 @@
       "route": "/questions/how-to-tell-your-reading-level/",
       "url": "https://learn.heygetonmylevel.com/questions/how-to-tell-your-reading-level/",
       "published_at": "2026-11-03",
-      "status": "live",
+      "status": "merged",
       "hash": "0ce4398226a1b216443169961d94e9554229e000933740a1fb6de1fd02bc569d",
       "model": "free-route",
       "facts": [
@@ -601,6 +684,13 @@
         "b5 FAQ answer is 39 words (aim 40-60): \"Are comics and graphic novels good for daily readi\"",
         "b5 FAQ answer is 36 words (aim 40-60): \"Do reading levels change during the school year?\""
       ],
+      "merged_into": "https://learn.heygetonmylevel.com/questions/reading-level-by-grade-chart/",
+      "merged_at": "2026-11-04",
+      "merged": {
+        "at": "2026-11-04",
+        "into": "/questions/reading-level-by-grade-chart/",
+        "reason": "Overlapping intent; consolidated into a distinct sourced guide."
+      },
       "indexnow_at": "2026-11-04"
     },
     {
@@ -619,7 +709,7 @@
       "route": "/questions/level-17-reading-age/",
       "url": "https://learn.heygetonmylevel.com/questions/level-17-reading-age/",
       "published_at": "2026-11-04",
-      "status": "live",
+      "status": "merged",
       "hash": "42a18cfe49756f12d8ac1d66f8503829f416543e7a8d7a8ebddb0ff3a17db26d",
       "model": "free-route",
       "facts": [
@@ -646,7 +736,14 @@
         "b5 FAQ answer is 35 words (aim 40-60): \"How can I help an adult learner improve reading sk\"",
         "b5 FAQ answer is 38 words (aim 40-60): \"Do levelled books replace regular library books?\"",
         "b5 FAQ answer is 38 words (aim 40-60): \"Should I worry if my child reads slower than peers\""
-      ]
+      ],
+      "merged_into": "https://learn.heygetonmylevel.com/questions/reading-level-by-grade-chart/",
+      "merged_at": "2026-11-04",
+      "merged": {
+        "at": "2026-11-04",
+        "into": "/questions/reading-level-by-grade-chart/",
+        "reason": "Overlapping reading-age intent; consolidated into the kept chart guide."
+      }
     }
   ],
   "dropped": [
@@ -1005,7 +1102,7 @@
       "route": "/questions/reading-level-by-grade-fountas-and-pinnell/",
       "kind": "page",
       "matched_by": "high token overlap (0.75 >= 0.6)",
-      "matched_text": "Reading levels by grade explained — HeyGetOnMyLevel",
+      "matched_text": "Reading levels by grade explained \u2014 HeyGetOnMyLevel",
       "stage": "search"
     },
     {
@@ -1015,7 +1112,7 @@
       "route": "/questions/reading-level-by-grade-fountas-and-pinnell/",
       "kind": "page",
       "matched_by": "same wording",
-      "matched_text": "Reading levels by grade explained — HeyGetOnMyLevel",
+      "matched_text": "Reading levels by grade explained \u2014 HeyGetOnMyLevel",
       "stage": "search"
     },
     {
@@ -1025,7 +1122,7 @@
       "route": "/questions/reading-level-by-grade-fountas-and-pinnell/",
       "kind": "page",
       "matched_by": "high token overlap (0.75 >= 0.6)",
-      "matched_text": "Reading levels by grade explained — HeyGetOnMyLevel",
+      "matched_text": "Reading levels by grade explained \u2014 HeyGetOnMyLevel",
       "stage": "search"
     },
     {
@@ -1035,7 +1132,7 @@
       "route": "/questions/reading-level-by-grade-fountas-and-pinnell/",
       "kind": "page",
       "matched_by": "high token overlap (0.75 >= 0.6)",
-      "matched_text": "Reading levels by grade explained — HeyGetOnMyLevel",
+      "matched_text": "Reading levels by grade explained \u2014 HeyGetOnMyLevel",
       "stage": "search"
     },
     {
@@ -1045,7 +1142,7 @@
       "route": "/questions/reading-level-by-grade-fountas-and-pinnell/",
       "kind": "page",
       "matched_by": "high token overlap (0.75 >= 0.6)",
-      "matched_text": "Reading levels by grade explained — HeyGetOnMyLevel",
+      "matched_text": "Reading levels by grade explained \u2014 HeyGetOnMyLevel",
       "stage": "search"
     },
     {
@@ -1055,7 +1152,7 @@
       "route": "/questions/reading-level-by-grade-fountas-and-pinnell/",
       "kind": "page",
       "matched_by": "high token overlap (0.75 >= 0.6)",
-      "matched_text": "Reading levels by grade explained — HeyGetOnMyLevel",
+      "matched_text": "Reading levels by grade explained \u2014 HeyGetOnMyLevel",
       "stage": "search"
     },
     {
@@ -1065,7 +1162,7 @@
       "route": "/questions/reading-level-by-grade-fountas-and-pinnell/",
       "kind": "page",
       "matched_by": "same wording",
-      "matched_text": "Reading levels by grade explained — HeyGetOnMyLevel",
+      "matched_text": "Reading levels by grade explained \u2014 HeyGetOnMyLevel",
       "stage": "search"
     },
     {
@@ -1075,7 +1172,7 @@
       "route": "/questions/reading-level-by-grade-fountas-and-pinnell/",
       "kind": "page",
       "matched_by": "same wording",
-      "matched_text": "Reading levels by grade explained — HeyGetOnMyLevel",
+      "matched_text": "Reading levels by grade explained \u2014 HeyGetOnMyLevel",
       "stage": "search"
     },
     {
@@ -1295,7 +1392,7 @@
       "route": "/questions/reading-level-by-grade-fountas-and-pinnell/",
       "kind": "page",
       "matched_by": "high token overlap (0.75 >= 0.6)",
-      "matched_text": "Reading levels by grade explained — HeyGetOnMyLevel",
+      "matched_text": "Reading levels by grade explained \u2014 HeyGetOnMyLevel",
       "stage": "search"
     },
     {
@@ -1305,7 +1402,7 @@
       "route": "/questions/reading-level-by-grade-fountas-and-pinnell/",
       "kind": "page",
       "matched_by": "same wording",
-      "matched_text": "Reading levels by grade explained — HeyGetOnMyLevel",
+      "matched_text": "Reading levels by grade explained \u2014 HeyGetOnMyLevel",
       "stage": "search"
     },
     {
@@ -1315,7 +1412,7 @@
       "route": "/questions/reading-level-by-grade-fountas-and-pinnell/",
       "kind": "page",
       "matched_by": "high token overlap (0.75 >= 0.6)",
-      "matched_text": "Reading levels by grade explained — HeyGetOnMyLevel",
+      "matched_text": "Reading levels by grade explained \u2014 HeyGetOnMyLevel",
       "stage": "search"
     },
     {
@@ -1325,7 +1422,7 @@
       "route": "/questions/reading-level-by-grade-fountas-and-pinnell/",
       "kind": "page",
       "matched_by": "high token overlap (0.60 >= 0.6)",
-      "matched_text": "Reading levels by grade explained — HeyGetOnMyLevel",
+      "matched_text": "Reading levels by grade explained \u2014 HeyGetOnMyLevel",
       "stage": "search"
     },
     {
