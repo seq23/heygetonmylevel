@@ -91,7 +91,10 @@
       ],
       "linked_from": [],
       "checks": {},
-      "indexnow_at": "2026-11-02"
+      "indexnow_at": "2026-11-02",
+      "extra_queries": [
+        "reading level chart by age"
+      ]
     },
     {
       "slug": "reading-level-by-grade-fountas-and-pinnell",
@@ -325,7 +328,11 @@
         "b5 FAQ answer is 38 words (aim 40-60): \"What should I do if a reading score seems too low?\"",
         "b5 FAQ answer is 34 words (aim 40-60): \"Can adults improve their reading level over time?\"",
         "b5 FAQ answer is 32 words (aim 40-60): \"Are audiobooks helpful for reading development?\""
-      ]
+      ],
+      "extra_queries": [
+        "what is the reading age"
+      ],
+      "indexnow_at": "2026-11-04"
     },
     {
       "slug": "how-to-increase-reading-level",
@@ -369,7 +376,8 @@
       ],
       "extra_queries": [
         "how to increase reading level for kids"
-      ]
+      ],
+      "indexnow_at": "2026-11-04"
     },
     {
       "slug": "how-to-improve-reading-comprehension-as-an-adult",
@@ -405,7 +413,8 @@
         "b5 FAQ answer is 39 words (aim 40-60): \"Should I look up every unfamiliar word immediately\"",
         "b5 FAQ answer is 36 words (aim 40-60): \"Is it normal for my mind to wander while reading?\"",
         "b5 FAQ answer is 37 words (aim 40-60): \"How do I choose the right books for my goals?\""
-      ]
+      ],
+      "indexnow_at": "2026-11-04"
     },
     {
       "slug": "what-grade-do-kids-start-reading",
@@ -444,7 +453,8 @@
       "checks": {},
       "extra_queries": [
         "what grade do kids learn to read"
-      ]
+      ],
+      "indexnow_at": "2026-11-04"
     },
     {
       "slug": "what-determines-reading-level",
@@ -480,7 +490,8 @@
           "after_hash": "bf09cd91485b03de4793c01546c15145614827d42101d494b7cc6194b71e886d"
         }
       ],
-      "checks": {}
+      "checks": {},
+      "indexnow_at": "2026-11-04"
     },
     {
       "slug": "what-grade-do-you-learn-to-read",
@@ -509,7 +520,8 @@
       ],
       "extra_queries": [
         "what grade do students learn to read"
-      ]
+      ],
+      "indexnow_at": "2026-11-04"
     },
     {
       "slug": "how-to-determine-your-reading-level",
@@ -545,7 +557,8 @@
           "after_hash": "8d3e47e0aa75d7a64b4686cc2ca289eeaffa523d6f789f9f4af53703acd8c592"
         }
       ],
-      "checks": {}
+      "checks": {},
+      "indexnow_at": "2026-11-04"
     },
     {
       "slug": "how-to-tell-your-reading-level",
@@ -587,6 +600,52 @@
         "b4 direct answer under the H1 is 36 words (aim 40-60)",
         "b5 FAQ answer is 39 words (aim 40-60): \"Are comics and graphic novels good for daily readi\"",
         "b5 FAQ answer is 36 words (aim 40-60): \"Do reading levels change during the school year?\""
+      ],
+      "indexnow_at": "2026-11-04"
+    },
+    {
+      "slug": "level-17-reading-age",
+      "query": "level 17 reading age",
+      "lane": "striking",
+      "score": 25,
+      "reasons": [],
+      "signals": {
+        "words": 4,
+        "question": false,
+        "google_suggest": true,
+        "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+      },
+      "rel": "questions/level-17-reading-age/index.html",
+      "route": "/questions/level-17-reading-age/",
+      "url": "https://learn.heygetonmylevel.com/questions/level-17-reading-age/",
+      "published_at": "2026-11-04",
+      "status": "live",
+      "hash": "42a18cfe49756f12d8ac1d66f8503829f416543e7a8d7a8ebddb0ff3a17db26d",
+      "model": "free-route",
+      "facts": [
+        "https://en.wikipedia.org/wiki/Lexile",
+        "https://nces.ed.gov/"
+      ],
+      "linked_from": [
+        {
+          "rel": "questions/how-to-determine-your-reading-level/index.html",
+          "route": "/questions/how-to-determine-your-reading-level/",
+          "before_hash": "d99dfeb821e47060cb57a7a72d3bf0082e0b8dd267bc4518294f3e2cec583d5f",
+          "after_hash": "367ca4aaa77d2ceb5de34d4ba4a032cebe9f2598d16f4f16edc76ec746f9ce12"
+        },
+        {
+          "rel": "questions/what-determines-reading-level/index.html",
+          "route": "/questions/what-determines-reading-level/",
+          "before_hash": "dfd7263f061841edeaa8b8c207ecb08ae30493cbc336a261cafc1af25b795978",
+          "after_hash": "5aefa1dc79631138367756b3c4d7baaf20b5076148e336065f814afe56879b18"
+        }
+      ],
+      "checks": {},
+      "gate_notes": [
+        "b5 FAQ answer is 38 words (aim 40-60): \"What should I do if a reader feels stuck at one le\"",
+        "b5 FAQ answer is 35 words (aim 40-60): \"How can I help an adult learner improve reading sk\"",
+        "b5 FAQ answer is 38 words (aim 40-60): \"Do levelled books replace regular library books?\"",
+        "b5 FAQ answer is 38 words (aim 40-60): \"Should I worry if my child reads slower than peers\""
       ]
     }
   ],
@@ -840,6 +899,51 @@
         "b5 FAQ answer is 11 words (aim 40-60): \"Can reading levels change from day to day?\"",
         "b5 FAQ answer is 10 words (aim 40-60): \"Should adults worry about formal reading levels?\"",
         "b5 FAQ answer is 13 words (aim 40-60): \"What if a book is too difficult right now?\""
+      ]
+    },
+    {
+      "query": "how to assess kids reading level",
+      "at": "2026-11-04",
+      "reason": [
+        "facts: needs at least 2 distinct sources whose URLs answered 200 (found 1)"
+      ]
+    },
+    {
+      "query": "how to check my reading level",
+      "at": "2026-11-04",
+      "reason": [
+        "b2 meta description is 51 chars (aim 120-160)",
+        "b5 FAQ answer is 26 words (aim 40-60): \"Can adults check their own reading level?\"",
+        "b5 FAQ answer is 28 words (aim 40-60): \"What if a book feels too hard to read?\"",
+        "b5 FAQ answer is 25 words (aim 40-60): \"How can I help my child read every day?\""
+      ]
+    },
+    {
+      "query": "american reading level chart by age",
+      "at": "2026-11-04",
+      "reason": [
+        "b5 FAQ answer is 24 words (aim 40-60): \"Are reading level charts exact for every child?\"",
+        "b5 FAQ answer is 25 words (aim 40-60): \"Can adult learners use these reading level charts?\"",
+        "b5 FAQ answer is 26 words (aim 40-60): \"How often should I check a reading level?\"",
+        "b5 FAQ answer is 26 words (aim 40-60): \"When should I seek professional advice about readi\""
+      ]
+    },
+    {
+      "query": "what is the reading age range",
+      "at": "2026-11-04",
+      "reason": [
+        "b5 FAQ answer is 23 words (aim 40-60): \"What does a reading age range actually measure?\"",
+        "b5 FAQ answer is 21 words (aim 40-60): \"Can reading levels change quickly?\"",
+        "b5 FAQ answer is 20 words (aim 40-60): \"What if a reader struggles with a book?\"",
+        "b5 FAQ answer is 20 words (aim 40-60): \"How often should reading practice happen?\"",
+        "facts: needs at least 2 distinct sources whose URLs answered 200 (found 1)"
+      ]
+    },
+    {
+      "query": "what is the average reading age",
+      "at": "2026-11-04",
+      "reason": [
+        "off-audience: This query asks about average reading age, which often relies on specific population statistics and standardized norms t"
       ]
     }
   ],
@@ -1232,6 +1336,26 @@
       "kind": "engine",
       "matched_by": "high token overlap (0.75 >= 0.6)",
       "matched_text": "what grade do you learn to read",
+      "stage": "search"
+    },
+    {
+      "query": "reading level chart by age",
+      "at": "2026-11-04",
+      "url": "https://learn.heygetonmylevel.com/questions/reading-level-by-grade-chart/",
+      "route": "/questions/reading-level-by-grade-chart/",
+      "kind": "engine",
+      "matched_by": "high token overlap (0.60 >= 0.6)",
+      "matched_text": "reading level by grade chart",
+      "stage": "search"
+    },
+    {
+      "query": "what is the reading age",
+      "at": "2026-11-04",
+      "url": "https://learn.heygetonmylevel.com/questions/what-is-the-highest-reading-age/",
+      "route": "/questions/what-is-the-highest-reading-age/",
+      "kind": "engine",
+      "matched_by": "high token overlap (0.67 >= 0.6)",
+      "matched_text": "what is the highest reading age",
       "stage": "search"
     }
   ]

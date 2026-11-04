@@ -1809,6 +1809,24 @@
   ],
   "strengthen": [
     {
+      "query": "what is the reading age",
+      "page": "/questions/what-is-the-highest-reading-age/",
+      "url": "https://learn.heygetonmylevel.com/questions/what-is-the-highest-reading-age/",
+      "score": 25,
+      "from": "distinct-gate",
+      "matched_by": "high token overlap (0.67 >= 0.6)",
+      "at": "2026-11-04"
+    },
+    {
+      "query": "reading level chart by age",
+      "page": "/questions/reading-level-by-grade-chart/",
+      "url": "https://learn.heygetonmylevel.com/questions/reading-level-by-grade-chart/",
+      "score": 25,
+      "from": "distinct-gate",
+      "matched_by": "high token overlap (0.60 >= 0.6)",
+      "at": "2026-11-04"
+    },
+    {
       "query": "what grade do students learn to read",
       "page": "/questions/what-grade-do-you-learn-to-read/",
       "url": "https://learn.heygetonmylevel.com/questions/what-grade-do-you-learn-to-read/",

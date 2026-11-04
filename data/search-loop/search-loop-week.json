@@ -2,9 +2,9 @@
   "schema": "search-loop-week-v1",
   "week": "2026-W45",
   "site": "learn.heygetonmylevel.com",
-  "generated_at": "2026-11-03T11:48:30.911Z",
+  "generated_at": "2026-11-04T11:48:40.480Z",
   "state": "running",
-  "published": 18,
+  "published": 19,
   "indexed": "not read: no page old enough to inspect yet (14 days)",
   "pace": 10,
   "ai_visitors": "not read: no free analytics source configured for this site (analytics.ai_referrals)",
@@ -248,19 +248,55 @@
       "strengthen": "https://learn.heygetonmylevel.com/questions/what-grade-do-you-learn-to-read/",
       "matched_by": "high token overlap (0.75 >= 0.6)",
       "at": "2026-11-03"
+    },
+    {
+      "query": "reading level chart by age",
+      "strengthen": "https://learn.heygetonmylevel.com/questions/reading-level-by-grade-chart/",
+      "matched_by": "high token overlap (0.60 >= 0.6)",
+      "at": "2026-11-04"
+    },
+    {
+      "query": "what is the reading age",
+      "strengthen": "https://learn.heygetonmylevel.com/questions/what-is-the-highest-reading-age/",
+      "matched_by": "high token overlap (0.67 >= 0.6)",
+      "at": "2026-11-04"
     }
   ],
   "cap": {
     "max_live_pages": 20,
-    "live": 18,
-    "room": 2,
+    "live": 19,
+    "room": 1,
     "why": "held at 20: no Search Console numbers to judge results (Search Console has no rows for 2026-09-06..2026-10-03, so there is nothing to compare the last 28 days with); the cap never grows without data"
   },
   "notes": [
-    "NAMED NOTE [CAP_HELD_NO_DATA] cap held at 20: no Search Console numbers to judge results (Search Console has no rows for 2026-09-06..2026-10-03, so there is nothing to compare the last 28 days with); the cap never grows without data",
-    "BUILD distinct gate: 39 search(es) had the same intent as an existing page and became strengthen briefs, not new pages (pages.json \"redirected\")",
-    "BUILD gate notes (not blocking): 5 published page(s) are outside a length or style aim; each is listed under gate_notes in pages.json",
-    "IndexNow: 8 new page(s) not live yet; submitted when they answer 200"
+    "BUILD distinct gate: 2 search(es) had the same intent as an existing page and became strengthen briefs, not new pages (pages.json \"redirected\")",
+    "BUILD gate notes (not blocking): 1 published page(s) are outside a length or style aim; each is listed under gate_notes in pages.json"
   ],
-  "run_url": "https://github.com/seq23/heygetonmylevel/actions/runs/41630447084"
+  "lanes": {
+    "ratio": {
+      "can_be_one": 2,
+      "striking": 1
+    },
+    "can_be_one": {
+      "pages": 0,
+      "measured": 0,
+      "top3": 0,
+      "hit_rate": "not read: no page in this lane has reached its 2-week check yet"
+    },
+    "striking": {
+      "pages": 19,
+      "measured": 0,
+      "top3": 0,
+      "hit_rate": "not read: no page in this lane has reached its 2-week check yet"
+    },
+    "weights": {
+      "neighbour": 35,
+      "unanswered": 30,
+      "weak_top10": 40,
+      "demand": 10
+    },
+    "weight_changes": [],
+    "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
+  },
+  "run_url": "https://github.com/seq23/heygetonmylevel/actions/runs/41823889687"
 }
