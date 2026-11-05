@@ -2,17 +2,17 @@
   "schema": "search-loop-week-v1",
   "week": "2026-W45",
   "site": "learn.heygetonmylevel.com",
-  "generated_at": "2026-11-04T11:48:40.480Z",
-  "state": "running",
+  "generated_at": "2026-11-05T11:49:07.679Z",
+  "state": "off",
   "published": 19,
   "indexed": "not read: no page old enough to inspect yet (14 days)",
-  "pace": 10,
+  "pace": 0,
   "ai_visitors": "not read: no free analytics source configured for this site (analytics.ai_referrals)",
   "ai_bot_hits": "not read: no free analytics source configured for this site (analytics.ai_referrals)",
   "conversions": "not read: no conversion source configured for this site (form fills / checkouts)",
   "wins": 0,
   "undone": 0,
-  "merged": 0,
+  "merged": 14,
   "held_by_cap": 0,
   "redirected": [
     {
@@ -264,13 +264,14 @@
   ],
   "cap": {
     "max_live_pages": 20,
-    "live": 19,
-    "room": 1,
+    "live": 5,
+    "room": 15,
     "why": "held at 20: no Search Console numbers to judge results (Search Console has no rows for 2026-09-06..2026-10-03, so there is nothing to compare the last 28 days with); the cap never grows without data"
   },
   "notes": [
-    "BUILD distinct gate: 2 search(es) had the same intent as an existing page and became strengthen briefs, not new pages (pages.json \"redirected\")",
-    "BUILD gate notes (not blocking): 1 published page(s) are outside a length or style aim; each is listed under gate_notes in pages.json"
+    "Search loop is switched off (mode=off)",
+    "site config lowers the mode to off",
+    "BUILD skipped: mode=off"
   ],
   "lanes": {
     "ratio": {
@@ -298,5 +299,5 @@
     "weight_changes": [],
     "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
   },
-  "run_url": "https://github.com/seq23/heygetonmylevel/actions/runs/41823889687"
+  "run_url": "https://github.com/seq23/heygetonmylevel/actions/runs/42021982963"
 }
