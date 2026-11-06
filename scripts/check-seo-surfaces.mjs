@@ -37,6 +37,18 @@ try {
 for (const f of ["favicon.ico", "apple-touch-icon.png", "og-image.jpg", "manifest.json", "site.webmanifest"]) {
   if (!existsSync(join(DIR, f))) fail(`${f} is not in ${DIR}`);
 }
+// a9: the error page a static host serves for an unknown path. It must exist, say it is a
+// 404 and carry noindex, so a host that falls back to it never gets a soft-404 indexed.
+{
+  const nf = join(DIR, "404.html");
+  if (!existsSync(nf)) fail(`404.html is not in ${DIR}`);
+  else {
+    const h = readFileSync(nf, "utf8");
+    if (!/<title[^>]*>Page not found/.test(h)) fail("404.html has no 'Page not found' title");
+    if (!/<meta[^>]*name="robots"[^>]*noindex/.test(h)) fail("404.html is not noindex");
+    if (/<link[^>]*rel="canonical"/.test(h)) fail("404.html carries a canonical link");
+  }
+}
 for (const f of ["manifest.json", "site.webmanifest"]) {
   if (!existsSync(join(DIR, f))) continue;
   try {
