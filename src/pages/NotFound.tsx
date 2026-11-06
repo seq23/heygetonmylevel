@@ -3,10 +3,10 @@ import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 
 /**
- * The host serves the SPA shell with HTTP 200 for any unknown extensionless path, so
- * an unknown URL cannot answer 404 from inside this repo (Search Readiness a9: "a
- * made-up path answered 200, not 404"). What the repo can do is stop those soft-404s
- * being indexed or reported as real pages, which is what robots noindex does here.
+ * Search Readiness a9: an unknown path should answer 404, not the homepage with 200.
+ * The prerender (vite.config.ts) also writes this page to dist/404.html, which a static
+ * host serves with status 404 for an unmatched path. A host that only does SPA fallback
+ * ignores that file, and then robots noindex is what keeps the soft-404 out of the index.
  */
 const NotFound = () => {
   const location = useLocation();

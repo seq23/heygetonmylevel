@@ -91,6 +91,22 @@ function prerender(): Plugin {
         }
       }
 
+      // The NotFound route, written where a static host looks for an error page (Search
+      // Readiness a9). A host that serves dist/404.html with status 404 then answers an
+      // unknown path with a real 404; one that only does SPA fallback ignores the file and
+      // NotFound's noindex still keeps the soft-404 out of the index.
+      const notFound = mod.render("/__not-found__");
+      if (!notFound.html || notFound.html.length < 200 || !/Page not found/.test(notFound.head)) {
+        throw new Error("prerender: 404 page rendered empty or without its title");
+      }
+      let errorPage = template;
+      for (const re of ROUTE_HEAD_TAGS) errorPage = errorPage.replace(re, "");
+      errorPage = errorPage
+        .replace(/<link rel="canonical"[^>]*>\s*/, "")
+        .replace("</head>", `    ${notFound.head}\n  </head>`)
+        .replace('<div id="root"></div>', `<div id="root">${notFound.html}</div>`);
+      fs.writeFileSync(path.join(outDir, "404.html"), errorPage);
+
       fs.writeFileSync(path.join(outDir, "prerender-routes.json"), JSON.stringify(routes));
       const urls = routes
         .map((r) => {
