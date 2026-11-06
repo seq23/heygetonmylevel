@@ -2,7 +2,7 @@
   "schema": "search-loop-week-v1",
   "week": "2026-W45",
   "site": "learn.heygetonmylevel.com",
-  "generated_at": "2026-11-05T11:49:07.679Z",
+  "generated_at": "2026-11-06T11:48:51.344Z",
   "state": "off",
   "published": 19,
   "indexed": "not read: no page old enough to inspect yet (14 days)",
@@ -299,5 +299,5 @@
     "weight_changes": [],
     "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
   },
-  "run_url": "https://github.com/seq23/heygetonmylevel/actions/runs/42021982963"
+  "run_url": "https://github.com/seq23/heygetonmylevel/actions/runs/42212961363"
 }
