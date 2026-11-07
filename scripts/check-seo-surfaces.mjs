@@ -20,6 +20,7 @@ const fail = (m) => { console.error(`SEO_SURFACE_MISSING ${m}`); process.exitCod
 
 const SITE = "https://heygetonmylevel.com";
 const TITLE_MIN = 30, TITLE_MAX = 65;
+const SITE_NAME = "HeyGetOnMyLevel";
 const DESC_MIN = 120, DESC_MAX = 160;
 
 const keys = readdirSync(DIR).filter((f) => /^[0-9a-f]{32}\.txt$/.test(f));
@@ -90,6 +91,8 @@ for (const route of routes) {
 
   const title = (html.match(/<title[^>]*>([\s\S]*?)<\/title>/) ?? [, ""])[1].trim();
   if (title.length < TITLE_MIN || title.length > TITLE_MAX) fail(`${where} title is ${title.length} characters, not ${TITLE_MIN}-${TITLE_MAX} ("${title}")`);
+  // Search Readiness b10: every title names this site, so a result is credited to it and never to a sibling.
+  if (!/heygetonmylevel/i.test(title)) fail(`${where} title does not name the site (${SITE_NAME}): "${title}"`);
   if (titles.has(title)) fail(`${where} shares its title with ${titles.get(title)} ("${title}")`);
   else titles.set(title, route);
 
