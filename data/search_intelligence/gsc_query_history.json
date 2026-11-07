@@ -98,6 +98,30 @@
           "position": 38
         }
       }
+    },
+    {
+      "start_date": "2026-10-08",
+      "end_date": "2026-11-04",
+      "days": 28,
+      "collected_at": "2026-11-07T07:59:10.800Z",
+      "totals": {
+        "clicks": 0,
+        "impressions": 14,
+        "ctr": 0,
+        "position": 24.79
+      },
+      "queries": {
+        "middle school reading curriculum": {
+          "impressions": 1,
+          "clicks": 0,
+          "position": 76
+        },
+        "upper elementary reading": {
+          "impressions": 1,
+          "clicks": 0,
+          "position": 38
+        }
+      }
     }
   ]
 }
