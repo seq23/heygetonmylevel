@@ -79,14 +79,14 @@ const CurriculumBand = () => {
               ? `¿Qué cubre el currículo de lectura de ${gb.bandEs}?`
               : `What does the ${gb.band} reading curriculum cover?`}
           </h2>
-          <p className="text-muted-foreground">{guide.definition}</p>
+          <p className="text-muted-foreground">{isEs ? guide.definitionEs : guide.definition}</p>
           <PageByline reviewed="2026-11-04" />
         </section>
 
         <section className="card-elevated">
-          <h2 className="text-lg font-display font-bold">What can you practise in this band?</h2>
-          <p className="mt-2">{guide.task}</p>
-          <ol className="list-decimal pl-6 mt-3 space-y-2">{guide.steps.map(step => <li key={step}>{step}</li>)}</ol>
+          <h2 className="text-lg font-display font-bold">{isEs ? "¿Qué puedes practicar en esta banda?" : "What can you practise in this band?"}</h2>
+          <p className="mt-2">{isEs ? guide.taskEs : guide.task}</p>
+          <ol className="list-decimal pl-6 mt-3 space-y-2">{(isEs ? guide.stepsEs : guide.steps).map(step => <li key={step}>{step}</li>)}</ol>
         </section>
 
         {gb.modules.map((mod) => (
@@ -106,13 +106,15 @@ const CurriculumBand = () => {
         ))}
 
         <section className="card-elevated">
-          <h2 className="text-lg font-display font-bold">{guide.question}</h2>
-          <p className="mt-2">{guide.answer}</p>
-          <h2 className="text-lg font-display font-bold mt-4">What is this curriculum based on?</h2>
-          <p className="mt-2">Module names, skills and planned hours describe HeyGetOnMyLevel’s own curriculum design. Hours are a practice plan, not a measured time to reach proficiency. For background on explicit comprehension strategies, see <a className="underline" href="https://www.readingrockets.org/topics/comprehension/articles/seven-strategies-teach-students-text-comprehension">Reading Rockets’ teaching guide</a>. Practice examples here are suggestions, not standardized assessments.</p>
+          <h2 className="text-lg font-display font-bold">{isEs ? guide.questionEs : guide.question}</h2>
+          <p className="mt-2">{isEs ? guide.answerEs : guide.answer}</p>
+          <h2 className="text-lg font-display font-bold mt-4">{isEs ? "¿En qué se basa este currículo?" : "What is this curriculum based on?"}</h2>
+          <p className="mt-2">{isEs
+            ? <>Los nombres de los módulos, las habilidades y las horas planificadas describen el diseño del currículo propio de HeyGetOnMyLevel. Las horas son un plan de práctica, no un tiempo medido para alcanzar el dominio. Para más información sobre estrategias explícitas de comprensión, consulta <a className="underline" href="https://www.readingrockets.org/topics/comprehension/articles/seven-strategies-teach-students-text-comprehension">la guía de enseñanza de Reading Rockets</a> (en inglés). Los ejemplos de práctica aquí son sugerencias, no evaluaciones estandarizadas.</>
+            : <>Module names, skills and planned hours describe HeyGetOnMyLevel’s own curriculum design. Hours are a practice plan, not a measured time to reach proficiency. For background on explicit comprehension strategies, see <a className="underline" href="https://www.readingrockets.org/topics/comprehension/articles/seven-strategies-teach-students-text-comprehension">Reading Rockets’ teaching guide</a>. Practice examples here are suggestions, not standardized assessments.</>}</p>
         </section>
         <aside aria-label="Next step" className="card-elevated">
-        <h2 className="text-lg font-display font-bold mb-3">How can you start practising?</h2>
+        <h2 className="text-lg font-display font-bold mb-3">{isEs ? "¿Cómo puedes empezar a practicar?" : "How can you start practising?"}</h2>
         <div className="flex flex-wrap gap-3">
           <Link to="/assessment" className="btn-hero inline-flex items-center gap-2">
             {isEs ? "Evaluar mi nivel" : "Find my reading level"}
