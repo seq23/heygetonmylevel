@@ -20,7 +20,7 @@ jobs:
         with:
           deno-version: v2.x
       - name: Paid edge functions refuse anonymous and over-limit callers
-        run: deno test --no-lock supabase/functions/_shared/
+        run: deno test --no-lock --allow-read supabase/functions/_shared/
       - run: bunx tsc -p tsconfig.app.json --noEmit
       # The build prerenders every public route and fails if any renders empty.
       - run: bun run build

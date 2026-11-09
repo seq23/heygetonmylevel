@@ -89,3 +89,35 @@ Deno.test("operator functions refuse the public app key", () => {
   assertEquals(requireAdmin(mk({ authorization: "Bearer svc" }), env), null);
   assertEquals(requireAdmin(mk({ "x-admin-key": "adm" }), env), null);
 });
+
+// 8 Nov 2026: live, every app call got 401 because the runtime SUPABASE_ANON_KEY
+// differed from the anon JWT the site ships. The app key is the project's anon JWT;
+// it must pass even when the env copy differs, and a JWT for another project or
+// another role must not.
+const b64url = (o: unknown) => btoa(JSON.stringify(o)).replace(/=+$/, "").replace(/\+/g, "-").replace(/\//g, "_");
+const jwt = (claims: Record<string, unknown>) => `${b64url({ alg: "HS256", typ: "JWT" })}.${b64url(claims)}.sig`;
+
+Deno.test("the site's anon JWT passes even when SUPABASE_ANON_KEY in the runtime differs", async () => {
+  const s = setup({ SUPABASE_URL: "https://proj123.supabase.co", SUPABASE_ANON_KEY: "rotated-or-new-format-key" });
+  const siteKey = jwt({ iss: "supabase", ref: "proj123", role: "anon" });
+  const r = await s.reading(req({ authorization: `Bearer ${siteKey}`, apikey: siteKey }, { type: "passage", gradeLevel: 3, theme: "Superheroes" }));
+  assertEquals(r.status, 200);
+  assertEquals((await s.reading(req({ authorization: `Bearer ${jwt({ ref: "other", role: "anon" })}` }))).status, 401);
+  assertEquals((await s.reading(req({ authorization: `Bearer ${jwt({ ref: "proj123", role: "service_role" })}` }))).status, 401);
+  assertEquals(s.paid(), 1);
+});
+
+// The claim check above is safe only because the Supabase gateway verifies the JWT
+// signature first (a forged role=anon token got 401 UNAUTHORIZED_LEGACY_JWT from the
+// live gateway, 8 Nov 2026). So every function must keep verify_jwt = true.
+Deno.test("every edge function keeps verify_jwt = true (the gateway checks signatures)", async () => {
+  const root = new URL("../../", import.meta.url);
+  const toml = await Deno.readTextFile(new URL("config.toml", root));
+  const fns: string[] = [];
+  for await (const e of Deno.readDir(new URL("functions/", root))) if (e.isDirectory && !e.name.startsWith("_")) fns.push(e.name);
+  if (fns.length === 0) throw new Error("no edge functions found");
+  for (const f of fns) {
+    const m = toml.match(new RegExp(`\\[functions\\.${f}\\]\\s*\\n\\s*verify_jwt\\s*=\\s*(\\w+)`));
+    assertEquals(m?.[1], "true", `${f}: verify_jwt must be true in supabase/config.toml`);
+  }
+});

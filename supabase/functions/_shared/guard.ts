@@ -64,18 +64,53 @@ export function clientIp(req: Request): string {
 
 export type Caller = { kind: "user" | "app"; key: string };
 
+// The public app's key is the project's anon JWT (role "anon", ref = this project).
+// It is recognised by those claims, not only by string-equality with the
+// SUPABASE_ANON_KEY env: on 8 Nov 2026 the runtime's SUPABASE_ANON_KEY no longer
+// matched the key the site ships, and every app call fell into the user path and
+// got 401. Every function using this guard runs with verify_jwt = true
+// (supabase/config.toml), so the gateway has checked the signature before this
+// code runs; and the anon key is public, so a claim check grants nothing more.
+function jwtClaims(token: string): Record<string, unknown> | null {
+  const part = token.split(".")[1];
+  if (!part || token.split(".").length !== 3) return null;
+  try {
+    const b64 = part.replace(/-/g, "+").replace(/_/g, "/").padEnd(Math.ceil(part.length / 4) * 4, "=");
+    const c = JSON.parse(atob(b64));
+    return c && typeof c === "object" ? c : null;
+  } catch {
+    return null;
+  }
+}
+
+function projectRef(deps: GuardDeps): string {
+  try {
+    return new URL(deps.env("SUPABASE_URL") || "").hostname.split(".")[0] || "";
+  } catch {
+    return "";
+  }
+}
+
+function isAppKey(key: string, anonKey: string, ref: string): boolean {
+  if (!key) return false;
+  if (safeEqual(key, anonKey)) return true;
+  const c = jwtClaims(key);
+  return !!ref && !!c && c.role === "anon" && c.ref === ref;
+}
+
 /** 401 unless the request carries a verified user JWT or the project's app key. */
 export async function identify(req: Request, deps: GuardDeps): Promise<Caller | Response> {
   const anonKey = deps.env("SUPABASE_ANON_KEY") || "";
-  if (!anonKey) return json(req, 503, { error: "SUPABASE_ANON_KEY missing in function env", stop: "SUPABASE_ANON_KEY_MISSING" });
+  const ref = projectRef(deps);
+  if (!anonKey && !ref) return json(req, 503, { error: "SUPABASE_ANON_KEY and SUPABASE_URL missing in function env", stop: "SUPABASE_ANON_KEY_MISSING" });
   const token = bearer(req);
   const apikey = req.headers.get("apikey") || "";
-  if (token && !safeEqual(token, anonKey)) {
+  if (isAppKey(token, anonKey, ref) || (!token && isAppKey(apikey, anonKey, ref))) return { kind: "app", key: `ip:${clientIp(req)}` };
+  if (token) {
     const uid = await deps.getUserId(token).catch(() => null);
     if (!uid) return json(req, 401, { error: "Sign-in expired. Reload the page and try again." });
     return { kind: "user", key: `user:${uid}` };
   }
-  if (safeEqual(token, anonKey) || safeEqual(apikey, anonKey)) return { kind: "app", key: `ip:${clientIp(req)}` };
   return json(req, 401, { error: "Unauthorized" });
 }
 
