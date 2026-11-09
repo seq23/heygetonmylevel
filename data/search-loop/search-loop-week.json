@@ -1,10 +1,10 @@
 {
   "schema": "search-loop-week-v1",
-  "week": "2026-W45",
+  "week": "2026-W46",
   "site": "learn.heygetonmylevel.com",
-  "generated_at": "2026-11-08T11:49:03.323Z",
+  "generated_at": "2026-11-09T11:48:56.004Z",
   "state": "off",
-  "published": 19,
+  "published": 9,
   "indexed": "not read: no page old enough to inspect yet (14 days)",
   "pace": 0,
   "ai_visitors": "not read: no free analytics source configured for this site (analytics.ai_referrals)",
@@ -299,5 +299,5 @@
     "weight_changes": [],
     "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
   },
-  "run_url": "https://github.com/seq23/heygetonmylevel/actions/runs/42477372800"
+  "run_url": "https://github.com/seq23/heygetonmylevel/actions/runs/42611945687"
 }
