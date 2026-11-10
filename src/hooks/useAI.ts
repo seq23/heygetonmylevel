@@ -103,14 +103,11 @@ export const useAI = () => {
       });
       if (passageError) throw passageError;
 
-      let questionsData = cacheable && Array.isArray(passageData?.questions) ? passageData.questions : null;
-      if (!questionsData) {
-        const { data, error: questionsError } = await supabase.functions.invoke("generate-reading", {
-          body: { type: "questions", passageText: passageData.text, gradeLevel, language },
-        });
-        if (questionsError) throw questionsError;
-        questionsData = data;
-      }
+      // Generic passages come back with their questions (written server-side in the same call).
+      // Themed and Spanish passages come back alone: the passage is shown at once and the
+      // session writes its questions in the background while the child reads, instead of
+      // making the child wait for both before seeing anything.
+      const questionsData = cacheable && Array.isArray(passageData?.questions) ? passageData.questions : [];
 
       return {
         passage: { title: passageData.title, text: passageData.text, topic: passageData.topic } as Passage,
