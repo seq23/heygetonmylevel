@@ -45,7 +45,7 @@ const Session = () => {
   const { t, language } = useLanguage();
   const [levelChangeQueued, setLevelChangeQueued] = useState<{ newLevel: number; direction: 'up' | 'down' } | null>(null);
   const [hasPendingBuddyMessage, setHasPendingBuddyMessage] = useState(false);
-  const { getCachedOrGeneratePassage, generateQuestions, isLoading } = useAI();
+  const { getCachedOrGeneratePassage, generateQuestions } = useAI();
   const skillFocus = location.state?.skillFocus;
   const theme = location.state?.theme;
   
@@ -80,19 +80,22 @@ const Session = () => {
     }
   }, [session?.id, session?.readingLevel, navigate]);
 
-  // Store pre-generated questions from cache
+  // Store pre-generated questions (from the cache, or written with the passage)
   const [cachedQuestions, setCachedQuestions] = useState<Question[] | null>(null);
+  // Questions being written in the background while the child reads the passage
+  const questionsInFlight = useRef<Promise<Question[] | null> | null>(null);
 
   const loadNewPassage = async () => {
     if (!session?.readingLevel) return;
 
     setState((prev) => ({ ...prev, phase: "loading" }));
     setCachedQuestions(null);
+    questionsInFlight.current = null;
 
     const result = await getCachedOrGeneratePassage(session.readingLevel, skillFocus, theme, language);
     
     if (result) {
-      const { passage: passageData, questions: preGeneratedQuestions, fromCache } = result;
+      const { passage: passageData, questions: preGeneratedQuestions } = result;
       
       // Store passage in database
       // RLS is insert-only for the browser, so ids are generated here, not read back.
@@ -112,9 +115,12 @@ const Session = () => {
         setCurrentPassage(storedPassage.id);
       }
 
-      // If questions came from cache, store them for later use
-      if (fromCache && preGeneratedQuestions.length > 0) {
+      // Questions that came with the passage are kept; otherwise start writing them now,
+      // in the background, so they are ready (or nearly) when the child finishes reading.
+      if (preGeneratedQuestions.length > 0) {
         setCachedQuestions(preGeneratedQuestions);
+      } else {
+        questionsInFlight.current = generateQuestions(passageData.text, session.readingLevel, skillFocus, language).catch(() => null);
       }
 
       setState((prev) => ({
@@ -141,7 +147,11 @@ const Session = () => {
     setState((prev) => ({ ...prev, phase: "loading" }));
 
     // Use cached questions if available, otherwise generate new ones with skillFocus
-    const questionsData = cachedQuestions || await generateQuestions(state.passage.text, session.readingLevel, skillFocus, language);
+    const inFlight = questionsInFlight.current;
+    questionsInFlight.current = null;
+    const questionsData = cachedQuestions
+      || (inFlight ? await inFlight : null)
+      || await generateQuestions(state.passage.text, session.readingLevel, skillFocus, language);
 
     if (questionsData) {
       const questionsToInsert = questionsData.map((q) => ({
@@ -396,16 +406,13 @@ const Session = () => {
                 </div>
 
 
+                {/* Never disabled by the background question writing: tapping it waits for
+                    those questions on the loading screen instead of a dead button. */}
                 <button
                   onClick={handleReadyForQuestions}
-                  disabled={isLoading}
                   className="btn-hero w-full"
                 >
-                  {isLoading ? (
-                    <Loader2 className="w-5 h-5 animate-spin mx-auto" />
-                  ) : (
-                    t("session.ready")
-                  )}
+                  {t("session.ready")}
                 </button>
               </div>
             )}
