@@ -4,7 +4,7 @@ name: post-deploy live check
 # "The build can pass and the edge can still serve the wrong thing (a Worker that 301'd
 # robots.txt did)."
 #
-# check.yml holds the BUILT output (scripts/check-seo-surfaces.mjs, scripts/check-entity-graph.mjs).
+# check.yml holds the BUILT output (scripts/check-entity-graph.mjs).
 # This holds the LIVE host: crawl files, the icons and og image, the manifest, the IndexNow key,
 # the Search Console file, http -> https, no second copy on www, and every sampled sitemap URL
 # answering 200 with a title, a description and the Organization and WebSite nodes entity.json
