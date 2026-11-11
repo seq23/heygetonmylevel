@@ -2,7 +2,7 @@
   "schema_version": "1.0",
   "truth_source": "google_search_console_url_inspection",
   "property": "https://heygetonmylevel.com/",
-  "collected_at": "2026-11-10T07:59:44.763Z",
+  "collected_at": "2026-11-11T07:59:44.280Z",
   "state": "OK",
   "named_stop": null,
   "sitemap_url_count": 11,
@@ -36,7 +36,7 @@
       "pageFetchState": "SUCCESSFUL",
       "googleCanonical": "https://heygetonmylevel.com/",
       "userCanonical": "https://heygetonmylevel.com/",
-      "inspected_at": "2026-11-10T07:59:38.487Z"
+      "inspected_at": "2026-11-11T07:59:38.144Z"
     },
     {
       "url": "https://heygetonmylevel.com/curriculum",
@@ -48,7 +48,7 @@
       "pageFetchState": "SUCCESSFUL",
       "googleCanonical": "https://heygetonmylevel.com/curriculum",
       "userCanonical": "https://heygetonmylevel.com/curriculum",
-      "inspected_at": "2026-11-10T07:59:38.515Z"
+      "inspected_at": "2026-11-11T07:59:38.150Z"
     },
     {
       "url": "https://heygetonmylevel.com/curriculum/early-elementary",
@@ -60,7 +60,7 @@
       "pageFetchState": "SUCCESSFUL",
       "googleCanonical": "https://heygetonmylevel.com/curriculum/early-elementary",
       "userCanonical": "https://heygetonmylevel.com/curriculum/early-elementary",
-      "inspected_at": "2026-11-10T07:59:44.543Z"
+      "inspected_at": "2026-11-11T07:59:44.268Z"
     },
     {
       "url": "https://heygetonmylevel.com/curriculum/upper-elementary",
@@ -72,7 +72,7 @@
       "pageFetchState": "SUCCESSFUL",
       "googleCanonical": "https://heygetonmylevel.com/curriculum/upper-elementary",
       "userCanonical": "https://heygetonmylevel.com/curriculum/upper-elementary",
-      "inspected_at": "2026-11-10T07:59:38.388Z"
+      "inspected_at": "2026-11-11T07:59:38.136Z"
     },
     {
       "url": "https://heygetonmylevel.com/curriculum/middle-school",
@@ -84,7 +84,7 @@
       "pageFetchState": "SUCCESSFUL",
       "googleCanonical": "https://heygetonmylevel.com/curriculum/middle-school",
       "userCanonical": "https://heygetonmylevel.com/curriculum/middle-school",
-      "inspected_at": "2026-11-10T07:59:38.526Z"
+      "inspected_at": "2026-11-11T07:59:38.143Z"
     },
     {
       "url": "https://heygetonmylevel.com/curriculum/high-school",
@@ -96,19 +96,19 @@
       "pageFetchState": "SUCCESSFUL",
       "googleCanonical": "https://heygetonmylevel.com/curriculum/high-school",
       "userCanonical": "https://heygetonmylevel.com/curriculum/high-school",
-      "inspected_at": "2026-11-10T07:59:38.571Z"
+      "inspected_at": "2026-11-11T07:59:38.143Z"
     },
     {
       "url": "https://heygetonmylevel.com/curriculum/college-adult",
       "verdict": "NEUTRAL",
-      "coverageState": "URL is unknown to Google",
+      "coverageState": "Discovered - currently not indexed",
       "lastCrawlTime": null,
       "indexingState": "INDEXING_STATE_UNSPECIFIED",
       "robotsTxtState": "ROBOTS_TXT_STATE_UNSPECIFIED",
       "pageFetchState": "PAGE_FETCH_STATE_UNSPECIFIED",
       "googleCanonical": null,
       "userCanonical": null,
-      "inspected_at": "2026-11-10T07:59:38.399Z"
+      "inspected_at": "2026-11-11T07:59:38.164Z"
     },
     {
       "url": "https://heygetonmylevel.com/about",
@@ -120,7 +120,7 @@
       "pageFetchState": "PAGE_FETCH_STATE_UNSPECIFIED",
       "googleCanonical": null,
       "userCanonical": null,
-      "inspected_at": "2026-11-10T07:59:38.734Z"
+      "inspected_at": "2026-11-11T07:59:38.161Z"
     },
     {
       "url": "https://heygetonmylevel.com/install",
@@ -132,19 +132,19 @@
       "pageFetchState": "SUCCESSFUL",
       "googleCanonical": "https://heygetonmylevel.com/install",
       "userCanonical": "https://heygetonmylevel.com/install",
-      "inspected_at": "2026-11-10T07:59:38.818Z"
+      "inspected_at": "2026-11-11T07:59:38.138Z"
     },
     {
       "url": "https://heygetonmylevel.com/privacy",
       "verdict": "NEUTRAL",
-      "coverageState": "Discovered - currently not indexed",
+      "coverageState": "URL is unknown to Google",
       "lastCrawlTime": null,
       "indexingState": "INDEXING_STATE_UNSPECIFIED",
       "robotsTxtState": "ROBOTS_TXT_STATE_UNSPECIFIED",
       "pageFetchState": "PAGE_FETCH_STATE_UNSPECIFIED",
       "googleCanonical": null,
       "userCanonical": null,
-      "inspected_at": "2026-11-10T07:59:44.558Z"
+      "inspected_at": "2026-11-11T07:59:44.277Z"
     },
     {
       "url": "https://heygetonmylevel.com/terms",
@@ -156,7 +156,7 @@
       "pageFetchState": "SUCCESSFUL",
       "googleCanonical": "https://heygetonmylevel.com/terms",
       "userCanonical": "https://heygetonmylevel.com/terms",
-      "inspected_at": "2026-11-10T07:59:44.763Z"
+      "inspected_at": "2026-11-11T07:59:44.279Z"
     }
   ]
 }
