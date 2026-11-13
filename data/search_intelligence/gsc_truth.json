@@ -2,26 +2,34 @@
   "schema_version": "1.0",
   "truth_source": "google_search_console_search_analytics",
   "property": "https://heygetonmylevel.com/",
-  "collected_at": "2026-11-12T07:59:31.896Z",
+  "collected_at": "2026-11-13T07:59:32.394Z",
   "state": "OK",
   "named_stop": null,
   "window": {
-    "start_date": "2026-10-13",
-    "end_date": "2026-11-09",
+    "start_date": "2026-10-14",
+    "end_date": "2026-11-10",
     "days": 28
   },
   "totals": {
     "clicks": 0,
-    "impressions": 17,
+    "impressions": 20,
     "ctr": 0,
-    "position": 23.06
+    "position": 20.05
   },
-  "row_count": 2,
-  "query_count": 2,
-  "page_count": 2,
-  "attributed_impressions": 2,
+  "row_count": 3,
+  "query_count": 3,
+  "page_count": 3,
+  "attributed_impressions": 3,
   "truth_boundary": "Rows are query x page for the window. Search Console withholds anonymised queries from query rows, so attributed_impressions is below totals.impressions; the property total is the headline number.",
   "rows": [
+    {
+      "query": "get to my level",
+      "page": "https://heygetonmylevel.com/install",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
     {
       "query": "middle school reading curriculum",
       "page": "https://heygetonmylevel.com/curriculum/middle-school",
