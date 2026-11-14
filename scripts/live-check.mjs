@@ -3,7 +3,7 @@
  * Search Readiness h4: read the DEPLOYED site from outside and say what is wrong with it.
  *
  * "The build can pass and the edge can still serve the wrong thing (a Worker that 301'd
- * robots.txt did)." check-seo-surfaces.mjs holds the built output; this holds the live host.
+ * robots.txt did)." this holds the live host.
  *
  *   node scripts/live-check.mjs                      # https://heygetonmylevel.com
  *   node scripts/live-check.mjs --host example.com   # another host
