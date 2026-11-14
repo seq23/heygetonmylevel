@@ -15,7 +15,7 @@ export const bandSeo = (slug: string) => {
   const gradeLabel = isAdult ? "college and adult readers" : `grades ${gb.grades.join(", ")}`;
   // The search result line: the band and who it is for first, then the site's own name
   // (Search Readiness b10: a title that names no site lets a result be credited to a sibling).
-  // The longest (Early/Upper Elementary) is 65 characters, inside check-seo-surfaces' 30-65 band.
+  // The longest (Early/Upper Elementary) is 65 characters, inside a 30-65 title band.
   const range = `Grades ${gb.grades[0]}–${gb.grades[gb.grades.length - 1]}`;
   const title = `${isAdult ? "College and Adult Reading Curriculum" : `${gb.band} Reading Curriculum, ${range}`} — HeyGetOnMyLevel`;
   const who = isAdult ? "college and adult readers" : `grades ${gb.grades[0]}–${gb.grades[gb.grades.length - 1]}`;

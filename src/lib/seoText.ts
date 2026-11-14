@@ -2,8 +2,8 @@
 // curriculum band pages are generated from data whose module names change length.
 // Hand-written strings drift out of the band the moment a module is renamed
 // (five band pages were 164–183 characters on 3 Nov 2026), so the band pages
-// assemble their description here instead, and scripts/check-seo-surfaces.mjs
-// fails the build if any route still falls outside it.
+// assemble their description here instead (the central Boss OS search audit
+// reports any route that still falls outside it).
 
 export const DESCRIPTION_MIN = 120;
 export const DESCRIPTION_MAX = 160;
