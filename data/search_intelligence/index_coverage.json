@@ -2,7 +2,7 @@
   "schema_version": "1.0",
   "truth_source": "google_search_console_url_inspection",
   "property": "https://heygetonmylevel.com/",
-  "collected_at": "2026-11-15T08:00:09.597Z",
+  "collected_at": "2026-11-16T08:05:27.434Z",
   "state": "OK",
   "named_stop": null,
   "sitemap_url_count": 11,
@@ -36,7 +36,7 @@
       "pageFetchState": "SUCCESSFUL",
       "googleCanonical": "https://heygetonmylevel.com/",
       "userCanonical": "https://heygetonmylevel.com/",
-      "inspected_at": "2026-11-15T08:00:03.170Z"
+      "inspected_at": "2026-11-16T08:05:15.036Z"
     },
     {
       "url": "https://heygetonmylevel.com/curriculum",
@@ -48,7 +48,7 @@
       "pageFetchState": "SUCCESSFUL",
       "googleCanonical": "https://heygetonmylevel.com/curriculum",
       "userCanonical": "https://heygetonmylevel.com/curriculum",
-      "inspected_at": "2026-11-15T08:00:03.183Z"
+      "inspected_at": "2026-11-16T08:05:15.047Z"
     },
     {
       "url": "https://heygetonmylevel.com/curriculum/early-elementary",
@@ -60,7 +60,7 @@
       "pageFetchState": "SUCCESSFUL",
       "googleCanonical": "https://heygetonmylevel.com/curriculum/early-elementary",
       "userCanonical": "https://heygetonmylevel.com/curriculum/early-elementary",
-      "inspected_at": "2026-11-15T08:00:09.596Z"
+      "inspected_at": "2026-11-16T08:05:21.372Z"
     },
     {
       "url": "https://heygetonmylevel.com/curriculum/upper-elementary",
@@ -72,7 +72,7 @@
       "pageFetchState": "SUCCESSFUL",
       "googleCanonical": "https://heygetonmylevel.com/curriculum/upper-elementary",
       "userCanonical": "https://heygetonmylevel.com/curriculum/upper-elementary",
-      "inspected_at": "2026-11-15T08:00:03.258Z"
+      "inspected_at": "2026-11-16T08:05:15.039Z"
     },
     {
       "url": "https://heygetonmylevel.com/curriculum/middle-school",
@@ -84,7 +84,7 @@
       "pageFetchState": "SUCCESSFUL",
       "googleCanonical": "https://heygetonmylevel.com/curriculum/middle-school",
       "userCanonical": "https://heygetonmylevel.com/curriculum/middle-school",
-      "inspected_at": "2026-11-15T08:00:03.389Z"
+      "inspected_at": "2026-11-16T08:05:15.073Z"
     },
     {
       "url": "https://heygetonmylevel.com/curriculum/high-school",
@@ -96,7 +96,7 @@
       "pageFetchState": "SUCCESSFUL",
       "googleCanonical": "https://heygetonmylevel.com/curriculum/high-school",
       "userCanonical": "https://heygetonmylevel.com/curriculum/high-school",
-      "inspected_at": "2026-11-15T08:00:03.233Z"
+      "inspected_at": "2026-11-16T08:05:15.042Z"
     },
     {
       "url": "https://heygetonmylevel.com/curriculum/college-adult",
@@ -108,7 +108,7 @@
       "pageFetchState": "PAGE_FETCH_STATE_UNSPECIFIED",
       "googleCanonical": null,
       "userCanonical": null,
-      "inspected_at": "2026-11-15T08:00:03.178Z"
+      "inspected_at": "2026-11-16T08:05:15.035Z"
     },
     {
       "url": "https://heygetonmylevel.com/about",
@@ -120,7 +120,7 @@
       "pageFetchState": "PAGE_FETCH_STATE_UNSPECIFIED",
       "googleCanonical": null,
       "userCanonical": null,
-      "inspected_at": "2026-11-15T08:00:03.526Z"
+      "inspected_at": "2026-11-16T08:05:15.033Z"
     },
     {
       "url": "https://heygetonmylevel.com/install",
@@ -132,7 +132,7 @@
       "pageFetchState": "SUCCESSFUL",
       "googleCanonical": "https://heygetonmylevel.com/install",
       "userCanonical": "https://heygetonmylevel.com/install",
-      "inspected_at": "2026-11-15T08:00:03.162Z"
+      "inspected_at": "2026-11-16T08:05:15.064Z"
     },
     {
       "url": "https://heygetonmylevel.com/privacy",
@@ -144,7 +144,7 @@
       "pageFetchState": "PAGE_FETCH_STATE_UNSPECIFIED",
       "googleCanonical": null,
       "userCanonical": null,
-      "inspected_at": "2026-11-15T08:00:09.365Z"
+      "inspected_at": "2026-11-16T08:05:21.373Z"
     },
     {
       "url": "https://heygetonmylevel.com/terms",
@@ -156,7 +156,7 @@
       "pageFetchState": "SUCCESSFUL",
       "googleCanonical": "https://heygetonmylevel.com/terms",
       "userCanonical": "https://heygetonmylevel.com/terms",
-      "inspected_at": "2026-11-15T08:00:09.288Z"
+      "inspected_at": "2026-11-16T08:05:27.433Z"
     }
   ]
 }

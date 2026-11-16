@@ -2,19 +2,19 @@
   "schema_version": "1.0",
   "truth_source": "google_search_console_search_analytics",
   "property": "https://heygetonmylevel.com/",
-  "collected_at": "2026-11-15T07:59:55.413Z",
+  "collected_at": "2026-11-16T08:05:06.413Z",
   "state": "OK",
   "named_stop": null,
   "window": {
-    "start_date": "2026-10-16",
-    "end_date": "2026-11-12",
+    "start_date": "2026-10-17",
+    "end_date": "2026-11-13",
     "days": 28
   },
   "totals": {
     "clicks": 0,
-    "impressions": 21,
+    "impressions": 23,
     "ctr": 0,
-    "position": 19.14
+    "position": 17.78
   },
   "row_count": 3,
   "query_count": 3,
