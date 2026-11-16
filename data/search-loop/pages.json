@@ -23,7 +23,20 @@
         "https://www.readingrockets.org/topics/comprehension/articles/seven-strategies-teach-students-text-comprehension"
       ],
       "linked_from": [],
-      "checks": {},
+      "checks": {
+        "w2": {
+          "at": "2026-11-16",
+          "source": "search_console",
+          "clicks": 0,
+          "impressions": 0,
+          "position": null,
+          "ai_visits_today": "not read: no free analytics source configured for this site (analytics.ai_referrals)",
+          "indexed": false,
+          "checkpoint": "w2",
+          "lane": "striking",
+          "top3": false
+        }
+      },
       "indexnow_at": "2026-11-02",
       "extra_queries": [
         "how can i test my childs grade level",
@@ -36,7 +49,9 @@
         "how to help a child reading below grade level",
         "how to determine a childs reading level",
         "how to test my childs reading level"
-      ]
+      ],
+      "inspected_at": "2026-11-16",
+      "indexed": false
     },
     {
       "slug": "what-reading-level-should-a-7-year-old-be-at",
@@ -96,11 +111,26 @@
         "https://hub.lexile.com/lexile-grade-level-charts/"
       ],
       "linked_from": [],
-      "checks": {},
+      "checks": {
+        "w2": {
+          "at": "2026-11-16",
+          "source": "search_console",
+          "clicks": 0,
+          "impressions": 0,
+          "position": null,
+          "ai_visits_today": "not read: no free analytics source configured for this site (analytics.ai_referrals)",
+          "indexed": false,
+          "checkpoint": "w2",
+          "lane": "striking",
+          "top3": false
+        }
+      },
       "indexnow_at": "2026-11-02",
       "extra_queries": [
         "reading level chart by age"
-      ]
+      ],
+      "inspected_at": "2026-11-16",
+      "indexed": false
     },
     {
       "slug": "reading-level-by-grade-fountas-and-pinnell",
@@ -201,7 +231,20 @@
         "https://hub.lexile.com/lexile-grade-level-charts/"
       ],
       "linked_from": [],
-      "checks": {},
+      "checks": {
+        "w2": {
+          "at": "2026-11-16",
+          "source": "search_console",
+          "clicks": 0,
+          "impressions": 0,
+          "position": null,
+          "ai_visits_today": "not read: no free analytics source configured for this site (analytics.ai_referrals)",
+          "indexed": false,
+          "checkpoint": "w2",
+          "lane": "striking",
+          "top3": false
+        }
+      },
       "indexnow_at": "2026-11-02",
       "extra_queries": [
         "what is lexile level for 4th grade",
@@ -212,7 +255,9 @@
         "what is lexile level for 8th grade",
         "what is lexile level for 1st grade",
         "what is lexile level for 2nd grade"
-      ]
+      ],
+      "inspected_at": "2026-11-16",
+      "indexed": false
     },
     {
       "slug": "lexile-level-by-grade-chart",
@@ -301,11 +346,26 @@
         "https://www.readingrockets.org/topics/comprehension/articles/seven-strategies-teach-students-text-comprehension"
       ],
       "linked_from": [],
-      "checks": {},
+      "checks": {
+        "w2": {
+          "at": "2026-11-16",
+          "source": "search_console",
+          "clicks": 0,
+          "impressions": 0,
+          "position": null,
+          "ai_visits_today": "not read: no free analytics source configured for this site (analytics.ai_referrals)",
+          "indexed": false,
+          "checkpoint": "w2",
+          "lane": "striking",
+          "top3": false
+        }
+      },
       "indexnow_at": "2026-11-02",
       "extra_queries": [
         "reading comprehension practice"
-      ]
+      ],
+      "inspected_at": "2026-11-16",
+      "indexed": false
     },
     {
       "slug": "reading-practice-for-adults",
@@ -329,12 +389,28 @@
         "https://lincs.ed.gov/publications/pdf/applyingresearch.pdf"
       ],
       "linked_from": [],
-      "checks": {},
+      "checks": {
+        "w2": {
+          "at": "2026-11-16",
+          "source": "search_console",
+          "clicks": 0,
+          "impressions": 0,
+          "position": null,
+          "ai_visits_today": "not read: no free analytics source configured for this site (analytics.ai_referrals)",
+          "indexed": true,
+          "checkpoint": "w2",
+          "lane": "striking",
+          "top3": false
+        }
+      },
       "indexnow_at": "2026-11-02",
       "extra_queries": [
         "english reading practice for adults",
         "english reading practice for adults pdf"
-      ]
+      ],
+      "inspected_at": "2026-11-16",
+      "indexed": true,
+      "indexed_at": "2026-11-16"
     },
     {
       "slug": "what-is-the-highest-reading-age",
