@@ -34,7 +34,7 @@ const Footer = () => {
               to="/install"
               className="hover:text-foreground transition-colors"
             >
-              📱 {t("footer.install")}
+              {t("footer.install")}
             </Link>
             <span className="text-border" aria-hidden="true">•</span>
             <a
@@ -42,7 +42,7 @@ const Footer = () => {
               download
               className="hover:text-foreground transition-colors"
             >
-              📄 {t("footer.downloadCurriculum")}
+              {t("footer.downloadCurriculum")}
             </a>
             <span className="text-border" aria-hidden="true">•</span>
             <Link 

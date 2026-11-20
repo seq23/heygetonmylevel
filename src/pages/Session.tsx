@@ -200,12 +200,12 @@ const Session = () => {
     if (progression.levelChanged && progression.newLevel !== null) {
       const gradeText = progression.newLevel <= 12 ? `${t("level.grade")} ${progression.newLevel}` : t("level.college");
       if (progression.direction === 'up') {
-        toast.success(`🚀 ${t("session.levelUp")} ${gradeText}!`, {
+        toast.success(`${t("session.levelUp")} ${gradeText}!`, {
           description: t("session.levelUpDesc"),
           duration: 5000,
         });
       } else {
-        toast.info(`📚 ${t("session.practiceMore")} ${gradeText}`, {
+        toast.info(`${t("session.practiceMore")} ${gradeText}`, {
           description: t("session.practiceMoreDesc"),
           duration: 5000,
         });

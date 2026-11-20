@@ -1,41 +1,13 @@
-import { useNavigate } from "react-router-dom";
 import { BookOpen, Target, Sparkles, ArrowRight, CheckCircle, TrendingUp } from "lucide-react";
-import { useSession } from "@/contexts/SessionContext";
+import { useStartPractice } from "@/hooks/useStartPractice";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { useState } from "react";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import Time2ReadCallout from "@/components/Time2ReadCallout";
 
 const Index = () => {
-  const navigate = useNavigate();
-  const { createSession, isLoading } = useSession();
+  const { begin, isLoading, loadingAction } = useStartPractice();
   const { language, setLanguage, t } = useLanguage();
-  const [loadingAction, setLoadingAction] = useState<string | null>(null);
-
-  const handleStartReading = async () => {
-    setLoadingAction("start");
-    try {
-      await createSession();
-      navigate("/select-level");
-    } catch (error) {
-      console.error("Failed to create session:", error);
-    } finally {
-      setLoadingAction(null);
-    }
-  };
-
-  const handleAssessMe = async () => {
-    setLoadingAction("assess");
-    try {
-      await createSession();
-      navigate("/assessment");
-    } catch (error) {
-      console.error("Failed to create session:", error);
-    } finally {
-      setLoadingAction(null);
-    }
-  };
 
   const featurePills = [
     { icon: Sparkles, label: t("home.pill.noJudgment") },
@@ -83,10 +55,10 @@ const Index = () => {
             className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-muted text-sm font-medium text-muted-foreground hover:bg-primary/10 hover:text-primary transition-colors"
             aria-label={language === "en" ? "Cambiar a Español" : "Switch to English"}
           >
-            <span>{language === "en" ? "🇪🇸 Español" : "🇺🇸 English"}</span>
+            <span>{language === "en" ? "Español" : "English"}</span>
           </button>
           {language === "es" && (
-            <p className="text-[11px] text-muted-foreground max-w-[220px] text-right leading-tight">
+            <p className="text-xs text-muted-foreground max-w-[220px] text-right leading-tight">
               Modo bilingüe: lees en inglés, te guiamos en español
             </p>
           )}
@@ -160,7 +132,7 @@ const Index = () => {
           {/* CTA Buttons */}
           <div className="space-y-4 pt-4 fade-in-up" style={{ animationDelay: "0.2s" }}>
             <button
-              onClick={handleStartReading}
+              onClick={() => begin("start")}
               disabled={isLoading}
               className="btn-hero w-full max-w-sm mx-auto flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed"
             >
@@ -175,7 +147,7 @@ const Index = () => {
             </button>
 
             <button
-              onClick={handleAssessMe}
+              onClick={() => begin("assess")}
               disabled={isLoading}
               className="btn-secondary-hero w-full max-w-sm mx-auto flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed"
             >

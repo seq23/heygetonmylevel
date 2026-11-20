@@ -17,16 +17,16 @@
     --popover-foreground: 220 25% 20%;
 
     /* Teal primary - friendly and calming */
-    --primary: 175 60% 40%;
+    --primary: 175 60% 30%;
     --primary-foreground: 0 0% 100%;
 
     /* Warm coral secondary */
-    --secondary: 15 85% 65%;
+    --secondary: 15 85% 42%;
     --secondary-foreground: 0 0% 100%;
 
     /* Soft muted tones */
     --muted: 45 20% 92%;
-    --muted-foreground: 220 15% 45%;
+    --muted-foreground: 220 15% 40%;
 
     /* Accent - golden yellow for celebration */
     --accent: 45 95% 60%;
