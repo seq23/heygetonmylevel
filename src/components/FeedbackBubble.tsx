@@ -84,15 +84,14 @@ const FeedbackBubble = () => {
                 <SelectValue placeholder="Feedback type" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="bug">🐛 Bug Report</SelectItem>
-                <SelectItem value="feature">💡 Feature Request</SelectItem>
-                <SelectItem value="general">💬 General Feedback</SelectItem>
+                <SelectItem value="bug">Bug Report</SelectItem>
+                <SelectItem value="feature">Feature Request</SelectItem>
+                <SelectItem value="general">General Feedback</SelectItem>
               </SelectContent>
             </Select>
 
             <div className="space-y-1.5">
               <p className="text-xs text-destructive/80 flex items-center gap-1.5">
-                <span>⚠️</span>
                 <span>Please don't include personal info (name, email, location)</span>
               </p>
               <Textarea

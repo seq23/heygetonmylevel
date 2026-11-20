@@ -218,7 +218,6 @@ const Assessment = () => {
       {phase === "select_type" && (
         <div className="bg-primary/5 border-b border-primary/10 py-3 px-4">
           <p className="text-center text-sm text-muted-foreground max-w-2xl mx-auto">
-            <span className="text-primary font-medium">✨ </span>
             {t("assessment.reassurance")}
           </p>
         </div>
