@@ -2,24 +2,24 @@
   "schema_version": "1.0",
   "truth_source": "google_search_console_search_analytics",
   "property": "https://heygetonmylevel.com/",
-  "collected_at": "2026-11-20T16:33:07.800Z",
+  "collected_at": "2026-11-21T15:49:47.465Z",
   "state": "OK",
   "named_stop": null,
   "window": {
-    "start_date": "2026-10-21",
-    "end_date": "2026-11-17",
+    "start_date": "2026-10-22",
+    "end_date": "2026-11-18",
     "days": 28
   },
   "totals": {
     "clicks": 1,
     "impressions": 26,
     "ctr": 0.0385,
-    "position": 15.73
+    "position": 15.92
   },
   "row_count": 3,
   "query_count": 3,
   "page_count": 3,
-  "attributed_impressions": 5,
+  "attributed_impressions": 7,
   "truth_boundary": "Rows are query x page for the window. Search Console withholds anonymised queries from query rows, so attributed_impressions is below totals.impressions; the property total is the headline number.",
   "rows": [
     {
@@ -31,20 +31,20 @@
       "position": 18.33
     },
     {
+      "query": "upper elementary reading",
+      "page": "https://heygetonmylevel.com/curriculum/upper-elementary",
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 23
+    },
+    {
       "query": "middle school reading curriculum",
       "page": "https://heygetonmylevel.com/curriculum/middle-school",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
       "position": 76
-    },
-    {
-      "query": "upper elementary reading",
-      "page": "https://heygetonmylevel.com/curriculum/upper-elementary",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 38
     }
   ]
 }
