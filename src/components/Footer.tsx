@@ -8,8 +8,10 @@ const Footer = () => {
   return (
     <footer className="border-t border-border bg-muted/30 py-4 px-6" role="contentinfo">
       <div className="container max-w-4xl flex flex-col items-center gap-4 text-sm text-muted-foreground">
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 w-full">
-          <div className="text-center sm:text-left">
+        {/* Copyright above the links at every width: side by side, the six links wrapped at 1280 px
+            and squeezed the copyright into a narrow column (22 Nov 2026 review). */}
+        <div className="flex flex-col items-center gap-3 w-full">
+          <div className="text-center">
             <p>© {currentYear} HeyGetOnMyLevel. {t("footer.rights")}</p>
             <p className="text-xs text-muted-foreground mt-1">
               {t("footer.personal")} {t("footer.license")}.
