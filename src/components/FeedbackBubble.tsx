@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const FeedbackBubble = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,11 +21,12 @@ const FeedbackBubble = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
   const location = useLocation();
+  const { t } = useLanguage();
 
   const handleSubmit = async () => {
     if (!message.trim()) {
       toast({
-        title: "Please enter a message",
+        title: t("feedback.enterMessage"),
         variant: "destructive",
       });
       return;
@@ -43,8 +45,8 @@ const FeedbackBubble = () => {
       if (error) throw error;
 
       toast({
-        title: "Feedback sent!",
-        description: "Thank you for your feedback.",
+        title: t("feedback.sent"),
+        description: t("feedback.thanks"),
       });
       setMessage("");
       setFeedbackType("general");
@@ -52,8 +54,8 @@ const FeedbackBubble = () => {
     } catch (error) {
       console.error("Error sending feedback:", error);
       toast({
-        title: "Failed to send feedback",
-        description: "Please try again later.",
+        title: t("feedback.failed"),
+        description: t("feedback.tryAgain"),
         variant: "destructive",
       });
     } finally {
@@ -68,7 +70,7 @@ const FeedbackBubble = () => {
       {isOpen ? (
         <div className="bg-card border rounded-xl shadow-lg w-80 p-4 animate-in slide-in-from-bottom-2" role="dialog" aria-labelledby="feedback-title">
           <div className="flex items-center justify-between mb-3">
-            <h3 className="font-semibold text-foreground" id="feedback-title">Send Feedback</h3>
+            <h3 className="font-semibold text-foreground" id="feedback-title">{t("feedback.title")}</h3>
             <button
               onClick={() => setIsOpen(false)}
               className="text-muted-foreground hover:text-foreground transition-colors"
@@ -84,18 +86,18 @@ const FeedbackBubble = () => {
                 <SelectValue placeholder="Feedback type" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="bug">Bug Report</SelectItem>
-                <SelectItem value="feature">Feature Request</SelectItem>
-                <SelectItem value="general">General Feedback</SelectItem>
+                <SelectItem value="bug">{t("feedback.bug")}</SelectItem>
+                <SelectItem value="feature">{t("feedback.feature")}</SelectItem>
+                <SelectItem value="general">{t("feedback.general")}</SelectItem>
               </SelectContent>
             </Select>
 
             <div className="space-y-1.5">
               <p className="text-xs text-destructive/80 flex items-center gap-1.5">
-                <span>Please don't include personal info (name, email, location)</span>
+                <span>{t("feedback.noPersonal")}</span>
               </p>
               <Textarea
-                placeholder="Tell us what you think..."
+                placeholder={t("feedback.placeholder")}
                 value={message}
                 onChange={(e) => setMessage(e.target.value.slice(0, 500))}
                 rows={4}
@@ -103,7 +105,7 @@ const FeedbackBubble = () => {
                 maxLength={500}
               />
               <p className="text-xs text-muted-foreground text-right">
-                {message.length}/500 characters
+                {message.length}/500 {t("feedback.characters")}
               </p>
             </div>
 
@@ -115,12 +117,12 @@ const FeedbackBubble = () => {
               {isSubmitting ? (
                 <>
                   <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                  Sending...
+                  {t("feedback.sending")}
                 </>
               ) : (
                 <>
                   <Send className="w-4 h-4 mr-2" />
-                  Send Feedback
+                  {t("feedback.send")}
                 </>
               )}
             </Button>
