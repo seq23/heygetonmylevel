@@ -99,7 +99,7 @@ All edge function invocations pass the `language` parameter:
 2. **User taps 🇪🇸 toggle** → UI switches to Spanish; `localStorage` saves preference
 3. **User starts a reading session** → Passage is generated in **English**
 4. **User reads the English passage** → Can tap any word to hear it pronounced in English
-5. **User taps "Estoy Listo para las Preguntas"** → Questions appear in **Spanish** about the English passage
+5. **User taps "Estoy listo para las preguntas"** → Questions appear in **Spanish** about the English passage
 6. **User answers a question** → Feedback/explanation appears in **Spanish**, referencing the English text
 7. **AI Reading Buddy** → Speaks **Spanish**, but references English vocabulary from the passage
 8. **Read-aloud assessment** → Sentences are in **English**; user reads them aloud in English
