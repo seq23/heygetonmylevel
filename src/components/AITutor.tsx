@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Send, Bot, Sparkles, Loader2, Lightbulb, AlertCircle, Volume2, VolumeX, RotateCcw } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
-import { getHintForQuestionType, STATIC_HELP_TIPS } from "@/constants/readingHints";
+import { getHintKeyForQuestionType, STATIC_HELP_TIP_KEYS } from "@/constants/readingHints";
 import { useTextToSpeech } from "@/hooks/useTextToSpeech";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -39,6 +39,8 @@ const AITutor = ({
   const hasBeenWelcomed = localStorage.getItem(STORAGE_KEY_WELCOMED) === "true";
   const { language, t } = useLanguage();
   const WELCOME_SEQUENCE = [1, 2, 3, 4, 5].map((n) => t(`tutor.welcome${n}`));
+  // t() has no interpolation, so lines that carry a name or count mark the spot with {name} / {count}
+  const tn = (key: string, name: string) => t(key).replace("{name}", name);
 
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
@@ -70,14 +72,14 @@ const AITutor = ({
       // Returning user — short greeting
       setMessages([{
         role: "assistant",
-        content: `Hi ${storedName}! How can I help you today?`,
+        content: tn("tutor.greet.named", storedName),
       }]);
       setIsWelcoming(false);
     } else if (hasBeenWelcomed && !storedName) {
       // Welcomed but no name stored (edge case)
       setMessages([{
         role: "assistant",
-        content: `Hi there! How can I help you today?`,
+        content: t("tutor.greet.anon"),
       }]);
       setIsWelcoming(false);
     }
@@ -142,13 +144,13 @@ const AITutor = ({
       setUserName(name);
       setMessages([{
         role: "assistant",
-        content: `Hi ${name}! Here's a new passage for you. How can I help?`,
+        content: tn("tutor.newPassage.named", name),
       }]);
       setIsWelcoming(false);
     } else {
       setMessages([{
         role: "assistant",
-        content: `Hi there! New passage ready. How can I help?`,
+        content: t("tutor.newPassage.anon"),
       }]);
       setIsWelcoming(false);
     }
@@ -229,7 +231,7 @@ const AITutor = ({
 
     // If we're still waiting for the user's name
     if (!userName) {
-      const name = userMessage.replace(/^(my name is |i'm |im |call me |it's |its )/i, "").trim();
+      const name = userMessage.replace(/^(my name is |i'm |im |call me |it's |its |me llamo |soy |mi nombre es )/i, "").trim();
       const cleanName = name.split(/\s/)[0];
       const capitalizedName = cleanName.charAt(0).toUpperCase() + cleanName.slice(1).toLowerCase();
       setUserName(capitalizedName);
@@ -240,7 +242,7 @@ const AITutor = ({
           ...prev,
           {
             role: "assistant",
-            content: `Nice to meet you, ${capitalizedName}!\n\nI'll be right here if you need help. Go ahead and start reading your passage — you've got this!`,
+            content: tn("tutor.niceToMeet", capitalizedName),
           },
         ]);
       }, 800);
@@ -265,7 +267,7 @@ const AITutor = ({
 
       if (error) throw error;
 
-      const response = data.response || "I'm here to help! Could you rephrase that?";
+      const response = data.response || t("tutor.rephrase");
       const personalizedResponse = userName
         ? response.replace(/^(Great question|Good question|Nice question)/i, `$1, ${userName}`)
         : response;
@@ -279,7 +281,7 @@ const AITutor = ({
       console.error("Tutor error:", err);
       setMessages((prev) => [
         ...prev,
-        { role: "assistant", content: "Oops! I had trouble thinking. Try asking again!" },
+        { role: "assistant", content: t("tutor.error") },
       ]);
     } finally {
       setIsLoading(false);
@@ -295,11 +297,11 @@ const AITutor = ({
 
   const handleQuickHint = () => {
     if (hintsUsed < 2) {
-      const hint = getHintForQuestionType(currentQuestionType, hintsUsed);
+      const hint = t(getHintKeyForQuestionType(currentQuestionType, hintsUsed));
       setMessages((prev) => [...prev, { role: "hint", content: hint }]);
       setHintsUsed((prev) => prev + 1);
     } else if (!isLimitReached) {
-      setInput("Give me a hint");
+      setInput(t("tutor.quick.hint"));
     }
   };
 
@@ -318,15 +320,15 @@ const AITutor = ({
   };
 
   const quickPrompts = [
-    { label: hintsUsed < 2 ? "Give me a hint" : "AI Hint", action: handleQuickHint },
-    { label: "Explain in simpler words", action: () => setInput("Explain in simpler words") },
-    { label: "What's the main idea?", action: () => setInput("What's the main idea?") },
+    { label: t(hintsUsed < 2 ? "tutor.quick.hint" : "tutor.quick.aiHint"), action: handleQuickHint },
+    { label: t("tutor.quick.simpler"), action: () => setInput(t("tutor.quick.simpler")) },
+    { label: t("tutor.quick.mainIdea"), action: () => setInput(t("tutor.quick.mainIdea")) },
   ];
 
   const getPlaceholder = () => {
-    if (!userName && !isWelcoming) return "Type your name here...";
-    if (isLimitReached) return "Keep going on your own!";
-    return userName ? `Ask me anything, ${userName}...` : "Ask me anything...";
+    if (!userName && !isWelcoming) return t("tutor.input.name");
+    if (isLimitReached) return t("tutor.input.done");
+    return userName ? tn("tutor.input.named", userName) : t("tutor.input.anon");
   };
 
   return (
@@ -339,22 +341,22 @@ const AITutor = ({
           </div>
           <div>
             <h3 className="font-display font-bold text-foreground">
-              AI Reading Buddy
+              {t("tutor.title")}
             </h3>
             <p className="text-xs text-muted-foreground">
               {isWelcoming
-                ? "Getting ready..."
+                ? t("tutor.status.ready")
                 : isLimitReached
-                ? "You're doing great on your own!"
-                : `${maxMessages - aiMessageCount} AI helps remaining`}
+                ? t("tutor.status.onYourOwn")
+                : t("tutor.status.remaining").replace("{count}", String(maxMessages - aiMessageCount))}
             </p>
           </div>
           {!isWelcoming && (
             <button
               onClick={handleResetTutorial}
               className="p-2 rounded-lg hover:bg-muted transition-colors ml-auto"
-              aria-label="Replay welcome tutorial"
-              title="Replay tutorial"
+              aria-label={t("tutor.replayLabel")}
+              title={t("tutor.replay")}
             >
               <RotateCcw className="w-4 h-4 text-muted-foreground" />
             </button>
@@ -365,10 +367,10 @@ const AITutor = ({
 
       {/* Static help tips */}
       <div className="px-4 py-2 bg-muted/30 border-b border-border">
-        <p className="text-xs font-medium text-muted-foreground mb-1">Try these first:</p>
+        <p className="text-xs font-medium text-muted-foreground mb-1">{t("tutor.tryFirst")}</p>
         <ul className="text-xs text-muted-foreground space-y-0.5">
-          {STATIC_HELP_TIPS.slice(0, 3).map((tip, i) => (
-            <li key={i}>• {tip}</li>
+          {STATIC_HELP_TIP_KEYS.map((key) => (
+            <li key={key}>• {t(key)}</li>
           ))}
         </ul>
       </div>
@@ -392,7 +394,7 @@ const AITutor = ({
               {message.role === "hint" && (
                 <div className="flex items-center gap-1 mb-1 text-accent">
                   <Lightbulb className="w-3 h-3" />
-                  <span className="text-xs font-medium">Quick Tip</span>
+                  <span className="text-xs font-medium">{t("tutor.quickTip")}</span>
                 </div>
               )}
               <span className="whitespace-pre-wrap">{message.content}</span>
@@ -400,12 +402,12 @@ const AITutor = ({
                 <button
                   onClick={() => handleSpeak(message.content, index)}
                   className="mt-2 flex items-center gap-1 text-xs text-muted-foreground hover:text-primary transition-colors"
-                  aria-label={speakingIndex === index ? "Stop reading" : "Read aloud"}
+                  aria-label={t(speakingIndex === index ? "tutor.stopReading" : "tutor.readAloud")}
                 >
                   {speakingIndex === index ? (
-                    <><VolumeX className="w-3.5 h-3.5" /> Stop</>
+                    <><VolumeX className="w-3.5 h-3.5" /> {t("tutor.stop")}</>
                   ) : (
-                    <><Volume2 className="w-3.5 h-3.5" /> Read aloud</>
+                    <><Volume2 className="w-3.5 h-3.5" /> {t("tutor.readAloud")}</>
                   )}
                 </button>
               )}
@@ -438,7 +440,7 @@ const AITutor = ({
         <div className="px-4 py-3 bg-success/10 border-t border-success/20">
           <div className="flex items-center gap-2 text-sm text-success">
             <AlertCircle className="w-4 h-4" />
-            <span>You're doing great! Try answering on your own now.</span>
+            <span>{t("tutor.limitBanner")}</span>
           </div>
         </div>
       )}
@@ -474,6 +476,7 @@ const AITutor = ({
           <button
             onClick={handleSend}
             disabled={!input.trim() || isLoading || isLimitReached || isWelcoming}
+            aria-label={t("tutor.send")}
             className="p-3 rounded-xl bg-primary text-primary-foreground hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
           >
             <Send className="w-4 h-4" />
