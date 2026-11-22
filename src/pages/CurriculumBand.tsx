@@ -8,6 +8,7 @@ import NotFound from "./NotFound";
 import PageByline from "@/components/PageByline";
 import { findBand, gradeBands } from "@/data/curriculum";
 import { fitDescription } from "@/lib/seoText";
+import { useStartPractice } from "@/hooks/useStartPractice";
 
 export const bandSeo = (slug: string) => {
   const gb = findBand(slug)!;
@@ -33,6 +34,7 @@ export const bandSeo = (slug: string) => {
 const CurriculumBand = () => {
   const { band } = useParams();
   const { language } = useLanguage();
+  const { begin, isLoading, loadingAction } = useStartPractice();
   const isEs = language === "es";
   const gb = findBand(band);
   if (!gb) return <NotFound />;
@@ -116,12 +118,12 @@ const CurriculumBand = () => {
         <aside aria-label="Next step" className="card-elevated">
         <h2 className="text-lg font-display font-bold mb-3">{isEs ? "¿Cómo puedes empezar a practicar?" : "How can you start practising?"}</h2>
         <div className="flex flex-wrap gap-3">
-          <Link to="/assessment" className="btn-hero inline-flex items-center gap-2">
-            {isEs ? "Evaluar mi nivel" : "Find my reading level"}
-          </Link>
-          <Link to="/select-level" className="btn-secondary-hero inline-flex items-center gap-2">
-            {isEs ? "Elegir nivel y practicar" : "Pick a level and practise"}
-          </Link>
+          <button type="button" onClick={() => begin("assess")} disabled={isLoading} className="btn-hero inline-flex items-center gap-2">
+            {loadingAction === "assess" ? (isEs ? "Preparando…" : "Getting ready…") : isEs ? "Evaluar mi nivel" : "Find my reading level"}
+          </button>
+          <button type="button" onClick={() => begin("start")} disabled={isLoading} className="btn-secondary-hero inline-flex items-center gap-2">
+            {loadingAction === "start" ? (isEs ? "Preparando…" : "Getting ready…") : isEs ? "Elegir nivel y practicar" : "Pick a level and practise"}
+          </button>
         </div>
 
         </aside>

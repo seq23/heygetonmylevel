@@ -53,8 +53,8 @@ const translations: Record<string, Record<Language, string>> = {
     es: "No necesitas cuenta • Tu progreso es privado",
   },
   "home.assessmentNote": {
-    en: "📚 Assessment uses curated material • Reading sessions let you pick your topic",
-    es: "📚 La evaluación usa material seleccionado • Las sesiones de lectura te permiten elegir tu tema",
+    en: "Assessment uses curated material • Reading sessions let you pick your topic",
+    es: "La evaluación usa material seleccionado • Las sesiones de lectura te permiten elegir tu tema",
   },
   "home.license": {
     en: "Free for personal & educational use. Commercial or institutional use requires a",
@@ -216,9 +216,9 @@ const translations: Record<string, Record<Language, string>> = {
 
   // Feedback
   "feedback.title": { en: "Send Feedback", es: "Enviar Comentarios" },
-  "feedback.bug": { en: "🐛 Bug Report", es: "🐛 Reporte de Error" },
-  "feedback.feature": { en: "💡 Feature Request", es: "💡 Solicitud de Función" },
-  "feedback.general": { en: "💬 General Feedback", es: "💬 Comentarios Generales" },
+  "feedback.bug": { en: "Bug Report", es: "Reporte de Error" },
+  "feedback.feature": { en: "Feature Request", es: "Solicitud de Función" },
+  "feedback.general": { en: "General Feedback", es: "Comentarios Generales" },
   "feedback.noPersonal": { en: "Please don't include personal info (name, email, location)", es: "Por favor no incluyas información personal (nombre, correo, ubicación)" },
   "feedback.placeholder": { en: "Tell us what you think...", es: "Cuéntanos qué piensas..." },
   "feedback.characters": { en: "characters", es: "caracteres" },
@@ -231,22 +231,22 @@ const translations: Record<string, Record<Language, string>> = {
   "feedback.tryAgain": { en: "Please try again later.", es: "Por favor intenta de nuevo más tarde." },
 
   // AI Tutor
-  "tutor.welcome1": { en: "Hi there! 👋 I'm your Reading Buddy!", es: "¡Hola! 👋 ¡Soy tu Compañero de Lectura!" },
+  "tutor.welcome1": { en: "Hi there! I'm your Reading Buddy!", es: "¡Hola! ¡Soy tu Compañero de Lectura!" },
   "tutor.welcome2": {
     en: "Here's how I work:\n\nI'm here to help you on your reading journey! You will read the passage on the screen first, and then press the big green \"I'm Ready for Questions\" button when you've finished.",
     es: "Así es como funciono:\n\n¡Estoy aquí para ayudarte en tu camino de lectura! Primero lee el pasaje en la pantalla, y luego presiona el gran botón verde \"Estoy Listo para las Preguntas\" cuando hayas terminado.",
   },
   "tutor.welcome3": {
-    en: "📱 On a phone or tablet, tap the \"✕\" button to close me and start reading. Tap the little robot icon 🤖 at the top of the screen to find me again.\n\nYou can stop me talking anytime by pressing the small stop icon while I'm speaking.",
-    es: "📱 En un teléfono o tablet, toca el botón \"✕\" para cerrarme y empezar a leer. Toca el ícono del robot 🤖 en la parte superior de la pantalla para encontrarme de nuevo.\n\nPuedes detenerme en cualquier momento presionando el ícono de parar mientras hablo.",
+    en: "On a phone or tablet, tap the \"✕\" button to close me and start reading. Tap the little robot icon at the top of the screen to find me again.\n\nYou can stop me talking anytime by pressing the small stop icon while I'm speaking.",
+    es: "En un teléfono o tablet, toca el botón \"✕\" para cerrarme y empezar a leer. Toca el ícono del robot en la parte superior de la pantalla para encontrarme de nuevo.\n\nPuedes detenerme en cualquier momento presionando el ícono de parar mientras hablo.",
   },
   "tutor.welcome4": {
-    en: "💻 On a computer, I'll be right here beside your passage. You can type questions to me or use the quick buttons below.\n\nYou can also tap any word in the passage to hear how it sounds!",
-    es: "💻 En una computadora, estaré aquí al lado de tu pasaje. Puedes escribirme preguntas o usar los botones rápidos de abajo.\n\n¡También puedes tocar cualquier palabra del pasaje para escuchar cómo suena!",
+    en: "On a computer, I'll be right here beside your passage. You can type questions to me or use the quick buttons below.\n\nYou can also tap any word in the passage to hear how it sounds!",
+    es: "En una computadora, estaré aquí al lado de tu pasaje. Puedes escribirme preguntas o usar los botones rápidos de abajo.\n\n¡También puedes tocar cualquier palabra del pasaje para escuchar cómo suena!",
   },
   "tutor.welcome5": {
-    en: "Take your time reading — there's no rush! I'm here whenever you need me. 📚\n\nBefore we start, what's your name? (Or what would you like me to call you?)",
-    es: "Tómate tu tiempo para leer — ¡no hay prisa! Estoy aquí cuando me necesites. 📚\n\n¿Cómo te llamas? (¿O cómo te gustaría que te llame?)",
+    en: "Take your time reading — there's no rush! I'm here whenever you need me.\n\nBefore we start, what's your name? (Or what would you like me to call you?)",
+    es: "Tómate tu tiempo para leer — ¡no hay prisa! Estoy aquí cuando me necesites.\n\n¿Cómo te llamas? (¿O cómo te gustaría que te llame?)",
   },
   "tutor.placeholder": { en: "Ask your Reading Buddy...", es: "Pregúntale a tu Compañero de Lectura..." },
   "tutor.limitReached": { en: "Message limit reached for this passage", es: "Límite de mensajes alcanzado para este pasaje" },

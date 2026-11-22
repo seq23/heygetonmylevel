@@ -93,7 +93,7 @@ const VocabularyAssessment = ({ onComplete }: VocabularyAssessmentProps) => {
 
       <div className="p-4 bg-amber-500/10 border border-amber-500/20 rounded-xl">
         <p className="text-sm text-amber-700 dark:text-amber-300">
-          💡 <strong>{t("vocab.tip.label")}</strong> {t("vocab.tip")}
+          <strong>{t("vocab.tip.label")}</strong> {t("vocab.tip")}
         </p>
       </div>
 

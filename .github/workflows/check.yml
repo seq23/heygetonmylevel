@@ -22,6 +22,8 @@ jobs:
       - name: Paid edge functions refuse anonymous and over-limit callers
         run: deno test --no-lock --allow-read supabase/functions/_shared/
       - run: bunx tsc -p tsconfig.app.json --noEmit
+      - name: The feedback form and Reading Buddy read their strings from the translation table
+        run: node --test scripts/translations.test.mjs
       # The build prerenders every public route and fails if any renders empty.
       - run: bun run build
       - name: Prerendered pages are not empty

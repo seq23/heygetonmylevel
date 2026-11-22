@@ -173,7 +173,7 @@ const Curriculum = () => {
                         {(isEs ? mod.skillsEs : mod.skills).split(", ").map((skill) => (
                           <span
                             key={skill}
-                            className="text-[10px] px-2 py-0.5 rounded-full bg-background border border-border text-muted-foreground"
+                            className="text-xs px-2 py-0.5 rounded-full bg-background border border-border text-muted-foreground"
                           >
                             {skill}
                           </span>

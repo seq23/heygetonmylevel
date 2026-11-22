@@ -108,7 +108,7 @@ const SelectLevel = () => {
     <div className="min-h-screen bg-background flex flex-col">
       <SEO
         title="Pick Your Reading Level — HeyGetOnMyLevel"
-        description="Choose your reading grade (1–13) and a skill focus — phonics, vocabulary, inference, comprehension and more — to start a tailored session."
+        description="Choose your reading grade (1–13) and a skill focus — phonics, vocabulary, inference, comprehension and more — to start a session at that level."
         path="/select-level"
       />
       <header className="sticky top-0 bg-background/80 backdrop-blur-sm border-b border-border z-10">

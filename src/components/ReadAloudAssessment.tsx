@@ -147,8 +147,8 @@ const ReadAloudAssessment = ({ currentLevel, isESL = false, onComplete, onSkip, 
         setPhase("adjusting");
         
         const message = adjustment > 0 
-          ? `Great job! Moving up to Grade ${newLevel} for more challenge! 🌟`
-          : `Adjusting to Grade ${newLevel} for a better fit! 📚`;
+          ? `Great job! Moving up to Grade ${newLevel} for more challenge!`
+          : `Adjusting to Grade ${newLevel} for a better fit!`;
         
         toast.info(message, { duration: 2500 });
         
@@ -212,8 +212,8 @@ const ReadAloudAssessment = ({ currentLevel, isESL = false, onComplete, onSkip, 
         setAdjustmentCount(prev => prev + 1);
         setPhase("adjusting");
         const message = adjustment > 0
-          ? `Great job! Moving up to Grade ${newLevel} for more challenge! 🌟`
-          : `Adjusting to Grade ${newLevel} for a better fit! 📚`;
+          ? `Great job! Moving up to Grade ${newLevel} for more challenge!`
+          : `Adjusting to Grade ${newLevel} for a better fit!`;
         toast.info(message, { duration: 2500 });
         // Pre-fetch confirmation passage at the new level in parallel.
         onLevelChange?.(newLevel);

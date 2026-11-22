@@ -21,20 +21,6 @@ interface AITutorProps {
   isVisible?: boolean;
 }
 
-const getWelcomeSequence = (lang: string) => lang === "es" ? [
-  `¡Hola! 👋 ¡Soy tu Compañero de Lectura!`,
-  `Así es como funciono:\n\n¡Estoy aquí para ayudarte en tu camino de lectura! Primero lee el pasaje en la pantalla, y luego presiona el gran botón verde "Estoy Listo para las Preguntas" cuando hayas terminado.`,
-  `📱 En un teléfono o tablet, toca el botón "✕" para cerrarme y empezar a leer. Toca el ícono del robot 🤖 en la parte superior para encontrarme de nuevo.\n\nPuedes detenerme en cualquier momento presionando el ícono de parar mientras hablo.`,
-  `💻 En una computadora, estaré aquí al lado de tu pasaje. Puedes escribirme preguntas o usar los botones rápidos de abajo.\n\n¡También puedes tocar cualquier palabra del pasaje para escuchar cómo suena!`,
-  `Tómate tu tiempo para leer — ¡no hay prisa! Estoy aquí cuando me necesites. 📚\n\n¿Cómo te llamas? (¿O cómo te gustaría que te llame?)`,
-] : [
-  `Hi there! 👋 I'm your Reading Buddy!`,
-  `Here's how I work:\n\nI'm here to help you on your reading journey! You will read the passage on the screen first, and then press the big green "I'm Ready for Questions" button when you've finished.`,
-  `📱 On a phone or tablet, tap the "✕" button to close me and start reading. Tap the little robot icon 🤖 at the top of the screen to find me again.\n\nYou can stop me talking anytime by pressing the small stop icon while I'm speaking.`,
-  `💻 On a computer, I'll be right here beside your passage. You can type questions to me or use the quick buttons below.\n\nYou can also tap any word in the passage to hear how it sounds!`,
-  `Take your time reading — there's no rush! I'm here whenever you need me. 📚\n\nBefore we start, what's your name? (Or what would you like me to call you?)`,
-];
-
 const STORAGE_KEY_NAME = "reading_buddy_name";
 const STORAGE_KEY_WELCOMED = "reading_buddy_welcomed";
 
@@ -51,8 +37,8 @@ const AITutor = ({
   // Load persisted name from localStorage
   const storedName = localStorage.getItem(STORAGE_KEY_NAME);
   const hasBeenWelcomed = localStorage.getItem(STORAGE_KEY_WELCOMED) === "true";
-  const { language } = useLanguage();
-  const WELCOME_SEQUENCE = getWelcomeSequence(language);
+  const { language, t } = useLanguage();
+  const WELCOME_SEQUENCE = [1, 2, 3, 4, 5].map((n) => t(`tutor.welcome${n}`));
 
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
@@ -84,14 +70,14 @@ const AITutor = ({
       // Returning user — short greeting
       setMessages([{
         role: "assistant",
-        content: `Hi ${storedName}! 👋 How can I help you today?`,
+        content: `Hi ${storedName}! How can I help you today?`,
       }]);
       setIsWelcoming(false);
     } else if (hasBeenWelcomed && !storedName) {
       // Welcomed but no name stored (edge case)
       setMessages([{
         role: "assistant",
-        content: `Hi there! 👋 How can I help you today?`,
+        content: `Hi there! How can I help you today?`,
       }]);
       setIsWelcoming(false);
     }
@@ -156,13 +142,13 @@ const AITutor = ({
       setUserName(name);
       setMessages([{
         role: "assistant",
-        content: `Hi ${name}! 👋 Here's a new passage for you. How can I help?`,
+        content: `Hi ${name}! Here's a new passage for you. How can I help?`,
       }]);
       setIsWelcoming(false);
     } else {
       setMessages([{
         role: "assistant",
-        content: `Hi there! 👋 New passage ready. How can I help?`,
+        content: `Hi there! New passage ready. How can I help?`,
       }]);
       setIsWelcoming(false);
     }
@@ -254,7 +240,7 @@ const AITutor = ({
           ...prev,
           {
             role: "assistant",
-            content: `Nice to meet you, ${capitalizedName}! 🎉\n\nI'll be right here if you need help. Go ahead and start reading your passage — you've got this!`,
+            content: `Nice to meet you, ${capitalizedName}!\n\nI'll be right here if you need help. Go ahead and start reading your passage — you've got this!`,
           },
         ]);
       }, 800);
@@ -379,7 +365,7 @@ const AITutor = ({
 
       {/* Static help tips */}
       <div className="px-4 py-2 bg-muted/30 border-b border-border">
-        <p className="text-xs font-medium text-muted-foreground mb-1">💡 Try these first:</p>
+        <p className="text-xs font-medium text-muted-foreground mb-1">Try these first:</p>
         <ul className="text-xs text-muted-foreground space-y-0.5">
           {STATIC_HELP_TIPS.slice(0, 3).map((tip, i) => (
             <li key={i}>• {tip}</li>
@@ -452,7 +438,7 @@ const AITutor = ({
         <div className="px-4 py-3 bg-success/10 border-t border-success/20">
           <div className="flex items-center gap-2 text-sm text-success">
             <AlertCircle className="w-4 h-4" />
-            <span>You're doing great! Try answering on your own now. 💪</span>
+            <span>You're doing great! Try answering on your own now.</span>
           </div>
         </div>
       )}
