@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Send, Bot, Sparkles, Loader2, Lightbulb, AlertCircle, Volume2, VolumeX, RotateCcw } from "lucide-react";
+import { Send, Bot, Loader2, Lightbulb, AlertCircle, Volume2, VolumeX, RotateCcw } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { getHintKeyForQuestionType, STATIC_HELP_TIP_KEYS } from "@/constants/readingHints";
 import { useTextToSpeech } from "@/hooks/useTextToSpeech";
@@ -361,7 +361,6 @@ const AITutor = ({
               <RotateCcw className="w-4 h-4 text-muted-foreground" />
             </button>
           )}
-          {isWelcoming && <Sparkles className="w-4 h-4 text-accent ml-auto" />}
         </div>
       </div>
 
@@ -392,7 +391,7 @@ const AITutor = ({
               }`}
             >
               {message.role === "hint" && (
-                <div className="flex items-center gap-1 mb-1 text-accent">
+                <div className="flex items-center gap-1 mb-1 text-accent-foreground">
                   <Lightbulb className="w-3 h-3" />
                   <span className="text-xs font-medium">{t("tutor.quickTip")}</span>
                 </div>

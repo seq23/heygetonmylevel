@@ -79,3 +79,13 @@ for (const { ns, files } of AREAS) {
     });
   }
 }
+
+// The Reading Buddy's "Quick Tip" label was the yellow accent (hsl 45 95% 60%) on a 20% wash of
+// itself, about 1.5:1, unreadable on a phone (#24 click-through). The accent is a fill colour;
+// text and icons on it use text-accent-foreground. Checked in every file these areas render.
+test("no text or icon is drawn in the yellow accent colour", () => {
+  for (const file of AREAS.flatMap((a) => a.files)) {
+    const hits = [...readFileSync(file, "utf8").matchAll(/\btext-accent(?![\w-])/g)];
+    assert.equal(hits.length, 0, `${file} draws text in the yellow accent (under 4.5:1): use text-accent-foreground`);
+  }
+});
