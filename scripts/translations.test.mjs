@@ -30,7 +30,17 @@ export const hardCodedLabels = (src) => {
   const code = src.replace(/\{\/\*[\s\S]*?\*\/\}/g, "").replace(/\/\*[\s\S]*?\*\//g, "").replace(/^\s*\/\/.*$/gm, "")
     .split("\n").filter((l) => !/\bconsole\.\w+\(/.test(l)).join("\n");
   const found = new Set();
-  for (const m of code.matchAll(/>([^<>{}();=[\]&|]*)</g)) if (/[A-Za-z]{2,}/.test(m[1])) found.add(m[1].trim());
+  // JSX text, also when it sits beside an expression: <p>Hello {name}</p>, <p>{n} stories left</p>
+  for (const m of code.matchAll(/>([^<>]*)</g)) {
+    const pieces = m[1].split(/\{[^{}]*\}/);
+    if (pieces.some((p) => /[();=[\]&|{}]/.test(p))) continue; // code, not text
+    for (const p of pieces) if (/[A-Za-z]{2,}/.test(p)) found.add(p.trim());
+  }
+  // A single word is enough in a label position: label: "Next", toast({ title: "Saved" })
+  for (const m of code.matchAll(/\b(?:label|title|description|placeholder|content|message|text)\s*:\s*(?:"([^"\n]*)"|`([^`]*)`)/g)) {
+    const s = (m[1] ?? m[2]).replace(/\$\{[^}]*\}/g, "").trim();
+    if (/[A-Za-z]{2,}/.test(s) && !/^[\w.]+\.[\w.]+$/.test(s)) found.add(s);
+  }
   for (const m of code.matchAll(/\b(?:placeholder|aria-label|title|alt)="([^"]*[A-Za-z][^"]*)"/g)) found.add(m[1]);
   for (const m of code.matchAll(/"([^"\n]*)"|`([^`]*)`/g)) {
     const s = (m[1] ?? m[2]).replace(/\$\{[^}]*\}/g, "X").trim();
@@ -42,8 +52,9 @@ export const hardCodedLabels = (src) => {
 
 test("the label scanner catches each way English can be typed into a component", () => {
   const sample = `<span>Quick Tip</span> <X aria-label="Close form" /> <V placeholder="Pick one" />
-    setInput("Give me a hint"); const a = \`Hi \${name}! How are you?\`; const b = "Done!"; const c = \`\${a} \${b}!\`;`;
-  assert.deepEqual(hardCodedLabels(sample), ["Quick Tip", "Close form", "Pick one", "Give me a hint", "Hi X! How are you?", "Done!"]);
+    setInput("Give me a hint"); const a = \`Hi \${name}! How are you?\`; const b = "Done!"; const c = \`\${a} \${b}!\`;
+    <p>Hello {name}</p> <p>{n} stories left</p> const o = { label: "Next" }; toast({ title: "Saved" });`;
+  assert.deepEqual(hardCodedLabels(sample).sort(), ["Quick Tip", "Close form", "Pick one", "Give me a hint", "Hi X! How are you?", "Done!", "Hello", "stories left", "Next", "Saved"].sort());
   assert.deepEqual(hardCodedLabels(`<b>{t("x.y")}</b> e.key === "Enter"; className="flex gap-2"; console.error("Tutor error:", e);`), []);
 });
 
