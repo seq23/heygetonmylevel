@@ -132,7 +132,7 @@ const translations: Record<string, Record<Language, string>> = {
   "session.generating": { en: "Generating questions...", es: "Generando preguntas..." },
   "session.readingHelp": {
     en: "Take your time reading. Need help? Ask your AI Reading Buddy! When you're ready, tap the button below to answer questions.",
-    es: "Tómate tu tiempo para leer. ¿Necesitas ayuda? ¡Pregúntale a tu Compañero de Lectura! Cuando estés listo, toca el botón de abajo para responder preguntas.",
+    es: "Tómate tu tiempo para leer. ¿Necesitas ayuda? ¡Pregúntale a tu Compañero de Lectura! Cuando termines, toca el botón de abajo para responder preguntas.",
   },
   "session.ready": { en: "I'm Ready for Questions", es: "Ir a las preguntas" },
   "session.viewPassage": { en: "View passage again", es: "Ver el pasaje de nuevo" },
@@ -153,7 +153,7 @@ const translations: Record<string, Record<Language, string>> = {
   "session.continueLearning": { en: "Continue Learning", es: "Continuar aprendiendo" },
   "session.endSession": { en: "End Session", es: "Terminar sesión" },
   "session.levelUp": { en: "Level Up! Now at", es: "¡Subiste de nivel! Ahora en" },
-  "session.levelUpDesc": { en: "Great job! You're ready for harder passages.", es: "¡Buen trabajo! Estás listo para pasajes más difíciles." },
+  "session.levelUpDesc": { en: "Great job! You're ready for harder passages.", es: "¡Buen trabajo! Ya puedes con pasajes más difíciles." },
   "session.practiceMore": { en: "Let's practice more at", es: "Practiquemos más en" },
   "session.practiceMoreDesc": { en: "Keep going! Practice makes perfect.", es: "¡Sigue adelante! La práctica hace al maestro." },
 
