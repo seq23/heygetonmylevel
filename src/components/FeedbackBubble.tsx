@@ -74,7 +74,7 @@ const FeedbackBubble = () => {
             <button
               onClick={() => setIsOpen(false)}
               className="text-muted-foreground hover:text-foreground transition-colors"
-              aria-label="Close feedback form"
+              aria-label={t("feedback.close")}
             >
               <X className="w-5 h-5" aria-hidden="true" />
             </button>
@@ -83,7 +83,7 @@ const FeedbackBubble = () => {
           <div className="space-y-3">
             <Select value={feedbackType} onValueChange={setFeedbackType}>
               <SelectTrigger>
-                <SelectValue placeholder="Feedback type" />
+                <SelectValue placeholder={t("feedback.type")} />
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="bug">{t("feedback.bug")}</SelectItem>
@@ -132,7 +132,7 @@ const FeedbackBubble = () => {
         <button
           onClick={() => setIsOpen(true)}
           className="bg-primary text-primary-foreground rounded-full p-3 shadow-lg hover:bg-primary/90 transition-colors"
-          aria-label="Open feedback form"
+          aria-label={t("feedback.open")}
         >
           <MessageCircle className="w-6 h-6" />
         </button>
