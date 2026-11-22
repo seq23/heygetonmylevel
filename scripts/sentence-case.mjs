@@ -16,6 +16,3 @@ export function midSentenceCapitals(text) {
   return found;
 }
 
-export const toSentenceCase = (text) =>
-  midSentenceCapitals(text).reduceRight(
-    (t, { index }) => t.slice(0, index) + t[index].toLowerCase() + t.slice(index + 1), text);

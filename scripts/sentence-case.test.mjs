@@ -12,7 +12,7 @@ const spanish = [...table.matchAll(/"([\w.]+)":\s*\{\s*en:\s*"(?:[^"\\]|\\.)*"\s
 test("knows title case from sentence case", () => {
   assert.deepEqual(midSentenceCapitals("Reporte de Error").map((h) => h.word), ["Error"]);
   assert.deepEqual(midSentenceCapitals("¡Hola! ¡Soy tu Compañero de Lectura! Ahora lee."), []);
-  assert.deepEqual(midSentenceCapitals('presiona el botón "Estoy listo" con IA'), []);
+  assert.deepEqual(midSentenceCapitals('presiona el botón "Ir a las preguntas" con IA'), []);
 });
 
 test("every Spanish string capitalises only sentence starts and names", () => {

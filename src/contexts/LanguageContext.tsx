@@ -134,7 +134,7 @@ const translations: Record<string, Record<Language, string>> = {
     en: "Take your time reading. Need help? Ask your AI Reading Buddy! When you're ready, tap the button below to answer questions.",
     es: "Tómate tu tiempo para leer. ¿Necesitas ayuda? ¡Pregúntale a tu Compañero de Lectura! Cuando estés listo, toca el botón de abajo para responder preguntas.",
   },
-  "session.ready": { en: "I'm Ready for Questions", es: "Estoy listo para las preguntas" },
+  "session.ready": { en: "I'm Ready for Questions", es: "Ir a las preguntas" },
   "session.viewPassage": { en: "View passage again", es: "Ver el pasaje de nuevo" },
   "session.submitAnswer": { en: "Submit Answer", es: "Enviar respuesta" },
   "session.nextQuestion": { en: "Next Question", es: "Siguiente pregunta" },
@@ -241,7 +241,7 @@ const translations: Record<string, Record<Language, string>> = {
   "tutor.welcome1": { en: "Hi there! I'm your Reading Buddy!", es: "¡Hola! ¡Soy tu Compañero de Lectura!" },
   "tutor.welcome2": {
     en: "Here's how I work:\n\nI'm here to help you on your reading journey! You will read the passage on the screen first, and then press the big green \"I'm Ready for Questions\" button when you've finished.",
-    es: "Así es como funciono:\n\n¡Estoy aquí para ayudarte en tu camino de lectura! Primero lee el pasaje en la pantalla, y luego presiona el gran botón verde \"Estoy listo para las preguntas\" cuando hayas terminado.",
+    es: "Así es como funciono:\n\n¡Estoy aquí para ayudarte en tu camino de lectura! Primero lee el pasaje en la pantalla, y luego presiona el gran botón verde \"Ir a las preguntas\" cuando hayas terminado.",
   },
   "tutor.welcome3": {
     en: "On a phone or tablet, tap the \"✕\" button to close me and start reading. Tap the little robot icon at the top of the screen to find me again.\n\nYou can stop me talking anytime by pressing the small stop icon while I'm speaking.",
