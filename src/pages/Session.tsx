@@ -312,16 +312,16 @@ const Session = () => {
             <button
               onClick={() => navigate("/")}
               className="p-2 rounded-xl hover:bg-muted transition-colors"
-              aria-label="Go home"
-              title="Home"
+              aria-label={t("session.goHome")}
+              title={t("session.home")}
             >
               <Home className="w-5 h-5 text-muted-foreground" />
             </button>
             <button
               onClick={() => navigate("/dashboard")}
               className="p-2 rounded-xl hover:bg-muted transition-colors"
-              aria-label="Go to dashboard"
-              title="Back to Dashboard"
+              aria-label={t("session.goDashboard")}
+              title={t("session.backDashboard")}
             >
               <ArrowLeft className="w-5 h-5 text-muted-foreground" />
             </button>
@@ -344,7 +344,7 @@ const Session = () => {
               className={`p-2 rounded-xl transition-colors lg:hidden relative ${
                 state.showTutor ? "bg-primary text-primary-foreground" : "hover:bg-muted"
               }`}
-              aria-label="Toggle AI tutor"
+              aria-label={t("tutor.toggle")}
             >
               <Bot className="w-5 h-5" />
               {hasPendingBuddyMessage && !state.showTutor && (
@@ -699,7 +699,7 @@ const Session = () => {
                       <button
                         onClick={toggleTutor}
                         className="p-2 rounded-xl hover:bg-muted transition-colors"
-                        aria-label="Close AI tutor"
+                        aria-label={t("tutor.close")}
                       >
                         <X className="w-5 h-5 text-muted-foreground" />
                       </button>

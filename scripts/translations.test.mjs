@@ -13,7 +13,7 @@ const entries = new Map([...table.matchAll(/"([\w.]+)":\s*\{\s*en:\s*("(?:[^"\\]
 
 const AREAS = [
   { ns: "feedback.", files: ["src/components/FeedbackBubble.tsx"] },
-  { ns: "tutor.", files: ["src/components/AITutor.tsx", "src/constants/readingHints.ts"] },
+  { ns: "tutor.", files: ["src/components/AITutor.tsx", "src/constants/readingHints.ts", "src/pages/Session.tsx"] },
 ];
 
 const reads = (src, ns) => {
@@ -34,14 +34,15 @@ export const hardCodedLabels = (src) => {
   for (const m of code.matchAll(/\b(?:placeholder|aria-label|title|alt)="([^"]*[A-Za-z][^"]*)"/g)) found.add(m[1]);
   for (const m of code.matchAll(/"([^"\n]*)"|`([^`]*)`/g)) {
     const s = (m[1] ?? m[2]).replace(/\$\{[^}]*\}/g, "X").trim();
-    if (/^[A-Z][A-Za-z']*(?:[ ,]+[A-Za-z]|[!?.:]$)/.test(s)) found.add(s);
+    const words = (m[1] ?? m[2]).replace(/\$\{[^}]*\}/g, "");
+    if (/^[A-Z][A-Za-z']*(?:[ ,]+[A-Za-z]|[!?.:]$)/.test(s) && /[a-z]{2,}/.test(words)) found.add(s);
   }
   return [...found];
 };
 
 test("the label scanner catches each way English can be typed into a component", () => {
   const sample = `<span>Quick Tip</span> <X aria-label="Close form" /> <V placeholder="Pick one" />
-    setInput("Give me a hint"); const a = \`Hi \${name}! How are you?\`; const b = "Done!";`;
+    setInput("Give me a hint"); const a = \`Hi \${name}! How are you?\`; const b = "Done!"; const c = \`\${a} \${b}!\`;`;
   assert.deepEqual(hardCodedLabels(sample), ["Quick Tip", "Close form", "Pick one", "Give me a hint", "Hi X! How are you?", "Done!"]);
   assert.deepEqual(hardCodedLabels(`<b>{t("x.y")}</b> e.key === "Enter"; className="flex gap-2"; console.error("Tutor error:", e);`), []);
 });

@@ -123,6 +123,10 @@ const translations: Record<string, Record<Language, string>> = {
 
   // Session
   "session.title": { en: "Reading Session", es: "Sesión de Lectura" },
+  "session.home": { en: "Home", es: "Inicio" },
+  "session.goHome": { en: "Go home", es: "Ir al inicio" },
+  "session.backDashboard": { en: "Back to Dashboard", es: "Volver al panel" },
+  "session.goDashboard": { en: "Go to dashboard", es: "Ir al panel" },
   "session.level": { en: "Level", es: "Nivel" },
   "session.creating": { en: "Creating your passage...", es: "Creando tu pasaje..." },
   "session.generating": { en: "Generating questions...", es: "Generando preguntas..." },
@@ -251,6 +255,8 @@ const translations: Record<string, Record<Language, string>> = {
     en: "Take your time reading — there's no rush! I'm here whenever you need me.\n\nBefore we start, what's your name? (Or what would you like me to call you?)",
     es: "Tómate tu tiempo para leer — ¡no hay prisa! Estoy aquí cuando me necesites.\n\n¿Cómo te llamas? (¿O cómo te gustaría que te llame?)",
   },
+  "tutor.toggle": { en: "Show or hide the Reading Buddy", es: "Mostrar u ocultar el Compañero de Lectura" },
+  "tutor.close": { en: "Close the Reading Buddy", es: "Cerrar el Compañero de Lectura" },
   "tutor.title": { en: "AI Reading Buddy", es: "Compañero de Lectura con IA" },
   "tutor.status.ready": { en: "Getting ready...", es: "Preparándome..." },
   "tutor.status.onYourOwn": { en: "You're doing great on your own!", es: "¡Lo estás haciendo muy bien por tu cuenta!" },
