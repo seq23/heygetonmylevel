@@ -23,7 +23,8 @@ on:
     branches: [main]
   schedule:
     # 06:20 CT daily, off the hour: scheduled runs bunch on the hour and get dropped under load.
-    - cron: '20 12 * * *'
+    # Weekly since 23 Nov 2026 (owner rule: daily only when something changes daily AND someone acts on it daily).
+    - cron: "20 12 * * 3"
   workflow_dispatch:
 
 permissions:
