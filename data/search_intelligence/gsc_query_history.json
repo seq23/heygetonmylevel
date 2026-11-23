@@ -532,6 +532,35 @@
           "position": 76
         }
       }
+    },
+    {
+      "start_date": "2026-10-24",
+      "end_date": "2026-11-20",
+      "days": 28,
+      "collected_at": "2026-11-23T19:41:26.626Z",
+      "totals": {
+        "clicks": 1,
+        "impressions": 27,
+        "ctr": 0.037,
+        "position": 15.41
+      },
+      "queries": {
+        "get to my level": {
+          "impressions": 3,
+          "clicks": 0,
+          "position": 18.33
+        },
+        "upper elementary reading": {
+          "impressions": 3,
+          "clicks": 0,
+          "position": 23
+        },
+        "middle school reading curriculum": {
+          "impressions": 1,
+          "clicks": 0,
+          "position": 76
+        }
+      }
     }
   ]
 }
