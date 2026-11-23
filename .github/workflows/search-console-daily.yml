@@ -20,7 +20,8 @@ on:
     # 01:55 CT daily, a quarter hour off dailystory's so the two do not collide on
     # the shared service account. Search Console data lags ~3 days, so the hour is
     # only about spreading load, not freshness.
-    - cron: '55 1 * * *'  # America/Chicago, all year
+    # Weekly since 23 Nov 2026 (owner rule: daily only when something changes daily AND someone acts on it daily).
+    - cron: "55 1 * * 1"
       timezone: America/Chicago
   workflow_dispatch:
 
