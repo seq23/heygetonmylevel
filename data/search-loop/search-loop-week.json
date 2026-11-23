@@ -1,8 +1,8 @@
 {
   "schema": "search-loop-week-v1",
-  "week": "2026-W47",
+  "week": "2026-W48",
   "site": "learn.heygetonmylevel.com",
-  "generated_at": "2026-11-22T18:41:35.007Z",
+  "generated_at": "2026-11-23T22:55:11.488Z",
   "state": "off",
   "published": 0,
   "indexed": 1,
@@ -24,6 +24,7 @@
   "notes": [
     "Search loop is switched off (mode=off)",
     "site config lowers the mode to off",
+    "not read: AI answer misses (Boss OS does not know learn.heygetonmylevel.com (HTTP 404)); could not tell this run",
     "BUILD skipped: mode=off"
   ],
   "lanes": {
@@ -52,5 +53,15 @@
     "weight_changes": [],
     "competition": "not read: no free, ToS-safe competition signal (SERP scraping is not used)"
   },
-  "run_url": "https://github.com/seq23/heygetonmylevel/actions/runs/45056290627"
+  "ai_misses": {
+    "read": "not read: Boss OS does not know learn.heygetonmylevel.com (HTTP 404)",
+    "week": null,
+    "misses": 0,
+    "strengthened": [],
+    "new_candidates": [],
+    "skipped": [],
+    "rejected": [],
+    "could_not_tell": 1
+  },
+  "run_url": "https://github.com/seq23/heygetonmylevel/actions/runs/45284100451"
 }

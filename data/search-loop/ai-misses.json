@@ -1,0 +1,11 @@
+{
+  "schema": "search-loop-ai-misses-v1",
+  "weeks": {},
+  "reads": [
+    {
+      "at": "2026-11-23T22:55:11.488Z",
+      "status": "could_not_tell",
+      "reason": "Boss OS does not know learn.heygetonmylevel.com (HTTP 404)"
+    }
+  ]
+}
