@@ -2,7 +2,7 @@
   "schema": "search-loop-week-v1",
   "week": "2026-W48",
   "site": "learn.heygetonmylevel.com",
-  "generated_at": "2026-11-24T21:30:55.602Z",
+  "generated_at": "2026-11-25T20:39:05.270Z",
   "state": "off",
   "published": 0,
   "indexed": 1,
@@ -25,8 +25,7 @@
     "Search loop is switched off (mode=off)",
     "site config lowers the mode to off",
     "not read: AI answer misses (Boss OS does not know learn.heygetonmylevel.com (HTTP 404)); could not tell this run",
-    "BUILD skipped: mode=off",
-    "not read: index status for the pages 14-42 days old (URL Inspection: HTTP 500 Internal error encountered.)"
+    "BUILD skipped: mode=off"
   ],
   "lanes": {
     "ratio": {
@@ -62,7 +61,7 @@
     "new_candidates": [],
     "skipped": [],
     "rejected": [],
-    "could_not_tell": 2
+    "could_not_tell": 3
   },
-  "run_url": "https://github.com/seq23/heygetonmylevel/actions/runs/45491806940"
+  "run_url": "https://github.com/seq23/heygetonmylevel/actions/runs/45696940495"
 }
