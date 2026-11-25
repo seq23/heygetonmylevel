@@ -50,7 +50,7 @@ async function main() {
     rows = await allRows(svc, { ...base, dimensions: ['query', 'page'] });
   } catch (err) {
     if (!(err instanceof GscError) || !err.hold) throw err;
-    const stop = `NAMED STOP gsc-truth: Search Console ${err.hold} (${err.message.slice(0, 160)}). ${err.hold === 'HELD_CREDENTIAL' ? ownerStep(sa) : 'Quota resets daily.'}`;
+    const stop = `NAMED STOP gsc-truth: Search Console ${err.hold} (${err.message.slice(0, 160)}). ${err.hold === 'HELD_CREDENTIAL' ? ownerStep() : 'Quota resets daily.'}`;
     console.log(stop);
     const prev = readJson(OUT, {});
     writeJson(OUT, { ...prev, schema_version: '1.0', property: PROPERTY, collected_at, state: 'NAMED_STOP', named_stop: stop });

@@ -135,6 +135,6 @@ export async function sitemapUrls() {
   }
 }
 
-export function ownerStep(sa) {
-  return `Owner step: Search Console > ${PROPERTY} > Settings > Users and permissions > add ${sa?.email || 'the service account'} (Full permission is needed for sitemap submission; Restricted is enough for query and coverage data). Nothing else is missing.`;
+export function ownerStep() {
+  return `Owner step: Search Console > ${PROPERTY} > Settings > Users and permissions > add the service account in GSC_SERVICE_ACCOUNT_JSON (its client_email; the email is not printed because this repo's logs are public) (Full permission is needed for sitemap submission; Restricted is enough for query and coverage data). Nothing else is missing.`;
 }

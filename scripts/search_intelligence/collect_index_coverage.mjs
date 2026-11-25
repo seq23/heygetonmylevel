@@ -87,7 +87,7 @@ async function main() {
   }
   if (!hold) await Promise.all(Array.from({ length: WORKERS }, worker));
   if (hold) {
-    const stop = `NAMED STOP index-coverage: URL Inspection ${hold.hold} (${hold.message.slice(0, 160)}). ${hold.hold === 'HELD_CREDENTIAL' ? ownerStep(sa) : 'Quota resets daily.'} ${inspected} URL(s) inspected this run are kept.`;
+    const stop = `NAMED STOP index-coverage: URL Inspection ${hold.hold} (${hold.message.slice(0, 160)}). ${hold.hold === 'HELD_CREDENTIAL' ? ownerStep() : 'Quota resets daily.'} ${inspected} URL(s) inspected this run are kept.`;
     console.log(stop);
     write(urls, byUrl, 'NAMED_STOP', stop, inspected);
     return 0;

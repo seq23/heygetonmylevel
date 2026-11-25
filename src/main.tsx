@@ -21,9 +21,11 @@ if ("serviceWorker" in navigator) {
     }
   })();
 
+  const host = window.location.hostname;
   const isPreviewHost =
-    window.location.hostname.includes("id-preview--") ||
-    window.location.hostname.includes("lovableproject.com");
+    host.startsWith("id-preview--") ||
+    host === "lovableproject.com" ||
+    host.endsWith(".lovableproject.com");
 
   if (!isPreviewHost && !isInIframe) {
     window.addEventListener("load", () => {
