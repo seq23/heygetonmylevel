@@ -16,6 +16,11 @@
       "at": "2026-11-25T20:39:05.270Z",
       "status": "could_not_tell",
       "reason": "Boss OS does not know learn.heygetonmylevel.com (HTTP 404)"
+    },
+    {
+      "at": "2026-11-26T20:32:21.550Z",
+      "status": "could_not_tell",
+      "reason": "Boss OS does not know learn.heygetonmylevel.com (HTTP 404)"
     }
   ]
 }
