@@ -23,6 +23,8 @@ jobs:
           deno-version: v2.x
       - name: Paid edge functions refuse anonymous and over-limit callers
         run: deno test --no-lock --allow-read supabase/functions/_shared/
+      - name: update_session takes only what the app sends (every migration replayed on Postgres)
+        run: deno test --no-lock --node-modules-dir=none --allow-read supabase/tests/
       - run: bunx tsc -p tsconfig.app.json --noEmit
       - name: The feedback form and Reading Buddy read their strings from the translation table
         run: node --test scripts/translations.test.mjs scripts/sentence-case.test.mjs
