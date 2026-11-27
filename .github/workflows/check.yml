@@ -5,6 +5,11 @@ on:
     branches: [main]
 permissions:
   contents: read
+# A newer push to the same PR cancels its older runs, so superseded runs stop holding runners the
+# account shares with every other repo (h5: the gate's wall time was queue, not work). Main runs finish.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 jobs:
   build:
     runs-on: ubuntu-latest

@@ -8,6 +8,10 @@ on:
   workflow_dispatch:
 permissions:
   contents: read
+# A newer push to the same PR cancels its older runs (see check.yml). Main and manual runs finish.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 jobs:
   ship-ready-baseline:
     uses: seq23/seq-bin/.github/workflows/ship-ready-baseline.yml@v1
