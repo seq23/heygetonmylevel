@@ -2,7 +2,7 @@
   "schema": "search-loop-week-v1",
   "week": "2026-W48",
   "site": "learn.heygetonmylevel.com",
-  "generated_at": "2026-11-26T20:32:21.550Z",
+  "generated_at": "2026-11-27T20:19:32.405Z",
   "state": "off",
   "published": 0,
   "indexed": 1,
@@ -61,7 +61,9 @@
     "new_candidates": [],
     "skipped": [],
     "rejected": [],
-    "could_not_tell": 4
+    "could_not_tell": 5
   },
-  "run_url": "https://github.com/seq23/heygetonmylevel/actions/runs/45891715006"
+  "comparison": "not read: FIND has not run since v1.16.0",
+  "seeds": "not read: this site has no seeds in its config",
+  "run_url": "https://github.com/seq23/heygetonmylevel/actions/runs/46062744189"
 }
