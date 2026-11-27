@@ -21,6 +21,12 @@ const TOKEN = "google706548b58060eed8.html";
 
 const pick = (re, s) => (s.match(re) || [])[1] || "";
 const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+// Strip tags until none are left: one pass over "<<b>b>" leaves "<b>" behind.
+export const stripTags = (s) => {
+  let out = String(s), prev;
+  do { prev = out; out = out.replace(/<[^>]*>/g, ""); } while (out !== prev);
+  return out.replace(/[<>]/g, "");
+};
 const unesc = (s) => String(s).replace(/&quot;/g, '"').replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&#39;/g, "'").replace(/&amp;/g, "&");
 
 function readPages(questionsDir) {
@@ -31,7 +37,7 @@ function readPages(questionsDir) {
     const html = readFileSync(file, "utf8");
     pages.push({
       slug, file, html,
-      h1: unesc(pick(/<h1[^>]*>([\s\S]*?)<\/h1>/i, html).replace(/<[^>]+>/g, "").trim()),
+      h1: unesc(stripTags(pick(/<h1[^>]*>([\s\S]*?)<\/h1>/i, html)).trim()),
       canonical: pick(/<link[^>]+href="([^"]+)"[^>]*rel="canonical"/i, html) || pick(/<link[^>]+rel="canonical"[^>]*href="([^"]+)"/i, html),
       published: pick(/<time datetime="(\d{4}-\d{2}-\d{2})"/, html),
     });
